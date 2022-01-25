@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/forgot_password2.dart';
-import 'package:new_project_work/ui_pages/login_page.dart';
-import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/btn_widget.dart';
 import 'package:new_project_work/widgets/header_container.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -12,117 +9,117 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+
+
+   void _showToast(){
+    Fluttertoast.showToast(
+      msg: 'Your E-mail has been verified',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Color(0xffef5350),
+      textColor: Color(0xffF5591F),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(bottom: 30),
-        child: Column(
-          children: <Widget>[
-            HeaderContainer(text: "Forgot Password"),
-            Expanded(
-              flex: 3,
-              child: Container(
-                margin: EdgeInsets.only(left: 20, right: 20, top: 30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          HeaderContainer(text: "Forgot your Password??"),
+          Expanded(
+            flex: 1,
+            child: Container(
+              margin: EdgeInsets.only(left: 20, right: 20, top: 30),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
 
-                    Padding(
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      child: TextField(
-                        cursorColor: Color(0xffF5591F),
-                        decoration: InputDecoration(
-                          hoverColor: Color(0xffF5591F),
-                          focusColor: Color(0xffF5591F),
-                          disabledBorder: InputBorder.none,
-                          isDense: false,
-                          hintText: 'Enter your E-mail.',
-                          hintStyle: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.normal,
-                            fontStyle: FontStyle.normal,
-                            color:Colors.black,
-                          ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25, right: 25),
+                    child: TextField(
+                      cursorColor: Color(0xffF5591F),
+                      decoration: InputDecoration(
+                        hoverColor: Color(0xffF5591F),
+                        focusColor: Color(0xffF5591F),
+                        disabledBorder: InputBorder.none,
+                        isDense: false,
+                        hintText: 'Enter your E-mail.',
+                        hintStyle: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.normal,
+                          color:Colors.black,
                         ),
                       ),
                     ),
-                    // _textInput(hint: "Phone Number", icon: Icons.phone),
-                    // _textInput(hint: "New Password", icon: Icons.visibility),
+                  ),
+                  SizedBox(height: 100.0),
 
-                    SizedBox(height: 100.0),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          PageRouteBuilder(
+                              transitionDuration: Duration(
+                                  seconds: 1),
+                              transitionsBuilder: (
+                                  context, animation,
+                                  animationTime, child) {
+                                //  animation = CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
+                                return ScaleTransition(
+                                  alignment: Alignment
+                                      .center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (context,
+                                  animation,
+                                  animationTime) {
+                                return ForgotPassword2();
+                              }
+                          ));
+                    },
+                    child: Text(
+                      'Use Phone Number Instead',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0xffF5591F),
+                      ),
+                    ),
+                  ),
 
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgotPassword2()));
-                      },
-                      child: Text(
-                        'Use Phone Number Instead',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Color(0xffF5591F),
+
+
+                  SizedBox(height: 100.0),
+
+                  ElevatedButton(
+                    onPressed: _showToast,
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        side: BorderSide(color: Colors.white),
+                        elevation: 7,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        padding:
+                            EdgeInsets.all(20) //content padding inside button
                         ),
-                      ),
+                    child: Text(
+                      'Verify E-mail',
+                      style:
+                          TextStyle(color: Color(0xffF5591F), fontSize: 16),
                     ),
-
-                    
-                    
-                    SizedBox(height: 100.0),
-
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Dashboard()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          side: BorderSide(color: Colors.white),
-                          //border width and color
-                          elevation: 7,
-                          //elevation of button
-                          shape: RoundedRectangleBorder(
-                              //to set border radius to button
-                              borderRadius: BorderRadius.circular(10)),
-                          padding:
-                              EdgeInsets.all(20) //content padding inside button
-                          ),
-                      child: Text(
-                        'Get Code',
-                        style:
-                            TextStyle(color: Color(0xffF5591F), fontSize: 16),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-  //
-  // Widget _textInput({controller, hint, icon}) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 10),
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.all(Radius.circular(20)),
-  //       color: Colors.white,
-  //     ),
-  //     padding: EdgeInsets.only(left: 10),
-  //     child: TextFormField(
-  //       controller: controller,
-  //       decoration: InputDecoration(
-  //         border: InputBorder.none,
-  //         hintText: hint,
-  //         suffixIcon: Icon(icon),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
+
+void main() => runApp(ForgotPassword());
+

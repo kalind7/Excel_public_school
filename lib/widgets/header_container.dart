@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/forgot_password.dart';
 import 'package:new_project_work/utils/color.dart';
 
 
@@ -21,7 +22,7 @@ class HeaderContainer extends StatelessWidget {
         children: <Widget>[
           Positioned(
               bottom: 20,
-              right: 20,
+              right: 70,
               child: Text(
                 text,
                 style: TextStyle(color: Colors.black,fontSize: 20),
@@ -38,3 +39,4 @@ class HeaderContainer extends StatelessWidget {
     );
   }
 }
+
