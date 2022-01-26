@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/forgot_password2.dart';
 import 'package:new_project_work/widgets/header_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,7 +18,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Color(0xffef5350),
-      textColor: Color(0xffF5591F),
+      textColor: Colors.white,
     );
   }
 
@@ -105,10 +106,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         padding:
                             EdgeInsets.all(20) //content padding inside button
                         ),
-                    child: Text(
-                      'Verify E-mail',
-                      style:
-                          TextStyle(color: Color(0xffF5591F), fontSize: 16),
+                    child:GestureDetector(
+
+                      onTap: (){
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => Dashboard()));
+                      },
+                        child:  Text(
+                        'Verify E-mail',
+                        style:
+                        TextStyle(color: Color(0xffF5591F), fontSize: 16),
+                      ),
                     ),
                   ),
                 ],
