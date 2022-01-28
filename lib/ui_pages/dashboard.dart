@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/students_page.dart';
+import 'package:new_project_work/widgets/category_drawer.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -10,8 +12,12 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: CategoryDrawer(),
+      ),
       body: Stack(
         children: <Widget>[
+          // HeaderContainer(text: 'Admin'),
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -66,7 +72,29 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Image.network("https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",height: 120,),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    PageRouteBuilder(
+                                        transitionDuration: Duration(seconds: 1),
+                                        transitionsBuilder:
+                                            (context, animation, animationTime, child) {
+                                          //  animation = CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
+                                          return ScaleTransition(
+                                            alignment: Alignment.center,
+                                            scale: animation,
+                                            child: child,
+                                          );
+                                        },
+                                        pageBuilder:
+                                            (context, animation, animationTime) {
+                                          return StudentPage();
+                                        }));
+                              },
+                              child:  Image.network("https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",height: 120,),
+                            ),
+
                             Text('All Students'),
                           ],
                         ),

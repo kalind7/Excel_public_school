@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
-import 'package:new_project_work/ui_pages/forgot_password.dart';
-import 'package:new_project_work/ui_pages/forgot_password2.dart';
 import 'package:new_project_work/widgets/header_container.dart';
 
 class ForgotPassword2 extends StatefulWidget {
@@ -17,29 +15,30 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           HeaderContainer(text: "Forgot Password"),
-          Expanded(
-            flex: 3,
-            child: Container(
+           Container(
               margin: EdgeInsets.only(left: 20, right: 20, top: 30),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
 
                   Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25),
+                    padding: EdgeInsets.only(left: 40, right: 40),
                     child: TextField(
-                      cursorColor: Color(0xffF5591F),
+                      cursorColor: Color(0xff1b71f1),
                       decoration: InputDecoration(
-                        hoverColor: Color(0xffF5591F),
-                        focusColor: Color(0xffF5591F),
+                        hoverColor: Color(0xff1b71f1),
+                        focusColor: Color(0xff1b71f1),
                         disabledBorder: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
                         isDense: false,
                         hintText: 'Enter your Phone Number.',
                         hintStyle: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.normal,
-                          color:Colors.black,
+                          color:Color(0xff1b71f1),
                         ),
                       ),
                     ),
@@ -57,14 +56,14 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                       'Use E-mail Instead',
                       style: TextStyle(
                         fontSize: 15.0,
-                        color: Color(0xffF5591F),
+                        color: Color(0xff1b71f1),
                       ),
                     ),
                   ),
 
 
 
-                  SizedBox(height: 100.0),
+                  SizedBox(height: 70.0),
 
                   ElevatedButton(
                     onPressed: () {
@@ -88,13 +87,13 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                     child: Text(
                       'Get Code',
                       style:
-                      TextStyle(color: Color(0xffF5591F), fontSize: 16),
+                      TextStyle(color: Color(0xff1b71f1), fontSize: 16),
                     ),
                   ),
+
                 ],
               ),
             ),
-          ),
         ],
       ),
     );

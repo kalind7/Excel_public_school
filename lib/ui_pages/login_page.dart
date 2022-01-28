@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:new_project_work/ui_pages/forgot_password.dart';
-import 'package:new_project_work/ui_pages/dashboard.dart';
+// import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/widgets/header_container.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,30 +15,14 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  late String email;
+   late String password;
  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
- void validate(){
-   if (formkey.currentState!.validate()){
-     print("Validated");
-   }else{
-     print("Not Validated");
-   }
- }
-
- String? validatePass(value){
-   if(value.isEmpty){
-     return "Required";
-   }else{
-     return null;
-   }
- }
-
 
 
   bool checkedValue = false;
   bool newValue = true;
   bool _isObscure = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,40 +36,65 @@ class _LoginPageState extends State<LoginPage> {
                 HeaderContainer(text: 'Login'),
                 SizedBox(height: 50.0),
                 Padding(
-                  padding: EdgeInsets.only(left: 50, right: 50),
+                  padding: EdgeInsets.only(left: 40, right: 40),
                   child: TextFormField(
+                    onChanged: (value){
+                      setState(() {
+                        email = value;
+                      });
+                    },
+                    cursorColor: Color(0xff1b71f1),
                     decoration: InputDecoration(
-                      hoverColor: Color(0xffF5591F),
-                      focusColor: Color(0xffF5591F),
-                      border: OutlineInputBorder(),
+                      hoverColor: Color(0xff1b71f1),
+                      focusColor: Color(0xff1b71f1),
+
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+
+                      ),
                       isDense: false,
                       hintText: 'Email',
                       hintStyle: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.normal,
                         fontStyle: FontStyle.normal,
-                        color: Color(0xffF5591F),
+                        color: Color(0xff1b71f1),
                       ),
+                    ),
+
+                    validator: MultiValidator(
+                        [
+                          RequiredValidator(errorText: 'Required'),
+                          EmailValidator(errorText: 'Not a valid Email'),
+                        ]
                     ),
                   ),
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                  padding: EdgeInsets.only(top: 20, left: 40, right: 40),
                   child: TextFormField(
+                    onChanged: (value){
+                      setState(() {
+                        password = value;
+                      });
+                    },
                     obscureText: _isObscure,
-                    cursorColor: Color(0xffF5591F),
+                    cursorColor: Color(0xff1b71f1),
                     decoration: InputDecoration(
-                      hoverColor: Color(0xffF5591F),
-                      focusColor: Color(0xffF5591F),
-                      border: OutlineInputBorder(),
+                      hoverColor: Color(0xff1b71f1),
+                      focusColor: Color(0xff1b71f1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+
+                      ),
                       isDense: true,
                       hintText: 'Password',
                       hintStyle: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.normal,
                         fontStyle: FontStyle.normal,
-                        color: Color(0xffF5591F),
+                        color: Color(0xff1b71f1),
                       ),
                       suffixIcon: IconButton(
                           onPressed: () {
@@ -94,11 +105,21 @@ class _LoginPageState extends State<LoginPage> {
                           icon: Icon(
                             _isObscure ? Icons.visibility : Icons.visibility_off,
                             size: 24,
-                            color: Color(0xffF5591F),
+                            color: Color(0xff1b71f1),
                           )),
                     ),
-                    validator: validatePass,
 
+                    autovalidateMode: null,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return "Required";
+                      }
+                      else if(value.length<8){
+                        return "Should atleast be 8 characters";
+                      }else{
+                        return null;
+                      }
+                    },
                   ),
                 ),
                 SizedBox(
@@ -107,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   children: [
                     SizedBox(width: 15),
+
                     Checkbox(
                         value: checkedValue,
                         onChanged: (newValue) {
@@ -114,17 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                             checkedValue = newValue!;
                           });
                         }),
-                    // IconButton(
-                    //   onPressed: () {},
-                    //   icon: Icon(Icons.check_box_outline_blank),
-                    //   iconSize: 24.0,
-                    //   color: Colors.grey,
-                    // ),
+
                     Text(
                       'Remember me?',
                       style: TextStyle(
                         fontSize: 15.0,
-                        color: Color(0xffF5591F),
+                        color: Color(0xff1b71f1),
                       ),
                     ),
                     SizedBox(
@@ -141,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Forgot Password?',
                         style: TextStyle(
                           fontSize: 15.0,
-                          color: Color(0xffF5591F),
+                          color: Color(0xff1b71f1),
                         ),
                       ),
                     ),
@@ -156,8 +173,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton(
                     onPressed: ()
                     {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Dashboard()));
+                      if(formkey.currentState!.validate()){
+                        return null;
+                      }
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => Dashboard()));
                     },
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white,
@@ -173,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: Text(
                       'Log In',
-                      style: TextStyle(color: Color(0xffF5591F), fontSize: 16),
+                      style: TextStyle(color: Color(0xff1b71f1), fontSize: 16),
                     ),
                   ),
                 ),
