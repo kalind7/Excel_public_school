@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/settings.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/category_drawer.dart';
 import 'package:new_project_work/widgets/student_work.dart';
@@ -18,7 +19,7 @@ class _StudentPageState extends State<StudentPage> {
     Center(child: Text('Home', style: TextStyle(fontSize: 40),),),
     Center(child: Text('Search', style: TextStyle(fontSize: 40),),),
     Center(child: Text('Calendar', style: TextStyle(fontSize: 40),),),
-    Center(child: Text('Settings', style: TextStyle(fontSize: 40),),),
+    Center(child: Settings()),
 
   ];
 
@@ -27,9 +28,8 @@ class _StudentPageState extends State<StudentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      drawer: Drawer(
-        child: CategoryDrawer(),
-      ),
+      drawer:  CategoryDrawer(),
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex : _currentIndex,
@@ -69,6 +69,7 @@ class _StudentPageState extends State<StudentPage> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
+          screens[_currentIndex],
           Stack(
             children: [
               Container(

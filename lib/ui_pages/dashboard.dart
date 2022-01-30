@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/grad_student.dart';
 import 'package:new_project_work/ui_pages/students_page.dart';
 import 'package:new_project_work/widgets/category_drawer.dart';
 
@@ -12,7 +13,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
+        drawer: Drawer(
         child: CategoryDrawer(),
       ),
       body: Stack(
@@ -104,7 +105,14 @@ class _DashboardState extends State<Dashboard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.network("https://www.vettrak.com.au/wp-content/uploads/2020/02/international_students.png",height: 120,),
-                            Text('Graduated Students'),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => GradStudent()));
+                              },
+                              child: Text('Graduated Students'),
+                            ),
+
+
                           ],
                         ),
                       ),
