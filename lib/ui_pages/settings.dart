@@ -6,6 +6,9 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
         drawer :Drawer(
           child: Container(
             color: Color.fromRGBO(50, 75, 205, 1),

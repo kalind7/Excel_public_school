@@ -1,4 +1,10 @@
+
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/calendar.dart';
+import 'package:new_project_work/ui_pages/dashboard.dart';
+import 'package:new_project_work/ui_pages/power.dart';
+import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/students_page.dart';
 
 class GradStudent extends StatefulWidget {
   const GradStudent({Key? key}) : super(key: key);
@@ -8,90 +14,208 @@ class GradStudent extends StatefulWidget {
 }
 
 class _GradStudentState extends State<GradStudent> {
+
+  // int _page = 0;
+  // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  int _currentIndex = 0;
+
+  final screens = [
+
+
+    Functions(),
+    StudentPage(),
+    Calendar(),
+    Settings(),
+    Power(),
+
+  ];
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        children: [
-           Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 60,
-                  width: 400,
-                  margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                  // color: Colors.blue,
 
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 5.0, right: 55.0),
-                        child: CircleAvatar(
-                          radius: 25.0,
-                          backgroundColor: Colors.black,
-                          backgroundImage: AssetImage("images/profile.png"),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 50.0,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, right: 5.0),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.search,
-                              color: Colors.black, size: 25.0),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, right: 5.0),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.notifications_active,
-                              color: Colors.black, size: 25.0),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, right: 5.0),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon:
-                              Icon(Icons.menu, color: Colors.black, size: 25.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 30.0),
-                Padding(
-                  padding: EdgeInsets.only(left: 15.0),
-                  child: Text('Functionalities',
-                      style: TextStyle(
-                          fontSize: 22.0, fontWeight: FontWeight.w500)),
-                ),
-                SizedBox(height: 20.0),
-                GridView.count(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  crossAxisCount: 4,
-                  children: List.generate(models.length, (index) {
-                    return Center(
-                      child: ModelCard(model: models[index]),
-                    );
-                  }),
-                ),
-              ],
+      // bottomNavigationBar: CurvedNavigationBar(
+      //
+      //   key: _bottomNavigationKey,
+      //   index: 0,
+      //   height: 40.0,
+      //   backgroundColor: Colors.blueAccent,
+      //   items: <Widget>[
+      //     Icon(Icons.home,size: 25.0,semanticLabel: 'Home',),
+      //     Icon(Icons.settings,size: 25.0,semanticLabel: 'settings',),
+      //     Icon(Icons.calendar_today,size: 25.0,semanticLabel: 'calendar',),
+      //     Icon(Icons.power_settings_new,size: 25.0,semanticLabel: 'power',),
+      //   ],
+      //
+      //   color: Colors.white,
+      //   buttonBackgroundColor: Colors.white24,
+      //   animationCurve: Curves.bounceInOut,
+      //   animationDuration: Duration(microseconds: 500),
+      //   onTap: (index){
+      //     setState(() {
+      //       _page = index;
+      //       // _currentIndex = index;
+      //     });
+      //   },
+      //   letIndexChange: (index) => true,
+      // ),
+      body: screens[_currentIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex : _currentIndex,
+        backgroundColor: Colors.lightBlueAccent,
+        selectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.white54,
+        items: [
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+              onDoubleTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+              },
+              child:Icon(Icons.home),
             ),
+            label: 'Home',
+            // backgroundColor: Colors.blue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label:'Std-Profile',
+            // backgroundColor: Colors.blue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
+            label: 'Calendar',
+            // backgroundColor: Colors.blue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+            // backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.power_settings_new),
+            label:'Power-Off',
+            // backgroundColor: Colors.blue,
+          ),
 
         ],
+        onTap: (index){
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
+
+
+    );
+  }
+
+
+}
+
+
+
+
+
+class Functions extends StatefulWidget {
+  const Functions({Key? key}) : super(key: key);
+
+  @override
+  _FunctionsState createState() => _FunctionsState();
+}
+
+class _FunctionsState extends State<Functions> {
+  @override
+  Widget build(BuildContext context) {
+    return  ListView(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 60,
+              width: 400,
+              margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+              // color: Colors.blue,
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, right: 55.0),
+                    child: CircleAvatar(
+                      radius: 25.0,
+                      backgroundColor: Colors.black,
+                      backgroundImage: AssetImage("images/profile.png"),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 50.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0, right: 5.0),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.search,
+                          color: Colors.black, size: 25.0),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0, right: 5.0),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.notifications_active,
+                          color: Colors.black, size: 25.0),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0, right: 5.0),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon:
+                      Icon(Icons.menu, color: Colors.black, size: 25.0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 30.0),
+            Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Text('Functionalities',
+                  style: TextStyle(
+                      fontSize: 22.0, fontWeight: FontWeight.w500)),
+            ),
+            SizedBox(height: 20.0),
+            GridView.count(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 4,
+              children: List.generate(models.length, (index) {
+                return Center(
+                  child: ModelCard(model: models[index]),
+                );
+              }),
+            ),
+          ],
+        ),
+
+      ],
     );
   }
 }
+
 
 class Model {
   const Model({required this.text, required this.icon});
@@ -148,3 +272,4 @@ class ModelCard extends StatelessWidget {
     );
   }
 }
+
