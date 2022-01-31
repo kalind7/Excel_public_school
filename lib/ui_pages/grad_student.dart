@@ -220,7 +220,7 @@ List<Model> models = <Model>[
       text: 'Profile',
       icon: Icons.person,
       onpress: () {
-        print('pressed');
+        // Navigator.push(context, MaterialPageRoute((context) => Dashboard()));
       }),
   Model(
       text: 'Fees',

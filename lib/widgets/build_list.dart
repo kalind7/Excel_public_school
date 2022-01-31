@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
+import 'package:new_project_work/ui_pages/admin_bio.dart';
 
 class BuildList extends StatefulWidget {
   const BuildList({Key? key}) : super(key: key);
@@ -23,22 +24,27 @@ class _BuildListState extends State<BuildList> {
       ),
 
       body: ListView(
+        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: [
           SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
             child:Column(
               children: [
                 GetX<StudentController>(
                     builder: (controller){
                       return ListView.builder(
+                          physics: ClampingScrollPhysics(),
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: controller.studentList.length,
                           itemBuilder: (context, index){
                             return SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
                               scrollDirection: Axis.vertical,
+
                               child:Container(
                                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                                 decoration: BoxDecoration(
@@ -53,16 +59,26 @@ class _BuildListState extends State<BuildList> {
                                       child:  ClipRRect(
                                         borderRadius: BorderRadius.circular(15.0),
                                         child: GestureDetector(
-                                          onTap: (){},
-                                          child: Hero(
-                                            tag: AssetImage('images/profile.png'),
+                                          onTap: (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminBio(
+                                              text: 'Kashish Chaudhary',
+                                              bio:
+                                              'I am student of class 4 and am studying hardly to complete my primary classes.',
+                                              jobtitle: 'Job',
+                                              answer1: 'Student',
+                                              length: 'Class',
+                                              answer2: '4',
+                                              question: 'Teacher ?',
+                                              answer3: 'NO',
+                                            ),));
+                                          },
                                             child: Image(
                                               height: 100,
                                               width: 50,
                                               fit: BoxFit.cover,
                                               image: AssetImage('images/profile.png'),
                                             ),
-                                          ),
+
                                         ),
                                       ),
                                     ),
