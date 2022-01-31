@@ -194,35 +194,26 @@ class AdminBio extends StatelessWidget {
                 height: 10.0,
               ),
               Container(
-                width: 300.00,
-                child: RaisedButton(
-                    hoverColor: Colors.black,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    elevation: 0.0,
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: [orangeColors, lightRedColors]),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Contact me",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 26.0,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                    )),
+                width: 200.00,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.lightBlueAccent,
+                      // side: BorderSide(color: Colors.white),
+                      //border width and color
+                      elevation: 5,
+                      //elevation of button
+                      shape: RoundedRectangleBorder(
+                        //to set border radius to button
+                          borderRadius: BorderRadius.circular(20)),
+                      padding:
+                      EdgeInsets.all(15) //content padding inside button
+                  ),
+                  child: Text(
+                    'Contact me',
+                    style: TextStyle(color: Colors.black54, fontSize: 16),
+                  ),
+                ),
               ),
             ],
           ),

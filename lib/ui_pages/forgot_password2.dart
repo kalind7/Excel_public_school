@@ -8,6 +8,10 @@ class ForgotPassword2 extends StatefulWidget {
 }
 
 class _ForgotPassword2State extends State<ForgotPassword2> {
+
+  late int number;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +25,43 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
 
-                  Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40),
-                    child: TextField(
-                      cursorColor: Color(0xff1b71f1),
-                      decoration: InputDecoration(
-                        hoverColor: Color(0xff1b71f1),
-                        focusColor: Color(0xff1b71f1),
-                        disabledBorder: InputBorder.none,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                  Form(
+                    key: formkey,
+                    child:Padding(
+                      padding: EdgeInsets.only(left: 40, right: 40),
+                      child: TextFormField(
+                        onChanged: (value){
+                          setState(() {
+                            number = value as int;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                        cursorColor: Color(0xff1b71f1),
+                        decoration: InputDecoration(
+                          hoverColor: Color(0xff1b71f1),
+                          focusColor: Color(0xff1b71f1),
+                          disabledBorder: InputBorder.none,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          isDense: false,
+                          hintText: 'Enter your Phone Number.',
+                          hintStyle: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.normal,
+                            color:Color(0xff1b71f1),
+                          ),
                         ),
-                        isDense: false,
-                        hintText: 'Enter your Phone Number.',
-                        hintStyle: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FontStyle.normal,
-                          color:Color(0xff1b71f1),
-                        ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return "Enter your number";
+                          }else if(value.length<10){
+                            return "Enter valid mobile number";
+                          }else{
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -67,10 +89,13 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
 
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Dashboard()));
+
+                      if(formkey.currentState!.validate()){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Dashboard()));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white,
@@ -99,3 +124,5 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
     );
   }
 }
+void main() => runApp(ForgotPassword2());
+

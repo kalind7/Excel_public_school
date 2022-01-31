@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/power.dart';
@@ -14,30 +15,32 @@ class GradStudent extends StatefulWidget {
 }
 
 class _GradStudentState extends State<GradStudent> {
-
   // int _page = 0;
   // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   int _currentIndex = 0;
 
   final screens = [
-
-
     Functions(),
-    StudentPage(),
+    AdminBio(
+      text: 'Kashish Chaudhary',
+      bio:
+          'I am student of class 4 and am studying hardly to complete my primary classes.',
+      jobtitle: 'Job',
+      answer1: 'Student',
+      length: 'Class',
+      answer2: '4',
+      question: 'Teacher ?',
+      answer3: 'NO',
+    ),
     Calendar(),
     Settings(),
     Power(),
-
   ];
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // bottomNavigationBar: CurvedNavigationBar(
       //
       //   key: _bottomNavigationKey,
@@ -67,34 +70,32 @@ class _GradStudentState extends State<GradStudent> {
 
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex : _currentIndex,
+        currentIndex: _currentIndex,
         backgroundColor: Colors.lightBlueAccent,
         selectedItemColor: Colors.black54,
         unselectedItemColor: Colors.white54,
         items: [
           BottomNavigationBarItem(
             icon: GestureDetector(
-              onDoubleTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+              onDoubleTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Dashboard()));
               },
-              child:Icon(Icons.home),
+              child: Icon(Icons.home),
             ),
             label: 'Home',
             // backgroundColor: Colors.blue,
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label:'Std-Profile',
+            label: 'Std-Profile',
             // backgroundColor: Colors.blue,
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Calendar',
             // backgroundColor: Colors.blue,
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
@@ -102,28 +103,19 @@ class _GradStudentState extends State<GradStudent> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.power_settings_new),
-            label:'Power-Off',
+            label: 'Power-Off',
             // backgroundColor: Colors.blue,
           ),
-
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
       ),
-
-
     );
   }
-
-
 }
-
-
-
-
 
 class Functions extends StatefulWidget {
   const Functions({Key? key}) : super(key: key);
@@ -135,7 +127,7 @@ class Functions extends StatefulWidget {
 class _FunctionsState extends State<Functions> {
   @override
   Widget build(BuildContext context) {
-    return  ListView(
+    return ListView(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       children: [
@@ -167,8 +159,7 @@ class _FunctionsState extends State<Functions> {
                     padding: EdgeInsets.only(top: 20.0, right: 5.0),
                     child: IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.search,
-                          color: Colors.black, size: 25.0),
+                      icon: Icon(Icons.search, color: Colors.black, size: 25.0),
                     ),
                   ),
                   Padding(
@@ -183,8 +174,7 @@ class _FunctionsState extends State<Functions> {
                     padding: EdgeInsets.only(top: 20.0, right: 5.0),
                     child: IconButton(
                       onPressed: () {},
-                      icon:
-                      Icon(Icons.menu, color: Colors.black, size: 25.0),
+                      icon: Icon(Icons.menu, color: Colors.black, size: 25.0),
                     ),
                   ),
                 ],
@@ -194,8 +184,8 @@ class _FunctionsState extends State<Functions> {
             Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Text('Functionalities',
-                  style: TextStyle(
-                      fontSize: 22.0, fontWeight: FontWeight.w500)),
+                  style:
+                      TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500)),
             ),
             SizedBox(height: 20.0),
             GridView.count(
@@ -210,35 +200,94 @@ class _FunctionsState extends State<Functions> {
             ),
           ],
         ),
-
       ],
     );
   }
 }
 
-
 class Model {
-  const Model({required this.text, required this.icon});
+  const Model({required this.text, required this.icon, required this.onpress});
 
   final String text;
   final IconData icon;
-// final Size size;
+  final Function onpress;
 
+// final Size size;
 }
 
 List<Model> models = <Model>[
-  Model(text: 'Profile', icon: Icons.person),
-  Model(text: 'Fees', icon: Icons.event_note_rounded),
-  Model(text: 'Result', icon: Icons.file_copy_sharp),
-  Model(text: 'Attendance', icon: Icons.home_work_outlined),
-  Model(text: 'Subjects', icon: Icons.subject),
-  Model(text: 'Downloads', icon: Icons.download_rounded),
-  Model(text: 'Routine', icon: Icons.request_page_outlined),
-  Model(text: 'Library', icon: Icons.library_books_sharp),
-  Model(text: 'Teachers', icon: Icons.people),
-  Model(text: 'Exam', icon: Icons.wallpaper),
-  Model(text: 'Dormitory', icon: Icons.hotel),
-  Model(text: 'Transport', icon: Icons.bus_alert),
+  Model(
+      text: 'Profile',
+      icon: Icons.person,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Fees',
+      icon: Icons.event_note_rounded,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Result',
+      icon: Icons.file_copy_sharp,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Attendance',
+      icon: Icons.home_work_outlined,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Subjects',
+      icon: Icons.subject,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Downloads',
+      icon: Icons.download_rounded,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Routine',
+      icon: Icons.request_page_outlined,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Library',
+      icon: Icons.library_books_sharp,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Teachers',
+      icon: Icons.people,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Exam',
+      icon: Icons.wallpaper,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Dormitory',
+      icon: Icons.hotel,
+      onpress: () {
+        print('pressed');
+      }),
+  Model(
+      text: 'Transport',
+      icon: Icons.bus_alert,
+      onpress: () {
+        print('pressed');
+      }),
 ];
 
 class ModelCard extends StatelessWidget {
@@ -263,13 +312,23 @@ class ModelCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(model.icon, size: 25.0, color: Colors.blue),
-              SizedBox(height: 13.0),
+              IconButton(
+                onPressed: () => model.onpress,
+                icon: Icon(
+                  model.icon,
+                  size: 25.0,
+                  color: Colors.blue,
+                ),
+                // size: 25.0, color: Colors.blue,
+              ),
+              // SizedBox(height: 6.0),
               Text(model.text,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Colors.black87)),
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black87)),
             ]),
       ),
     );
   }
 }
-

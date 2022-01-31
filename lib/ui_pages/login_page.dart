@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/forgot_password.dart';
+
 // import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/widgets/header_container.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,15 +15,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   late String email;
-   late String password;
- GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  late String password;
 
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   bool checkedValue = false;
   bool newValue = true;
   bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 40, right: 40),
                   child: TextFormField(
-                    onChanged: (value){
+                    onChanged: (value) {
                       setState(() {
                         email = value;
                       });
@@ -47,10 +48,8 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       hoverColor: Color(0xff1b71f1),
                       focusColor: Color(0xff1b71f1),
-
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-
                       ),
                       isDense: false,
                       hintText: 'Email',
@@ -61,20 +60,16 @@ class _LoginPageState extends State<LoginPage> {
                         color: Color(0xff1b71f1),
                       ),
                     ),
-
-                    validator: MultiValidator(
-                        [
-                          RequiredValidator(errorText: 'Required'),
-                          EmailValidator(errorText: 'Not a valid Email'),
-                        ]
-                    ),
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: 'Required'),
+                      EmailValidator(errorText: 'Not a valid Email'),
+                    ]),
                   ),
                 ),
-
                 Padding(
                   padding: EdgeInsets.only(top: 20, left: 40, right: 40),
                   child: TextFormField(
-                    onChanged: (value){
+                    onChanged: (value) {
                       setState(() {
                         password = value;
                       });
@@ -86,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                       focusColor: Color(0xff1b71f1),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-
                       ),
                       isDense: true,
                       hintText: 'Password',
@@ -103,20 +97,24 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                           icon: Icon(
-                            _isObscure ? Icons.visibility : Icons.visibility_off,
+                            _isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             size: 24,
                             color: Color(0xff1b71f1),
                           )),
                     ),
-
                     autovalidateMode: null,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Required";
-                      }
-                      else if(value.length<8){
+                      } else if (value.length < 8) {
                         return "Should atleast be 8 characters";
-                      }else{
+                      } else if (!RegExp(
+                              "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return "Enter strong Password (Hint : abc@123.ab)";
+                      } else {
                         return null;
                       }
                     },
@@ -128,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   children: [
                     SizedBox(width: 15),
-
                     Checkbox(
                         value: checkedValue,
                         onChanged: (newValue) {
@@ -136,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
                             checkedValue = newValue!;
                           });
                         }),
-
                     Text(
                       'Remember me?',
                       style: TextStyle(
@@ -171,10 +167,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: 60.0,
                   width: 180.0,
                   child: ElevatedButton(
-                    onPressed: ()
-                    {
-                      if(formkey.currentState!.validate()){
-                        return null;
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
                       }
                       // Navigator.push(context,
                       //     MaterialPageRoute(builder: (context) => Dashboard()));
@@ -186,11 +181,11 @@ class _LoginPageState extends State<LoginPage> {
                         elevation: 7,
                         //elevation of button
                         shape: RoundedRectangleBorder(
-                          //to set border radius to button
+                            //to set border radius to button
                             borderRadius: BorderRadius.circular(10)),
                         padding:
-                        EdgeInsets.all(20) //content padding inside button
-                    ),
+                            EdgeInsets.all(20) //content padding inside button
+                        ),
                     child: Text(
                       'Log In',
                       style: TextStyle(color: Color(0xff1b71f1), fontSize: 16),

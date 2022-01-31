@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/forgot_password2.dart';
 import 'package:new_project_work/widgets/header_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -82,7 +83,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                     SizedBox(height: 60.0),
                     ElevatedButton(
-                      onPressed: _showToast,
+                      onPressed:(){
+                        if (formkey.currentState!.validate()){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
+                        }else{
+                           Text('Use phone number instead') ;
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           side: BorderSide(color: Colors.white),
@@ -95,7 +102,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: GestureDetector(
                         onTap: () {
                           if (formkey.currentState!.validate()) {
-                            return null;
+                            return _showToast();
                           }
                         },
                         child: Text(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:new_project_work/ui_pages/grad_student.dart';
 import 'package:new_project_work/ui_pages/students_page.dart';
+import 'package:new_project_work/widgets/build_list.dart';
 import 'package:new_project_work/widgets/category_drawer.dart';
 
 class Dashboard extends StatefulWidget {
@@ -96,7 +97,7 @@ class _DashboardState extends State<Dashboard> {
                                         },
                                         pageBuilder:
                                             (context, animation, animationTime) {
-                                          return GradStudent();
+                                          return BuildList();
                                         }));
                               },
                               child:  Image.network("https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",height: 120,),
@@ -113,7 +114,7 @@ class _DashboardState extends State<Dashboard> {
                             Image.network("https://www.vettrak.com.au/wp-content/uploads/2020/02/international_students.png",height: 120,),
                             GestureDetector(
                               onTap: (){
-                                // Navigator.push(context, MaterialPageRoute(builder: (context) => GradStudent()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => GradStudent()));
                               },
                               child: Text('Graduated Students'),
                             ),
