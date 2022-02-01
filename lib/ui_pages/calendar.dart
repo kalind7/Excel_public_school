@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import'package:table_calendar/table_calendar.dart';
+import 'package:nepali_date_picker/nepali_date_picker.dart';
+import 'package:table_calendar/table_calendar.dart';
 
+// import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
+// import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:flutter/foundation.dart';
 
 class Calendar extends StatefulWidget {
@@ -11,7 +14,6 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-
   late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
@@ -26,8 +28,7 @@ class _CalendarState extends State<Calendar> {
     super.initState();
   }
 
-
-  List<Event> _getEventsfromDay(DateTime date){
+  List<Event> _getEventsfromDay(DateTime date) {
     return selectedEvents[date] ?? [];
   }
 
@@ -38,9 +39,6 @@ class _CalendarState extends State<Calendar> {
     super.dispose();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,84 +46,112 @@ class _CalendarState extends State<Calendar> {
         title: Text('Calendar'),
         centerTitle: true,
       ),
-
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TableCalendar(
-              focusedDay: selectedDay,
-              firstDay: DateTime(1970),
-              lastDay: DateTime(2040),
-            calendarFormat: format,
-            onFormatChanged: (CalendarFormat _format){
-                setState(() {
-                  format = _format;
-                });
-            },
-            startingDayOfWeek: StartingDayOfWeek.sunday,
-            daysOfWeekVisible: true,
 
-            onDaySelected: (DateTime selectDay, DateTime focusDay){
-                setState(() {
-                  selectedDay = selectDay ;
-                  focusedDay = focusDay ;
-                });
+        TableCalendar(
+        focusedDay: selectedDay,
+        firstDay: DateTime(1970),
+        lastDay: DateTime(2040),
+        calendarFormat: format,
+        onFormatChanged: (CalendarFormat _format){
+          setState(() {
+            format = _format;
+          });
+        },
+        startingDayOfWeek: StartingDayOfWeek.sunday,
+        daysOfWeekVisible: true,
 
-                print(focusedDay);
-            },
+        onDaySelected: (DateTime selectDay, DateTime focusDay){
+          setState(() {
+            selectedDay = selectDay ;
+            focusedDay = focusDay ;
+          });
 
-            selectedDayPredicate: (DateTime date){
-                return isSameDay(selectedDay, date);
-            },
+          print(focusedDay);
+        },
 
-            eventLoader: _getEventsfromDay,
+        selectedDayPredicate: (DateTime date){
+          return isSameDay(selectedDay, date);
+        },
+
+        eventLoader: _getEventsfromDay,
 
 
-            calendarStyle: CalendarStyle(
-              isTodayHighlighted: true,
-              selectedDecoration: BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-
-              selectedTextStyle: TextStyle(color: Colors.white),
-              todayDecoration:  BoxDecoration(
-                color: Colors.purpleAccent,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-
-              defaultDecoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-            headerStyle: HeaderStyle(
-              formatButtonVisible: true,
-              titleCentered: true,
-              formatButtonShowsNext: false,
-              formatButtonDecoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              formatButtonTextStyle: TextStyle(color: Colors.white),
-            ),
+        calendarStyle: CalendarStyle(
+          isTodayHighlighted: true,
+          selectedDecoration: BoxDecoration(
+            color: Colors.blue,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(5.0),
           ),
-          // _getEventsfromDay(selectedDay).map(
-          //         (Event event) => ListTile(
-          //           title: Text(event.title),
-          //         ),),
-        ],
+
+          selectedTextStyle: TextStyle(color: Colors.white),
+          todayDecoration:  BoxDecoration(
+            color: Colors.purpleAccent,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+
+          defaultDecoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        ),
+        headerStyle: HeaderStyle(
+          formatButtonVisible: true,
+          titleCentered: true,
+          formatButtonShowsNext: false,
+          formatButtonDecoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          formatButtonTextStyle: TextStyle(color: Colors.white),
+        ),
       ),
 
+          // ElevatedButton(
+          //   onPressed: (){
+          //
+          //   },
+          //   child: Text(
+          //     'OPEN ENGLISH CALENDAR',
+          //     style: TextStyle(color: Colors.white, fontSize: 20.0),
+          //   ),
+          // ),
+
+
+          Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                NepaliDateTime _selectedDateTime =
+                    (await showMaterialDatePicker(
+                  context: context,
+                  initialDate: NepaliDateTime.now(),
+                  firstDate: NepaliDateTime(2000),
+                  lastDate: NepaliDateTime(2090),
+                  initialDatePickerMode: DatePickerMode.day,
+                ))!;
+                print(_selectedDateTime);
+              },
+              child: Text(
+                'OPEN NEPALI CALENDAR',
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class Event{
-
+class Event {
   final String title;
+
   Event({required this.title});
 
-  String toString() => this.title ;
+  String toString() => this.title;
 }
