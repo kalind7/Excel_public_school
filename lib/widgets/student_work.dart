@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:new_project_work/ui_pages/admin_bio.dart';
+import 'package:new_project_work/widgets/admin_bio.dart';
 
 class StudentWork extends StatefulWidget {
   const StudentWork({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_project_work/ui_pages/admin_bio.dart';
+import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/widgets/settings.dart';
 
 class CategoryDrawer extends StatefulWidget {
   const CategoryDrawer({Key? key}) : super(key: key);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/forgot_password.dart';
 import 'package:new_project_work/utils/color.dart';
 
 
@@ -11,7 +10,7 @@ class HeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.33,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [orangeColors, lightRedColors],
@@ -21,11 +20,11 @@ class HeaderContainer extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Positioned(
-              bottom: 20,
-              right: 70,
+              bottom: 15,
+              right: 60,
               child: Text(
                 text,
-                style: TextStyle(color: Colors.black,fontSize: 20),
+                style: TextStyle(color: Colors.black,fontSize: 18),
               )),
           Center(
             child: Image(

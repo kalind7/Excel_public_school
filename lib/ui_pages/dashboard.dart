@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:new_project_work/ui_pages/grad_student.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:new_project_work/ui_pages/students_page.dart';
-import 'package:new_project_work/widgets/build_list.dart';
+import 'package:new_project_work/ui_pages/list_of_students.dart';
 import 'package:new_project_work/widgets/category_drawer.dart';
 
 class Dashboard extends StatefulWidget {
@@ -132,7 +133,7 @@ class _DashboardState extends State<Dashboard> {
                                   MaterialPageRoute(
                                       builder: (context) => GradStudent()));
                             },
-                            child:  Text('Graduated Students'),
+                            child:  Text('Functions Dashboard'),
                           ),
                           ],
                         ),
@@ -141,10 +142,19 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Image.network(
-                              "https://www.proeves.com/blog/wp-content/uploads/2019/01/events_kids.jpg",
-                              height: 120,
+
+                            GestureDetector(
+                               onTap: (){
+                                 Get.toNamed('/events');
+                               } ,
+
+                              child:  Image.network(
+                                "https://www.proeves.com/blog/wp-content/uploads/2019/01/events_kids.jpg",
+                                height: 120,
+                              ),
                             ),
+
+
                             Text('Upcoming Events'),
                           ],
                         ),

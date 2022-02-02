@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/attendace.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
-import 'package:new_project_work/ui_pages/grad_student.dart';
+import 'package:new_project_work/ui_pages/events.dart';
+import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
-import 'package:new_project_work/ui_pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +22,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => GradStudent(),
+        '/gradstudent': (context) => GradStudent(),
         '/login': (context) => LoginPage(),
         '/dashboard': (context) => Dashboard(),
-          },
+        '/events': (context) => Events(),
+        '/attendance': (context) => Attendance(),
 
+          },
     );
   }
 }

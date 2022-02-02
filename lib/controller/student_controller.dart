@@ -23,7 +23,7 @@ class StudentController extends GetxController{
           Class: '4',
         roll: '25',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/profile.png',
       ),
 
       StudentDetails(
@@ -31,7 +31,7 @@ class StudentController extends GetxController{
         Class: '4',
         roll: '26',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/excellogo.png',
       ),
 
       StudentDetails(
@@ -39,7 +39,7 @@ class StudentController extends GetxController{
         Class: '4',
         roll: '27',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/games.jpg',
       ),
 
       StudentDetails(
@@ -47,28 +47,28 @@ class StudentController extends GetxController{
         Class: '4',
         roll: '28',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/concert.jpg',
       ),
       StudentDetails(
         name: 'Very Hero',
         Class: '4',
         roll: '29',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/marathon.jpg',
       ),
       StudentDetails(
         name: 'Show Hero',
         Class: '4',
         roll: '21',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/photo.jpg',
       ),
       StudentDetails(
         name: 'new hero',
         Class: '4',
         roll: '20',
         email: 'std260@mail.com',
-        // image: 'images/profile.png',
+        image: 'images/profile.png',
       ),
     ];
 

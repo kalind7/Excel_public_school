@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/widgets/build_menu_item.dart';
 
 class Settings extends StatelessWidget {
 
@@ -17,6 +18,7 @@ class Settings extends StatelessWidget {
                 buildMenuItem(
                   text: 'Data',
                   icon: Icons.people,
+                  onpress: (){},
                 ),
               ],
             ),
@@ -26,18 +28,4 @@ class Settings extends StatelessWidget {
   }
 }
 
-Widget buildMenuItem({
-required  String text,
-  required IconData icon,
-}) {
-  final color = Colors.white;
-  final hoverColor = Colors.white70 ;
-  return ListTile(
 
-  leading: Icon(icon, color: color),
-  title: Text(text, style: TextStyle(color: color)),
-  hoverColor: hoverColor,
-  onTap: (){},
-  );
-
-}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
+import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
@@ -39,18 +40,76 @@ class _CalendarState extends State<Calendar> {
     super.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        leading: IconButton(
+          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> GradStudent()));},
+          icon: Icon(Icons.arrow_back),
+        ),
+        // title: Text('Calendar'),
+
+        title: Padding(
+          padding: EdgeInsets.only(left: 50.0),
+          child: Row(
+            children: [
+              ElevatedButton(
+                child: Text('AD',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                onPressed: () {
+                  print('Pressed');
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.blue;
+                      }else{
+                        return Colors.white;
+                      }
+
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(width: 5.0),
+              ElevatedButton(
+                child: Text('BS',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                onPressed: () async {
+                  NepaliDateTime _selectedDateTime =
+                  (await showMaterialDatePicker(
+                    context: context,
+                    initialDate: NepaliDateTime.now(),
+                    firstDate: NepaliDateTime(2000),
+                    lastDate: NepaliDateTime(2090),
+                    initialDatePickerMode: DatePickerMode.day,
+
+                  ))!;
+                  print(_selectedDateTime);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.blue;
+                      }else{
+                        return Colors.white;
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
 
+      body: Column(
+
+        children: [
         TableCalendar(
         focusedDay: selectedDay,
         firstDay: DateTime(1970),
@@ -112,36 +171,26 @@ class _CalendarState extends State<Calendar> {
         ),
       ),
 
-          // ElevatedButton(
-          //   onPressed: (){
+          // Center(
+          //   child: ElevatedButton(
+          //     onPressed: () async {
+          //       NepaliDateTime _selectedDateTime =
+          //           (await showMaterialDatePicker(
+          //         context: context,
+          //         initialDate: NepaliDateTime.now(),
+          //         firstDate: NepaliDateTime(2000),
+          //         lastDate: NepaliDateTime(2090),
+          //         initialDatePickerMode: DatePickerMode.day,
           //
-          //   },
-          //   child: Text(
-          //     'OPEN ENGLISH CALENDAR',
-          //     style: TextStyle(color: Colors.white, fontSize: 20.0),
+          //       ))!;
+          //       print(_selectedDateTime);
+          //     },
+          //     child: Text(
+          //       'OPEN NEPALI CALENDAR',
+          //       style: TextStyle(color: Colors.white, fontSize: 20.0),
+          //     ),
           //   ),
           // ),
-
-
-          Center(
-            child: ElevatedButton(
-              onPressed: () async {
-                NepaliDateTime _selectedDateTime =
-                    (await showMaterialDatePicker(
-                  context: context,
-                  initialDate: NepaliDateTime.now(),
-                  firstDate: NepaliDateTime(2000),
-                  lastDate: NepaliDateTime(2090),
-                  initialDatePickerMode: DatePickerMode.day,
-                ))!;
-                print(_selectedDateTime);
-              },
-              child: Text(
-                'OPEN NEPALI CALENDAR',
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
-              ),
-            ),
-          ),
         ],
       ),
     );
