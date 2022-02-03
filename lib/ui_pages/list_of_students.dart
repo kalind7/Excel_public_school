@@ -4,14 +4,14 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 
-class BuildList extends StatefulWidget {
-  const BuildList({Key? key}) : super(key: key);
+class StudentLists extends StatefulWidget {
+  const StudentLists({Key? key}) : super(key: key);
 
   @override
-  _BuildListState createState() => _BuildListState();
+  _StudentListsState createState() => _StudentListsState();
 }
 
-class _BuildListState extends State<BuildList> {
+class _StudentListsState extends State<StudentLists> {
 
   final studentController = Get.put(StudentController());
 
@@ -24,14 +24,9 @@ class _BuildListState extends State<BuildList> {
       ),
 
       body: ListView(
-        physics: ClampingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
+
         children: [
-          SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            child:Column(
+          Column(
               children: [
                 GetX<StudentController>(
                     builder: (controller){
@@ -41,11 +36,7 @@ class _BuildListState extends State<BuildList> {
                           scrollDirection: Axis.vertical,
                           itemCount: controller.studentList.length,
                           itemBuilder: (context, index){
-                            return SingleChildScrollView(
-                              physics: ClampingScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-
-                              child:Container(
+                            return Container(
                                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.0),
@@ -103,8 +94,7 @@ class _BuildListState extends State<BuildList> {
                                 ),
 
 
-                              ),
-                            );
+                              );
                           }
                       );
 
@@ -114,7 +104,7 @@ class _BuildListState extends State<BuildList> {
 
               ],
             ),
-          ),
+
         ],
       ),
     );

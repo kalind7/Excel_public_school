@@ -6,7 +6,7 @@ class Model  {
   const Model({required this.text, required this.icon, required this.onpress,});
 
   final String text;
-  final IconData icon;
+  final String icon;
   final Function onpress;
 
 

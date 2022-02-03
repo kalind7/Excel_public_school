@@ -1,10 +1,12 @@
 
 import 'package:get/get.dart';
 import 'package:new_project_work/models/student_list.dart';
+import 'package:new_project_work/models/teacher_list.dart';
 
 class StudentController extends GetxController{
 
   var studentList = <StudentDetails>[].obs;
+  var teacherList = <TeacherDetails>[].obs;
 
   @override
   void onInit() {
@@ -72,7 +74,54 @@ class StudentController extends GetxController{
       ),
     ];
 
+    var secondList = [
+      TeacherDetails(
+          name: 'New Teacher',
+          degree: 'Masters in IT',
+          email: 'Newteacher@gmail.com',
+          experience: 'teaching for 10 years',
+          image: 'images/profile.png',
+      ),
+      TeacherDetails(
+        name: 'New Teacher',
+        degree: 'Masters in IT',
+        email: 'Newteacher@gmail.com',
+        experience: 'teaching for 10 years',
+        image: 'images/profile.png',
+      ),
+      TeacherDetails(
+        name: 'New Teacher',
+        degree: 'Masters in IT',
+        email: 'Newteacher@gmail.com',
+        experience: 'teaching for 10 years',
+        image: 'images/profile.png',
+      ),
+      TeacherDetails(
+        name: 'New Teacher',
+        degree: 'Masters in IT',
+        email: 'Newteacher@gmail.com',
+        experience: 'teaching for 10 years',
+        image: 'images/profile.png',
+      ),
+      TeacherDetails(
+        name: 'New Teacher',
+        degree: 'Masters in IT',
+        email: 'Newteacher@gmail.com',
+        experience: 'teaching for 10 years',
+        image: 'images/profile.png',
+      ),
+      TeacherDetails(
+        name: 'New Teacher',
+        degree: 'Masters in IT',
+        email: 'Newteacher@gmail.com',
+        experience: 'teaching for 10 years',
+        image: 'images/profile.png',
+      ),
+
+    ];
+
     studentList.value = newList;
+    teacherList.value = secondList;
 
   }
 

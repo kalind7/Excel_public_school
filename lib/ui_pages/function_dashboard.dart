@@ -4,8 +4,9 @@ import 'package:new_project_work/controller/grid_view_controller.dart';
 import 'package:new_project_work/models/gird_view_list.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
-import 'package:new_project_work/widgets/settings.dart';
+import 'package:new_project_work/widgets/notice.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
+import 'package:new_project_work/widgets/text_field.dart';
 
 class GradStudent extends StatefulWidget {
   const GradStudent({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _GradStudentState extends State<GradStudent> {
       answer3: 'NO',
     ),
     Calendar(),
-    Settings(),
+    Notice(),
 
   ];
 
@@ -63,8 +64,8 @@ class _GradStudentState extends State<GradStudent> {
             // backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.file_copy_outlined),
+            label: 'Notice',
             // backgroundColor: Colors.blue,
           ),
         ],
@@ -136,7 +137,7 @@ class _FunctionsState extends State<Functions> {
       // Model(text: 'text', icon: Icons.arrow_forward),
       Model(
         text: 'Profile',
-        icon: Icons.person,
+        icon: 'images/profile.png',
         onpress : () {
           print ('anything');
           Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
@@ -155,33 +156,21 @@ class _FunctionsState extends State<Functions> {
 
       Model(
         text: 'Fees',
-        icon: Icons.event_note_rounded,
+        icon: 'images/fees.jpg',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>Calendar(), ));
         },
       ),
       Model(
         text: 'Result',
-        icon: Icons.file_copy_sharp,
+        icon: 'images/result.jpg',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
         },
       ),
       Model(
         text: 'Attendance',
-        icon: Icons.home_work_outlined,
+        icon: 'images/attendance.jpg',
         onpress : () {
           print ('anything');
          Get.toNamed('/attendance');
@@ -189,154 +178,72 @@ class _FunctionsState extends State<Functions> {
       ),
       Model(
         text: 'Subjects',
-        icon: Icons.subject,
+        icon: 'images/subjects.jpg',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
         },
       ),
       Model(
         text: 'Downloads',
-        icon: Icons.download_rounded,
+        icon: 'images/downloads.webp',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
+
         },
       ),
       Model(
         text: 'Routine',
-        icon: Icons.request_page_outlined,
+        icon: 'images/routine.webp',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
+
         },
       ),
       Model(
         text: 'Library',
-        icon: Icons.library_books_sharp,
+        icon: 'images/library.jpg',
         onpress : () {
         print ('anything');
-        Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-          text: 'Kashish Chaudhary',
-          bio:
-          'I am student of class 4 and am studying hardly to complete my primary classes.',
-          jobtitle: 'Job',
-          answer1: 'Student',
-          length: 'Class',
-          answer2: '4',
-          question: 'Teacher ?',
-          answer3: 'NO',
-        ), ));
+
       },
       ),
       Model(
         text: 'Teachers',
-        icon: Icons.people,
+        icon: 'images/teacher.webp',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
+          Get.toNamed('/teacherlist');
         },
       ),
       Model(
         text: 'Exam',
-        icon: Icons.wallpaper,
+        icon: 'images/exam.jpg',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
+
         },
       ),
       Model(
         text: 'Dormitory',
-        icon: Icons.hotel,
+        icon: 'images/dormitory.webp',
         onpress : () {
         print ('anything');
-        Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-          text: 'Kashish Chaudhary',
-          bio:
-          'I am student of class 4 and am studying hardly to complete my primary classes.',
-          jobtitle: 'Job',
-          answer1: 'Student',
-          length: 'Class',
-          answer2: '4',
-          question: 'Teacher ?',
-          answer3: 'NO',
-        ), ));
       },
       ),
       Model(
         text: 'Transport',
-        icon: Icons.bus_alert,
+        icon: 'images/bus2.jpg',
         onpress : () {
           print ('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)  =>AdminBio(
-            text: 'Kashish Chaudhary',
-            bio:
-            'I am student of class 4 and am studying hardly to complete my primary classes.',
-            jobtitle: 'Job',
-            answer1: 'Student',
-            length: 'Class',
-            answer2: '4',
-            question: 'Teacher ?',
-            answer3: 'NO',
-          ), ));
+
         },
       ),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Functions'),
-        centerTitle: true,
+        // title: Text('Functions'),
+        // centerTitle: true,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 3.0,top: 2.0),
@@ -485,7 +392,7 @@ class _FunctionsState extends State<Functions> {
                 text: 'Teachers',
                 icon: Icons.people,
                 onpress: (){
-                  Get.toNamed('/login');
+                  Get.toNamed('/teacherlist');
                 },
               ),
               buildMenuItem(
@@ -538,57 +445,72 @@ class _FunctionsState extends State<Functions> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 25.0),
+
+              SizedBox(height: 10.0),
+
+              NewTextField(text: 'Search Functions',),
 
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: EdgeInsets.only(left: 15.0,top: 20.0),
                 child: Text('Functionalities',
                     style:
                     TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500)),
               ),
-              SizedBox(height: 20.0),
+
               GridView.count(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                crossAxisCount: 4,
+                physics: ClampingScrollPhysics(),
+                crossAxisCount: 2,
                 children: List.generate(model.length, (index) {
-                  return Center(
-                    child: Card(
-                      elevation: 3.0,
-                      // margin: EdgeInsets.fromLTRB(1, 1, 1, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      color: Colors.white,
-                      child: Center(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Icon(
-                              //   controller.girdList[index].icon,
-                              // ),
+                  return   Container(
+                    height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Center(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                // Icon(
+                                //   controller.girdList[index].icon,
+                                // ),
 
-                              IconButton(
-                                onPressed : (){model[index].onpress();},
-                                icon: Icon(
-                                  model[index].icon,
-                                  size: 25.0,
-                                  color: Colors.blue,
+
+                                GestureDetector(
+                                  onTap: (){model[index].onpress();},
+                                  child : ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child:Image(
+                                      height: 150,
+                                      width: 150,
+                                      image: AssetImage(model[index].icon),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Text(model[index].text,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.black87)),
-                            ]),
-                      ),
-                    ),
-                  );
+
+                                // IconButton(
+                                //   onPressed : (){model[index].onpress();},
+                                //   icon: Icon(
+                                //     model[index].icon,
+                                //     size: 25.0,
+                                //     color: Colors.white,
+                                //   ),
+                                // ),
+                                Text(model[index].text,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black)),
+                              ]),
+                        ),
+                      );
+
                 }),
-              )
+              ),
 
             ],
           ),

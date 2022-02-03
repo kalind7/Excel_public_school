@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NewTextField extends StatelessWidget {
-  const NewTextField({Key? key}) : super(key: key);
+  const NewTextField({Key? key, required this.text}) : super(key: key);
+
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,7 @@ class NewTextField extends StatelessWidget {
                     errorBorder: InputBorder.none,
 
                     isDense: false,
-                    hintText: 'Search your events.',
+                    hintText: text,
                     hintStyle: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.normal,

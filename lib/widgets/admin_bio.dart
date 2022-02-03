@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:new_project_work/utils/color.dart';
 
 class AdminBio extends StatelessWidget {
@@ -19,7 +20,18 @@ class AdminBio extends StatelessWidget {
       required this.length,
       required this.answer2,
       required this.question,
-      required this.answer3});
+      required this.answer3,
+      });
+
+  void _showToast() {
+    Fluttertoast.showToast(
+      msg: 'Contact info : std260@mail.com',
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Color(0xffef5350),
+      textColor: Colors.white,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +208,9 @@ class AdminBio extends StatelessWidget {
               Container(
                 width: 200.00,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    return _showToast();
+                  },
                   style: ElevatedButton.styleFrom(
                       primary: Colors.lightBlueAccent,
                       // side: BorderSide(color: Colors.white),

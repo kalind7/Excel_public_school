@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/models/event_list.dart';
-import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/event_screen.dart';
 
 import 'package:new_project_work/widgets/text_field.dart';
@@ -85,7 +83,7 @@ class Events extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.0),
-          NewTextField(),
+          NewTextField(text: 'Search your events',),
           SizedBox(
             height: 15.0,
           ),
