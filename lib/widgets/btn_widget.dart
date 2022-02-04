@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 
 class ButtonWidget extends StatelessWidget {
-  var btnText ="";
+  var btnText = "";
   var onClick;
-
 
   ButtonWidget({required this.btnText, required this.onClick});
 
@@ -28,9 +27,7 @@ class ButtonWidget extends StatelessWidget {
         child: Text(
           btnText,
           style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );

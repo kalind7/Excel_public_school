@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EventScreen extends StatelessWidget {
-  const EventScreen({Key? key,required this.text,required this.image}) : super(key: key);
+  const EventScreen({Key? key, required this.text, required this.image})
+      : super(key: key);
 
   final String text;
   final String image;
@@ -11,7 +12,7 @@ class EventScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child:ListView(
+      child: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         children: [
@@ -23,17 +24,16 @@ class EventScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius:
-                  BorderRadius.only(bottomLeft: Radius.circular(200.0)),
+                      BorderRadius.only(bottomLeft: Radius.circular(200.0)),
                   image: DecorationImage(
                     image: AssetImage(image),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child:  Text(
+                child: Text(
                   'DESCRIPTION',
                   style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
@@ -58,7 +58,6 @@ class EventScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-
               Padding(
                 padding: EdgeInsets.only(left: 10.0),
                 child: Text(
@@ -67,14 +66,11 @@ class EventScreen extends StatelessWidget {
                     textStyle: TextStyle(
                         color: Colors.black,
                         fontSize: 14.0,
-
                         fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-
               SizedBox(height: 10.0),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -100,7 +96,9 @@ class EventScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

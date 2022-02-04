@@ -35,8 +35,8 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
                   Text(
                     'Kalind Koirala',
                     style: GoogleFonts.montserrat(
-                      textStyle:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                      textStyle: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Text(
@@ -62,7 +62,7 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
               'Your Profile',
               style: GoogleFonts.montserrat(
                 textStyle:
-                TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
+                    TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
               ),
             ),
             onTap: () {
@@ -70,15 +70,16 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => AdminBio(
-                        text: 'Kalind Koirala',
-                        bio: 'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
-                        jobtitle: 'Job',
-                        answer1: 'App Developer',
-                        length: 'Time',
-                        answer2: '1+ Year',
-                        question: 'Teacher ?',
-                        answer3: 'YES',
-                      )));
+                            text: 'Kalind Koirala',
+                            bio:
+                                'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
+                            jobtitle: 'Job',
+                            answer1: 'App Developer',
+                            length: 'Time',
+                            answer2: '1+ Year',
+                            question: 'Teacher ?',
+                            answer3: 'YES',
+                          )));
             },
           ),
           ListTile(
@@ -90,7 +91,7 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
               'Inbox',
               style: GoogleFonts.montserrat(
                 textStyle:
-                TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
+                    TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
               ),
             ),
             onTap: () {},
@@ -104,12 +105,12 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
               'Dashboard',
               style: GoogleFonts.montserrat(
                 textStyle:
-                TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
+                    TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
               ),
             ),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Dashboard()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Dashboard()));
             },
           ),
           ListTile(
@@ -121,18 +122,15 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
               'Settings',
               style: GoogleFonts.montserrat(
                 textStyle:
-                TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
+                    TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
               ),
             ),
             onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => Notice()));
-
             },
           ),
         ],
       ),
     );
-
-
   }
 }

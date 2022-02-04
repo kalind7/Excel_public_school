@@ -57,7 +57,6 @@ class _StudentPageState extends State<StudentPage> {
                       backgroundImage: NetworkImage(
                           "https://i.pinimg.com/550x/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg"),
                     ),
-
                     Column(
                       children: [
                         Text(

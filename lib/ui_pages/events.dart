@@ -10,32 +10,50 @@ class Events extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     List<EventList> list = [
       EventList(
         image: 'images/marathon.jpg',
         text: '5 Kilometer \nDowntown Run',
-        onpress: (){
-         Navigator.push(context, MaterialPageRoute(builder: (context) => EventScreen(image: 'images/marathon.jpg', text: 'Running is good for health. \n'
-             'So, participate in our marathon to win certificates and exiciting prizes.\n'
-             'Total distance to jog is only 5KM and there will be services provided throughout the race.\nPopular guest are arriving, below you can see a glimpse of who they are.',)));
+        onpress: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EventScreen(
+                        image: 'images/marathon.jpg',
+                        text: 'Running is good for health. \n'
+                            'So, participate in our marathon to win certificates and exiciting prizes.\n'
+                            'Total distance to jog is only 5KM and there will be services provided throughout the race.\nPopular guest are arriving, below you can see a glimpse of who they are.',
+                      )));
         },
       ),
       EventList(
         image: 'images/games.jpg',
         text: 'Play GAMES \nWin MONEY !!',
-        onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => EventScreen(image: 'images/games.jpg', text: 'Want to win some money playing GAMES ?? \n'
-              'Here we have Outdoor games such as : Crcket, Football, BasketBall, Badminton and much more plus students are able to play indoor games such as: Table Tennis, Snooker, Pool.\n'
-              'BONUS: PLAYSTATION GAMES TOO ARE AVAILABLE',)));
+        onpress: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EventScreen(
+                        image: 'images/games.jpg',
+                        text: 'Want to win some money playing GAMES ?? \n'
+                            'Here we have Outdoor games such as : Crcket, Football, BasketBall, Badminton and much more plus students are able to play indoor games such as: Table Tennis, Snooker, Pool.\n'
+                            'BONUS: PLAYSTATION GAMES TOO ARE AVAILABLE',
+                      )));
         },
       ),
       EventList(
         image: 'images/concert.jpg',
         text: 'READY TO \nROCK N ROLL',
-        onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => EventScreen(image: 'images/concert.jpg', text: 'We highly encourage students to participate in singing competetion we are hosting this year.\n You could win amazing instruments if you are th top 3 singers \n'
-              'BONUS: check the guest list for singers to perform , they could be an inspiration for you. ',)));
+        onpress: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EventScreen(
+                        image: 'images/concert.jpg',
+                        text:
+                            'We highly encourage students to participate in singing competetion we are hosting this year.\n You could win amazing instruments if you are th top 3 singers \n'
+                            'BONUS: check the guest list for singers to perform , they could be an inspiration for you. ',
+                      )));
         },
       ),
     ];
@@ -83,19 +101,21 @@ class Events extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.0),
-          NewTextField(text: 'Search your events',),
+          NewTextField(
+            text: 'Search your events',
+          ),
           SizedBox(
             height: 15.0,
           ),
-
           ListView.builder(
-            physics: ClampingScrollPhysics(),
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemCount: list.length,
-              itemBuilder: (context, index){
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: list.length,
+              itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: HexColor("#F4F4F4")),
@@ -136,15 +156,14 @@ class Events extends StatelessWidget {
                                     color: Colors.black),
                               ),
                               ElevatedButton(
-                                  onPressed: () {list[index].onpress();},
+                                  onPressed: () {
+                                    list[index].onpress();
+                                  },
                                   style: ElevatedButton.styleFrom(
-                                    primary:
-                                    Colors.blueAccent, // background
-
+                                    primary: Colors.blueAccent, // background
                                   ),
                                   child: Text('See More',
                                       style: TextStyle(color: Colors.white))),
-
                             ],
                           ),
                         )
@@ -152,15 +171,9 @@ class Events extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         ],
       ),
     );
   }
 }
-
-
-
-
-

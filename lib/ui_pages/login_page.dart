@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/forgot_password.dart';
-
-// import 'package:new_project_work/ui_pages/dashboard.dart';
-import 'package:new_project_work/widgets/header_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,6 +24,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var emailController;
+
     return Scaffold(
       body:  SingleChildScrollView(
         physics: ClampingScrollPhysics(),
@@ -35,88 +34,122 @@ class _LoginPageState extends State<LoginPage> {
           child: Form(
             key: formkey,
             child:  Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
 
                 children: [
 
 
-                  SizedBox(height: 15.0),
+                  SizedBox(height: 20.0),
 
-                  Center(child:Image(
-                    height: 100,
-                    width: 100,
+                  Image(
+                    height: 150,
+                    width: 150,
                     image: AssetImage('images/excellogo.png'),
                     fit: BoxFit.cover,
-                  )),
-
-                  Padding(
-                    padding: EdgeInsets.only(left: 45, top: 15.0),
-                    child: Text('E-mail', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black87, letterSpacing: 1.0),),
                   ),
 
 
+                  SizedBox(height: 20.0),
 
                   Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40, top: 10.0),
-                    child: TextFormField(
+                    padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                    child:TextFormField(
+                      controller: emailController,
                       onChanged: (value) {
                         setState(() {
                           email = value;
                         });
                       },
-                      cursorColor:Colors.black87,
+                      cursorColor:Colors.black12,
                       decoration: InputDecoration(
-                        hoverColor: Colors.black87,
-                        focusColor: Colors.black87,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        filled: true,
+                        fillColor: Colors.white,
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.grey),
                         ),
-                        suffixIcon: Icon(Icons.email, size: 15.0, color: Colors.black87,),
+                        focusedBorder:OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.red),
+                        ),
+                        hoverColor: Colors.black26,
+                        focusColor: Colors.black26,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+
                         isDense: false,
-                        hintText: 'Enter your E-mail',
+                        hintText: 'Enter your Email',
                         hintStyle: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.normal,
+                          fontFamily: 'MontserratAlternates',
                           fontStyle: FontStyle.normal,
-                          color:Colors.black87,
+                          color:Colors.black26,
                         ),
+                        suffixIcon: Icon(Icons.mail, size: 15.0, color: Colors.black26),
                       ),
+
                       validator: MultiValidator([
                         RequiredValidator(errorText: 'Required'),
                         EmailValidator(errorText: 'Not a valid Email'),
                       ]),
+
                     ),
                   ),
 
 
-                  Padding(
-                    padding: EdgeInsets.only(left: 45, top: 10.0),
-                    child: Text('Password', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black87, letterSpacing: 1.0),),
-                  ),
+
+
+                  SizedBox(height: 20.0),
+
 
                   Padding(
-                    padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-                    child: TextFormField(
+                    padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                    child:TextFormField(
+
                       onChanged: (value) {
                         setState(() {
                           password = value;
                         });
                       },
-                      obscureText: _isObscure,
-                      cursorColor: Colors.black87,
+                      cursorColor:Colors.black12,
                       decoration: InputDecoration(
-                        hoverColor: Colors.black87,
-                        focusColor: Colors.black87,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        filled: true,
+                        fillColor: Colors.white,
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.grey),
                         ),
-                        isDense: true,
+                        focusedBorder:OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.red),
+                        ),
+                        hoverColor: Colors.black26,
+                        focusColor: Colors.black26,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+
+                        isDense: false,
                         hintText: 'Enter your Password',
                         hintStyle: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.normal,
+                          fontFamily: 'MontserratAlternates',
                           fontStyle: FontStyle.normal,
-                          color:Colors.black87,
+                          color:Colors.black26,
                         ),
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -128,8 +161,8 @@ class _LoginPageState extends State<LoginPage> {
                               _isObscure
                                   ? Icons.visibility
                                   : Icons.visibility_off,
-                              size: 24,
-                              color: Colors.black87,
+                              size: 20,
+                              color: Colors.black26,
                             )),
                       ),
                       autovalidateMode: null,
@@ -141,20 +174,27 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (!RegExp(
                             "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                             .hasMatch(value)) {
-                          return "Enter strong Password (Hint : abc@123.ab)";
+                          return "Enter strong password(Hint:abc@123.ab)";
                         } else {
                           return null;
                         }
                       },
                     ),
                   ),
+
                   SizedBox(
                     height: 5.0,
                   ),
                   Row(
                     children: [
                       SizedBox(width: 20),
-                      Checkbox(
+                      GestureDetector(
+                        onTap: () async{
+                          final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+                          sharedPreferences.setString('mail', emailController.text);
+                        },
+                        child : Checkbox(
                           checkColor: Colors.black,
                           activeColor: Colors.blue,
                           value: checkedValue,
@@ -163,6 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                               checkedValue = newValue!;
                             });
                           }),
+                      ),
                       Text(
                         'Remember me?',
                         style: TextStyle(
@@ -197,8 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Center(
                     child: SizedBox(
-                      height: 60.0,
-                      width: 250.0,
+                      width: 200.0,
                       child: ElevatedButton(
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
@@ -209,56 +249,70 @@ class _LoginPageState extends State<LoginPage> {
                             primary: Colors.blue,
                             // side: BorderSide(color: Colors.blue),
 
-                            elevation: 7,
+                            elevation: 3,
 
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(30)),
                             padding: EdgeInsets.all(20)
                         ),
                         child: Text(
                           'Log In',
-                          style: TextStyle(color:Colors.black87, fontSize: 16),
+                          style: TextStyle(color:Colors.white, fontSize: 16, fontFamily: 'Mukta'),
                         ),
                       ),
                     ),
                   ),
 
                   SizedBox(
-                    height: 20.0,
-                  ),
-
-                  Center(child:Text('     -OR- \n'
-                      'Sign in with,',style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300, color: Colors.black87),),),
-
-                  SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
 
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     GestureDetector(
-                       onTap: (){
-                         print('Google');
-                       },
-                       child: CircleAvatar(
-                         backgroundColor: Colors.white,
-                         backgroundImage: AssetImage('images/google.png'),
-                       ),
-                     ),
+                     Text('\u00a9 by ' ,style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black87),),
 
-                      GestureDetector(
-                        onTap: (){
-                          print('facebook');
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('images/facebook.png'),
+
+                     ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image(
+                              height: 60,
+                              width: 60,
+                              image: AssetImage('images/logo.png')
+                          ),
                         ),
-                      ),
+
+
                     ],
                   ),
+
+
+
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //    GestureDetector(
+                  //      onTap: (){
+                  //        print('Google');
+                  //      },
+                  //      child: CircleAvatar(
+                  //        backgroundColor: Colors.white,
+                  //        backgroundImage: AssetImage('images/google.png'),
+                  //      ),
+                  //    ),
+                  //
+                  //     GestureDetector(
+                  //       onTap: (){
+                  //         print('facebook');
+                  //       },
+                  //       child: CircleAvatar(
+                  //         backgroundColor: Colors.white,
+                  //         backgroundImage: AssetImage('images/facebook.png'),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                 ],
 

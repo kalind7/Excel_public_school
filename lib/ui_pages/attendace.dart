@@ -10,8 +10,6 @@ class Attendance extends StatelessWidget {
         title: Text('Attendance'),
         centerTitle: true,
       ),
-
-
     );
   }
 }

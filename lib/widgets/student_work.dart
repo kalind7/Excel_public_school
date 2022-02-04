@@ -175,16 +175,20 @@ class _StudentWorkState extends State<StudentWork> {
                                         style: TextStyle(color: Colors.white))),
                                 IconButton(
                                   onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminBio(
-                                      text: 'Kashish Chaudhary',
-                                      bio: 'I am student of class 4 and am studying hardly to complete my primary classes.',
-                                      jobtitle: 'Job',
-                                      answer1: 'Student',
-                                      length: 'Class',
-                                      answer2: '4',
-                                      question: 'Teacher ?',
-                                      answer3: 'NO',
-                                    ) ));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => AdminBio(
+                                                  text: 'Kashish Chaudhary',
+                                                  bio:
+                                                      'I am student of class 4 and am studying hardly to complete my primary classes.',
+                                                  jobtitle: 'Job',
+                                                  answer1: 'Student',
+                                                  length: 'Class',
+                                                  answer2: '4',
+                                                  question: 'Teacher ?',
+                                                  answer3: 'NO',
+                                                )));
                                   },
                                   color: Colors.black,
                                   iconSize: 20.0,

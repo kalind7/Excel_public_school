@@ -12,16 +12,16 @@ class AdminBio extends StatelessWidget {
   String question;
   String answer3;
 
-  AdminBio(
-      {required this.text,
-      required this.bio,
-      required this.jobtitle,
-      required this.answer1,
-      required this.length,
-      required this.answer2,
-      required this.question,
-      required this.answer3,
-      });
+  AdminBio({
+    required this.text,
+    required this.bio,
+    required this.jobtitle,
+    required this.answer1,
+    required this.length,
+    required this.answer2,
+    required this.question,
+    required this.answer3,
+  });
 
   void _showToast() {
     Fluttertoast.showToast(
@@ -116,7 +116,7 @@ class AdminBio extends StatelessWidget {
                                     child: Column(
                                       children: <Widget>[
                                         Text(
-                                         length,
+                                          length,
                                           style: TextStyle(
                                             color: Colors.redAccent,
                                             fontSize: 20.0,
@@ -218,11 +218,11 @@ class AdminBio extends StatelessWidget {
                       elevation: 5,
                       //elevation of button
                       shape: RoundedRectangleBorder(
-                        //to set border radius to button
+                          //to set border radius to button
                           borderRadius: BorderRadius.circular(20)),
                       padding:
-                      EdgeInsets.all(15) //content padding inside button
-                  ),
+                          EdgeInsets.all(15) //content padding inside button
+                      ),
                   child: Text(
                     'Contact me',
                     style: TextStyle(color: Colors.black54, fontSize: 16),

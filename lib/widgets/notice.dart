@@ -14,7 +14,6 @@ class _NoticeState extends State<Notice> {
   @override
   Widget build(BuildContext context) {
     List<NoticeList> list = [
-
       NoticeList(
         image: 'images/marathon.jpg',
         title: 'Marathon',
@@ -39,22 +38,19 @@ class _NoticeState extends State<Notice> {
       NoticeList(
           image: 'images/memo.png',
           title: 'Memo',
-          description:'images/memo.png'
-      ),
+          description: 'images/memo.png'),
       NoticeList(
           image: 'images/syllabus.png',
           title: 'Syllabus',
-          description:'images/syllabus.png'
-      ),
-
+          description: 'images/syllabus.png'),
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Notice'),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
+          return  Scaffold(
+            appBar: AppBar(
+              title: Text('Notice'),
+              centerTitle: true,
+            ),
+          body: ListView.builder(
           padding: EdgeInsets.only(top: 10.0),
           itemCount: list.length,
           itemBuilder: (context, index) {
@@ -79,15 +75,26 @@ class _NoticeState extends State<Notice> {
                       ),
                     ),
                   ),
-
                   ExpansionTile(
-                    title: Text(list[index].title, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, letterSpacing: 1.0),),
+                    title: Text(
+                      list[index].title,
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.0),
+                    ),
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.only(left: 20.0),
-                        child: Text(list[index].description,style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400, fontStyle: FontStyle.italic, fontFamily: 'Gugi'),),
+                        child: Text(
+                          list[index].description,
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Gugi'),
+                        ),
                       ),
-
                     ],
                   ),
                 ],

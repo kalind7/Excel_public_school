@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 
-
 class HeaderContainer extends StatelessWidget {
-  final String text ;
+  final String text;
 
   HeaderContainer({required this.text});
 
@@ -24,7 +23,7 @@ class HeaderContainer extends StatelessWidget {
               right: 60,
               child: Text(
                 text,
-                style: TextStyle(color: Colors.black,fontSize: 18),
+                style: TextStyle(color: Colors.black, fontSize: 18),
               )),
           Center(
             child: Image(
@@ -38,4 +37,3 @@ class HeaderContainer extends StatelessWidget {
     );
   }
 }
-

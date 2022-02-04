@@ -1,31 +1,79 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:new_project_work/models/dashboard_list.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
-import 'package:new_project_work/ui_pages/students_page.dart';
 import 'package:new_project_work/ui_pages/list_of_students.dart';
+import 'package:new_project_work/ui_pages/list_of_teacher.dart';
+import 'package:new_project_work/ui_pages/splash_screen.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
-import 'package:new_project_work/widgets/category_drawer.dart';
+import 'package:new_project_work/widgets/notice.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
 class Dashboard extends StatefulWidget {
+
+
+
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
+
+  void _showToast() {
+    Fluttertoast.showToast(
+      msg: 'Staff list not made',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Color(0xffef5350),
+      textColor: Colors.white,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    // List<Modelss> newModels = [
+    //   Modelss(
+    //       title: 'We have',
+    //       description: '3000+ Students',
+    //       onpress: (){
+    //         Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLists()));
+    //       },
+    //       image: 'images/profile.png'
+    //   ),
+    //   Modelss(
+    //       title: 'We have',
+    //       description: '200+ Teachers',
+    //       onpress: (){
+    //         Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherLists()));
+    //       },
+    //       image: 'images/teacher.webp'
+    //   ),
+    //   Modelss(
+    //       title: 'We have',
+    //       description: '400+ Staffs',
+    //       onpress: (){
+    //         return _showToast();
+    //       },
+    //       image: 'images/profile.png'
+    //   ),
+    // ];
+
+
     return Scaffold(
       appBar: AppBar(
+
         title: Text('Dashboard'),
         centerTitle: true,
-
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 3.0,top: 2.0),
+            padding: EdgeInsets.only(right: 3.0, top: 2.0),
             child: IconButton(
               onPressed: () {
                 showDialog(
@@ -33,23 +81,23 @@ class _DashboardState extends State<Dashboard> {
                   builder: (BuildContext context) => _buildPopupDialog(context),
                 );
               },
-              icon: Icon(Icons.power_settings_new, color: Colors.white, size: 25.0),
+              icon: Icon(Icons.power_settings_new,
+                  color: Colors.white, size: 25.0),
             ),
           ),
         ],
       ),
-
       drawer: Drawer(
         elevation: 3.0,
         child: Container(
           color: Colors.lightBlueAccent,
           child: ListView(
-            children:<Widget> [
+            children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 15.0 ),
+                    padding: EdgeInsets.only(top: 15.0),
                     child: CircleAvatar(
                       radius: 35.0,
                       backgroundColor: Colors.white,
@@ -57,7 +105,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 20.0 ),
+                    padding: EdgeInsets.only(top: 20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,133 +129,209 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
               SizedBox(height: 20.0),
-
               buildMenuItem(
                 text: 'Profile',
                 icon: Icons.person,
-                onpress: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => AdminBio(
-                   text: 'Kalind Koirala',
-                   bio: 'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
-                   jobtitle: 'Job',
-                   answer1: 'App Developer',
-                   length: 'Time',
-                   answer2: '1+ Year',
-                   question: 'Teacher ?',
-                   answer3: 'YES',
-                 )));
+                onpress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AdminBio(
+                                text: 'Kalind Koirala',
+                                bio:
+                                    'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
+                                jobtitle: 'Job',
+                                answer1: 'App Developer',
+                                length: 'Time',
+                                answer2: '1+ Year',
+                                question: 'Teacher ?',
+                                answer3: 'YES',
+                              )));
                 },
               ),
               buildMenuItem(
                 text: 'Fees',
                 icon: Icons.event_note_rounded,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Result',
                 icon: Icons.file_copy_sharp,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Attendance',
                 icon: Icons.home_work_outlined,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/attendance');
                 },
               ),
               buildMenuItem(
                 text: 'Subjects',
                 icon: Icons.subject,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Downloads',
                 icon: Icons.download_rounded,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Routine',
                 icon: Icons.request_page_outlined,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Library',
                 icon: Icons.library_books_sharp,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Teachers',
                 icon: Icons.people,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Exam',
                 icon: Icons.wallpaper,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Dormitory',
                 icon: Icons.hotel,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Transport',
                 icon: Icons.bus_alert,
-                onpress: (){
+                onpress: () {
                   Get.toNamed('/login');
                 },
               ),
-
               Divider(
                 color: Colors.black87,
                 thickness: 1,
               ),
-
               buildMenuItem(
                 text: 'Logout',
                 icon: Icons.power_settings_new,
-                onpress: (){
+                onpress: () {
                   showDialog(
                     context: context,
-                    builder: (BuildContext context) => _buildPopupDialog(context),
+                    builder: (BuildContext context) =>
+                        _buildPopupDialog(context),
                   );
                 },
               ),
-
             ],
           ),
         ),
       ),
       body: Stack(
         children: <Widget>[
-
-
           SafeArea(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
 
-                NewTextField(text: 'Search '),
+                NewTextField(text: 'Search'),
 
-                SizedBox(height: 20,),
+                // ListView.builder(
+                //   scrollDirection: Axis.vertical,
+                //   shrinkWrap: true,
+                //   physics: ClampingScrollPhysics(),
+                //   itemCount: newModels.length,
+                //     itemBuilder: (context, index){
+                //         return  Container(
+                //           margin: EdgeInsets.only(top: 20.0),
+                //           height: MediaQuery.of(context).size.height * 0.17,
+                //           width: MediaQuery.of(context).size.width / 1.2 ,
+                //           decoration: BoxDecoration(
+                //               color: Colors.white,
+                //               border: Border.all(color: HexColor("#F4F4F4")),
+                //               borderRadius: BorderRadius.circular(15.0),
+                //               boxShadow: [
+                //                 BoxShadow(
+                //                   color: Colors.grey.withOpacity(.08),
+                //                   spreadRadius: 5,
+                //                   blurRadius: 7,
+                //                   offset: Offset(4, 3), // changes position of shadow
+                //                 ),
+                //               ]),
+                //           child: Row(
+                //             crossAxisAlignment: CrossAxisAlignment.center,
+                //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //             children: [
+                //               CircleAvatar(
+                //                 backgroundColor: Colors.white,
+                //                 radius: 30.0,
+                //                 backgroundImage: AssetImage(newModels[index].image),
+                //               ),
+                //               Column(
+                //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //                 crossAxisAlignment: CrossAxisAlignment.start,
+                //                 children: [
+                //                   Text(newModels[index].title,style: TextStyle(fontSize: 16.0, fontFamily: 'MontserratAlternates', fontWeight: FontWeight.w500)),
+                //
+                //                   Padding(
+                //                     padding: EdgeInsets.only(bottom: 15.0),
+                //                     child:InkWell(
+                //                       onTap: () {newModels[index].onpress();},
+                //                       child: Center(
+                //                         child: Text(
+                //                           newModels[index].description,
+                //                           style: TextStyle(
+                //                             fontSize: 24.0,
+                //                             fontFamily: 'MontserratAlternates', fontWeight: FontWeight.bold,
+                //                             color: Colors.blue,
+                //                           ),
+                //                         ),
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 ],
+                //               ),
+                //
+                //             ],
+                //           ),
+                //         );
+                //     }
+                // ),
+                //
+                // SizedBox(
+                //   height: 20,
+                // ),
+                //
+                // Text('Notice Board', style: TextStyle(
+                //   fontSize: 24.0,
+                //   fontFamily: 'MontserratAlternates', fontWeight: FontWeight.bold,
+                //   color: Colors.blue,
+                // ),),
+                //
+                // SizedBox(
+                //   height: 20,
+                // ),
+
                 Expanded(
                   child: GridView.count(
                     mainAxisSpacing: 10,
@@ -263,15 +387,15 @@ class _DashboardState extends State<Dashboard> {
                                 height: 120,
                               ),
                             ),
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => GradStudent()));
-                            },
-                            child:  Text('Functions Dashboard'),
-                          ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GradStudent()));
+                              },
+                              child: Text('Functions Dashboard'),
+                            ),
                           ],
                         ),
                       ),
@@ -279,19 +403,15 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-
                             GestureDetector(
-                               onTap: (){
-                                 Get.toNamed('/events');
-                               } ,
-
-                              child:  Image.network(
+                              onTap: () {
+                                Get.toNamed('/events');
+                              },
+                              child: Image.network(
                                 "https://www.proeves.com/blog/wp-content/uploads/2019/01/events_kids.jpg",
                                 height: 120,
                               ),
                             ),
-
-
                             Text('Upcoming Events'),
                           ],
                         ),
@@ -324,12 +444,12 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 showDialog(
                                   context: context,
-                                  builder: (BuildContext context) => _buildPopupDialog(context),
+                                  builder: (BuildContext context) =>
+                                      _buildPopupDialog(context),
                                 );
                               },
                               child: Image.network(
@@ -343,10 +463,11 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ],
                   ),
-                )
+                ),
+
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -361,9 +482,9 @@ Widget _buildPopupDialog(BuildContext context) {
     backgroundColor: Colors.white,
     title: Center(
         child: Text(
-          'Do you want to LOG OUT ?',
-          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-        )),
+      'Do you want to LOG OUT ?',
+      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+    )),
     content: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.min,
@@ -390,3 +511,5 @@ Widget _buildPopupDialog(BuildContext context) {
     ),
   );
 }
+
+
