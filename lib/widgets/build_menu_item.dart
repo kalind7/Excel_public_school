@@ -17,7 +17,9 @@ Widget buildMenuItem({
         style: TextStyle(
             color: Colors.black87,
             fontSize: 16.0,
-            fontWeight: FontWeight.w500)),
+            fontWeight: FontWeight.w500,
+          fontFamily: 'MontserratAlternates',
+        )),
     hoverColor: hoverColor,
     onTap: () {
       onpress();

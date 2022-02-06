@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/controller/grid_view_controller.dart';
 import 'package:new_project_work/models/gird_view_list.dart';
+import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
 import 'package:new_project_work/widgets/notice.dart';
@@ -38,6 +39,7 @@ class _GradStudentState extends State<GradStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -86,7 +88,7 @@ Widget _buildPopupDialog(BuildContext context) {
     title: Center(
         child: Text(
       'Do you want to LOG OUT ?',
-      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates'),
     )),
     content: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -98,7 +100,7 @@ Widget _buildPopupDialog(BuildContext context) {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('No'),
+            child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
           ),
         ),
         Padding(
@@ -107,7 +109,7 @@ Widget _buildPopupDialog(BuildContext context) {
             onPressed: () {
               Get.toNamed('/login');
             },
-            child: Text('Yes'),
+            child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
           ),
         ),
       ],
@@ -131,7 +133,7 @@ class _FunctionsState extends State<Functions> {
       // Model(text: 'text', icon: Icons.arrow_forward),
       Model(
         text: 'Profile',
-        icon: 'images/profile.png',
+        icon: Icons.person,
         onpress: () {
           print('anything');
           Navigator.push(
@@ -154,21 +156,21 @@ class _FunctionsState extends State<Functions> {
 
       Model(
         text: 'Fees',
-        icon: 'images/fees.jpg',
+        icon: Icons.monetization_on,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Result',
-        icon: 'images/result.jpg',
+        icon: Icons.description,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Attendance',
-        icon: 'images/attendance.jpg',
+        icon:  Icons.home_work_outlined,
         onpress: () {
           print('anything');
           Get.toNamed('/attendance');
@@ -176,35 +178,35 @@ class _FunctionsState extends State<Functions> {
       ),
       Model(
         text: 'Subjects',
-        icon: 'images/subjects.jpg',
+        icon: Icons.subject,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Downloads',
-        icon: 'images/downloads.webp',
+        icon: Icons.download_rounded,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Routine',
-        icon: 'images/routine.webp',
+        icon: Icons.request_page_outlined,
         onpress: () {
-          print('anything');
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Routine()));
         },
       ),
       Model(
         text: 'Library',
-        icon: 'images/library.jpg',
+        icon: Icons.library_books,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Teachers',
-        icon: 'images/teacher.webp',
+        icon: Icons.people,
         onpress: () {
           print('anything');
           Get.toNamed('/teacherlist');
@@ -212,21 +214,21 @@ class _FunctionsState extends State<Functions> {
       ),
       Model(
         text: 'Exam',
-        icon: 'images/exam.jpg',
+        icon: Icons.file_copy_sharp,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Dormitory',
-        icon: 'images/dormitory.webp',
+        icon: Icons.hotel ,
         onpress: () {
           print('anything');
         },
       ),
       Model(
         text: 'Transport',
-        icon: 'images/bus2.jpg',
+        icon: Icons.bus_alert,
         onpress: () {
           print('anything');
         },
@@ -235,8 +237,9 @@ class _FunctionsState extends State<Functions> {
 
     return Scaffold(
       appBar: AppBar(
-        // title: Text('Functions'),
-        // centerTitle: true,
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.blue,
+        elevation: 1.0,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 3.0, top: 2.0),
@@ -254,67 +257,13 @@ class _FunctionsState extends State<Functions> {
         ],
       ),
       drawer: Drawer(
+
         elevation: 3.0,
         child: Container(
           color: Colors.lightBlueAccent,
           child: ListView(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: CircleAvatar(
-                      radius: 35.0,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage("images/excellogo.png"),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Kashish Chaudhary',
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87),
-                        ),
-                        SizedBox(height: 5.0),
-                        Container(
-                          height: 35.0,
-                          width: 150.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'Class: 4',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black87),
-                              ),
-                              Text(
-                                'Roll: 6',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+
               SizedBox(height: 20.0),
               buildMenuItem(
                 text: 'Dashboard',
@@ -426,79 +375,192 @@ class _FunctionsState extends State<Functions> {
           ),
         ),
       ),
-      body: ListView(
-        shrinkWrap: true,
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 10.0),
-              NewTextField(
-                text: 'Search Functions',
+        physics: ClampingScrollPhysics(),
+        child:Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0), bottomLeft:Radius.circular(10.0)),
+                color: Colors.blue,
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0, top: 20.0),
-                child: Text('Functionalities',
-                    style:
-                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500)),
-              ),
-              GridView.count(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                crossAxisCount: 2,
-                children: List.generate(model.length, (index) {
-                  return Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                      child: Column(mainAxisSize: MainAxisSize.min, children: [
-                        // Icon(
-                        //   controller.girdList[index].icon,
-                        // ),
-
-                        GestureDetector(
-                          onTap: () {
-                            model[index].onpress();
-                          },
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image(
-                              height: 150,
-                              width: 150,
-                              image: AssetImage(model[index].icon),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+              child: Stack(
+                children: [
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 55.0),
+                        child: CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: Colors.white,
+                          backgroundImage: AssetImage("images/excellogo.png"),
                         ),
-
-                        // IconButton(
-                        //   onPressed : (){model[index].onpress();},
-                        //   icon: Icon(
-                        //     model[index].icon,
-                        //     size: 25.0,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
-                        Text(model[index].text,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black)),
-                      ]),
-                    ),
-                  );
-                }),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.0, left: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Kashish Chaudhary',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87,
+                                fontFamily: 'MontserratAlternates',
+                              ),
+                            ),
+                            SizedBox(height: 5.0),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.04,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.0),
+                                color: Colors.white,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    'Class: 4',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black87,
+                                      fontFamily: 'MontserratAlternates',
+                                    ),
+                                  ),
+                                  Text(
+                                    'Roll: 6',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                      fontFamily: 'MontserratAlternates',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+
+            Padding(
+              padding: EdgeInsets.only(top: 70.0),
+              child: Container(
+                // height: MediaQuery.of(context).size.height / 1.5,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 10.0),
+                    NewTextField(
+                      text: 'Search Functions',
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0, top: 20.0),
+                      child: Text('Functionalities',
+                          style:
+                          TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500, fontFamily: 'MontserratAlternates')),
+                    ),
+
+                    GridView.count(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      physics: ClampingScrollPhysics(),
+                      crossAxisCount: 4,
+                      children: List.generate(model.length, (index) {
+                        return Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          elevation: 2,
+                          margin: EdgeInsets.all(5.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+
+                          child: Center(
+                            child: Column(mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // Icon(
+                                  //   controller.girdList[index].icon,
+                                  // ),
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     model[index].onpress();
+                                  //   },
+                                  //   child: ClipRRect(
+                                  //     borderRadius: BorderRadius.circular(20.0),
+                                  //     child: Image(
+                                  //       height: 150,
+                                  //       width: 150,
+                                  //       image: AssetImage(model[index].icon),
+                                  //       fit: BoxFit.cover,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  IconButton(
+                                    onPressed : (){model[index].onpress();},
+                                    icon: Icon(
+                                      model[index].icon,
+                                      size: 35.0,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  Text(model[index].text,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black54,
+                                          fontFamily: 'MontserratAlternates'
+                                      )),
+                                ]),
+                          ),
+
+                        );
+                      }),
+                    ),
+
+
+                    // Divider(
+                    //   thickness: 1.0,
+                    //   color: Colors.black,
+                    // ),
+
+
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+// ListView(
+//   shrinkWrap: true,
+//   scrollDirection: Axis.vertical,
+//   children: [
+//
+//
+//
+//
+//
+//
+//   ],
+// ),

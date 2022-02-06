@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/dashboard.dart';
-
+// import 'package:new_project_work/ui_pages/dashboard.dart';
 // import 'package:new_project_work/ui_pages/forgot_password.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
 import 'package:new_project_work/utils/color.dart';

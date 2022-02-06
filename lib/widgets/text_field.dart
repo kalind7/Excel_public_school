@@ -42,6 +42,7 @@ class NewTextField extends StatelessWidget {
                     fontSize: 16.0,
                     fontWeight: FontWeight.normal,
                     fontStyle: FontStyle.italic,
+                    fontFamily: 'MontserratAlternates'
                   ),
                   prefixIcon: IconButton(
                       onPressed: () {},
