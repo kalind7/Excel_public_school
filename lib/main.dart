@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/attendace.dart';
+import 'package:new_project_work/ui_pages/assignment.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/events.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:new_project_work/ui_pages/list_of_teacher.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
+import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/splash_screen.dart';
+import 'package:new_project_work/widgets/routine_list_get.dart';
 
 
 void main() {
@@ -32,13 +34,15 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+        '/routine': (context) => Routine(),
         '/': (context) => SplashScreen(),
         '/gradstudent': (context) => GradStudent(),
         '/login': (context) => LoginPage(),
         '/dashboard': (context) => Dashboard(),
         '/events': (context) => Events(),
-        '/attendance': (context) => Attendance(),
+        '/assignment': (context) => Assignment(),
         '/teacherlist': (context) => TeacherLists(),
+
       },
     );
   }

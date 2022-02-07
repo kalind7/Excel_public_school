@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/controller/grid_view_controller.dart';
 import 'package:new_project_work/models/gird_view_list.dart';
-import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
+import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/notice.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
 import 'package:new_project_work/widgets/text_field.dart';
@@ -79,43 +79,43 @@ class _GradStudentState extends State<GradStudent> {
   }
 }
 
-Widget _buildPopupDialog(BuildContext context) {
-  return AlertDialog(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
-    ),
-    backgroundColor: Colors.white,
-    title: Center(
-        child: Text(
-      'Do you want to LOG OUT ?',
-      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates'),
-    )),
-    content: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 14.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 14.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Get.toNamed('/login');
-            },
-            child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
-          ),
-        ),
-      ],
-    ),
-  );
-}
+// Widget _buildPopupDialog(BuildContext context) {
+//   return AlertDialog(
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.circular(20.0),
+//     ),
+//     backgroundColor: Colors.white,
+//     title: Center(
+//         child: Text(
+//       'Do you want to LOG OUT ?',
+//       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates'),
+//     )),
+//     content: Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       mainAxisSize: MainAxisSize.min,
+//       children: <Widget>[
+//         Padding(
+//           padding: const EdgeInsets.only(right: 14.0),
+//           child: ElevatedButton(
+//             onPressed: () {
+//               Navigator.pop(context);
+//             },
+//             child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.only(right: 14.0),
+//           child: ElevatedButton(
+//             onPressed: () {
+//               Get.toNamed('/login');
+//             },
+//             child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
 
 class Functions extends StatefulWidget {
   const Functions({Key? key}) : super(key: key);
@@ -173,7 +173,7 @@ class _FunctionsState extends State<Functions> {
         icon:  Icons.home_work_outlined,
         onpress: () {
           print('anything');
-          Get.toNamed('/attendance');
+
         },
       ),
       Model(
@@ -194,7 +194,7 @@ class _FunctionsState extends State<Functions> {
         text: 'Routine',
         icon: Icons.request_page_outlined,
         onpress: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Routine()));
+          Get.toNamed('/routine');
         },
       ),
       Model(
@@ -213,10 +213,11 @@ class _FunctionsState extends State<Functions> {
         },
       ),
       Model(
-        text: 'Exam',
+        text: 'Assignment',
         icon: Icons.file_copy_sharp,
         onpress: () {
           print('anything');
+          Get.toNamed('/assignment');
         },
       ),
       Model(
@@ -247,7 +248,7 @@ class _FunctionsState extends State<Functions> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context),
+                  builder: (BuildContext context) => BuildPopupDialog(),
                 );
               },
               icon: Icon(Icons.power_settings_new,
@@ -276,56 +277,70 @@ class _FunctionsState extends State<Functions> {
                 text: 'Profile',
                 icon: Icons.person,
                 onpress: () {
-                  Get.toNamed('/login');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AdminBio(
+                          text: 'Kashish Chaudhary',
+                          bio:
+                          'I am student of class 4 and am studying hardly to complete my primary classes.',
+                          jobtitle: 'Job',
+                          answer1: 'Student',
+                          length: 'Class',
+                          answer2: '4',
+                          question: 'Teacher ?',
+                          answer3: 'NO',
+                        ),
+                      ));
                 },
               ),
               buildMenuItem(
                 text: 'Fees',
                 icon: Icons.event_note_rounded,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Result',
                 icon: Icons.file_copy_sharp,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Attendance',
                 icon: Icons.home_work_outlined,
                 onpress: () {
-                  Get.toNamed('/attendance');
+                  // Get.toNamed('/attendance');
                 },
               ),
               buildMenuItem(
                 text: 'Subjects',
                 icon: Icons.subject,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Downloads',
                 icon: Icons.download_rounded,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Routine',
                 icon: Icons.request_page_outlined,
                 onpress: () {
-                  Get.toNamed('/login');
+                  Get.toNamed('/routine');
                 },
               ),
               buildMenuItem(
                 text: 'Library',
                 icon: Icons.library_books_sharp,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
@@ -336,24 +351,24 @@ class _FunctionsState extends State<Functions> {
                 },
               ),
               buildMenuItem(
-                text: 'Exam',
+                text: 'Assignment',
                 icon: Icons.wallpaper,
                 onpress: () {
-                  Get.toNamed('/login');
+                  Get.toNamed('/assignment');
                 },
               ),
               buildMenuItem(
                 text: 'Dormitory',
                 icon: Icons.hotel,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               buildMenuItem(
                 text: 'Transport',
                 icon: Icons.bus_alert,
                 onpress: () {
-                  Get.toNamed('/login');
+                  // Get.toNamed('/login');
                 },
               ),
               Divider(
@@ -367,7 +382,7 @@ class _FunctionsState extends State<Functions> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialog(context),
+                        BuildPopupDialog(),
                   );
                 },
               ),
