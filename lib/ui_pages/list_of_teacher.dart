@@ -142,15 +142,23 @@ class _TeacherListsState extends State<TeacherLists> {
                                 color: HexColor('#F4F4F4'),
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start ,
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
                                     children: [
+                                      SizedBox(
+                                        width: 31.0,
+                                      ),
                                       Icon(Icons.email,
                                           size: 18.0, color: Colors.black87),
+                                      SizedBox(
+                                        width: 34.0,
+                                      ),
                                       Column(
+                                        // mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start ,
                                         children: [
                                           Text('E-mail :- ',
@@ -244,41 +252,3 @@ class _TeacherListsState extends State<TeacherLists> {
     );
   }
 }
-
-// Container(
-// margin: EdgeInsets.symmetric(
-// vertical: 10.0, horizontal: 30.0),
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.start,
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// Text(
-// 'Name: ${controller.teacherList[index].name}',
-// style: TextStyle(
-// fontSize: 16.0,
-// fontWeight: FontWeight.bold),
-// ),
-// SizedBox(height: 4.0),
-// Text(
-// 'Degree: ${controller.teacherList[index].degree}',
-// style: TextStyle(
-// fontSize: 14.0,
-// fontWeight: FontWeight.w500),
-// ),
-// SizedBox(height: 4.0),
-// Text(
-// 'Experience: ${controller.teacherList[index].experience}',
-// style: TextStyle(
-// fontSize: 14.0,
-// fontWeight: FontWeight.w500),
-// ),
-// SizedBox(height: 4.0),
-// Text(
-// 'E-mail: ${controller.teacherList[index].email}',
-// style: TextStyle(
-// fontSize: 14.0,
-// fontWeight: FontWeight.w500),
-// ),
-// ],
-// ),
-// ),

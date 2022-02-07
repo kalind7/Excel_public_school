@@ -34,10 +34,14 @@ class _RoutineGetListState extends State<RoutineGetList> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
+
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
+                        SizedBox(width: 30.0,),
+
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: Image(
@@ -48,6 +52,10 @@ class _RoutineGetListState extends State<RoutineGetList> {
                             fit: BoxFit.cover,
                           ),
                         ),
+
+                        SizedBox(width: 30.0,),
+
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,6 +101,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                                     fontWeight: FontWeight.w500)),
                           ],
                         ),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -116,7 +125,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(top: 10.0, left: 20.0),
+                      margin: EdgeInsets.only(top: 10.0, left: 30),
                       height: MediaQuery.of(context).size.height * 0.04,
                       width: MediaQuery.of(context).size.width * 0.34,
                       decoration: BoxDecoration(
@@ -124,7 +133,6 @@ class _RoutineGetListState extends State<RoutineGetList> {
                         color: Colors.black38,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             controller.routineList[index].time ,

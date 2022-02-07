@@ -18,8 +18,8 @@ class RoutineController extends GetxController{
 
     var rouList = [
       RoutineDetails(
-        title: 'Fundamentals of \n'
-            'Mathematics',
+        title: 'Fundaments\n'
+            'of Mathematics',
         classType: 'Theory Class',
         image: 'images/subjects.jpg',
         subject: 'Subject',
@@ -39,11 +39,11 @@ class RoutineController extends GetxController{
         time: '11:00 - 1:00 PM',
       ),
       RoutineDetails(
-        title: 'Co-ordinate Geometry',
+        title: 'Co-ordinate \nGeometry',
         classType: 'Theory Class',
         image: 'images/subjects.jpg',
         subject: 'Subject',
-        subjectType: 'Optional Mathematics',
+        subjectType: 'Optional Math',
         teacher: 'Professor/Teacher',
         teacherName: 'Mrs. Laxmi Bhandari',
         time: '1:30 - 3:30 PM',
