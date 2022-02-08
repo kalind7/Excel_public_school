@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/ui_pages/code_page.dart';
 import 'package:new_project_work/ui_pages/forgot_password.dart';
 
@@ -53,17 +52,6 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  // Padding(
-                  //   padding: EdgeInsets.only(left: 45, top: 15.0),
-                  //   child: Text(
-                  //     'E-mail',
-                  //     style: TextStyle(
-                  //         fontSize: 16.0,
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black87,
-                  //         letterSpacing: 1.0),
-                  //   ),
-                  // ),
                   Padding(
                     padding: EdgeInsets.only(left: 40.0, right: 40.0),
                     child:TextFormField(

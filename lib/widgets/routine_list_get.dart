@@ -15,146 +15,153 @@ class _RoutineGetListState extends State<RoutineGetList> {
   @override
   Widget build(BuildContext context) {
     return GetX<RoutineController>(builder: (controller) {
-      return Padding(
-        padding: EdgeInsets.only(top: 10.0),
-        child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
-            itemCount: controller.routineList.length,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
-                padding: EdgeInsets.only(top: 10.0),
-                height: MediaQuery.of(context).size.height /3,
-                width: MediaQuery.of(context).size.width / 1.15,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
+      return SafeArea(
+        child:  ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              itemCount: controller.routineList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(top: 5.0, left: 10.0, right: 10.0, bottom: 5),
+                  padding: EdgeInsets.only(top: 10.0),
+                  height: MediaQuery.of(context).size.height /3,
+                  width: MediaQuery.of(context).size.width / 1.15,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
 
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        SizedBox(width: 30.0,),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
 
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image(
-                            height: 100,
-                            width: 100,
-                            image:
-                            AssetImage(controller.routineList[index].image),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-
-                        SizedBox(width: 30.0,),
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              controller.routineList[index].title,
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontFamily: 'MontserratAlternates'),
-                            ),
-                            Text(controller.routineList[index].classType,
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.white60,
-                                    fontFamily: 'MontserratAlternates',
-                                    fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-
-                    Row(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(width: 10.0,),
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              controller.routineList[index].subject,
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white60,
-                                  fontFamily: 'MontserratAlternates'),
-                            ),
-                            Text(controller.routineList[index].subjectType,
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.white,
-                                    fontFamily: 'MontserratAlternates',
-                                    fontWeight: FontWeight.w500)),
-                          ],
-                        ),
-
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              controller.routineList[index].teacher,
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white60,
-                                  fontFamily: 'MontserratAlternates'),
-                            ),
-                            Text(controller.routineList[index].teacherName,
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.white,
-                                    fontFamily: 'MontserratAlternates',
-                                    fontWeight: FontWeight.w500)),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.only(top: 10.0, left: 33),
-                      padding: EdgeInsets.only(left: 7.0),
-                      height: MediaQuery.of(context).size.height * 0.04,
-                      width: MediaQuery.of(context).size.width * 0.34,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.black38,
-                      ),
-                      child: Row(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
-                            controller.routineList[index].time ,
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontFamily: 'MontserratAlternates',
+                          SizedBox(width: 30.0,),
+
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image(
+                              height: 100,
+                              width: 100,
+                              image:
+                              AssetImage(controller.routineList[index].image),
+                              fit: BoxFit.cover,
                             ),
+                          ),
+
+                          SizedBox(width: 55.0,),
+
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.routineList[index].title,
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'MontserratAlternates'),
+                              ),
+                              Text(controller.routineList[index].classType,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Colors.white60,
+                                      fontFamily: 'MontserratAlternates',
+                                      fontWeight: FontWeight.w600)),
+                            ],
                           ),
                         ],
                       ),
+                      SizedBox(height: 10.0),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(width: 33.0,),
+
+                          Expanded(
+                            flex: 2,
+                            child:  Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.routineList[index].subject,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white60,
+                                      fontFamily: 'MontserratAlternates'),
+                                ),
+                                Text(controller.routineList[index].subjectType,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.white,
+                                        fontFamily: 'MontserratAlternates',
+                                        fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+                          ),
+
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.routineList[index].teacher,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white60,
+                                      fontFamily: 'MontserratAlternates'),
+                                ),
+                                Text(controller.routineList[index].teacherName,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.white,
+                                        fontFamily: 'MontserratAlternates',
+                                        fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+
+                          ),
+                        ],
+                      ),
+
+
+                    Expanded(
+                      flex: 3,
+                      child:  Container(
+                        margin: EdgeInsets.only( left: 33, bottom: 5.0),
+                        padding: EdgeInsets.only(left: 7.0, top: 5.0),
+                        height: MediaQuery.of(context).size.height * 0.04,
+                        width: MediaQuery.of(context).size.width * 0.34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.black38,
+                        ),
+                        child: Text(
+                          controller.routineList[index].time ,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'MontserratAlternates',
+                          ),
+                        ),
+
+                      ),
                     ),
 
-                  ],
-                ),
-              );
-            }),
+                    ],
+                  ),
+                );
+              }),
+
       );
 
     });

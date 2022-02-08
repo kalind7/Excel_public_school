@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({Key? key, required this.text, required this.image})
@@ -35,13 +34,12 @@ class EventScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10.0),
                 child: Text(
                   'DESCRIPTION',
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
+                  style:  TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
                         letterSpacing: 1.0,
                         fontWeight: FontWeight.bold),
-                  ),
+
                 ),
               ),
               SizedBox(height: 5.0),
@@ -49,12 +47,11 @@ class EventScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10.0),
                 child: Text(
                   text,
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
+                  style:  TextStyle(
                         color: Colors.black,
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400),
-                  ),
+
                 ),
               ),
               SizedBox(height: 10.0),
@@ -62,12 +59,11 @@ class EventScreen extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10.0),
                 child: Text(
                   'Guest List',
-                  style: GoogleFonts.montserrat(
-                    textStyle: TextStyle(
+                  style: TextStyle(
                         color: Colors.black,
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold),
-                  ),
+
                 ),
               ),
               SizedBox(height: 10.0),

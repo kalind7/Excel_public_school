@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
-import 'package:new_project_work/widgets/notice.dart';
 
 class CategoryDrawer extends StatefulWidget {
   const CategoryDrawer({Key? key}) : super(key: key);
@@ -34,17 +32,15 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
                   ),
                   Text(
                     'Kalind Koirala',
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
+                    style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
+
                   ),
                   Text(
                     'Admin',
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
+                    style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.normal),
-                    ),
+
                   ),
                 ],
               ),
@@ -60,10 +56,9 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
             ),
             title: Text(
               'Your Profile',
-              style: GoogleFonts.montserrat(
-                textStyle:
+              style:
                     TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
-              ),
+
             ),
             onTap: () {
               Navigator.push(
@@ -89,10 +84,9 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
             ),
             title: Text(
               'Inbox',
-              style: GoogleFonts.montserrat(
-                textStyle:
+              style:
                     TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
-              ),
+
             ),
             onTap: () {},
           ),
@@ -103,10 +97,9 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
             ),
             title: Text(
               'Dashboard',
-              style: GoogleFonts.montserrat(
-                textStyle:
+              style:
                     TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
-              ),
+
             ),
             onTap: () {
               Navigator.push(context,
@@ -120,10 +113,9 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
             ),
             title: Text(
               'Settings',
-              style: GoogleFonts.montserrat(
-                textStyle:
+              style:
                     TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal),
-              ),
+
             ),
             onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => Notice()));

@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
+import 'package:new_project_work/widgets/drop_down.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
+import 'package:new_project_work/widgets/text_field.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TeacherLists extends StatefulWidget {
   const TeacherLists({Key? key}) : super(key: key);
@@ -15,22 +18,43 @@ class TeacherLists extends StatefulWidget {
 class _TeacherListsState extends State<TeacherLists> {
   final teacherController = Get.put(StudentController());
 
+  void _launchCaller(int number)async{
+    var url = "tel:${number.toString()}";
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw "Could not place call";
+    }
+  }
+  void _launchEmail(String emailId)async{
+    var url = "mailto:$emailId?subject= Email Button done";
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw "Could not send email";
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back,size: 24.0,color: Colors.black87,),
+          icon: Icon(
+            Icons.arrow_back,
+            size: 24.0,
+            color: Colors.black87,
+          ),
         ),
-
-        title: Text('Teacher List',style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'MontserratAlternates',
-            color: Colors.white)),
+        title: Text('Teacher List',
+            style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'MontserratAlternates',
+                color: Colors.white)),
         centerTitle: true,
         actions: [
           Padding(
@@ -43,14 +67,16 @@ class _TeacherListsState extends State<TeacherLists> {
                 );
               },
               icon: Icon(Icons.power_settings_new,
-                   size: 24.0, color: Colors.black87),
+                  size: 24.0, color: Colors.black87),
             ),
           ),
         ],
       ),
-
       body: ListView(
         children: [
+          SizedBox(height:10.0),
+          DropDown(),
+
           Column(
             children: [
               GetX<StudentController>(builder: (controller) {
@@ -61,7 +87,8 @@ class _TeacherListsState extends State<TeacherLists> {
                     itemCount: controller.teacherList.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                        margin:
+                            EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                         padding: EdgeInsets.only(top: 10.0, left: 10.0),
                         height: MediaQuery.of(context).size.height / 3.25,
                         decoration: BoxDecoration(
@@ -77,6 +104,7 @@ class _TeacherListsState extends State<TeacherLists> {
                               ),
                             ]),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Row(
                               children: [
@@ -134,7 +162,7 @@ class _TeacherListsState extends State<TeacherLists> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 7.0, right: 10.0),
-                              padding: EdgeInsets.only(top: 10.0),
+                              padding: EdgeInsets.only(top: 5.0, left: 5.0),
                               height: MediaQuery.of(context).size.height * 0.18,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
@@ -142,110 +170,104 @@ class _TeacherListsState extends State<TeacherLists> {
                                 color: HexColor('#F4F4F4'),
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start ,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        width: 31.0,
+                                        width: 20.0,
                                       ),
-                                      Icon(Icons.mail,
-                                          size: 18.0, color: Colors.black87),
-
+                                      GestureDetector(
+                                        onTap: () {
+                                          _launchEmail(controller.teacherList[index].email);
+                                        },
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          child: Icon(Icons.mail,
+                                              color: Colors.black87),
+                                        ),
+                                      ),
                                       SizedBox(
-                                        width: 41.0,
+                                        width: 25.0,
                                       ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start ,
-                                        children: [
-                                          Text('E-mail',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: Colors.black45,
-                                                  fontFamily:
-                                                  'MontserratAlternates',
-                                                  fontWeight: FontWeight.w600)),
-
-                                          SizedBox(
-                                            height: 2.0,
-                                          ),
-
-                                          Text('${controller.teacherList[index].email}',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: Colors.black87,
-                                                  fontFamily:
-                                                  'MontserratAlternates',
-                                                  fontWeight: FontWeight.w600)),
-                                        ],
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('E-mail',
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black45,
+                                                    fontFamily:
+                                                        'MontserratAlternates',
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                            Text(
+                                                '${controller.teacherList[index].email}',
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black87,
+                                                    fontFamily:
+                                                        'MontserratAlternates',
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ],
+                                        ),
                                       ),
                                     ],
-                                  ),
-
-                                  SizedBox(
-                                    height: 10.0,
                                   ),
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start ,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        width: 31.0,
+                                        width: 20.0,
                                       ),
-                                      Icon(Icons.phone,
-                                          size: 18.0, color: Colors.black87),
-
+                                      GestureDetector(
+                                        onTap: (){
+                                          _launchCaller(9860052311);
+                                        },
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          child: Icon(Icons.phone,
+                                              color: Colors.black87),
+                                        ),
+                                      ),
                                       SizedBox(
-                                        width: 41.0,
+                                        width: 25.0,
                                       ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start ,
-                                        children: [
-                                          Text('Phone number :- ',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: Colors.black45,
-                                                  fontFamily:
-                                                  'MontserratAlternates',
-                                                  fontWeight: FontWeight.w600)),
-
-                                          SizedBox(
-                                            height: 2.0,
-                                          ),
-
-                                          Text('9860052311',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: Colors.black87,
-                                                  fontFamily:
-                                                  'MontserratAlternates',
-                                                  fontWeight: FontWeight.w600)),
-                                        ],
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Phone number :- ',
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black45,
+                                                    fontFamily:
+                                                        'MontserratAlternates',
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                            Text('9860052311',
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black87,
+                                                    fontFamily:
+                                                        'MontserratAlternates',
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  // Row(
-                                  //   crossAxisAlignment: CrossAxisAlignment.start ,
-                                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
-                                  //   children: [
-                                  //     Icon(Icons.phone,
-                                  //         size: 18.0, color: Colors.white),
-                                  //     Column(
-                                  //       crossAxisAlignment: CrossAxisAlignment.start ,
-                                  //       children: [
-                                  //         Text('Phone Number',
-                                  //             style: TextStyle(
-                                  //                 fontSize: 16.0,
-                                  //                 color: Colors.black45,
-                                  //                 fontFamily:
-                                  //                 'MontserratAlternates',
-                                  //                 fontWeight: FontWeight.w600)),
-                                  //
-                                  //       ],
-                                  //     ),
-                                  //   ],
-                                  // ),
-
                                 ],
                               ),
                             ),

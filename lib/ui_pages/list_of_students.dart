@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
+import 'package:new_project_work/widgets/drop_down.dart';
+
 
 class StudentLists extends StatefulWidget {
   const StudentLists({Key? key}) : super(key: key);
@@ -23,6 +25,13 @@ class _StudentListsState extends State<StudentLists> {
       ),
       body: ListView(
         children: [
+
+          SizedBox(height: 10.0,),
+
+          DropDown(),
+
+          SizedBox(height: 10.0,),
+
           Column(
             children: [
               GetX<StudentController>(builder: (controller) {
@@ -33,18 +42,25 @@ class _StudentListsState extends State<StudentLists> {
                     itemCount: controller.studentList.length,
                     itemBuilder: (context, index) {
                       return Container(
+                        width: MediaQuery.of(context).size.width / 1.15,
                         margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
+                            vertical: 3.0, horizontal: 10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
-                          color: HexColor("#F4F4F4"),
+                          color: Colors.white,
+                          border: Border.all(
+                            color: HexColor('#F4F4F4'),
+                            width: 2.0,
+                          )
                         ),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(width: 15.0),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 10.0),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
+                                borderRadius: BorderRadius.circular(100.0),
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
@@ -64,8 +80,8 @@ class _StudentListsState extends State<StudentLists> {
                                         ));
                                   },
                                   child: Image(
-                                    height: 100,
-                                    width: 50,
+                                    height: 75,
+                                    width: 75,
                                     fit: BoxFit.cover,
                                     image: AssetImage(
                                         '${controller.studentList[index].image}'),
@@ -73,9 +89,10 @@ class _StudentListsState extends State<StudentLists> {
                                 ),
                               ),
                             ),
+                            SizedBox(width: 30.0),
                             Container(
                               margin: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 30.0),
+                                  vertical: 10.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,

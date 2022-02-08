@@ -45,7 +45,7 @@ class RoutineController extends GetxController{
         subject: 'Subject',
         subjectType: 'Optional Math',
         teacher: 'Professor/Teacher',
-        teacherName: 'Mrs. Laxmi Bhandari',
+        teacherName: 'Mrs. Laxmi Kumari Bhandari',
         time: '1:30 - 3:30 PM',
       ),
     ];

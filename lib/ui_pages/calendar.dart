@@ -90,14 +90,14 @@ class _CalendarState extends State<Calendar> {
                       color: Colors.black),
                 ),
                 onPressed: () async {
-                  NepaliDateTime _selectedDateTime =
-                      (await showMaterialDatePicker(
+                  NepaliDateTime? _selectedDateTime =
+                      await showMaterialDatePicker(
                     context: context,
                     initialDate: NepaliDateTime.now(),
                     firstDate: NepaliDateTime(2000),
                     lastDate: NepaliDateTime(2090),
                     initialDatePickerMode: DatePickerMode.day,
-                  ))!;
+                  );
                   print(_selectedDateTime);
                 },
                 style: ButtonStyle(
@@ -117,7 +117,8 @@ class _CalendarState extends State<Calendar> {
         ),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
+        shrinkWrap: true,
         children: [
           TableCalendar(
             focusedDay: selectedDay,

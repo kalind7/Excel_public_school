@@ -9,7 +9,6 @@ import 'package:new_project_work/ui_pages/list_of_teacher.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
 import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/splash_screen.dart';
-import 'package:new_project_work/widgets/routine_list_get.dart';
 
 
 void main() {

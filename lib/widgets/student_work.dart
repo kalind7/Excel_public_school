@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 
@@ -23,9 +22,8 @@ class _StudentWorkState extends State<StudentWork> {
       title: Center(
           child: Text(
         'Not Found!!',
-        style: GoogleFonts.montserrat(
-          textStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-        ),
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+
       )),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,12 +32,11 @@ class _StudentWorkState extends State<StudentWork> {
             padding: const EdgeInsets.only(right: 14.0),
             child: Text(
               'In Maintainence',
-              style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
+              style:  TextStyle(
                       color: HexColor("#7459DC"),
                       fontSize: 14,
                       fontWeight: FontWeight.bold)),
-            ),
+
           ),
           Padding(
             padding: EdgeInsets.only(top: 5.0, left: 30),
@@ -56,12 +53,11 @@ class _StudentWorkState extends State<StudentWork> {
                   child: Text(
                     'Agreed ??',
                     overflow: TextOverflow.fade,
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
+                    style:  TextStyle(
                           color: HexColor('#9C9C9C'),
                           fontSize: 12.0,
                           fontWeight: FontWeight.normal),
-                    ),
+
                   ),
                 ),
               ],

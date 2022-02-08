@@ -49,15 +49,17 @@ class Routine extends StatelessWidget {
             ),
           ),
 
-          body: TabBarView(
-            children: [
-              RoutineGetList(),
-              RoutineGetList(),
-              RoutineGetList(),
-              RoutineGetList(),
-              RoutineGetList(),
-              RoutineGetList(),
-            ],
+          body: SafeArea(
+            child: TabBarView(
+              children: [
+                RoutineGetList(),
+                RoutineGetList(),
+                RoutineGetList(),
+                RoutineGetList(),
+                RoutineGetList(),
+                RoutineGetList(),
+              ],
+            ),
           ),
         ),
     );

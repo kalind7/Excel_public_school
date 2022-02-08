@@ -9,13 +9,13 @@ class NewTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
+      padding: const EdgeInsets.only(left: 15.0, right: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.10,
-            width: MediaQuery.of(context).size.width / 1.15,
+            width: MediaQuery.of(context).size.width / 1.1,
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: HexColor("#F4F4F4")),
@@ -28,7 +28,7 @@ class NewTextField extends StatelessWidget {
                     offset: Offset(4, 3), // changes position of shadow
                   ),
                 ]),
-            child: Padding(
+              child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: TextField(
                 decoration: InputDecoration(

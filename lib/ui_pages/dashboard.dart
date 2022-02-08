@@ -256,82 +256,6 @@ class _DashboardState extends State<Dashboard> {
 
                 NewTextField(text: 'Search'),
 
-                // ListView.builder(
-                //   scrollDirection: Axis.vertical,
-                //   shrinkWrap: true,
-                //   physics: ClampingScrollPhysics(),
-                //   itemCount: newModels.length,
-                //     itemBuilder: (context, index){
-                //         return  Container(
-                //           margin: EdgeInsets.only(top: 20.0),
-                //           height: MediaQuery.of(context).size.height * 0.17,
-                //           width: MediaQuery.of(context).size.width / 1.2 ,
-                //           decoration: BoxDecoration(
-                //               color: Colors.white,
-                //               border: Border.all(color: HexColor("#F4F4F4")),
-                //               borderRadius: BorderRadius.circular(15.0),
-                //               boxShadow: [
-                //                 BoxShadow(
-                //                   color: Colors.grey.withOpacity(.08),
-                //                   spreadRadius: 5,
-                //                   blurRadius: 7,
-                //                   offset: Offset(4, 3), // changes position of shadow
-                //                 ),
-                //               ]),
-                //           child: Row(
-                //             crossAxisAlignment: CrossAxisAlignment.center,
-                //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //             children: [
-                //               CircleAvatar(
-                //                 backgroundColor: Colors.white,
-                //                 radius: 30.0,
-                //                 backgroundImage: AssetImage(newModels[index].image),
-                //               ),
-                //               Column(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 children: [
-                //                   Text(newModels[index].title,style: TextStyle(fontSize: 16.0, fontFamily: 'MontserratAlternates', fontWeight: FontWeight.w500)),
-                //
-                //                   Padding(
-                //                     padding: EdgeInsets.only(bottom: 15.0),
-                //                     child:InkWell(
-                //                       onTap: () {newModels[index].onpress();},
-                //                       child: Center(
-                //                         child: Text(
-                //                           newModels[index].description,
-                //                           style: TextStyle(
-                //                             fontSize: 24.0,
-                //                             fontFamily: 'MontserratAlternates', fontWeight: FontWeight.bold,
-                //                             color: Colors.blue,
-                //                           ),
-                //                         ),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                 ],
-                //               ),
-                //
-                //             ],
-                //           ),
-                //         );
-                //     }
-                // ),
-                //
-                // SizedBox(
-                //   height: 20,
-                // ),
-                //
-                // Text('Notice Board', style: TextStyle(
-                //   fontSize: 24.0,
-                //   fontFamily: 'MontserratAlternates', fontWeight: FontWeight.bold,
-                //   color: Colors.blue,
-                // ),),
-                //
-                // SizedBox(
-                //   height: 20,
-                // ),
-
                 Expanded(
                   child: GridView.count(
                     mainAxisSpacing: 10,
@@ -343,24 +267,7 @@ class _DashboardState extends State<Dashboard> {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                        transitionDuration:
-                                            Duration(seconds: 1),
-                                        transitionsBuilder: (context, animation,
-                                            animationTime, child) {
-                                          //  animation = CurvedAnimation(parent: animation, curve: Curves.elasticInOut);
-                                          return ScaleTransition(
-                                            alignment: Alignment.center,
-                                            scale: animation,
-                                            child: child,
-                                          );
-                                        },
-                                        pageBuilder: (context, animation,
-                                            animationTime) {
-                                          return StudentLists();
-                                        }));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLists()));
                               },
                               child: Image.network(
                                 "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
