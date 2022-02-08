@@ -55,14 +55,13 @@ class _RoutineGetListState extends State<RoutineGetList> {
 
                         SizedBox(width: 30.0,),
 
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               controller.routineList[index].title,
                               style: TextStyle(
-                                  fontSize: 18.0,
+                                  fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   fontFamily: 'MontserratAlternates'),
@@ -77,11 +76,14 @@ class _RoutineGetListState extends State<RoutineGetList> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10.0,),
+                    SizedBox(height: 10.0),
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        SizedBox(width: 10.0,),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -101,6 +103,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                                     fontWeight: FontWeight.w500)),
                           ],
                         ),
+
 
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +128,8 @@ class _RoutineGetListState extends State<RoutineGetList> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(top: 10.0, left: 30),
+                      margin: EdgeInsets.only(top: 10.0, left: 33),
+                      padding: EdgeInsets.only(left: 7.0),
                       height: MediaQuery.of(context).size.height * 0.04,
                       width: MediaQuery.of(context).size.width * 0.34,
                       decoration: BoxDecoration(

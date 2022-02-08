@@ -30,7 +30,7 @@ class _TeacherListsState extends State<TeacherLists> {
             fontSize: 18.0,
             fontWeight: FontWeight.w600,
             fontFamily: 'MontserratAlternates',
-            color: Colors.black87)),
+            color: Colors.white)),
         centerTitle: true,
         actions: [
           Padding(
@@ -61,11 +61,9 @@ class _TeacherListsState extends State<TeacherLists> {
                     itemCount: controller.teacherList.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin:
-                            EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                        margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                         padding: EdgeInsets.only(top: 10.0, left: 10.0),
                         height: MediaQuery.of(context).size.height / 3.25,
-                        // width: MediaQuery.of(context).size.width / 1.15,
                         decoration: BoxDecoration(
                             color: Colors.grey[50],
                             borderRadius: BorderRadius.circular(10.0),
@@ -82,6 +80,7 @@ class _TeacherListsState extends State<TeacherLists> {
                           children: [
                             Row(
                               children: [
+                                SizedBox(width: 20.0),
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(15.0),
                                   child: GestureDetector(
@@ -111,14 +110,14 @@ class _TeacherListsState extends State<TeacherLists> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 10.0),
+                                SizedBox(width: 20.0),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // SizedBox(height: 15.0),
                                     Text(controller.teacherList[index].name,
                                         style: TextStyle(
-                                            fontSize: 18.0,
+                                            fontSize: 16.0,
                                             fontWeight: FontWeight.w600,
                                             fontFamily: 'MontserratAlternates',
                                             color: Colors.black87)),
@@ -135,6 +134,7 @@ class _TeacherListsState extends State<TeacherLists> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 7.0, right: 10.0),
+                              padding: EdgeInsets.only(top: 10.0),
                               height: MediaQuery.of(context).size.height * 0.18,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
@@ -142,36 +142,38 @@ class _TeacherListsState extends State<TeacherLists> {
                                 color: HexColor('#F4F4F4'),
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start ,
-                                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
                                     children: [
                                       SizedBox(
                                         width: 31.0,
                                       ),
-                                      Icon(Icons.email,
+                                      Icon(Icons.mail,
                                           size: 18.0, color: Colors.black87),
+
                                       SizedBox(
-                                        width: 34.0,
+                                        width: 41.0,
                                       ),
                                       Column(
-                                        // mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start ,
                                         children: [
-                                          Text('E-mail :- ',
+                                          Text('E-mail',
                                               style: TextStyle(
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   color: Colors.black45,
                                                   fontFamily:
-                                                      'MontserratAlternates',
+                                                  'MontserratAlternates',
                                                   fontWeight: FontWeight.w600)),
 
-                                          Text(controller.teacherList[index].email,
+                                          SizedBox(
+                                            height: 2.0,
+                                          ),
+
+                                          Text('${controller.teacherList[index].email}',
                                               style: TextStyle(
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   color: Colors.black87,
                                                   fontFamily:
                                                   'MontserratAlternates',
@@ -181,6 +183,9 @@ class _TeacherListsState extends State<TeacherLists> {
                                     ],
                                   ),
 
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start ,
                                     children: [
@@ -191,22 +196,26 @@ class _TeacherListsState extends State<TeacherLists> {
                                           size: 18.0, color: Colors.black87),
 
                                       SizedBox(
-                                        width: 34.0,
+                                        width: 41.0,
                                       ),
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start ,
                                         children: [
                                           Text('Phone number :- ',
                                               style: TextStyle(
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   color: Colors.black45,
                                                   fontFamily:
                                                   'MontserratAlternates',
                                                   fontWeight: FontWeight.w600)),
 
+                                          SizedBox(
+                                            height: 2.0,
+                                          ),
+
                                           Text('9860052311',
                                               style: TextStyle(
-                                                  fontSize: 16.0,
+                                                  fontSize: 14.0,
                                                   color: Colors.black87,
                                                   fontFamily:
                                                   'MontserratAlternates',
