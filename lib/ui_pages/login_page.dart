@@ -246,8 +246,8 @@ class _LoginPageState extends State<LoginPage> {
 
                           elevation: 3,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          padding: EdgeInsets.all(20)),
+                              borderRadius: BorderRadius.circular(10)),
+                          padding: EdgeInsets.all(5)),
                       child: Text(
                         'Log In',
                         style: TextStyle(

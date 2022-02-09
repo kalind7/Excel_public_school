@@ -4,6 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/drop_down.dart';
+import 'package:new_project_work/widgets/logout_popup.dart';
+import 'package:new_project_work/widgets/text_field.dart';
 
 
 class StudentLists extends StatefulWidget {
@@ -22,6 +24,21 @@ class _StudentListsState extends State<StudentLists> {
       appBar: AppBar(
         title: Text('Students List'),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 3.0, top: 2.0),
+            child: IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => BuildPopupDialog(),
+                );
+              },
+              icon: Icon(Icons.power_settings_new,
+                  size: 24.0, color: Colors.white),
+            ),
+          ),
+        ],
       ),
       body: ListView(
         children: [

@@ -117,7 +117,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           fontStyle: FontStyle.normal,
                           color:Colors.black26,
                         ),
-                        suffixIcon: Icon(Icons.mail, size: 15.0, color: Colors.black26),
+                        suffixIcon: Icon(Icons.mail, size: 20.0, color: Colors.black26),
                       ),
 
                       validator: MultiValidator([
@@ -148,8 +148,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   SizedBox(height: 60.0),
                   Center(
                     child: SizedBox(
-                      height: 60.0,
-                      width: 250.0,
+                      width: 200.0,
                       child: ElevatedButton(
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
@@ -163,12 +162,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.blue,
-                            // side: BorderSide(color: Colors.blue),
-
                             elevation: 7,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                            padding: EdgeInsets.all(20)),
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: EdgeInsets.all(5)),
                         child: Text(
                           'Verify Email',
                           style: TextStyle(color: Colors.white, fontSize: 16),

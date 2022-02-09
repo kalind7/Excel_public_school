@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
+  find_dropdown:
+    dependency: "direct main"
+    description:
+      name: find_dropdown
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -233,6 +240,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  pie_chart:
+    dependency: "direct main"
+    description:
+      name: pie_chart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   platform:
     dependency: transitive
     description:
@@ -261,6 +275,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  searchfield:
+    dependency: "direct main"
+    description:
+      name: searchfield
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.6"
+  select_dialog:
+    dependency: transitive
+    description:
+      name: select_dialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -412,14 +440,14 @@ packages:
       name: url_launcher_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   url_launcher_macos:
     dependency: transitive
     description:
       name: url_launcher_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -440,7 +468,7 @@ packages:
       name: url_launcher_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   vector_math:
     dependency: transitive
     description:

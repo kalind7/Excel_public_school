@@ -96,7 +96,7 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                         ),
                         suffixIcon:  Icon(
                           Icons.phone,
-                          size: 15.0,
+                          size: 20.0,
                           color: Colors.black26,
                         ),
                       ),
@@ -137,8 +137,7 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                   SizedBox(height: 60.0),
                   Center(
                     child: SizedBox(
-                      height: 60.0,
-                      width: 250.0,
+                      width: 200.0,
                       child: ElevatedButton(
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
@@ -150,12 +149,10 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.blue,
-                            // side: BorderSide(color: Colors.blue),
-
                             elevation: 7,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                            padding: EdgeInsets.all(20)),
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: EdgeInsets.all(5)),
                         child: Text(
                           'Get Code',
                           style: TextStyle(color: Colors.white, fontSize: 16),

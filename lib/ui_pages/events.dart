@@ -103,6 +103,7 @@ class Events extends StatelessWidget {
           SizedBox(height: 10.0),
           NewTextField(
             text: 'Search your events',
+
           ),
           SizedBox(
             height: 15.0,

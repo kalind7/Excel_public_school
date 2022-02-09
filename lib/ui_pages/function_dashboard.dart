@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/controller/grid_view_controller.dart';
 import 'package:new_project_work/models/gird_view_list.dart';
+import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
@@ -79,44 +80,6 @@ class _GradStudentState extends State<GradStudent> {
   }
 }
 
-// Widget _buildPopupDialog(BuildContext context) {
-//   return AlertDialog(
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(20.0),
-//     ),
-//     backgroundColor: Colors.white,
-//     title: Center(
-//         child: Text(
-//       'Do you want to LOG OUT ?',
-//       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates'),
-//     )),
-//     content: Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//       mainAxisSize: MainAxisSize.min,
-//       children: <Widget>[
-//         Padding(
-//           padding: const EdgeInsets.only(right: 14.0),
-//           child: ElevatedButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
-//           ),
-//         ),
-//         Padding(
-//           padding: const EdgeInsets.only(right: 14.0),
-//           child: ElevatedButton(
-//             onPressed: () {
-//               Get.toNamed('/login');
-//             },
-//             child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
-
 class Functions extends StatefulWidget {
   const Functions({Key? key}) : super(key: key);
 
@@ -159,6 +122,7 @@ class _FunctionsState extends State<Functions> {
         icon: Icons.monetization_on,
         onpress: () {
           print('anything');
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },
       ),
       Model(
@@ -298,8 +262,7 @@ class _FunctionsState extends State<Functions> {
                 text: 'Fees',
                 icon: Icons.event_note_rounded,
                 onpress: () {
-                  // Get.toNamed('/login');
-                },
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));                },
               ),
               buildMenuItem(
                 text: 'Result',
@@ -483,6 +446,7 @@ class _FunctionsState extends State<Functions> {
                   children: [
                     SizedBox(height: 10.0),
                     NewTextField(
+
                       text: 'Search Functions',
                     ),
                     Padding(

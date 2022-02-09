@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:new_project_work/models/dashboard_list.dart';
+import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:new_project_work/ui_pages/list_of_students.dart';
-import 'package:new_project_work/ui_pages/list_of_teacher.dart';
-import 'package:new_project_work/ui_pages/splash_screen.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
-import 'package:new_project_work/widgets/notice.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
 class Dashboard extends StatefulWidget {
@@ -25,15 +20,15 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
 
-  void _showToast() {
-    Fluttertoast.showToast(
-      msg: 'Staff list not made',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      backgroundColor: Color(0xffef5350),
-      textColor: Colors.white,
-    );
-  }
+  // void _showToast() {
+  //   Fluttertoast.showToast(
+  //     msg: 'Staff list not made',
+  //     toastLength: Toast.LENGTH_SHORT,
+  //     gravity: ToastGravity.BOTTOM,
+  //     backgroundColor: Color(0xffef5350),
+  //     textColor: Colors.white,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +148,7 @@ class _DashboardState extends State<Dashboard> {
                 text: 'Fees',
                 icon: Icons.event_note_rounded,
                 onpress: () {
-                  Get.toNamed('/login');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
                 },
               ),
               buildMenuItem(
@@ -254,7 +249,7 @@ class _DashboardState extends State<Dashboard> {
                   height: 20,
                 ),
 
-                NewTextField(text: 'Search'),
+                NewTextField(text: 'Search',),
 
                 Expanded(
                   child: GridView.count(
