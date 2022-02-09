@@ -11,8 +11,9 @@ import 'package:new_project_work/widgets/drop_down.dart';
 
 // import 'package:new_project_work/widgets/drop_down.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
-import 'package:new_project_work/widgets/text_field.dart';
+// import 'package:new_project_work/widgets/text_field.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class TeacherLists extends StatefulWidget {
   const TeacherLists({Key? key}) : super(key: key);
@@ -154,10 +155,9 @@ class _TeacherListsState extends State<TeacherLists> {
                   itemCount: teacherList.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin:
-                          EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                      margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
-                      height: MediaQuery.of(context).size.height / 3.25,
+                      height: MediaQuery.of(context).size.height / 3.35,
                       decoration: BoxDecoration(
                           color: Colors.grey[50],
                           borderRadius: BorderRadius.circular(10.0),
@@ -228,16 +228,16 @@ class _TeacherListsState extends State<TeacherLists> {
                             ],
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 7.0, right: 10.0),
-                            padding: EdgeInsets.only(top: 5.0, left: 5.0),
-                            height: MediaQuery.of(context).size.height * 0.18,
+                            margin: EdgeInsets.only( right: 10.0),
+                            padding: EdgeInsets.only( left: 5.0),
+                            height: MediaQuery.of(context).size.height * 0.16,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
                               color: HexColor('#F4F4F4'),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,

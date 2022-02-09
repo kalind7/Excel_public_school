@@ -10,14 +10,14 @@ class DropDown extends StatefulWidget {
 }
 
 class _DropDownState extends State<DropDown> {
-  String? _userVal;
+   String? _userVal;
   // List _userList = ['Name', 'Class', 'Roll Number', 'E-mail', 'Phone Number'];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.10,
-      width: MediaQuery.of(context).size.width / 1.1,
+      margin: EdgeInsets.only(left: 13.0, right: 13.0),
+      // padding: EdgeInsets.only(left: 10.0, right: 10.0),
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: HexColor("#F4F4F4")),
@@ -30,28 +30,34 @@ class _DropDownState extends State<DropDown> {
               offset: Offset(4, 3), // changes position of shadow
             ),
           ]),
-      child: SearchField(
-        hint: 'Search',
-        searchInputDecoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue.shade200,
-              width: 1.0,
+      child:  SearchField(
+          hint: 'Search required fields',
+          searchStyle: TextStyle(),
+          searchInputDecoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.blue.shade200,
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(10.0),
             ),
+          ),
+          itemHeight: 50.0,
+          maxSuggestionsInViewPort: 7,
+          suggestionsDecoration: BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.circular(10.0),
           ),
+          suggestions: ['Name', 'Class', 'Roll Number', 'E-mail', 'Phone Number'],
+          onTap: (value){
+            setState(() {
+              _userVal = value;
+            });
+
+          },
         ),
-        itemHeight: 50.0,
-        maxSuggestionsInViewPort: 5,
-        suggestionsDecoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        suggestions: ['Name', 'Class', 'Roll Number', 'E-mail', 'Phone Number'],
-        onTap: (value){
-          _userVal = value;
-        },
-      ),
+
+
     );
   }
 }
