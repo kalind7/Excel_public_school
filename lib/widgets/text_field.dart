@@ -9,12 +9,12 @@ class NewTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.06,
+            height: MediaQuery.of(context).size.height * 0.08,
             width: MediaQuery.of(context).size.width * 0.94,
             decoration: BoxDecoration(
                 color: Colors.white,

@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
-import 'package:new_project_work/widgets/drop_down.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
+import 'package:new_project_work/widgets/single_drop_down_class.dart';
+import 'package:new_project_work/widgets/single_drop_down_name.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
 
@@ -43,11 +44,32 @@ class _StudentListsState extends State<StudentLists> {
       body: ListView(
         children: [
 
-          SizedBox(height: 10.0,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [SingleDropDownName(), SingleDropDownClass()],
+          ),
+          NewTextField(
+            text: 'Search ',
+          ),
 
-          DropDown(),
-
-          SizedBox(height: 10.0,),
+          Center(
+            child: SizedBox(
+              width: 100.0,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                    elevation: 7,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    padding: EdgeInsets.all(5)),
+                child: Text(
+                  'Search',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ),
+          ),
 
           Column(
             children: [

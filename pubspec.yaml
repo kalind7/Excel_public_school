@@ -46,8 +46,8 @@ dependencies:
   shared_preferences: ^2.0.12
   url_launcher: ^6.0.18
   pie_chart: ^5.1.0
-  find_dropdown: ^1.0.0
   searchfield: ^0.5.6
+  filter_list: ^1.0.1
 
 
 dev_dependencies:

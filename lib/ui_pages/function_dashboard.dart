@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:new_project_work/controller/grid_view_controller.dart';
 import 'package:new_project_work/models/gird_view_list.dart';
 import 'package:new_project_work/ui_pages/fees.dart';
+import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
@@ -166,6 +167,7 @@ class _FunctionsState extends State<Functions> {
         icon: Icons.library_books,
         onpress: () {
           print('anything');
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
         },
       ),
       Model(
@@ -303,6 +305,7 @@ class _FunctionsState extends State<Functions> {
                 text: 'Library',
                 icon: Icons.library_books_sharp,
                 onpress: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
                   // Get.toNamed('/login');
                 },
               ),

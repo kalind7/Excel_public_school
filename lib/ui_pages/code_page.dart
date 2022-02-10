@@ -127,11 +127,10 @@ class _CodePageState extends State<CodePage> {
                   ),
                 ),
 
-                SizedBox(height: 100.0),
+                SizedBox(height: 70.0),
 
                 SizedBox(
-                  height: 60.0,
-                  width: 250.0,
+                  width: 200.0,
                   child: ElevatedButton(
                     onPressed: () {
                       Get.toNamed('/dashboard');
@@ -140,8 +139,8 @@ class _CodePageState extends State<CodePage> {
                         primary: Colors.blue,
                         elevation: 4,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.all(20)),
+                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.all(5)),
                     child: Text(
                       'Go to Dashboard',
                       style: TextStyle(color: Colors.white, fontSize: 16),

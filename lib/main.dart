@@ -5,10 +5,12 @@ import 'package:new_project_work/ui_pages/assignment.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/events.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
+import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/ui_pages/list_of_teacher.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
 import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/splash_screen.dart';
+import 'package:new_project_work/widgets/filter_list.dart';
 
 
 void main() {
@@ -31,10 +33,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/library',
       routes: {
+        '/library': (context)=> Library(),
+        '/filter':(context) => FilterList(),
         '/routine': (context) => Routine(),
-        '/': (context) => SplashScreen(),
+        '/splash': (context) => SplashScreen(),
         '/gradstudent': (context) => GradStudent(),
         '/login': (context) => LoginPage(),
         '/dashboard': (context) => Dashboard(),
