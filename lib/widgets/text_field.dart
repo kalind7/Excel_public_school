@@ -37,17 +37,17 @@ class NewTextField extends StatelessWidget {
                   isDense: false,
                   hintText: text,
                   hintStyle: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 17.0,
                     fontWeight: FontWeight.normal,
                     fontStyle: FontStyle.italic,
-                    fontFamily: 'MontserratAlternates'
+                    fontFamily: 'OpenSans'
                   ),
 
                   prefixIcon: IconButton(
                       onPressed: () {},
                       icon: Icon(
                         Icons.search,
-                        size: 25,
+                        size: 20,
                         color: Colors.black,
                       )),
                 ),

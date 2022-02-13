@@ -33,8 +33,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/library',
+      initialRoute: '/splash',
       routes: {
+
         '/library': (context)=> Library(),
         '/filter':(context) => FilterList(),
         '/routine': (context) => Routine(),

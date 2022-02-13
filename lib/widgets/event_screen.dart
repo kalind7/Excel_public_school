@@ -15,9 +15,11 @@ class EventScreen extends StatelessWidget {
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         children: [
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Container(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width,
@@ -31,37 +33,36 @@ class EventScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.0),
+                padding: EdgeInsets.only(left: 10.0, top: 15.0),
                 child: Text(
                   'DESCRIPTION',
                   style:  TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
-                        letterSpacing: 1.0,
-                        fontWeight: FontWeight.bold),
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold),
 
                 ),
               ),
-              SizedBox(height: 5.0),
               Padding(
-                padding: EdgeInsets.only(left: 10.0),
+                padding: EdgeInsets.only(left: 10.0, top: 5),
                 child: Text(
                   text,
                   style:  TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400),
 
                 ),
               ),
-              SizedBox(height: 10.0),
               Padding(
-                padding: EdgeInsets.only(left: 10.0),
+                padding: EdgeInsets.only(left: 10.0, top: 20),
                 child: Text(
                   'Guest List',
                   style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14.0,
+                        fontSize: 16.0,
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold),
 
                 ),
@@ -70,6 +71,7 @@ class EventScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.white,

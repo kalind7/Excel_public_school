@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/single_drop_down_class.dart';
@@ -41,6 +41,8 @@ class _TeacherListsState extends State<TeacherLists> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green.shade200,
+        shadowColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -55,7 +57,7 @@ class _TeacherListsState extends State<TeacherLists> {
             style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w600,
-                fontFamily: 'MontserratAlternates',
+                fontFamily: 'OpenSans',
                 color: Colors.white)),
         centerTitle: true,
         actions: [
@@ -68,7 +70,7 @@ class _TeacherListsState extends State<TeacherLists> {
                   builder: (BuildContext context) => BuildPopupDialog(),
                 );
               },
-              icon: Icon(Icons.power_settings_new,
+              icon: Icon(Icons.logout,
                   size: 24.0, color: Colors.white),
             ),
           ),
@@ -90,7 +92,7 @@ class _TeacherListsState extends State<TeacherLists> {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
+                    primary: greenOne,
                     elevation: 7,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -119,11 +121,11 @@ class _TeacherListsState extends State<TeacherLists> {
                         padding: EdgeInsets.only(top: 10.0, left: 10.0),
                         height: MediaQuery.of(context).size.height / 3.35,
                         decoration: BoxDecoration(
-                            color: Colors.grey[50],
+                            color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(10.0),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(.5),
+                                color: Colors.grey.withOpacity(.3),
                                 spreadRadius: 5,
                                 blurRadius: 7,
                                 offset:
@@ -174,14 +176,14 @@ class _TeacherListsState extends State<TeacherLists> {
                                         style: TextStyle(
                                             fontSize: 16.0,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'MontserratAlternates',
+                                            fontFamily: 'Roboto',
                                             color: Colors.black87)),
-                                    SizedBox(height: 2.0),
+
                                     Text(controller.teacherList[index].degree,
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: 'MontserratAlternates',
+                                            fontFamily: 'Roboto',
                                             color: Colors.black45)),
                                   ],
                                 ),
@@ -193,8 +195,8 @@ class _TeacherListsState extends State<TeacherLists> {
                               height: MediaQuery.of(context).size.height * 0.16,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
-                                color: HexColor('#F4F4F4'),
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.grey[50],
                               ),
                               child: Column(
                                 mainAxisAlignment:
@@ -232,7 +234,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                     fontSize: 14.0,
                                                     color: Colors.black45,
                                                     fontFamily:
-                                                        'MontserratAlternates',
+                                                        'OpenSans',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                             Text(
@@ -241,7 +243,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                     fontSize: 14.0,
                                                     color: Colors.black87,
                                                     fontFamily:
-                                                        'MontserratAlternates',
+                                                        'Roboto',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ],
@@ -280,7 +282,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                     fontSize: 14.0,
                                                     color: Colors.black45,
                                                     fontFamily:
-                                                        'MontserratAlternates',
+                                                        'OpenSans',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                             Text('9860052311',
@@ -288,7 +290,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                     fontSize: 14.0,
                                                     color: Colors.black87,
                                                     fontFamily:
-                                                        'MontserratAlternates',
+                                                        'Roboto',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ],

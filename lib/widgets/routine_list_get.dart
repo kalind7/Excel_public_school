@@ -17,18 +17,19 @@ class _RoutineGetListState extends State<RoutineGetList> {
     return GetX<RoutineController>(builder: (controller) {
       return SafeArea(
         child:  ListView.builder(
+          padding: EdgeInsets.only(top: 10.0),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               itemCount: controller.routineList.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(top: 5.0, left: 10.0, right: 10.0, bottom: 5),
-                  padding: EdgeInsets.only(top: 10.0),
-                  height: MediaQuery.of(context).size.height /3,
+                  margin: EdgeInsets.only( left: 10.0, right: 10.0, bottom: 10),
+                  padding: EdgeInsets.only(top: 10.0, right: 25),
+                  height: MediaQuery.of(context).size.height /2.5,
                   width: MediaQuery.of(context).size.width / 1.15,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Column(
@@ -58,48 +59,56 @@ class _RoutineGetListState extends State<RoutineGetList> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                controller.routineList[index].title,
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontFamily: 'MontserratAlternates'),
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 5.0),
+                                child: Text(
+                                  controller.routineList[index].title.toUpperCase(),
+                                  style: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                      height: 1.2,
+                                      fontFamily: 'Mukta'),
+                                ),
                               ),
                               Text(controller.routineList[index].classType,
                                   style: TextStyle(
                                       fontSize: 14.0,
-                                      color: Colors.white60,
+                                      color: Colors.black45,
                                       fontFamily: 'MontserratAlternates',
                                       fontWeight: FontWeight.w600)),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 10.0),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(width: 33.0,),
+                          SizedBox(width: 33.0),
 
                           Expanded(
                             flex: 2,
                             child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  controller.routineList[index].subject,
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white60,
-                                      fontFamily: 'MontserratAlternates'),
+                                SizedBox(height: 5.0),
+
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 3.0),
+                                  child: Text(
+                                    controller.routineList[index].subject,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                        fontFamily: 'MontserratAlternates'),
+                                  ),
                                 ),
                                 Text(controller.routineList[index].subjectType,
                                     style: TextStyle(
                                         fontSize: 14.0,
-                                        color: Colors.white,
+                                        color: Colors.black45,
                                         fontFamily: 'MontserratAlternates',
                                         fontWeight: FontWeight.w500)),
                               ],
@@ -111,18 +120,22 @@ class _RoutineGetListState extends State<RoutineGetList> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  controller.routineList[index].teacher,
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white60,
-                                      fontFamily: 'MontserratAlternates'),
+                                SizedBox(height: 10.0),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 3.0, top: 5.0),
+                                  child: Text(
+                                    controller.routineList[index].teacher,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                        fontFamily: 'MontserratAlternates'),
+                                  ),
                                 ),
                                 Text(controller.routineList[index].teacherName,
                                     style: TextStyle(
                                         fontSize: 14.0,
-                                        color: Colors.white,
+                                        color: Colors.black45,
                                         fontFamily: 'MontserratAlternates',
                                         fontWeight: FontWeight.w500)),
                               ],
@@ -133,11 +146,9 @@ class _RoutineGetListState extends State<RoutineGetList> {
                       ),
 
 
-                    Expanded(
-                      flex: 3,
-                      child:  Container(
-                        margin: EdgeInsets.only( left: 33, bottom: 5.0),
-                        padding: EdgeInsets.only(left: 7.0, top: 5.0),
+                      Container(
+                        margin: EdgeInsets.only( left: 33, bottom: 5.0, top: 15.0),
+                        padding: EdgeInsets.only(left: 7.0, top: 5.0, bottom: 5.0),
                         height: MediaQuery.of(context).size.height * 0.04,
                         width: MediaQuery.of(context).size.width * 0.34,
                         decoration: BoxDecoration(
@@ -155,7 +166,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                         ),
 
                       ),
-                    ),
+
 
                     ],
                   ),

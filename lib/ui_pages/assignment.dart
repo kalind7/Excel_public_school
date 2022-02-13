@@ -108,7 +108,7 @@ class Assignment extends StatelessWidget {
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.black54,
-                            fontFamily: 'MontserratAlternates'),
+                            fontFamily: 'OpenSans'),
                       ),
                     ],
                   ),
@@ -130,7 +130,7 @@ class Assignment extends StatelessWidget {
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: Colors.black38,
-                            fontFamily: 'MontserratAlternates'),
+                            fontFamily: 'OpenSans'),
                       )
                     ],
                   ),
@@ -152,7 +152,7 @@ class Assignment extends StatelessWidget {
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: Colors.black38,
-                            fontFamily: 'MontserratAlternates'),
+                            fontFamily: 'OpenSans'),
                       )
                     ],
                   ),
@@ -174,7 +174,7 @@ class Assignment extends StatelessWidget {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Colors.white54,
-                              fontFamily: 'MontserratAlternates'),
+                              fontFamily: 'OpenSans'),
                         ),
                       ),
                       Padding(

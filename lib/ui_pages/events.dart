@@ -59,25 +59,10 @@ class Events extends StatelessWidget {
     ];
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   leading: IconButton(
-      //       onPressed: (){Navigator.pop(context);},
-      //       icon: Icon(Icons.arrow_back, color: Colors.black),
-      //   ),
-      //   title: Text('Events', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: (){},
-      //       icon: Icon(Icons.search, size: 25.0,color: Colors.black54),
-      //     ),
-      //   ],
-      // ),
-
       body: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
+        physics: ClampingScrollPhysics(),
         children: [
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -87,9 +72,10 @@ class Events extends StatelessWidget {
                 Text(
                   'Events',
                   style: TextStyle(
-                      fontSize: 28.0,
+                      fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
+                      fontFamily: 'OpenSans',
                       letterSpacing: 1.0),
                 ),
                 CircleAvatar(
@@ -115,12 +101,11 @@ class Events extends StatelessWidget {
               itemCount: list.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                  margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: HexColor("#F4F4F4")),
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(10.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.blueAccent.withOpacity(.06),
@@ -135,7 +120,7 @@ class Events extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(10.0),
                           child: Image(
                             image: AssetImage(list[index].image),
                             fit: BoxFit.cover,

@@ -23,7 +23,7 @@ class _SingleDropDownNameState extends State<SingleDropDownName> {
             child: DropdownButton(
               focusColor: Colors.white,
               dropdownColor: Colors.white,
-              style: TextStyle(fontSize: 16.0, color: Colors.black87, fontFamily: 'MontserratAlternates'),
+              style: TextStyle(fontSize: 16.0, color: Colors.black87, fontFamily: 'OpenSans'),
               value: _value,
               items: [
                 DropdownMenuItem(

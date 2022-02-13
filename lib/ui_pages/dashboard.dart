@@ -2,70 +2,84 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/events.dart';
 import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
 import 'package:new_project_work/ui_pages/list_of_students.dart';
+import 'package:new_project_work/ui_pages/settings.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
+import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
 class Dashboard extends StatefulWidget {
-
-
-
-
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
 
-  // void _showToast() {
-  //   Fluttertoast.showToast(
-  //     msg: 'Staff list not made',
-  //     toastLength: Toast.LENGTH_SHORT,
-  //     gravity: ToastGravity.BOTTOM,
-  //     backgroundColor: Color(0xffef5350),
-  //     textColor: Colors.white,
-  //   );
-  // }
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-
-    // List<Modelss> newModels = [
-    //   Modelss(
-    //       title: 'We have',
-    //       description: '3000+ Students',
-    //       onpress: (){
-    //         Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLists()));
-    //       },
-    //       image: 'images/profile.png'
-    //   ),
-    //   Modelss(
-    //       title: 'We have',
-    //       description: '200+ Teachers',
-    //       onpress: (){
-    //         Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherLists()));
-    //       },
-    //       image: 'images/teacher.webp'
-    //   ),
-    //   Modelss(
-    //       title: 'We have',
-    //       description: '400+ Staffs',
-    //       onpress: (){
-    //         return _showToast();
-    //       },
-    //       image: 'images/profile.png'
-    //   ),
-    // ];
-
-
+    List<Dashmodels> dashModels = [
+      Dashmodels(
+        image: 'images/allStudents.jpg',
+        title: 'All Students',
+        onPress: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => StudentLists()));
+        },
+      ),
+      Dashmodels(
+        image: 'images/functionDashboard.png',
+        title: 'Function Dashboard',
+        onPress: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => GradStudent()));
+        },
+      ),
+      Dashmodels(
+        image: 'images/eventsss.jpg',
+        title: 'Upcoming Events',
+        onPress: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Events()));
+        },
+      ),
+      Dashmodels(
+        image: 'images/examD.png',
+        title: 'Exam Results',
+        onPress: () {},
+      ),
+      Dashmodels(
+        image: 'images/teacherRecord.png',
+        title: 'Teachers Record',
+        onPress: () {},
+      ),
+      Dashmodels(
+        image: 'images/logout.jpg',
+        title: 'Logout',
+        onPress: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => BuildPopupDialog(),
+          );
+        },
+      ),
+    ];
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-
-        title: Text('Dashboard'),
+        leading: IconButton(
+          onPressed: () =>  _scaffoldKey.currentState!.openDrawer(),
+          icon: Icon(Icons.menu, color: Colors.black),
+        ),
+        title: Text('Dashboard',style: TextStyle(color: Colors.black, fontFamily: 'OpenSans'),),
         centerTitle: true,
+        backgroundColor: Colors.green.shade200,
+        shadowColor: Colors.transparent,
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 3.0, top: 2.0),
@@ -73,57 +87,33 @@ class _DashboardState extends State<Dashboard> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context),
+                  builder: (BuildContext context) => BuildPopupDialog(),
                 );
               },
-              icon: Icon(Icons.power_settings_new,
-                  color: Colors.white, size: 25.0),
+              icon: Icon(Icons.logout,
+                  color: Colors.black, size: 25.0),
             ),
           ),
         ],
       ),
       drawer: Drawer(
         elevation: 3.0,
-        child: Container(
-          color: Colors.lightBlueAccent,
+        child:  Container(
+          color: Colors.grey.shade100,
           child: ListView(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: CircleAvatar(
-                      radius: 35.0,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage("images/profile.png"),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Kalind Koirala',
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87),
-                        ),
-                        Text(
-                          'Admin',
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                    color: Colors.white
+                ),
+                accountName: Text('Kalind Koirala',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
+                accountEmail: Text('kalindkoirala7@gmail.com',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage('images/profile.png'),
+                ),
               ),
-              SizedBox(height: 20.0),
+
               buildMenuItem(
                 text: 'Profile',
                 icon: Icons.person,
@@ -132,23 +122,23 @@ class _DashboardState extends State<Dashboard> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => AdminBio(
-                                text: 'Kalind Koirala',
-                                bio:
-                                    'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
-                                jobtitle: 'Job',
-                                answer1: 'App Developer',
-                                length: 'Time',
-                                answer2: '1+ Year',
-                                question: 'Teacher ?',
-                                answer3: 'YES',
-                              )));
+                            text: 'Kalind Koirala',
+                            bio: 'My name is Kalind and I am a freelance mobile app developer\n If you need any mobile app for your company then contact me for more informations. ',
+                            jobtitle: 'Job',
+                            answer1: 'Developer',
+                            length: 'Time',
+                            answer2: '1+ Year',
+                            question: 'Teacher ?',
+                            answer3: 'YES',
+                          )));
                 },
               ),
               buildMenuItem(
                 text: 'Fees',
                 icon: Icons.event_note_rounded,
                 onpress: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Fees()));
                 },
               ),
               buildMenuItem(
@@ -227,191 +217,79 @@ class _DashboardState extends State<Dashboard> {
               ),
               buildMenuItem(
                 text: 'Logout',
-                icon: Icons.power_settings_new,
+                icon: Icons.logout,
                 onpress: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialog(context),
+                        BuildPopupDialog(),
                   );
+                },
+              ),
+
+              buildMenuItem(
+                text: 'Settings',
+                icon: Icons.settings,
+                onpress: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
                 },
               ),
             ],
           ),
         ),
+
       ),
-      body: Stack(
-        children: <Widget>[
-          SafeArea(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
+      body:  Stack(
+          children: <Widget>[
+            SafeArea(
+              child: Column(
+                children: <Widget>[
 
-                NewTextField(text: 'Search',),
-
-                Expanded(
-                  child: GridView.count(
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 2,
-                    children: <Widget>[
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLists()));
-                              },
-                              child: Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
-                            ),
-                            Text('All Students'),
-                          ],
-                        ),
-                      ),
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => GradStudent()));
-                              },
-                              child: Image.network(
-                                "https://www.vettrak.com.au/wp-content/uploads/2020/02/international_students.png",
-                                height: 120,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => GradStudent()));
-                              },
-                              child: Text('Functions Dashboard'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed('/events');
-                              },
-                              child: Image.network(
-                                "https://www.proeves.com/blog/wp-content/uploads/2019/01/events_kids.jpg",
-                                height: 120,
-                              ),
-                            ),
-                            Text('Upcoming Events'),
-                          ],
-                        ),
-                      ),
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.network(
-                              "https://pngimage.net/wp-content/uploads/2018/06/homework-cartoon-png-2.png",
-                              height: 120,
-                            ),
-                            Text('Exam Results'),
-                          ],
-                        ),
-                      ),
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.network(
-                              "https://i.pinimg.com/originals/55/69/55/5569554b4d8a9bb11965949e1af08dbf.png",
-                              height: 120,
-                            ),
-                            Text('Teachers Record'),
-                          ],
-                        ),
-                      ),
-                      Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      _buildPopupDialog(context),
-                                );
-                              },
-                              child: Image.network(
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTku2oJC2M9rZu0jq3hLd7n_lgwUEFudUCVLu_XOo7bY0V_7ih5LsWA9p2LBVPFNkbVZx8&usqp=CAU",
-                                height: 120,
-                              ),
-                            ),
-                            Text('Logout'),
-                          ],
-                        ),
-                      ),
-                    ],
+                  NewTextField(
+                    text: 'Search for requirements.',
                   ),
-                ),
+                  SizedBox(height: 10.0),
+                  Expanded(
+                    child: GridView.count(
 
-              ],
+                      crossAxisCount: 2,
+                      children: List.generate(dashModels.length, (index) {
+                        return Card(
+                          color: Colors.grey.shade50,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  dashModels[index].onPress();
+                                },
+                                child: Image(
+                                  height: 120,
+                                  image: AssetImage(dashModels[index].image),
+                                ),
+                              ),
+                              Text(dashModels[index].title),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+
     );
   }
 }
 
-Widget _buildPopupDialog(BuildContext context) {
-  return AlertDialog(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
-    ),
-    backgroundColor: Colors.white,
-    title: Center(
-        child: Text(
-      'Do you want to LOG OUT ?',
-      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-    )),
-    content: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 14.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('No'),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 14.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Get.toNamed('/login');
-            },
-            child: Text('Yes'),
-          ),
-        ),
-      ],
-    ),
-  );
-}
+class Dashmodels {
+  final String image;
+  final String title;
+  final Function onPress;
 
+  Dashmodels({required this.image, required this.title, required this.onPress});
+}
 

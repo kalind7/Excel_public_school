@@ -103,5 +103,14 @@ flutter:
       fonts:
         - asset: fonts/Mukta-Regular.ttf
 
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans-Regular.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

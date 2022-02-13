@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
+import 'package:new_project_work/ui_pages/dashboard.dart';
+import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/get_otp.dart';
 
 class CodePage extends StatefulWidget {
@@ -22,135 +23,139 @@ class _CodePageState extends State<CodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 5.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 20.0,
-                          color: Colors.black26,
-                        )),
-                    Text(
-                      'VERIFY PHONE',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black26,
-                          letterSpacing: 1.0),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          _otp = _fieldOne.text +
-                              _fieldTwo.text +
-                              _fieldThree.text +
-                              _fieldFour.text;
-                        });
-                      },
-                      child: Center(
-                        child: Text(
-                          'Confirm',
-                          style: TextStyle(
+        child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_back,
+                            size: 20.0,
+                            color: Colors.black26,
+                          )),
+                      Text(
+                        'VERIFY PHONE',
+                        style: TextStyle(
                             fontSize: 16.0,
-                            color: Colors.blue,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black26,
+                            fontFamily: 'Roboto',
+                            letterSpacing: 1.0),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _otp = _fieldOne.text +
+                                _fieldTwo.text +
+                                _fieldThree.text +
+                                _fieldFour.text;
+                          });
+                        },
+                        child: Center(
+                          child: Text(
+                            'Confirm',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontFamily: 'Roboto',
+                              color: Colors.blue,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15.0),
-                Text(
-                  'We sent you a code to verify\n'
-                  '       your phone number',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    ],
                   ),
-                ),
-                SizedBox(height: 25.0),
-                Text(
-                  'Sent to :- 9860052112',
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black12,
-                      letterSpacing: 1.0),
-                ),
-                SizedBox(height: 35.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    OtpInput(_fieldOne, true),
-                    OtpInput(_fieldTwo, false),
-                    OtpInput(_fieldThree, false),
-                    OtpInput(_fieldFour, false),
-                  ],
-                ),
-                SizedBox(height: 35.0),
-                Text(
-                  _otp ?? 'Please enter OTP',
-                  style: const TextStyle(fontSize: 30),
-                ),
-                SizedBox(height: 25.0),
-                Text(
-                  'I didn\u0027t receive a code!',
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black26),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _otp = null;
-                    });
-                  },
-                  child: Center(
-                    child: Text(
-                      'Resend',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.blue,
+
+                  Column(
+                    children: [
+                      Text(
+                        'We sent you a code to verify\n'
+                            '       your phone number',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'OpenSans',
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        'Sent to :- 9860052112',
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Roboto',
+                            color: Colors.black12,
+                            letterSpacing: 1.0),
+                      ),
+                    ],
                   ),
-                ),
 
-                SizedBox(height: 70.0),
 
-                SizedBox(
-                  width: 200.0,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed('/dashboard');
-                      },
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        padding: EdgeInsets.all(5)),
-                    child: Text(
-                      'Go to Dashboard',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      OtpInput(_fieldOne, true),
+                      OtpInput(_fieldTwo, false),
+                      OtpInput(_fieldThree, false),
+                      OtpInput(_fieldFour, false),
+                    ],
                   ),
-                ),
-              ],
+                  Column(
+                    children: [
+                      Text(
+                        _otp ?? 'Please enter OTP',
+                        style: const TextStyle(fontSize: 30,fontFamily: 'Roboto',),
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        'I didn\u0027t receive a code!',
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'OpenSans',
+                            color: Colors.black26),
+                      ),
+                      SizedBox(height: 10.0),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _otp = null;
+                          });
+                        },
+                        child: Center(
+                          child: Text(
+                            'Resend',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.blue,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+                        child: Button(text: 'Go to Dashboard',onPress: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+                  },),
+                  ),
+
+
+                ],
+              ),
             ),
-          ],
-        ),
+
+
       ),
     );
   }
