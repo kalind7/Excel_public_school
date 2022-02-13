@@ -19,12 +19,12 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          physics: ClampingScrollPhysics(),
+          // shrinkWrap: true,
+          // scrollDirection: Axis.vertical,
+          // physics: ClampingScrollPhysics(),
           children: [
             Container(
-
+              // padding: EdgeInsets.only( bottom: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Form(

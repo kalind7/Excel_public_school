@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/single_drop_down_class.dart';
@@ -71,14 +72,14 @@ class _StudentListsState extends State<StudentLists> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.green.shade300,
+                      primary: greenOne,
                       elevation: 7,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       padding: EdgeInsets.all(5)),
                   child: Text(
                     'Search',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: TextStyle(color: Colors.black87, fontSize: 16),
                   ),
                 ),
               ),

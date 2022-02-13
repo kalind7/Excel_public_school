@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/models/event_list.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/event_screen.dart';
 
 import 'package:new_project_work/widgets/text_field.dart';
@@ -65,7 +66,8 @@ class Events extends StatelessWidget {
         physics: ClampingScrollPhysics(),
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+            color: greenOne,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -89,7 +91,6 @@ class Events extends StatelessWidget {
           SizedBox(height: 10.0),
           NewTextField(
             text: 'Search your events',
-
           ),
           SizedBox(
             height: 15.0,
@@ -139,17 +140,18 @@ class Events extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.black),
+                                    fontFamily: 'OpenSans',
+                                    color: Colors.black87),
                               ),
                               ElevatedButton(
                                   onPressed: () {
                                     list[index].onpress();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.blueAccent, // background
+                                    primary: greenOne, // background
                                   ),
                                   child: Text('See More',
-                                      style: TextStyle(color: Colors.white))),
+                                      style: TextStyle(color: Colors.black87))),
                             ],
                           ),
                         )

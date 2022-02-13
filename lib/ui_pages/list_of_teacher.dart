@@ -50,7 +50,7 @@ class _TeacherListsState extends State<TeacherLists> {
           icon: Icon(
             Icons.arrow_back,
             size: 24.0,
-            color: Colors.white,
+            color: Colors.black87,
           ),
         ),
         title: Text('Teacher List',
@@ -58,7 +58,7 @@ class _TeacherListsState extends State<TeacherLists> {
                 fontSize: 18.0,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'OpenSans',
-                color: Colors.white)),
+                color: Colors.black87)),
         centerTitle: true,
         actions: [
           Padding(
@@ -71,7 +71,7 @@ class _TeacherListsState extends State<TeacherLists> {
                 );
               },
               icon: Icon(Icons.logout,
-                  size: 24.0, color: Colors.white),
+                  size: 24.0, color: Colors.black87),
             ),
           ),
         ],
@@ -99,7 +99,7 @@ class _TeacherListsState extends State<TeacherLists> {
                     padding: EdgeInsets.all(5)),
                 child: Text(
                   'Search',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.black87, fontSize: 16),
                 ),
               ),
             ),

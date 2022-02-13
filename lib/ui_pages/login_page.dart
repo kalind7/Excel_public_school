@@ -39,12 +39,12 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          physics: ClampingScrollPhysics(),
+          // shrinkWrap: true,
+          // scrollDirection: Axis.vertical,
+          // physics: ClampingScrollPhysics(),
           children: [
             Container(
-              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+              padding: EdgeInsets.only( bottom: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Form(

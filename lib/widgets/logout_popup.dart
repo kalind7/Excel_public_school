@@ -14,7 +14,7 @@ class BuildPopupDialog extends StatelessWidget {
       title: Center(
           child: Text(
             'Do you want to LOG OUT ?',
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates'),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, fontFamily: 'OpenSans',color: Colors.black87),
           )),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -23,19 +23,38 @@ class BuildPopupDialog extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 14.0),
             child: ElevatedButton(
+
+              style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.green.shade200,
+                  primary: Colors.green.shade200,
+                  onPrimary: Colors.white,
+                  onSurface: Colors.grey,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(5)),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
+              child: Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, fontFamily: 'OpenSans',color: Colors.black87,)),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 14.0),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.green.shade200,
+                  primary: Colors.green.shade200,
+                  onPrimary: Colors.white,
+                  onSurface: Colors.grey,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(5)),
               onPressed: () {
                 Get.toNamed('/login');
               },
-              child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'MontserratAlternates')),
+              child: Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, fontFamily: 'OpenSans', color: Colors.black87)),
             ),
           ),
         ],
