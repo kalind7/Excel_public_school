@@ -46,8 +46,11 @@ class _GradStudentState extends State<GradStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: screens[_currentIndex],
+      // body: screens[_currentIndex],
+      body: IndexedStack(
+        index: _currentIndex,
+        children: screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -103,7 +106,6 @@ class _FunctionsState extends State<Functions> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   @override
   Widget build(BuildContext context) {
     List<Model> model = [
@@ -136,7 +138,8 @@ class _FunctionsState extends State<Functions> {
         icon: Icons.monetization_on,
         onpress: () {
           print('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Fees()));
         },
       ),
       Model(
@@ -148,10 +151,9 @@ class _FunctionsState extends State<Functions> {
       ),
       Model(
         text: 'Attendance',
-        icon:  Icons.home_work_outlined,
+        icon: Icons.home_work_outlined,
         onpress: () {
           print('anything');
-
         },
       ),
       Model(
@@ -180,7 +182,8 @@ class _FunctionsState extends State<Functions> {
         icon: Icons.library_books,
         onpress: () {
           print('anything');
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Library()));
         },
       ),
       Model(
@@ -201,7 +204,7 @@ class _FunctionsState extends State<Functions> {
       ),
       Model(
         text: 'Dormitory',
-        icon: Icons.hotel ,
+        icon: Icons.hotel,
         onpress: () {
           print('anything');
         },
@@ -230,13 +233,15 @@ class _FunctionsState extends State<Functions> {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           physics: ClampingScrollPhysics(),
-          child:Stack(
+          child: Stack(
             children: [
               Container(
                 padding: EdgeInsets.only(top: 5.0),
                 height: MediaQuery.of(context).size.height * 0.25,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0), bottomLeft:Radius.circular(10.0)),
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10.0),
+                      bottomLeft: Radius.circular(10.0)),
                   color: Colors.grey.shade200,
                 ),
                 child: Stack(
@@ -272,15 +277,17 @@ class _FunctionsState extends State<Functions> {
                               ),
                               SizedBox(height: 5.0),
                               Container(
-                                height: MediaQuery.of(context).size.height * 0.04,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  color: Colors.white,
-                                  border: Border.all(color: orangeOne, width: 0.5)
-                                ),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        color: orangeOne, width: 0.5)),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       'Class: 4',
@@ -311,7 +318,6 @@ class _FunctionsState extends State<Functions> {
                   ],
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.only(top: 70.0),
                 child: Container(
@@ -320,7 +326,7 @@ class _FunctionsState extends State<Functions> {
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child:  Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 10.0),
@@ -330,8 +336,11 @@ class _FunctionsState extends State<Functions> {
                       Padding(
                         padding: EdgeInsets.only(left: 15.0, top: 10.0),
                         child: Text('Functionalities',
-                            style:
-                            TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, fontFamily: 'OpenSans', color: redTwo)),
+                            style: TextStyle(
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'OpenSans',
+                                color: redTwo)),
                       ),
 
                       GridView.count(
@@ -348,12 +357,14 @@ class _FunctionsState extends State<Functions> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
-
                             child: Center(
-                              child: Column(mainAxisSize: MainAxisSize.min,
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     IconButton(
-                                      onPressed : (){model[index].onpress();},
+                                      onPressed: () {
+                                        model[index].onpress();
+                                      },
                                       icon: Icon(
                                         model[index].icon,
                                         size: 35.0,
@@ -365,22 +376,17 @@ class _FunctionsState extends State<Functions> {
                                             fontSize: 13,
                                             fontWeight: FontWeight.w500,
                                             color: redTwo,
-                                            fontFamily: 'Roboto'
-                                        )),
+                                            fontFamily: 'Roboto')),
                                   ]),
                             ),
-
                           );
                         }),
                       ),
-
 
                       // Divider(
                       //   thickness: 1.0,
                       //   color: Colors.black,
                       // ),
-
-
                     ],
                   ),
                 ),
