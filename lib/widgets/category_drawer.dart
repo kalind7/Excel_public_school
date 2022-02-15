@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/assignment.dart';
 import 'package:new_project_work/ui_pages/fees.dart';
+import 'package:new_project_work/ui_pages/library.dart';
+import 'package:new_project_work/ui_pages/list_of_teacher.dart';
+import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/settings.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
@@ -65,56 +69,56 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
               text: 'Result',
               icon: Icons.file_copy_sharp,
               onpress: () {
-                Get.toNamed('/login');
+                // Get.toNamed('/login');
               },
             ),
             buildMenuItem(
-              text: 'Attendance',
+              text: 'Assignment',
               icon: Icons.home_work_outlined,
               onpress: () {
-                Get.toNamed('/attendance');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Assignment()));
               },
             ),
             buildMenuItem(
               text: 'Subjects',
               icon: Icons.subject,
               onpress: () {
-                Get.toNamed('/login');
+                // Get.toNamed('/login');
               },
             ),
             buildMenuItem(
               text: 'Downloads',
               icon: Icons.download_rounded,
               onpress: () {
-                Get.toNamed('/login');
+                // Get.toNamed('/login');
               },
             ),
             buildMenuItem(
               text: 'Routine',
               icon: Icons.request_page_outlined,
               onpress: () {
-                Get.toNamed('/login');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Routine()));
               },
             ),
             buildMenuItem(
               text: 'Library',
               icon: Icons.library_books_sharp,
               onpress: () {
-                Get.toNamed('/login');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
               },
             ),
             buildMenuItem(
               text: 'Teachers',
               icon: Icons.people,
               onpress: () {
-                Get.toNamed('/login');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherLists()));
               },
             ),
             buildMenuItem(
               text: 'Exam',
               icon: Icons.wallpaper,
               onpress: () {
-                Get.toNamed('/login');
+                // Get.toNamed('/login');
               },
             ),
             buildMenuItem(

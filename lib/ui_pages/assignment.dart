@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/models/assignment_list.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
@@ -67,9 +68,10 @@ class Assignment extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey[50],
                   borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: orangeOne, width: 0.5),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(.5),
+                      color: orangeOne.withOpacity(0.1),
                       spreadRadius: 5,
                       blurRadius: 7,
                       offset:
