@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:new_project_work/ui_pages/dashboard.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/get_otp.dart';
 
@@ -64,7 +65,7 @@ class _CodePageState extends State<CodePage> {
                             style: TextStyle(
                               fontSize: 16.0,
                               fontFamily: 'Roboto',
-                              color: Colors.blue,
+                              color: redOne,
                             ),
                           ),
                         ),
@@ -134,7 +135,7 @@ class _CodePageState extends State<CodePage> {
                             'Resend',
                             style: TextStyle(
                               fontSize: 16.0,
-                              color: Colors.blue,
+                              color: redOne,
                               fontFamily: 'Roboto',
                             ),
                           ),
@@ -147,7 +148,7 @@ class _CodePageState extends State<CodePage> {
                     padding: EdgeInsets.only(bottom: 10.0),
                         child: Button(text: 'Go to Dashboard',onPress: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
-                  },),
+                  }, color: orangeOne, shadowColor: orangeTwo,),
                   ),
 
 

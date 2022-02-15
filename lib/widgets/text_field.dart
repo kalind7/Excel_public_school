@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:new_project_work/utils/color.dart';
 
 class NewTextField extends StatelessWidget {
   const NewTextField({Key? key, required this.text}) : super(key: key);
@@ -14,11 +15,11 @@ class NewTextField extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.08,
+            height: MediaQuery.of(context).size.height * 0.07,
             width: MediaQuery.of(context).size.width * 0.94,
             decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: HexColor("#F4F4F4")),
+                border: Border.all(color: orangeOne, width: 0.5),
                 borderRadius: BorderRadius.circular(10.0),
                 boxShadow: [
                   BoxShadow(

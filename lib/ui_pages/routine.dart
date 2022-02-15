@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/routine_list_get.dart';
 
@@ -17,10 +18,11 @@ class Routine extends StatelessWidget {
               onPressed: (){
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back, color: Colors.black87,),
             ),
-            title: Text('Routine'),
+            title: Text('Routine',style: TextStyle(fontFamily: 'OpenSans', color: Colors.black87),),
             centerTitle: true,
+            backgroundColor: orangeOne,
             shadowColor: Colors.transparent,
             actions: [
               Padding(
@@ -32,12 +34,13 @@ class Routine extends StatelessWidget {
                       builder: (BuildContext context) => BuildPopupDialog(),
                     );
                   },
-                  icon: Icon(Icons.power_settings_new,
-                      color: Colors.white, size: 25.0),
+                  icon: Icon(Icons.logout,
+                      color: Colors.black87, size: 25.0),
                 ),
               ),
             ],
             bottom: TabBar(
+              labelColor: Colors.black87,
               tabs: [
                 Tab(text: 'Sun'),
                 Tab(text: 'Mon'),

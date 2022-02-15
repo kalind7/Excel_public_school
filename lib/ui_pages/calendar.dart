@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:new_project_work/ui_pages/function_dashboard.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
@@ -44,12 +45,14 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: orangeOne,
+        shadowColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => GradStudent()));
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.black87,),
         ),
         // title: Text('Calendar'),
 
@@ -63,7 +66,7 @@ class _CalendarState extends State<Calendar> {
                   style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.black87),
                 ),
                 onPressed: () {
                   print('Pressed');
@@ -72,7 +75,7 @@ class _CalendarState extends State<Calendar> {
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
                     (Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed)) {
-                        return Colors.blue;
+                        return redOne;
                       } else {
                         return Colors.white;
                       }
@@ -87,7 +90,7 @@ class _CalendarState extends State<Calendar> {
                   style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.black87),
                 ),
                 onPressed: () async {
                   NepaliDateTime? _selectedDateTime =
@@ -97,6 +100,7 @@ class _CalendarState extends State<Calendar> {
                     firstDate: NepaliDateTime(2000),
                     lastDate: NepaliDateTime(2090),
                     initialDatePickerMode: DatePickerMode.day,
+
                   );
                   print(_selectedDateTime);
                 },
@@ -104,7 +108,7 @@ class _CalendarState extends State<Calendar> {
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
                     (Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed)) {
-                        return Colors.blue;
+                        return redOne;
                       } else {
                         return Colors.white;
                       }
@@ -147,13 +151,13 @@ class _CalendarState extends State<Calendar> {
             calendarStyle: CalendarStyle(
               isTodayHighlighted: true,
               selectedDecoration: BoxDecoration(
-                color: Colors.blue,
+                color: redOne,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              selectedTextStyle: TextStyle(color: Colors.white),
+              selectedTextStyle: TextStyle(color: Colors.black87),
               todayDecoration: BoxDecoration(
-                color: Colors.purpleAccent,
+                color: redTwo,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(5.0),
               ),
@@ -167,33 +171,13 @@ class _CalendarState extends State<Calendar> {
               titleCentered: true,
               formatButtonShowsNext: false,
               formatButtonDecoration: BoxDecoration(
-                color: Colors.blue,
+                color: redOne,
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              formatButtonTextStyle: TextStyle(color: Colors.white),
+              formatButtonTextStyle: TextStyle(color: Colors.black87),
             ),
           ),
 
-          // Center(
-          //   child: ElevatedButton(
-          //     onPressed: () async {
-          //       NepaliDateTime _selectedDateTime =
-          //           (await showMaterialDatePicker(
-          //         context: context,
-          //         initialDate: NepaliDateTime.now(),
-          //         firstDate: NepaliDateTime(2000),
-          //         lastDate: NepaliDateTime(2090),
-          //         initialDatePickerMode: DatePickerMode.day,
-          //
-          //       ))!;
-          //       print(_selectedDateTime);
-          //     },
-          //     child: Text(
-          //       'OPEN NEPALI CALENDAR',
-          //       style: TextStyle(color: Colors.white, fontSize: 20.0),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

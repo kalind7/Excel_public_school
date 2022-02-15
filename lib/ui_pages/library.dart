@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/models/library_books.dart';
 import 'package:new_project_work/utils/color.dart';
+import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/library_books.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/text_field.dart';
@@ -101,41 +102,7 @@ class _LibraryState extends State<Library> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              onPressed: (){
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back, color: Colors.black87,)
-          ),
-
-          title: Text(
-            'Library',
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-                fontFamily: 'OpenSans'),
-          ),
-          centerTitle: true,
-          backgroundColor: greenOne,
-          shadowColor: Colors.transparent,
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 3.0, top: 2.0),
-              child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => BuildPopupDialog(),
-                  );
-                },
-                icon: Icon(Icons.logout,
-                    size: 24.0, color: Colors.black87),
-              ),
-            ),
-          ],
-        ),
+        appBar: PreferredSize(child: WidgetAppbar(title: 'Library', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
 
         body: ListView(
           shrinkWrap: true,

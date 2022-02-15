@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:new_project_work/utils/color.dart';
 
 class LibraryBooks extends StatelessWidget {
   const LibraryBooks({Key? key, required this.image, required this.title, required this.author, required this.description, required this.price}) : super(key: key);
@@ -150,7 +150,7 @@ class LibraryBooks extends StatelessWidget {
                  child:  ElevatedButton(
                    onPressed: () {},
                    style: ElevatedButton.styleFrom(
-                     primary: Colors.pink.shade100,
+                     primary: redOne,
                      elevation: 2,
                      shape: RoundedRectangleBorder(
                          borderRadius: BorderRadius.circular(10)),
@@ -158,7 +158,7 @@ class LibraryBooks extends StatelessWidget {
                    child: Text(
                      'Add to Library',
                      style: TextStyle(
-                         color: Colors.white,
+                         color: Colors.black87,
                          fontSize: 16,
                          fontFamily: 'MontserratAlternates'),
                    ),

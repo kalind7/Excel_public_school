@@ -18,13 +18,7 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          // shrinkWrap: true,
-          // scrollDirection: Axis.vertical,
-          // physics: ClampingScrollPhysics(),
-          children: [
-            Container(
-              // padding: EdgeInsets.only( bottom: 20.0),
+        child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Form(
@@ -119,15 +113,16 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                         child: Text(
                           'Use E-mail Instead',
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 15.0,
                             color: Colors.blue,
-                            wordSpacing: 3.0,
                             fontFamily: 'Roboto',
                           ),
                         ),
                       ),
                     ),
                     Button(
+                      color: Colors.green.shade200,
+                      shadowColor: Colors.green,
                       text: 'Get Code',
                       onPress: () {
                         if (formkey.currentState!.validate()) {
@@ -142,8 +137,7 @@ class _ForgotPassword2State extends State<ForgotPassword2> {
                 ),
               ),
             ),
-          ],
-        ),
+
       ),
     );
   }

@@ -29,12 +29,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child:ListView(
-          // shrinkWrap: true,
-          // scrollDirection: Axis.vertical,
-          // physics: ClampingScrollPhysics(),
-          children: [
-            Container(
+        child: Container(
               padding: EdgeInsets.only( bottom: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
@@ -119,7 +114,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         child: Text(
                           'Use Phone Number Instead',
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 15.0,
                             color: Colors.blue,
                             fontFamily: 'Roboto',
                           ),
@@ -127,6 +122,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                     ),
                     Button(
+                        color: Colors.green.shade200,
+                        shadowColor: Colors.green,
                         text: 'Verify Email',
                         onPress: () {
                           if (formkey.currentState!.validate()) {
@@ -144,8 +141,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
               ),
             ),
-          ],
-        ),
+
       ),
     );
   }

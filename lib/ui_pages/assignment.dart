@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/models/assignment_list.dart';
+import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
 class Assignment extends StatelessWidget {
@@ -54,26 +55,7 @@ class Assignment extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Assignment'),
-        shadowColor: Colors.transparent,
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 3.0, top: 2.0),
-            child: IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => BuildPopupDialog(),
-                );
-              },
-              icon: Icon(Icons.power_settings_new,
-                  color: Colors.white, size: 25.0),
-            ),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(child: WidgetAppbar(title: 'Assignment', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
       body: ListView.builder(
           itemCount: assignmentList.length,
           itemBuilder: (context, index) {

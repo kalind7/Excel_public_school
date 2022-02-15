@@ -67,7 +67,7 @@ class Events extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            color: greenOne,
+            color: redOne,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -148,7 +148,7 @@ class Events extends StatelessWidget {
                                     list[index].onpress();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: greenOne, // background
+                                    primary: redOne, // background
                                   ),
                                   child: Text('See More',
                                       style: TextStyle(color: Colors.black87))),

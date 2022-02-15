@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:new_project_work/utils/color.dart';
+import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
@@ -38,50 +40,20 @@ class AdminBio extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back, size: 24.0, color: Colors.black),
-          ),
-          title: Text('Bio',
-              style: TextStyle(color: Colors.black, fontFamily: 'OpenSans')),
-          centerTitle: true,
-          backgroundColor: Colors.green.shade300,
-          shadowColor: Colors.transparent,
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 3.0, top: 2.0),
-              child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => BuildPopupDialog(),
-                  );
-                },
-                icon: Icon(Icons.logout, size: 24.0, color: Colors.black),
-              ),
-            ),
-          ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(55.0),
+          child: WidgetAppbar(title: 'Bio', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back),
         ),
-        body: ListView(
-          // shrinkWrap: true,
-          // scrollDirection: Axis.vertical,
-          // physics: ClampingScrollPhysics(),
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 15.0, top: 10),
-              height: MediaQuery.of(context).size.height / 1.15,
+        body: Container(
+              margin: EdgeInsets.only(bottom: 5.0, top: 10),
+              height: MediaQuery.of(context).size.height ,
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      "https://i.pinimg.com/550x/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg",
-                    ),
+                    backgroundImage: AssetImage('images/profile.png'),
                     radius: 50.0,
                   ),
                   SizedBox(
@@ -91,7 +63,7 @@ class AdminBio extends StatelessWidget {
                     text,
                     style: TextStyle(
                       fontSize: 22.0,
-                      color: Colors.black87,
+                      color: redTwo,
                       fontFamily: 'Roboto',
                     ),
                   ),
@@ -113,9 +85,9 @@ class AdminBio extends StatelessWidget {
                                 Text(
                                   jobtitle,
                                   style: TextStyle(
-                                    color: Colors.redAccent,
+                                    color: redTwo,
                                     fontSize: 20.0,
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'OpenSans',
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -126,8 +98,8 @@ class AdminBio extends StatelessWidget {
                                   answer1,
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color: Colors.black,
-                                    fontFamily: 'OpenSans',
+                                    color: Colors.black54,
+                                    fontFamily: 'Roboto',
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -140,9 +112,9 @@ class AdminBio extends StatelessWidget {
                                 Text(
                                   length,
                                   style: TextStyle(
-                                    color: Colors.redAccent,
+                                    color: redTwo,
                                     fontSize: 20.0,
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'OpenSans',
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -153,8 +125,8 @@ class AdminBio extends StatelessWidget {
                                   answer2,
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color: Colors.black,
-                                    fontFamily: 'OpenSans',
+                                    color: Colors.black54,
+                                    fontFamily: 'Roboto',
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )
@@ -167,9 +139,9 @@ class AdminBio extends StatelessWidget {
                                 Text(
                                   question,
                                   style: TextStyle(
-                                    color: Colors.redAccent,
+                                    color: redTwo,
                                     fontSize: 20.0,
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'OpenSans',
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -180,8 +152,8 @@ class AdminBio extends StatelessWidget {
                                   answer3,
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color: Colors.black,
-                                    fontFamily: 'OpenSans',
+                                    color: Colors.black54,
+                                    fontFamily: 'Roboto',
                                     fontWeight: FontWeight.w500,
                                   ),
                                 )
@@ -194,13 +166,12 @@ class AdminBio extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Padding(
                         padding: EdgeInsets.only(left: 20.0),
                         child: Text(
@@ -208,7 +179,7 @@ class AdminBio extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.redAccent,
                               fontStyle: FontStyle.normal,
-                              fontFamily: 'Roboto',
+                              fontFamily: 'OpenSans',
                               fontSize: 28.0),
                         ),
                       ),
@@ -223,7 +194,7 @@ class AdminBio extends StatelessWidget {
                               fontSize: 14.0,
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'OpenSans',
+                              fontFamily: 'Roboto',
                               color: Colors.black,
                               letterSpacing: 0.5,
                             ),
@@ -231,14 +202,14 @@ class AdminBio extends StatelessWidget {
                       ),
 
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.14,
+                        height: MediaQuery.of(context).size.height * 0.12,
                       ),
                      Center(
                        child:Button(
                          onPress: () {
                            return _showToast();
                          },
-                         text: 'Contact Me',
+                         text: 'Contact Me', color: orangeOne, shadowColor: orangeTwo,
                        ),
                      ),
 
@@ -247,8 +218,7 @@ class AdminBio extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+
       ),
     );
   }

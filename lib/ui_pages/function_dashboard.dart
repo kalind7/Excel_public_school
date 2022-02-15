@@ -5,10 +5,13 @@ import 'package:new_project_work/models/gird_view_list.dart';
 import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
+import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/category_drawer.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
-import 'package:new_project_work/widgets/notice.dart';
+import 'package:new_project_work/ui_pages/notice.dart';
 import 'package:new_project_work/widgets/build_menu_item.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
@@ -48,9 +51,9 @@ class _GradStudentState extends State<GradStudent> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
-        backgroundColor: Colors.grey.shade200,
-        selectedItemColor: Colors.green.shade200,
-        unselectedItemColor: Colors.black54,
+        backgroundColor: orangeOne,
+        selectedItemColor: redTwo,
+        unselectedItemColor: Colors.white70,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -215,176 +218,22 @@ class _FunctionsState extends State<Functions> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(
-
-          leading: IconButton(
-            onPressed: () =>  _scaffoldKey.currentState!.openDrawer(),
-            icon: Icon(Icons.menu, color: Colors.black),
-          ),
-
-          backgroundColor: Colors.green.shade200,
-          shadowColor: Colors.transparent,
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 3.0, top: 2.0),
-              child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => BuildPopupDialog(),
-                  );
-                },
-                icon: Icon(Icons.logout,
-                    color: Colors.black, size: 25.0),
-              ),
-            ),
-          ],
-        ),
-        drawer: Drawer(
-          elevation: 3.0,
-          child: Container(
-            color: Colors.grey.shade200,
-            child: ListView(
-              children: <Widget>[
-
-                SizedBox(height: 20.0),
-                buildMenuItem(
-                  text: 'Dashboard',
-                  icon: Icons.dashboard,
-                  onpress: () {
-                    Get.toNamed('/dashboard');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Profile',
-                  icon: Icons.person,
-                  onpress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AdminBio(
-                            text: 'Kashish Chaudhary',
-                            bio:
-                            'I am student of class 4 and am studying hardly to complete my primary classes.',
-                            jobtitle: 'Job',
-                            answer1: 'Student',
-                            length: 'Class',
-                            answer2: '4',
-                            question: 'Teacher ?',
-                            answer3: 'NO',
-                          ),
-                        ));
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Fees',
-                  icon: Icons.event_note_rounded,
-                  onpress: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));                },
-                ),
-                buildMenuItem(
-                  text: 'Result',
-                  icon: Icons.file_copy_sharp,
-                  onpress: () {
-                    // Get.toNamed('/login');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Attendance',
-                  icon: Icons.home_work_outlined,
-                  onpress: () {
-                    // Get.toNamed('/attendance');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Subjects',
-                  icon: Icons.subject,
-                  onpress: () {
-                    // Get.toNamed('/login');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Downloads',
-                  icon: Icons.download_rounded,
-                  onpress: () {
-                    // Get.toNamed('/login');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Routine',
-                  icon: Icons.request_page_outlined,
-                  onpress: () {
-                    Get.toNamed('/routine');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Library',
-                  icon: Icons.library_books_sharp,
-                  onpress: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
-                    // Get.toNamed('/login');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Teachers',
-                  icon: Icons.people,
-                  onpress: () {
-                    Get.toNamed('/teacherlist');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Assignment',
-                  icon: Icons.wallpaper,
-                  onpress: () {
-                    Get.toNamed('/assignment');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Dormitory',
-                  icon: Icons.hotel,
-                  onpress: () {
-                    // Get.toNamed('/login');
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Transport',
-                  icon: Icons.bus_alert,
-                  onpress: () {
-                    // Get.toNamed('/login');
-                  },
-                ),
-                Divider(
-                  color: Colors.black87,
-                  thickness: 1,
-                ),
-                buildMenuItem(
-                  text: 'Logout',
-                  icon: Icons.logout,
-                  onpress: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          BuildPopupDialog(),
-                    );
-                  },
-                ),
-                buildMenuItem(
-                  text: 'Settings',
-                  icon: Icons.settings,
-                  onpress: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
-                  },
-                ),
-              ],
-            ),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(55.0),
+          child: WidgetAppbar(
+            title: '',
+            onPress: () => _scaffoldKey.currentState!.openDrawer(),
+            icon: Icons.menu,
           ),
         ),
+        drawer: CategoryDrawer(),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           physics: ClampingScrollPhysics(),
           child:Stack(
             children: [
               Container(
+                padding: EdgeInsets.only(top: 5.0),
                 height: MediaQuery.of(context).size.height * 0.25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0), bottomLeft:Radius.circular(10.0)),
@@ -399,7 +248,7 @@ class _FunctionsState extends State<Functions> {
                         Padding(
                           padding: EdgeInsets.only(left: 55.0),
                           child: CircleAvatar(
-                            radius: 35.0,
+                            radius: 32.0,
                             backgroundColor: Colors.white,
                             child: Image(
                               image: AssetImage("images/excellogo.png"),
@@ -408,7 +257,7 @@ class _FunctionsState extends State<Functions> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 10.0, left: 25.0),
+                          padding: EdgeInsets.only(top: 5.0, left: 25.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -417,7 +266,7 @@ class _FunctionsState extends State<Functions> {
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.black54,
+                                  color: redTwo,
                                   fontFamily: 'OpenSans',
                                 ),
                               ),
@@ -428,6 +277,7 @@ class _FunctionsState extends State<Functions> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5.0),
                                   color: Colors.white,
+                                  border: Border.all(color: orangeOne, width: 0.5)
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -437,7 +287,7 @@ class _FunctionsState extends State<Functions> {
                                       style: TextStyle(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.black54,
+                                        color: redOne,
                                         fontFamily: 'OpenSans',
                                       ),
                                     ),
@@ -446,7 +296,7 @@ class _FunctionsState extends State<Functions> {
                                       style: TextStyle(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.black54,
+                                        color: redOne,
                                         fontFamily: 'OpenSans',
                                       ),
                                     ),
@@ -475,14 +325,13 @@ class _FunctionsState extends State<Functions> {
                     children: [
                       SizedBox(height: 10.0),
                       NewTextField(
-
                         text: 'Search Functions',
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 15.0, top: 20.0),
+                        padding: EdgeInsets.only(left: 15.0, top: 10.0),
                         child: Text('Functionalities',
                             style:
-                            TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500, fontFamily: 'OpenSans')),
+                            TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, fontFamily: 'OpenSans', color: redTwo)),
                       ),
 
                       GridView.count(
@@ -508,15 +357,15 @@ class _FunctionsState extends State<Functions> {
                                       icon: Icon(
                                         model[index].icon,
                                         size: 35.0,
-                                        color: Colors.green.shade200,
+                                        color: orangeTwo,
                                       ),
                                     ),
                                     Text(model[index].text,
                                         style: TextStyle(
                                             fontSize: 13,
                                             fontWeight: FontWeight.w500,
-                                            color: Colors.black54,
-                                            fontFamily: 'OpenSans'
+                                            color: redTwo,
+                                            fontFamily: 'Roboto'
                                         )),
                                   ]),
                             ),

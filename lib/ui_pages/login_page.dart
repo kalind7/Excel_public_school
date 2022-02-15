@@ -9,6 +9,7 @@ import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/footer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 late SharedPreferences localStorage;
 TextEditingController emailController = new TextEditingController();
 TextEditingController pwdController = new TextEditingController();
@@ -20,11 +21,16 @@ class LoginPage extends StatefulWidget {
     localStorage = await SharedPreferences.getInstance();
   }
 
+
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
+
   late String email;
   late String password;
 
@@ -39,12 +45,10 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          // shrinkWrap: true,
-          // scrollDirection: Axis.vertical,
-          // physics: ClampingScrollPhysics(),
+          shrinkWrap: true,
           children: [
             Container(
-              padding: EdgeInsets.only( bottom: 20.0),
+              padding: EdgeInsets.only(bottom: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Form(
@@ -58,12 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                       image: AssetImage('images/excellogo.png'),
                       fit: BoxFit.cover,
                     ),
-
                     Column(
-
                       children: [
-                        SizedBox(height: 50.0),
-
+                        SizedBox(height: 25.0),
                         Padding(
                           padding: EdgeInsets.only(left: 40.0, right: 40.0),
                           child: TextFormField(
@@ -106,8 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                                 fontStyle: FontStyle.normal,
                                 color: Colors.black26,
                               ),
-                              suffixIcon:
-                              Icon(Icons.mail, size: 15.0, color: Colors.black26),
+                              suffixIcon: Icon(Icons.mail,
+                                  size: 15.0, color: Colors.black26),
                             ),
                             validator: MultiValidator([
                               RequiredValidator(errorText: 'Required'),
@@ -115,7 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                             ]),
                           ),
                         ),
-
                         SizedBox(height: 15.0),
                         Padding(
                           padding: EdgeInsets.only(left: 40.0, right: 40.0),
@@ -166,7 +166,9 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                   icon: Icon(
-                                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                                    _isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
                                     size: 20,
                                     color: Colors.black26,
                                   )),
@@ -177,7 +179,8 @@ class _LoginPageState extends State<LoginPage> {
                                 return "Required";
                               } else if (value.length < 8) {
                                 return "Should atleast be 8 characters";
-                              } else if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              } else if (!RegExp(
+                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                   .hasMatch(value)) {
                                 return "Enter strong password(Hint:abc@123.ab)";
                               } else {
@@ -186,7 +189,6 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ),
                         ),
-
                         SizedBox(height: 15.0),
                         Row(
                           children: [
@@ -218,7 +220,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ForgotPassword()));
+                                        builder: (context) =>
+                                            ForgotPassword()));
                               },
                               child: Text(
                                 'Forgot Password?',
@@ -234,21 +237,19 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-
-
-
                     Button(
+                        color: Colors.green.shade200,
+                        shadowColor: Colors.green,
                         text: 'Log In',
                         onPress: () {
                           if (formkey.currentState!.validate()) {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => Dashboard()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dashboard()));
                           }
                         }),
-
                     Footer(),
-
-
                   ],
                 ),
               ),
@@ -256,7 +257,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-
     );
   }
 }

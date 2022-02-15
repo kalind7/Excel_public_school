@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/utils/color.dart';
 
 class SingleDropDownClass extends StatefulWidget {
   const SingleDropDownClass({Key? key}) : super(key: key);
@@ -19,10 +20,15 @@ class _SingleDropDownClassState extends State<SingleDropDownClass> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
+        // border: Border.all(
+        //   color: orangeOne,
+        //   width: 1.0,
+        // ),
       ),
       child: DropdownButton(
         focusColor: Colors.white,
         dropdownColor: Colors.white,
+        underline: SizedBox(),
         style: TextStyle(fontSize: 16.0, color: Colors.black87, fontFamily: 'MontserratAlternates'),
         value: _value,
         items: [

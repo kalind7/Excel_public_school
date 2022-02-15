@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
+import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/single_drop_down_class.dart';
 import 'package:new_project_work/widgets/single_drop_down_name.dart';
 import 'package:new_project_work/widgets/text_field.dart';
-
 
 class StudentLists extends StatefulWidget {
   const StudentLists({Key? key}) : super(key: key);
@@ -22,38 +21,19 @@ class _StudentListsState extends State<StudentLists> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-           Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back,
-              size: 24.0, color: Colors.black),
-        ),
-        title: Text('Students List',style: TextStyle(color: Colors.black, fontFamily: 'OpenSans')),
-        centerTitle: true,
-        backgroundColor: Colors.green.shade300,
-        shadowColor: Colors.transparent,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 3.0, top: 2.0),
-            child: IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => BuildPopupDialog(),
-                );
+    return SafeArea(
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(55.0),
+          child: WidgetAppbar(
+              title: 'Students List',
+              onPress: () {
+                Navigator.pop(context);
               },
-              icon: Icon(Icons.logout,
-                  size: 24.0, color: Colors.black),
-            ),
-          ),
-        ],
-      ),
-      body:  ListView(
+              icon: Icons.arrow_back),
+        ),
+        body: ListView(
           children: [
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [SingleDropDownName(), SingleDropDownClass()],
@@ -61,34 +41,17 @@ class _StudentListsState extends State<StudentLists> {
             NewTextField(
               text: 'Search ',
             ),
-
-        SizedBox(
-          height: 5.0,
-          ),
-
-            Center(
-              child: SizedBox(
-                width: 100.0,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      primary: greenOne,
-                      elevation: 7,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.all(5)),
-                  child: Text(
-                    'Search',
-                    style: TextStyle(color: Colors.black87, fontSize: 16),
-                  ),
-                ),
-              ),
+            SizedBox(
+              height: 10.0,
             ),
-
+            Center(
+              child: Button(text: 'Search', onPress: () {}, shadowColor: orangeTwo,color: orangeOne ,),
+            ),
             Column(
               children: [
                 GetX<StudentController>(builder: (controller) {
                   return ListView.builder(
+                      padding: EdgeInsets.only(top: 10.0),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
@@ -100,12 +63,11 @@ class _StudentListsState extends State<StudentLists> {
                               vertical: 3.0, horizontal: 10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0),
-                              color: Colors.grey.shade200,
+                              color: Colors.grey.shade100,
                               border: Border.all(
-                                color: HexColor('#F4F4F4'),
-                                width: 2.0,
-                              )
-                          ),
+                                color: orangeOne,
+                                width: 0.5,
+                              )),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -122,7 +84,7 @@ class _StudentListsState extends State<StudentLists> {
                                             builder: (context) => AdminBio(
                                               text: 'Kashish Chaudhary',
                                               bio:
-                                              'I am student of class 4 and am studying hardly to complete my primary classes.',
+                                                  'I am student of class 4 and am studying hardly to complete my primary classes.',
                                               jobtitle: 'Job',
                                               answer1: 'Student',
                                               length: 'Class',
@@ -144,8 +106,7 @@ class _StudentListsState extends State<StudentLists> {
                               ),
                               SizedBox(width: 30.0),
                               Container(
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 10.0),
+                                margin: EdgeInsets.symmetric(vertical: 10.0),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +124,6 @@ class _StudentListsState extends State<StudentLists> {
                                       style: TextStyle(
                                           fontSize: 14.0,
                                           fontFamily: 'OpenSans',
-
                                           fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 4.0),
@@ -194,7 +154,7 @@ class _StudentListsState extends State<StudentLists> {
             ),
           ],
         ),
-
+      ),
     );
   }
 }

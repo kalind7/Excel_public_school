@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:new_project_work/controller/student_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
+import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/elevated_button.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/single_drop_down_class.dart';
 import 'package:new_project_work/widgets/single_drop_down_name.dart';
@@ -40,42 +42,7 @@ class _TeacherListsState extends State<TeacherLists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green.shade200,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            size: 24.0,
-            color: Colors.black87,
-          ),
-        ),
-        title: Text('Teacher List',
-            style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'OpenSans',
-                color: Colors.black87)),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 3.0, top: 2.0),
-            child: IconButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => BuildPopupDialog(),
-                );
-              },
-              icon: Icon(Icons.logout,
-                  size: 24.0, color: Colors.black87),
-            ),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(child: WidgetAppbar(title: 'Teacher List', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
       body: ListView(
         children: [
           Row(
@@ -86,23 +53,10 @@ class _TeacherListsState extends State<TeacherLists> {
             text: 'Search ',
           ),
 
+          SizedBox(height: 10.0),
+
           Center(
-            child: SizedBox(
-              width: 100.0,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    primary: greenOne,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: EdgeInsets.all(5)),
-                child: Text(
-                  'Search',
-                  style: TextStyle(color: Colors.black87, fontSize: 16),
-                ),
-              ),
-            ),
+            child: Button(text: 'Search', onPress: (){}, color: orangeOne, shadowColor: orangeTwo),
           ),
 
 
@@ -110,6 +64,7 @@ class _TeacherListsState extends State<TeacherLists> {
             children: [
               GetX<StudentController>(builder: (controller) {
                 return ListView.builder(
+                  padding: EdgeInsets.only(top: 10.0),
                     physics: ClampingScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,

@@ -27,7 +27,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                   margin: EdgeInsets.only( left: 10.0, right: 10.0, bottom: 10),
                   padding: EdgeInsets.only(top: 10.0, right: 25),
                   height: MediaQuery.of(context).size.height /2.5,
-                  width: MediaQuery.of(context).size.width / 1.15,
+                  width: MediaQuery.of(context).size.width / 1.1,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(10.0),
@@ -54,7 +54,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                             ),
                           ),
 
-                          SizedBox(width: 55.0,),
+                          SizedBox(width: 45.0,),
 
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,14 +68,14 @@ class _RoutineGetListState extends State<RoutineGetList> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black87,
                                       height: 1.2,
-                                      fontFamily: 'Mukta'),
+                                      fontFamily: 'Roboto'),
                                 ),
                               ),
                               Text(controller.routineList[index].classType,
                                   style: TextStyle(
                                       fontSize: 14.0,
                                       color: Colors.black45,
-                                      fontFamily: 'MontserratAlternates',
+                                      fontFamily: 'OpenSans',
                                       fontWeight: FontWeight.w600)),
                             ],
                           ),
@@ -102,14 +102,14 @@ class _RoutineGetListState extends State<RoutineGetList> {
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black87,
-                                        fontFamily: 'MontserratAlternates'),
+                                        fontFamily: 'OpenSans'),
                                   ),
                                 ),
                                 Text(controller.routineList[index].subjectType,
                                     style: TextStyle(
                                         fontSize: 14.0,
                                         color: Colors.black45,
-                                        fontFamily: 'MontserratAlternates',
+                                        fontFamily: 'OpenSans',
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),
@@ -129,14 +129,14 @@ class _RoutineGetListState extends State<RoutineGetList> {
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black87,
-                                        fontFamily: 'MontserratAlternates'),
+                                        fontFamily: 'OpenSans'),
                                   ),
                                 ),
                                 Text(controller.routineList[index].teacherName,
                                     style: TextStyle(
                                         fontSize: 14.0,
                                         color: Colors.black45,
-                                        fontFamily: 'MontserratAlternates',
+                                        fontFamily: 'OpenSans',
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),
@@ -149,7 +149,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                       Container(
                         margin: EdgeInsets.only( left: 33, bottom: 5.0, top: 15.0),
                         padding: EdgeInsets.only(left: 7.0, top: 5.0, bottom: 5.0),
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width * 0.34,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
@@ -161,7 +161,7 @@ class _RoutineGetListState extends State<RoutineGetList> {
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontFamily: 'MontserratAlternates',
+                            fontFamily: 'OpenSans',
                           ),
                         ),
 

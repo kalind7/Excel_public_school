@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/ui_pages/assignment.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/events.dart';
@@ -28,10 +29,10 @@ class MyApp extends StatelessWidget {
     ]);
 
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Excel Public School',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       initialRoute: '/splash',
       routes: {
