@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/ui_pages/assignment.dart';
+import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/ui_pages/list_of_teacher.dart';
@@ -23,19 +25,96 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
     return Drawer(
       elevation: 3.0,
       child:  Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [ HexColor('#FE7F5C'), HexColor('#FC6075')],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+            ),
+          ),
         child: ListView(
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.white,
+            // UserAccountsDrawerHeader(
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //   ),
+            //   accountName: Text('Kalind Koirala',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
+            //   accountEmail: Text('kalindkoirala7@gmail.com',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
+            //   currentAccountPicture: CircleAvatar(
+            //     backgroundColor: Colors.white,
+            //     backgroundImage: AssetImage('images/profile.png'),
+            //   ),
+            // ),
+
+
+            Container(
+              margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 15.0),
+              child: Column(
+                children: [
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only( left: 8, right: 15),
+                       child:    CircleAvatar(
+                         radius: 35.0,
+                         backgroundColor: Colors.white,
+                         backgroundImage: AssetImage('images/profile.png'),
+                       ),
+                      ),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 6.0),
+                            child: Text('Ram Bahadur Aryal', style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
+                          ),
+
+                          Row(
+                            children: [
+                              Text('Class: UKG',style: TextStyle(fontSize: 14.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
+
+                              VerticalDivider(
+                                color: Colors.white,
+                                width: 0.5,
+                              ),
+
+                              Text('Class: UKG',style: TextStyle(fontSize: 14.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
+                            ],
+                          ),
+
+
+
+                        ],
+                      ),
+
+
+
+
+
+
+                    ],
+                  ),
+
+                  Divider(
+                    color: Colors.black87,
+                    thickness: 1,
+                  ),
+                ],
               ),
-              accountName: Text('Kalind Koirala',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
-              accountEmail: Text('kalindkoirala7@gmail.com',style: TextStyle(fontSize: 16.0, fontFamily: 'OpenSans',color: Colors.black),),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage('images/profile.png'),
-              ),
+            ),
+
+
+
+            buildMenuItem(
+              text: 'Dashboard',
+              icon: Icons.dashboard,
+              onpress: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Dashboard()));
+              },
             ),
 
             buildMenuItem(

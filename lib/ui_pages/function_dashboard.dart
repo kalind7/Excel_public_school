@@ -10,9 +10,7 @@ import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/ui_pages/calendar.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/category_drawer.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/ui_pages/notice.dart';
-import 'package:new_project_work/widgets/build_menu_item.dart';
 import 'package:new_project_work/widgets/text_field.dart';
 
 class GradStudent extends StatefulWidget {
@@ -46,7 +44,6 @@ class _GradStudentState extends State<GradStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -130,7 +127,6 @@ class _FunctionsState extends State<Functions> {
               ));
         },
       ),
-
       Model(
         text: 'Fees',
         icon: Icons.monetization_on,
@@ -242,7 +238,6 @@ class _FunctionsState extends State<Functions> {
                 child: Stack(
                   children: [
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
@@ -315,7 +310,6 @@ class _FunctionsState extends State<Functions> {
               Padding(
                 padding: EdgeInsets.only(top: 70.0),
                 child: Container(
-                  // height: MediaQuery.of(context).size.height / 1.5,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20.0),

@@ -49,107 +49,105 @@ class _StudentListsState extends State<StudentLists> {
             ),
             Column(
               children: [
-                GetX<StudentController>(builder: (controller) {
-                  return ListView.builder(
-                      padding: EdgeInsets.only(top: 10.0),
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: controller.studentList.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width / 1.15,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 3.0, horizontal: 10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              color: Colors.grey.shade100,
-                              border: Border.all(
-                                color: orangeOne,
-                                width: 0.5,
-                              )),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(width: 15.0),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => AdminBio(
-                                              text: 'Kashish Chaudhary',
-                                              bio:
-                                                  'I am student of class 4 and am studying hardly to complete my primary classes.',
-                                              jobtitle: 'Job',
-                                              answer1: 'Student',
-                                              length: 'Class',
-                                              answer2: '4',
-                                              question: 'Teacher ?',
-                                              answer3: 'NO',
-                                            ),
-                                          ));
-                                    },
-                                    child: Image(
-                                      height: 75,
-                                      width: 75,
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                          '${controller.studentList[index].image}'),
-                                    ),
+                Obx(() => ListView.builder(
+                    padding: EdgeInsets.only(top: 10.0),
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: studentController.studentList.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width / 1.15,
+                        margin: EdgeInsets.symmetric(
+                            vertical: 3.0, horizontal: 10.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.grey.shade100,
+                            border: Border.all(
+                              color: orangeOne,
+                              width: 0.5,
+                            )),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(width: 15.0),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AdminBio(
+                                            text: 'Kashish Chaudhary',
+                                            bio:
+                                            'I am student of class 4 and am studying hardly to complete my primary classes.',
+                                            jobtitle: 'Job',
+                                            answer1: 'Student',
+                                            length: 'Class',
+                                            answer2: '4',
+                                            question: 'Teacher ?',
+                                            answer3: 'NO',
+                                          ),
+                                        ));
+                                  },
+                                  child: Image(
+                                    height: 75,
+                                    width: 75,
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                        '${studentController.studentList[index].image}'),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 30.0),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 10.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Name: ${controller.studentList[index].name}',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontFamily: 'OpenSans',
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    SizedBox(height: 4.0),
-                                    Text(
-                                      'Class: ${controller.studentList[index].Class}',
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontFamily: 'OpenSans',
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(height: 4.0),
-                                    Text(
-                                      'Roll No: ${controller.studentList[index].roll}',
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontFamily: 'OpenSans',
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(height: 4.0),
-                                    Text(
-                                      'E-mail: ${controller.studentList[index].email}',
-                                      style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontFamily: 'OpenSans',
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
-                                ),
+                            ),
+                            SizedBox(width: 30.0),
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Name: ${studentController.studentList[index].name}',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'OpenSans',
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Class: ${studentController.studentList[index].Class}',
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontFamily: 'OpenSans',
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Roll No: ${studentController.studentList[index].roll}',
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontFamily: 'OpenSans',
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'E-mail: ${studentController.studentList[index].email}',
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontFamily: 'OpenSans',
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      });
-                }),
+                            ),
+                          ],
+                        ),
+                      );
+                    }))
               ],
             ),
           ],
