@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class BuildPopupDialog extends StatelessWidget {
+  const BuildPopupDialog({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      backgroundColor: Colors.white,
+      title: const Center(
+          child: Text(
+            'Do you want to LOG OUT ?',
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, fontFamily: 'OpenSans',color: Colors.black87),
+          )),
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 14.0),
+            child: ElevatedButton(
+
+              style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.green.shade200,
+                  primary: Colors.green.shade200,
+                  onPrimary: Colors.white,
+                  onSurface: Colors.grey,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.all(5)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('No',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, fontFamily: 'OpenSans',color: Colors.black87,)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 14.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.green.shade200,
+                  primary: Colors.green.shade200,
+                  onPrimary: Colors.white,
+                  onSurface: Colors.grey,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.all(5)),
+              onPressed: () {
+                Get.toNamed('/login');
+              },
+              child: const Text('Yes',style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, fontFamily: 'OpenSans', color: Colors.black87)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
