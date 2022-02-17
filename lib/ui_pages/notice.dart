@@ -1,5 +1,5 @@
 import 'package:excel_public_school/models/notice_list.dart';
-import 'package:excel_public_school/widgets/appbar.dart';
+
 import 'package:flutter/material.dart';
 
 class Notice extends StatefulWidget {
@@ -55,7 +55,7 @@ class _NoticeState extends State<Notice> {
 
     return  SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(child: WidgetAppbar(title: 'Notice', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: const Size.fromHeight(55.0),),
+
         body: ListView(
           children: [
             ListView.builder(

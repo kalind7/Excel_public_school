@@ -5,6 +5,7 @@ import 'package:excel_public_school/ui_pages/notice.dart';
 import 'package:excel_public_school/ui_pages/settings.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:excel_public_school/widgets/category_drawer.dart';
+import 'package:excel_public_school/widgets/logout_popup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,24 +22,23 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _currentIndex = 0;
 
-  final screens = const [
-     Functions(),
-     AdminBio(
-      text: 'Kashish Chaudhary',
-      bio:
-      'I am student of class 4 and am studying hardly to complete my primary classes.',
-      jobTitle: 'Job',
-      answer1: 'Student',
-      length: 'Class',
-      answer2: '4',
-      question: 'Teacher ?',
-      answer3: 'NO',
-    ),
-     Calendar(),
-     Notice(),
-     Settings(),
+  bool _showNotch = true;
+  final FloatingActionButtonLocation _fabLocation = FloatingActionButtonLocation.centerDocked;
+
+  void _onShowNotchChanged(bool value) {
+    setState(() {
+      _showNotch = value;
+    });
+  }
+
+  final int _currentIndex = 0;
+  final screens =  [
+     const Functions(),
+      AdminBio(),
+     const Calendar(),
+     const Notice(),
+     const Settings(),
   ];
 
   @override
@@ -48,46 +48,84 @@ class _DashboardState extends State<Dashboard> {
         index: _currentIndex,
         children: screens,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
+      floatingActionButton: _showNotch? FloatingActionButton(
+
+        splashColor: pinkOne,
         backgroundColor: HexColor('#E1E5EC'),
-        selectedItemColor: orangeOne,
-        unselectedItemColor: pinkOne,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            // backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Std-Profile',
-            // backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Calendar',
-            // backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.file_copy_outlined),
-            label: 'Notice',
-            // backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            // backgroundColor: Colors.blue,
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        onPressed: (){},
+        tooltip: 'Home',
+        child: ImageIcon(AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
+      ): null,
+      floatingActionButtonLocation: _fabLocation,
+      bottomNavigationBar: _CustomBottomAppBar(
+        fabLocation:  _fabLocation,
+        shape: _showNotch ? const CircularNotchedRectangle(): null,
       ),
     );
+  }
+}
+
+class _CustomBottomAppBar extends StatelessWidget{
+  const _CustomBottomAppBar({
+    this.fabLocation = FloatingActionButtonLocation.centerDocked,
+    this.shape = const CircularNotchedRectangle(),
+});
+  
+  final FloatingActionButtonLocation fabLocation ;
+  final NotchedShape? shape;
+
+  // static final List<FloatingActionButtonLocation> centerLocations =
+  // <FloatingActionButtonLocation>[
+  //   FloatingActionButtonLocation.centerDocked,
+  //   FloatingActionButtonLocation.centerFloat,
+  // ];
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      shape: shape,
+      color: HexColor('##E1E5EC'),
+      child: IconTheme(
+        data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children:<Widget> [
+            IconButton(
+              tooltip: 'Profile',
+              onPressed: (){},
+              color: pinkOne,
+              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/profile.png'),size: 35 ,semanticLabel: 'Notice',),
+            ),
+
+            IconButton(
+              padding: EdgeInsets.only(right: 20),
+              tooltip: 'Calendar',
+              onPressed: (){},
+              color: pinkOne,
+              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/calendar.png'),size: 35 ,semanticLabel: 'Notice',),
+            ),
+
+            IconButton(
+              padding: EdgeInsets.only(left: 20),
+              tooltip: 'Homework',
+              onPressed: (){},
+              color: pinkOne,
+              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/homework.png'),size: 35 ,semanticLabel: 'Notice',),
+            ),
+
+            IconButton(
+
+              tooltip: 'Notice',
+              onPressed: (){},
+              color: pinkOne,
+              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/notice.png'),size: 35 ,semanticLabel: 'Notice',),
+            ),
+
+          ],
+        ),
+      ),
+    );
+
   }
 }
 
@@ -118,16 +156,8 @@ class _FunctionsState extends State<Functions> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const AdminBio(
-                  text: 'Kashish Chaudhary',
-                  bio:
-                  'I am student of class 4 and am studying hardly to complete my primary classes.',
-                  jobTitle: 'Job',
-                  answer1: 'Student',
-                  length: 'Class',
-                  answer2: '4',
-                  question: 'Teacher ?',
-                  answer3: 'NO',
+                builder: (context) =>  AdminBio(
+
                 ),
               ));
         },
@@ -262,32 +292,52 @@ class _FunctionsState extends State<Functions> {
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(onPressed: (){
                               _scaffoldKey.currentState!.openDrawer();
-                            },icon: SvgPicture.asset('files/icons/four_bar_menu.svg'),),
+                            }, icon: SvgPicture.asset('files/icons/four_bar_menu.svg'),),
                             SizedBox(width: MediaQuery.of(context).size.width * 0.6 ,),
                             IconButton(onPressed: (){},icon: SvgPicture.asset('files/icons/search.svg'),),
-                            IconButton(onPressed: (){},icon: SvgPicture.asset('files/icons/menu.svg'),),
-                          ],
-                        ),
 
-                        const Align(
-                          alignment: Alignment.topCenter,
-                          child:  Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                            child:  CircleAvatar(
-                              radius: 45,
-                              backgroundColor: Colors.grey,
-                              child: Image(
-                                height: 75,
-                                width: 75,
-                                image: AssetImage('files/images/excellogo.png'),
-                                fit: BoxFit.cover,
-                              ),
+
+                            PopupMenuButton<int>(
+                              icon: SvgPicture.asset('files/icons/menu.svg'),
+                                color: Colors.white,
+                                itemBuilder: (context) => [
+                                   const PopupMenuItem<int>(
+                                    value: 0,
+                                      child: Text('Setting', style: drawerTitle,),
+                                  ),
+
+                                  const PopupMenuItem<int>(
+                                    value: 1,
+                                    child: Text('Privacy Policy Page', style: drawerTitle,),
+                                  ),
+
+                                  const PopupMenuDivider(),
+
+                                  PopupMenuItem<int>(
+                                    value: 2,
+                                    child: Row(
+                                      children:const [
+                                        Icon(
+                                          Icons.logout,
+                                          color: Colors.red,
+                                        ),
+                                         SizedBox(
+                                          width: 7,
+                                        ),
+                                        Text("Logout", style: drawerTitle,),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              onSelected: (item) => SelectedItem(context, item),
                             ),
-                          ),
+
+                            // IconButton(onPressed: (){},icon: SvgPicture.asset('files/icons/menu.svg'),),
+                          ],
                         ),
                       ],
                     ),
@@ -295,9 +345,25 @@ class _FunctionsState extends State<Functions> {
 
                   Stack(
                     children: [
-                      ClipPath(
-                        clipper: MyCustomClipper(),
-                        child: Container(
+
+                      const Align(
+                        alignment: Alignment.center,
+                        child:  Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 15, 50),
+                          child:  CircleAvatar(
+                            radius: 45,
+                            backgroundColor: Colors.grey,
+                            child: Image(
+                              height: 75,
+                              width: 75,
+                              image: AssetImage('files/images/excellogo.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                   Container(
                           margin: const EdgeInsets.only(top: 140.0,left: 20,right: 20),
                           height: MediaQuery.of(context).size.height * 0.125,
                           width: MediaQuery.of(context).size.width ,
@@ -319,7 +385,7 @@ class _FunctionsState extends State<Functions> {
                             child: Text('Ram Bahadur Aryal', style: TextStyle(fontSize: 24.0,fontFamily: 'OpenSans',fontWeight: FontWeight.w600,color: pinkOne),),
                           ),
                         ),
-                      ),
+
                     ],
                   ),
                 ],
@@ -350,7 +416,7 @@ class _FunctionsState extends State<Functions> {
                           IconButton(
                             onPressed : (){model[index].onPress();},
                             icon:  Image.asset(model[index].iconTitle),
-                            iconSize: 40.0,
+                            iconSize: 30.0,
                           ),
                           Text(model[index].text,
                               style: cardTitle
@@ -369,24 +435,88 @@ class _FunctionsState extends State<Functions> {
   }
 }
 
-class MyCustomClipper extends CustomClipper<Path>{
-  @override
-  Path getClip(Size size) {
-    double width = size.width;
-    double height = size.height;
-    double offset = 100.0;
-    Path path = Path();
-    path.lineTo(width, 0);
-    // path.quadraticBezierTo(height/2, width , height, width-offset);
-    path.lineTo(width, height);
-    path.lineTo(0, height);
-
-    path.close();
-    return path;
+void SelectedItem(BuildContext context, item) {
+  switch (item) {
+    case 0:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const Settings()));
+      break;
+    case 1:
+      if (kDebugMode) {
+        print("Privacy Clicked");
+      }
+      break;
+    case 2:
+      if (kDebugMode) {
+        print("User Logged out");
+      }
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const BuildPopupDialog();
+          });
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-
 }
+// class MyCustomClipper extends CustomClipper<Path>{
+//   @override
+//   Path getClip(Size size) {
+//     double width = size.width;
+//     double height = size.height;
+//     Path path = Path();
+//     // path.lineTo(0 , height);
+//     // var firstStart = Offset(width /2 , height);
+//     // var firstEnd = Offset(width/1.15 , height- 25 );
+//     // path.quadraticBezierTo(firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
+//
+//     path.lineTo(width, height);
+//     var secondStart = Offset(width - (width / 2),height - 20);
+//     var secondEnd = Offset(width, height - 15);
+//     path.quadraticBezierTo(secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
+//
+//     path.close();
+//     return path;
+//   }
+//
+//   @override
+//   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+//
+// }
 
+// BottomNavigationBar(
+//         type: BottomNavigationBarType.fixed,
+//         currentIndex: _currentIndex,
+//         backgroundColor: HexColor('#E1E5EC'),
+//         selectedItemColor: orangeOne,
+//         unselectedItemColor: pinkOne,
+//         items: const [
+//           BottomNavigationBarItem(
+//             icon: ImageIcon(AssetImage('files/bottom_navbar_icons/home.png')),
+//             label: 'Home',
+//             // backgroundColor: Colors.blue,
+//           ),
+//           BottomNavigationBarItem(
+//             icon: ImageIcon(AssetImage('files/bottom_navbar_icons/profile.png')),
+//             label: 'Profile',
+//             // backgroundColor: Colors.blue,
+//           ),
+//           BottomNavigationBarItem(
+//             icon: ImageIcon(AssetImage('files/bottom_navbar_icons/calendar.png')),
+//             label: 'Calendar',
+//             // backgroundColor: Colors.blue,
+//           ),
+//           BottomNavigationBarItem(
+//             icon: ImageIcon(AssetImage('files/bottom_navbar_icons/homework.png')),
+//             label: 'Homework',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: ImageIcon(AssetImage('files/bottom_navbar_icons/notice.png')),
+//             label: 'Notice',
+//             // backgroundColor: Colors.blue,
+//           ),
+//         ],
+//         onTap: (index) {
+//           setState(() {
+//             _currentIndex = index;
+//           });
+//         },
+//       ),
