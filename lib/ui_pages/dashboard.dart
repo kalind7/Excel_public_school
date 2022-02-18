@@ -6,7 +6,6 @@ import 'package:excel_public_school/ui_pages/settings.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:excel_public_school/widgets/category_drawer.dart';
 import 'package:excel_public_school/widgets/logout_popup.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,20 +16,17 @@ import 'package:hexcolor/hexcolor.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard>  {
 
-  bool _showNotch = true;
-  final FloatingActionButtonLocation _fabLocation = FloatingActionButtonLocation.centerDocked;
+  final bool _showNotch = true;
+  final FloatingActionButtonLocation
+  _fabLocation = FloatingActionButtonLocation.centerDocked;
 
-  void _onShowNotchChanged(bool value) {
-    setState(() {
-      _showNotch = value;
-    });
-  }
 
   final int _currentIndex = 0;
   final screens =  [
@@ -48,13 +44,13 @@ class _DashboardState extends State<Dashboard> {
         index: _currentIndex,
         children: screens,
       ),
-      floatingActionButton: _showNotch? FloatingActionButton(
+       floatingActionButton: _showNotch? FloatingActionButton(
 
         splashColor: pinkOne,
         backgroundColor: HexColor('#E1E5EC'),
         onPressed: (){},
         tooltip: 'Home',
-        child: ImageIcon(AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
+        child: ImageIcon(const AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
       ): null,
       floatingActionButtonLocation: _fabLocation,
       bottomNavigationBar: _CustomBottomAppBar(
@@ -70,15 +66,9 @@ class _CustomBottomAppBar extends StatelessWidget{
     this.fabLocation = FloatingActionButtonLocation.centerDocked,
     this.shape = const CircularNotchedRectangle(),
 });
-  
+
   final FloatingActionButtonLocation fabLocation ;
   final NotchedShape? shape;
-
-  // static final List<FloatingActionButtonLocation> centerLocations =
-  // <FloatingActionButtonLocation>[
-  //   FloatingActionButtonLocation.centerDocked,
-  //   FloatingActionButtonLocation.centerFloat,
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -90,37 +80,38 @@ class _CustomBottomAppBar extends StatelessWidget{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children:<Widget> [
+
             IconButton(
               tooltip: 'Profile',
               onPressed: (){},
               color: pinkOne,
-              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/profile.png'),size: 35 ,semanticLabel: 'Notice',),
+              icon: const ImageIcon(AssetImage('files/bottom_navbar_icons/profile.png'),size: 35 ,semanticLabel: 'Profile',),
             ),
 
             IconButton(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               tooltip: 'Calendar',
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const Calendar()));
+              },
               color: pinkOne,
-              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/calendar.png'),size: 35 ,semanticLabel: 'Notice',),
+              icon: const ImageIcon(AssetImage('files/bottom_navbar_icons/calendar.png'),size: 35 ,semanticLabel: 'Calendar',),
             ),
 
             IconButton(
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20),
               tooltip: 'Homework',
               onPressed: (){},
               color: pinkOne,
-              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/homework.png'),size: 35 ,semanticLabel: 'Notice',),
+              icon: const ImageIcon(AssetImage('files/bottom_navbar_icons/homework.png'),size: 35 ,semanticLabel: 'Homework',),
             ),
 
             IconButton(
-
               tooltip: 'Notice',
               onPressed: (){},
               color: pinkOne,
-              icon: ImageIcon(AssetImage('files/bottom_navbar_icons/notice.png'),size: 35 ,semanticLabel: 'Notice',),
+              icon: const ImageIcon(AssetImage('files/bottom_navbar_icons/notice.png'),size: 25 ,semanticLabel: 'Notice',),
             ),
-
           ],
         ),
       ),
@@ -272,6 +263,9 @@ class _FunctionsState extends State<Functions> {
         key: _scaffoldKey,
         drawer: const CategoryDrawer(),
         body: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: const ClampingScrollPhysics(),
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height /2.5,
@@ -393,41 +387,44 @@ class _FunctionsState extends State<Functions> {
             ),
 
 
-            GridView.count(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              physics: const ClampingScrollPhysics(),
-              crossAxisCount: 4,
-              children: List.generate(model.length, (index) {
-                return Card(
-                  semanticContainer: true,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  shadowColor: Colors.deepOrange,
-                  shape: RoundedRectangleBorder(
-                    // side: BorderSide(width: 1.0, color: orangeOne),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              margin: EdgeInsets.symmetric(horizontal:10 ),
+              child: GridView.count(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const ClampingScrollPhysics(),
+                crossAxisCount: 4,
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing:5.0,
+                children: List.generate(model.length, (index) {
+                  return  Card(
+                      borderOnForeground: false,
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      elevation: 4,
+                      shadowColor: Colors.deepOrange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: Center(
+                        child: Column(mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed : (){model[index].onPress();},
+                                icon:  Image.asset(model[index].iconTitle),
+                                iconSize: 30.0,
+                              ),
+                              Text(model[index].text,
+                                  style: cardTitle
+                              ),
+                            ]),
+                      ),
 
-                  child: Center(
-                    child: Column(mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            onPressed : (){model[index].onPress();},
-                            icon:  Image.asset(model[index].iconTitle),
-                            iconSize: 30.0,
-                          ),
-                          Text(model[index].text,
-                              style: cardTitle
-                          ),
-                        ]),
-                  ),
-
-                );
-              }),
+                    );
+                }),
+              ),
             ),
-
           ],
         ),
       ),
@@ -435,6 +432,7 @@ class _FunctionsState extends State<Functions> {
   }
 }
 
+// ignore: non_constant_identifier_names
 void SelectedItem(BuildContext context, item) {
   switch (item) {
     case 0:
