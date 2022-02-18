@@ -237,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Dashboard()));
+                                    builder: (context) => const HomePage()));
                           }
                         }),
                     const Footer(),

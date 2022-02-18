@@ -148,6 +148,7 @@ class _CategoryDrawerState extends State<CategoryDrawer> {
             ),
             child:
             ListView.builder(
+              padding: const EdgeInsets.only(bottom: 20.0),
               itemCount:items.length ,
                 itemBuilder: (context, index){
                 return Column(

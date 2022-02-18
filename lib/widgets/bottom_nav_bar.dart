@@ -21,32 +21,73 @@ class TabBarMaterialWidget extends StatefulWidget {
 
 class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
 
-
-
   @override
   Widget build(BuildContext context) {
 
-    final placeHolder = Opacity(
+    const placeHolder =  Opacity(
         opacity: 0,
-      child: IconButton(onPressed: null, icon: Icon(Icons.no_cell)),
+      child: IconButton(onPressed: null, icon:  Icon(Icons.no_cell)),
 
     );
 
     return BottomAppBar(
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       notchMargin: 5,
       color: HexColor('#E1E5EC'),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children:[
-            buildTabItem(index: 0, icon: 'files/bottom_navbar_icons/profile.png'),
-            buildTabItem(index: 1, icon: 'files/bottom_navbar_icons/calendar.png'),
-            placeHolder,
-            buildTabItem(index: 2, icon: 'files/bottom_navbar_icons/homework.png'),
-            buildTabItem(index: 3, icon: 'files/bottom_navbar_icons/notice.png'),
+        child: SizedBox(
+            height: 65,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:[
 
-          ],
-        ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildTabItem(index: 0, icon: 'files/bottom_navbar_icons/profile.png'),
+
+                    Text('Profile', style: TextStyle(color: widget.index == 0 ? Colors.black: pinkOne),)
+
+                  ],
+                ),
+
+
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildTabItem(index: 1, icon: 'files/bottom_navbar_icons/calendar.png'),
+
+                    Text('Calendar', style: TextStyle(color: widget.index == 1 ? Colors.black: pinkOne),)
+
+                  ],
+                ),
+
+                placeHolder,
+
+
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildTabItem(index: 2, icon: 'files/bottom_navbar_icons/homework.png'),
+
+                    Text('Homework', style: TextStyle(color: widget.index == 2 ? Colors.black: pinkOne),)
+
+                  ],
+                ),
+
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildTabItem(index: 3, icon: 'files/bottom_navbar_icons/notice.png'),
+
+                    Text('Notice', style: TextStyle(color: widget.index == 3 ? Colors.black: pinkOne),)
+
+                  ],
+                ),
+
+
+              ],
+            ),
+          ),
 
     );
   }
@@ -55,18 +96,10 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
   required int index,
     required String icon
 }){
-
-    final isSelected = index == widget.index;
-
-    return IconTheme(
-        data: IconThemeData(
-          color: isSelected ? pinkOne : Colors.black,
-        ),
-        child: IconButton(
-      color: pinkOne,
+    return  IconButton(
       onPressed: () => widget.onChangedTab(index),
-      icon: Image.asset(icon),
-    ));
+      icon: Image.asset(icon, color: pinkOne),
+    );
   }
   
 }

@@ -37,15 +37,15 @@ void SelectedItem(BuildContext context, item) {
   }
 }
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
 
   @override
-  _DashboardState createState() => _DashboardState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _DashboardState extends State<Dashboard>  {
+class _HomePageState extends State<HomePage>  {
 
   final bool _showNotch = true;
   final FloatingActionButtonLocation
@@ -84,7 +84,7 @@ class _DashboardState extends State<Dashboard>  {
 
   void onChangedTab(int index){
     setState(() {
-     this.index = index;
+      this.index = index;
     });
   }
 }
