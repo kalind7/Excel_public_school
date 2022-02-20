@@ -28,7 +28,7 @@ class WidgetAppbar extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+        style: const TextStyle(color: Colors.white, fontFamily: 'Roboto',fontWeight: FontWeight.bold, fontSize: 24),
       ),
       centerTitle: true,
       backgroundColor: Colors.transparent,

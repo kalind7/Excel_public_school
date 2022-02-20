@@ -50,21 +50,8 @@ class _StudentDetailsState extends State<StudentDetails> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter),
                   ),
-                  // child: Row(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     IconButton(
-                  //       onPressed: () {
-                  //         _scaffoldKey.currentState!.openDrawer();
-                  //       },
-                  //       icon: SvgPicture.asset('files/icons/four_bar_menu.svg'),
-                  //     ),
-                  //     const ThreeDotMenu(),
-                  //   ],
-                  // ),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 50,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -82,110 +69,54 @@ class _StudentDetailsState extends State<StudentDetails> {
                     ],
                   ),
                 ),
-
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15, ),
-                  height: MediaQuery.of(context).size.height/ 2.75,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.vertical(top: const Radius.circular(10),bottom: Radius.circular(10) ),
-                    // border:  const Border(
-                    //   bottom: BorderSide(color: Colors.deepOrange,width: 3,),
-                    // ),
-                    // borderRadius: BorderRadius.circular(10.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: orangeOne,
-                        // spreadRadius: 5,
-                        blurRadius: 4,
-                        blurStyle: BlurStyle.inner,
-                        offset: const Offset(0,3),
-                      ),
-                    ]
-                  ),
-
-
-                  child: ListView.builder(
-                      padding: const EdgeInsets.only( bottom: 20, left: 50),
-                            shrinkWrap: true,
-                            itemCount: newModel.length,
-                            itemBuilder: (context, index){
-                              return Row(
-
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                              Text('${newModel[index].title}  ',style: titleStyle,),
-
-                              Text(':', style: answerStyle,),
-
-                              const SizedBox(width: 50.0,height: 50,),
-
-                                Text('${newModel[index].answer} ',style: answerStyle,),
-
-
-
-                              ],
-                              );
-
-                            })
-
-
-                    // child:
-
-                // Column(
-                  //                     mainAxisAlignment: MainAxisAlignment.start,
-                  //                     crossAxisAlignment: CrossAxisAlignment.center,
-                  //                     children: [
-                  //
-                  //                       Row(
-                  //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //                         children: const [
-                  //                           Text('Class',style: titleStyle,),
-                  //                           Text(': UKG',style: answerStyle,),
-                  //                         ],
-                  //                       ),
-                  //                       SizedBox(height: 20,),
-                  //
-                  //                       Row(
-                  //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //
-                  //                         children: const [
-                  //                           Text('Class',style: titleStyle,),
-                  //                           Text(': UKG',style: answerStyle,),
-                  //                         ],
-                  //                       ),
-                  //                       SizedBox(height: 20,),
-                  //
-                  //                       Row(
-                  //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //
-                  //                         children: const [
-                  //                           Text('Class',style: titleStyle,),
-                  //                           Text(': UKG',style: answerStyle,),
-                  //                         ],
-                  //                       ),
-                  //                       SizedBox(height: 20,),
-                  //
-                  //                       Row(
-                  //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //
-                  //                         children: const [
-                  //                           Text('Class',style: titleStyle,),
-                  //                           Text(': UKG',style: answerStyle,),
-                  //                         ],
-                  //                       ),
-                  //
-                  //                     ],
-                  //                   ),
-
-                ),
-
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                    ),
+                    height: MediaQuery.of(context).size.height / 2.75,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.vertical(
+                            top: const Radius.circular(10),
+                            bottom: Radius.circular(10)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: orangeOne,
+                            blurRadius: 4,
+                            blurStyle: BlurStyle.inner,
+                            offset: const Offset(0, 3),
+                          ),
+                        ]),
+                    child: ListView.builder(
+                        padding: const EdgeInsets.only(bottom: 20, left: 50),
+                        shrinkWrap: true,
+                        itemCount: newModel.length,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(
+                                '${newModel[index].title}  ',
+                                style: titleStyle,
+                              ),
+                              Text(
+                                ':',
+                                style: answerStyle,
+                              ),
+                              const SizedBox(
+                                width: 50.0,
+                                height: 50,
+                              ),
+                              Text(
+                                '${newModel[index].answer} ',
+                                style: answerStyle,
+                              ),
+                            ],
+                          );
+                        })),
               ],
             ),
-
-
-
             Positioned(
               left: 10,
               right: 10,
@@ -215,7 +146,6 @@ class _StudentDetailsState extends State<StudentDetails> {
                 ),
               ),
             ),
-
             Positioned(
               left: 20,
               right: 20,
