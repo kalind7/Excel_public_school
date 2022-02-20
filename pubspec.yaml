@@ -41,6 +41,7 @@ dependencies:
   responsive_navigation_bar: ^3.0.5
   flutter_launcher_icons: ^0.9.2
   get: ^4.6.1
+  curved_nav_bar: ^0.0.2
   table_calendar: ^3.0.0
   nepali_date_picker: ^5.2.0
   shared_preferences: ^2.0.12

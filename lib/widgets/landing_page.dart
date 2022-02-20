@@ -63,40 +63,7 @@ class LandingPage extends StatelessWidget {
                                 IconButton(onPressed: (){},icon: SvgPicture.asset('files/icons/search.svg'),),
 
 
-                                PopupMenuButton<int>(
-                                  icon: SvgPicture.asset('files/icons/menu.svg'),
-                                    color: Colors.white,
-                                    itemBuilder: (context) => [
-                                       const PopupMenuItem<int>(
-                                        value: 0,
-                                          child: Text('Setting', style: drawerTitle,),
-                                      ),
 
-                                      const PopupMenuItem<int>(
-                                        value: 1,
-                                        child: Text('Privacy Policy Page', style: drawerTitle,),
-                                      ),
-
-                                      const PopupMenuDivider(),
-
-                                      PopupMenuItem<int>(
-                                        value: 2,
-                                        child: Row(
-                                          children:const [
-                                            Icon(
-                                              Icons.logout,
-                                              color: Colors.red,
-                                            ),
-                                             SizedBox(
-                                              width: 7,
-                                            ),
-                                            Text("Logout", style: drawerTitle,),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  onSelected: (item) => SelectedItem(context, item),
-                                ),
 
                                 // IconButton(onPressed: (){},icon: SvgPicture.asset('files/icons/menu.svg'),),
                               ],

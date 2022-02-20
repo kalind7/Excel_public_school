@@ -1,3 +1,6 @@
+import 'package:curved_nav_bar/curved_bar/curved_action_bar.dart';
+import 'package:curved_nav_bar/fab_bar/fab_bottom_app_bar_item.dart';
+import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:excel_public_school/ui_pages/admin_bio.dart';
 import 'package:excel_public_school/ui_pages/calendar.dart';
 import 'package:excel_public_school/ui_pages/newDashboard.dart';
@@ -61,25 +64,120 @@ class _HomePageState extends State<HomePage>  {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      floatingActionButton: _showNotch? FloatingActionButton(
+    return CurvedNavBar(
 
-        splashColor: pinkOne,
-        backgroundColor: HexColor('#E1E5EC'),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NewDashboard() ));
-        },
-        tooltip: 'Home',
-        child: ImageIcon(const AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
-      ): null,
-      floatingActionButtonLocation: _fabLocation,
-      bottomNavigationBar: TabBarMaterialWidget(
-        index : index,
-        onChangedTab: onChangedTab,
+      actionButton: CurvedActionBar(
+          onTab: (value) {
+            /// perform action here
+            print(value);
+          },
+          activeIcon: Container(
+            padding: EdgeInsets.all(8),
+            decoration:
+            BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+            child: Icon(
+              Icons.home,
+              size: 50,
+              color: Colors.orange,
+            ),
+          ),
+          inActiveIcon: Container(
+            padding: EdgeInsets.all(8),
+            decoration:
+            BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+            child: Icon(
+              Icons.home_filled,
+              size: 50,
+              color: Colors.orange,
+            ),
+          ),
+          text: "Camera"),
+      activeColor: Colors.blue,
+      navBarBackgroundColor: Colors.grey,
+      inActiveColor: Colors.black45,
+      appBarItems: [
+        FABBottomAppBarItem(
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.blue,
+            ),
+            inActiveIcon: Icon(
+              Icons.home,
+              color: Colors.black26,
+            ),
+            text: 'Home'),
+        FABBottomAppBarItem(
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.blue,
+            ),
+            inActiveIcon: Icon(
+              Icons.home,
+              color: Colors.black26,
+            ),
+            text: 'Home'),
+        FABBottomAppBarItem(
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.blue,
+            ),
+            inActiveIcon: Icon(
+              Icons.home,
+              color: Colors.black26,
+            ),
+            text: 'Home'),
+        FABBottomAppBarItem(
+            activeIcon: Icon(
+              Icons.wallet_giftcard,
+              color: Colors.blue,
+            ),
+            inActiveIcon: Icon(
+              Icons.wallet_giftcard,
+              color: Colors.black26,
+            ),
+            text: 'Wallet'),
+      ],
+      bodyItems: [
+        const Calendar(),
+        const Calendar(),
+        const Calendar(),
+
+        Container(
+          height: MediaQuery.of(context).size.height,
+          color: Colors.pinkAccent,
+        )
+      ],
+      actionBarView: Container(
+
+        height: MediaQuery.of(context).size.height,
+        color: Colors.red,
       ),
-      body: screens[index],
     );
+    // return Scaffold(
+    //   extendBody: true,
+    //   floatingActionButton: _showNotch? FloatingActionButton(
+    //
+    //     splashColor: pinkOne,
+    //     backgroundColor: HexColor('#E1E5EC'),
+    //     onPressed: (){
+    //       Navigator.push(context, MaterialPageRoute(builder: (context) => NewDashboard() ));
+    //     },
+    //     tooltip: 'Home',
+    //     child: ImageIcon(const AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
+    //   ): null,
+    //   floatingActionButtonLocation: _fabLocation,
+    //   // bottomNavigationBar: TabBarMaterialWidget(
+    //   //   index : index,
+    //   //   onChangedTab: onChangedTab,
+    //   // ),
+    //   body: screens[index],
+    //
+    //   bottomNavigationBar: TabBarMaterialWidget(
+    //     index : index,
+    //     onChangedTab: onChangedTab,
+    //   ),
+    // );
+    //
   }
 
   void onChangedTab(int index){

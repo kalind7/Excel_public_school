@@ -1,5 +1,6 @@
 import 'package:excel_public_school/ui_pages/dashboard.dart';
 import 'package:excel_public_school/ui_pages/login_page.dart';
+import 'package:excel_public_school/ui_pages/student_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,10 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/student',
       routes: {
-        '/': (context)=>  HomePage(),
+        '/student': (context)=>  StudentDetails(),
+        '/home': (context)=>  HomePage(),
         '/login': (context) => const LoginPage(),
       },
     );
