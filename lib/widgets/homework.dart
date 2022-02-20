@@ -1,13 +1,8 @@
-import 'package:excel_public_school/models/student_model.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:excel_public_school/widgets/appbar.dart';
 import 'package:excel_public_school/widgets/category_drawer.dart';
-import 'package:excel_public_school/widgets/grid_view.dart';
 import 'package:excel_public_school/widgets/homework_container.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 
 
@@ -22,7 +17,7 @@ class Homework extends StatelessWidget {
         child: Scaffold(
           extendBodyBehindAppBar: true,
           key: _scaffoldKey ,
-          drawer: CategoryDrawer(),
+          drawer: const CategoryDrawer(),
           body: ListView(
             children: [
                   Container(
@@ -44,7 +39,7 @@ class Homework extends StatelessWidget {
                           onPress: () => _scaffoldKey.currentState!.openDrawer(),
                         ),
 
-                       SizedBox(height: 20,),
+                       const SizedBox(height: 20,),
 
                        Positioned(
                          top: 70,
@@ -52,15 +47,15 @@ class Homework extends StatelessWidget {
                            right: 20,
                            child: Row(
                              children: [
-                               SizedBox(width: 10.0,),
+                               const SizedBox(width: 10.0,),
 
                                Checkbox(value: true, onChanged:(value){} ),
-                               Text('From',style: dateTitle,),
+                               const Text('From',style: dateTitle,),
 
-                               SizedBox(width: 100.0,),
+                               const SizedBox(width: 100.0,),
 
                                Checkbox(value: false, onChanged:(value){} ),
-                               Text('To',style: dateTitle,),
+                               const Text('To',style: dateTitle,),
                              ],
                            ),
                        ),
@@ -68,11 +63,11 @@ class Homework extends StatelessWidget {
                     ),
                   ),
 
-              HomeworkContainer(context),
+              homeworkContainer(context),
 
-              HomeworkContainer(context),
+              homeworkContainer(context),
 
-              HomeworkContainer(context),
+              homeworkContainer(context),
 
             ],
           ),

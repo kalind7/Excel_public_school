@@ -15,9 +15,9 @@ List<Choice> choice = <Choice>[
   Choice(title: 'text', icon: Image.asset('files/icons/download.jpg')),
 ];
 
-Widget HomeworkContainer(BuildContext context){
+Widget homeworkContainer(BuildContext context){
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     height: MediaQuery.of(context).size.height * 0.3,
     width: MediaQuery.of(context).size.width,
     decoration: BoxDecoration(
@@ -36,18 +36,18 @@ Widget HomeworkContainer(BuildContext context){
     child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 3),
+          margin: const EdgeInsets.only(top: 3),
           height: MediaQuery.of(context).size.height * 0.05,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: HexColor('#EDF2F9'),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: Center(child: Text('Math',style: subjectTitle,),),
+          child: const Center(child: Text('Math',style: subjectTitle,),),
         ),
         Container(
-          margin: EdgeInsets.only(top: 7.0),
-          padding: EdgeInsets.only(left: 2.0, right: 2.0),
+          margin: const EdgeInsets.only(top: 7.0),
+          padding: const EdgeInsets.only(left: 2.0, right: 2.0),
           height: MediaQuery.of(context).size.height * 0.07,
           width: MediaQuery.of(context).size.width /1.2,
           color: Colors.white,
@@ -55,13 +55,13 @@ Widget HomeworkContainer(BuildContext context){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                children: [
+                children: const [
                   Text('Homework Date',style: homeworkTitle,),
                   Text('2022-01-01',style: dateTitle,),
                 ],
               ),
               Column(
-                children: [
+                children: const [
                   Text('Submission Date',style: homeworkTitle,),
                   Text('2022-01-08',style: dateTitle,),
                 ],
@@ -70,7 +70,7 @@ Widget HomeworkContainer(BuildContext context){
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(20, 4, 20, 10),
+          padding: const EdgeInsets.fromLTRB(20, 4, 20, 10),
           child: Divider(
             height: 2,
             thickness: 2,
@@ -81,7 +81,7 @@ Widget HomeworkContainer(BuildContext context){
         Flexible(
           fit: FlexFit.tight,
           child: GridView.count(
-            padding: EdgeInsets.fromLTRB(10,5,10,50),
+            padding: const EdgeInsets.fromLTRB(10,5,10,50),
             crossAxisCount: 4,
             crossAxisSpacing:10.0,
             children: List.generate(choice.length, (index) {
@@ -120,7 +120,7 @@ class SelectCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               IconButton(onPressed: (){},icon: choices.icon,),
-              Text(choices.title, style: TextStyle(fontSize: 14,color: Colors.black)),
+              Text(choices.title, style: const TextStyle(fontSize: 14,color: Colors.black)),
             ]
         ),
         ),
