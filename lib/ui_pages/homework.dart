@@ -34,6 +34,7 @@ class Homework extends StatelessWidget {
                     child: Stack(
                       children: [
                         WidgetAppbar(
+                          color: Colors.transparent,
                           title: 'Homework',
                           icon: 'files/icons/four_bar_menu.svg',
                           onPress: () => _scaffoldKey.currentState!.openDrawer(),

@@ -30,7 +30,7 @@ class _SettingsState extends State<Settings> {
               leading: const CircleAvatar(
                 radius: 25.0,
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage('images/profile.png'),
+                backgroundImage: AssetImage('files/images/allstar.png'),
               ),
               title: const Text('Kalind Koirala',style: TextStyle(fontSize: 18.0, color: Colors.black87, fontFamily: 'OpenSans', fontWeight: FontWeight.bold),),
               subtitle: const Text('+977-9860052311',style: TextStyle(fontSize: 14.0, color: Colors.black38, fontFamily: 'Roboto', fontWeight: FontWeight.bold),),

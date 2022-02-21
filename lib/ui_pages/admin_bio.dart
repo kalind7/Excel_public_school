@@ -1,4 +1,4 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+import 'package:excel_public_school/ui_pages/homepage.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:excel_public_school/widgets/category_drawer.dart';
 import 'package:excel_public_school/widgets/landing_page.dart';

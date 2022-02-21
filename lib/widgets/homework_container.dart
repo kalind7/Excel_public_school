@@ -9,10 +9,10 @@ class Choice{
   Choice({required this.title, required this.icon});
 }
 List<Choice> choice = <Choice>[
-  Choice(title: 'text', icon: Image.asset('files/icons/download.jpg')),
-  Choice(title: 'text', icon: Image.asset('files/icons/download.jpg')),
-  Choice(title: 'text', icon: Image.asset('files/icons/download.jpg')),
-  Choice(title: 'text', icon: Image.asset('files/icons/download.jpg')),
+  Choice(title: 'Files', icon: Image.asset('files/homework_icons/files.png')),
+  Choice(title: 'Upload', icon: Image.asset('files/homework_icons/upload.png')),
+  Choice(title: 'Download', icon: Image.asset('files/homework_icons/download.png')),
+  Choice(title: 'Submit', icon: Image.asset('files/homework_icons/submit.png')),
 ];
 
 Widget homeworkContainer(BuildContext context){

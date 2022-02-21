@@ -1,7 +1,10 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+ // @dart=2.9
+
+import 'package:excel_public_school/ui_pages/calendar.dart';
+import 'package:excel_public_school/ui_pages/homepage.dart';
 import 'package:excel_public_school/ui_pages/login_page.dart';
 import 'package:excel_public_school/ui_pages/student_details.dart';
-import 'package:excel_public_school/widgets/homework.dart';
+import 'package:excel_public_school/ui_pages/homework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -31,8 +34,9 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/homework',
+      initialRoute: '/home',
       routes: {
+        '/calendar': (context)=>  const Calendar(),
         '/homework': (context)=>  Homework(),
         '/student': (context)=>  const StudentDetails(),
         '/home': (context)=>  const HomePage(),

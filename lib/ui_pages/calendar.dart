@@ -1,9 +1,10 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:excel_public_school/utils/color.dart';
+import 'package:excel_public_school/widgets/calendar/english_calendar.dart';
+import 'package:excel_public_school/widgets/calendar/nepali_calendar.dart';
+import 'package:excel_public_school/widgets/category_drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nepali_date_picker/nepali_date_picker.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:flutter/foundation.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -13,185 +14,72 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  late Map<DateTime, List<Event>> selectedEvents;
-  CalendarFormat format = CalendarFormat.month;
-  DateTime selectedDay = DateTime.now();
-  DateTime focusedDay = DateTime.now();
-
-  final TextEditingController _eventController = TextEditingController();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    selectedEvents = {};
-    super.initState();
-  }
 
-  List<Event> _getEventsFromDay(DateTime date) {
-    return selectedEvents[date] ?? [];
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _eventController.dispose();
-    super.dispose();
-  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: orangeOne,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
-          },
-          icon: const Icon(Icons.arrow_back, color: Colors.black87,),
-        ),
-        // title: Text('Calendar'),
+      key: _scaffoldKey,
+        drawer: const CategoryDrawer(),
+        body: SafeArea(
+            child: DefaultTabController(
+              length: 2,
+              child: Column(children: <Widget>[
+                ButtonsTabBar(
+                    backgroundColor: orangeOne,
+                    unselectedBackgroundColor: Colors.grey[300],
+                    unselectedLabelStyle: const TextStyle(color: Colors.black),
+                    labelStyle: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                    tabs: const [
+                      Tab(child: Padding(padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text('AD',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: 'Roboto',letterSpacing: 1.0,color: Colors.white),),)),
+                      Tab(child: Padding(padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text('BS',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: 'Roboto',letterSpacing: 1.0,color: Colors.white),),)),
 
-        title: Padding(
-          padding: const EdgeInsets.only(left: 50.0),
-          child: Row(
-            children: [
-              ElevatedButton(
-                child: const Text(
-                  'AD',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87),
-                ),
-                onPressed: () {
-                  if (kDebugMode) {
-                    print('Pressed');
-                  }
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return pinkOne;
-                      } else {
-                        return Colors.white;
-                      }
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(width: 5.0),
-              ElevatedButton(
-                child: const Text(
-                  'BS',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87),
-                ),
-                onPressed: () async {
-                  NepaliDateTime? _selectedDateTime =
-                  await showMaterialDatePicker(
-                    context: context,
-                    initialDate: NepaliDateTime.now(),
-                    firstDate: NepaliDateTime(2000),
-                    lastDate: NepaliDateTime(2090),
-                    initialDatePickerMode: DatePickerMode.day,
-
-                  );
-                  if (kDebugMode) {
-                    print(_selectedDateTime);
-                  }
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return pinkOne;
-                      } else {
-                        return Colors.white;
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: ListView(
-        shrinkWrap: true,
-        children: [
-          TableCalendar(
-            focusedDay: selectedDay,
-            firstDay: DateTime(1970),
-            lastDay: DateTime(2040),
-            calendarFormat: format,
-            onFormatChanged: (CalendarFormat _format) {
-              setState(() {
-                format = _format;
-              });
-            },
-            startingDayOfWeek: StartingDayOfWeek.sunday,
-            daysOfWeekVisible: true,
-            onDaySelected: (DateTime selectDay, DateTime focusDay) {
-              setState(() {
-                selectedDay = selectDay;
-                focusedDay = focusDay;
-              });
-
-              if (kDebugMode) {
-                print(focusedDay);
-              }
-            },
-            selectedDayPredicate: (DateTime date) {
-              return isSameDay(selectedDay, date);
-            },
-            eventLoader: _getEventsFromDay,
-            calendarStyle: CalendarStyle(
-              isTodayHighlighted: true,
-              selectedDecoration: BoxDecoration(
-                color: pinkOne,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              selectedTextStyle: const TextStyle(color: Colors.black87),
-              todayDecoration: BoxDecoration(
-                color: pinkOne,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              defaultDecoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-            headerStyle: HeaderStyle(
-              formatButtonVisible: true,
-              titleCentered: true,
-              formatButtonShowsNext: false,
-              formatButtonDecoration: BoxDecoration(
-                color: pinkOne,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              formatButtonTextStyle: const TextStyle(color: Colors.black87),
-            ),
-          ),
-
-        ],
-      ),
-    );
+                    ]),
+                Expanded(
+                    child: TabBarView(children: <Widget>[
+                      const EnglishCalendar(),
+                      NepaliCalendar(),
+                    ]))
+              ]),
+            )));
   }
 }
 
-class Event {
-  final String title;
-
-  Event({required this.title});
-
-  @override
-  String toString() => title;
-}
+// ElevatedButton(
+//                 child: const Text(
+//                   'BS',
+//                   style: TextStyle(
+//                       fontSize: 18.0,
+//                       fontWeight: FontWeight.bold,
+//                       color: Colors.black87),
+//                 ),
+//                 onPressed: () async {
+//                   NepaliDateTime? _selectedDateTime =
+//                   await showMaterialDatePicker(
+//                     context: context,
+//                     initialDate: NepaliDateTime.now(),
+//                     firstDate: NepaliDateTime(2000),
+//                     lastDate: NepaliDateTime(2090),
+//                     initialDatePickerMode: DatePickerMode.day,
+//
+//                   );
+//                   if (kDebugMode) {
+//                     print(_selectedDateTime);
+//                   }
+//                 },
+//                 style: ButtonStyle(
+//                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
+//                         (Set<MaterialState> states) {
+//                       if (states.contains(MaterialState.pressed)) {
+//                         return pinkOne;
+//                       } else {
+//                         return Colors.white;
+//                       }
+//                     },
+//                   ),
+//                 ),
+//               ),

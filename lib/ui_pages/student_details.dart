@@ -28,6 +28,7 @@ class _StudentDetailsState extends State<StudentDetails> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(55.0),
           child: WidgetAppbar(
+            color: Colors.transparent,
             title: '',
             onPress: () => _scaffoldKey.currentState!.openDrawer(),
             icon: 'files/icons/four_bar_menu.svg',

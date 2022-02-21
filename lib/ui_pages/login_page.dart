@@ -1,4 +1,4 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+import 'package:excel_public_school/ui_pages/homepage.dart';
 import 'package:excel_public_school/ui_pages/forgot_password.dart';
 import 'package:excel_public_school/widgets/elevated_button.dart';
 import 'package:excel_public_school/widgets/footer.dart';

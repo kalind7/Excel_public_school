@@ -1,4 +1,4 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+import 'package:excel_public_school/ui_pages/homepage.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

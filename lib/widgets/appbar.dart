@@ -1,4 +1,4 @@
-import 'package:excel_public_school/ui_pages/dashboard.dart';
+import 'package:excel_public_school/ui_pages/homepage.dart';
 import 'package:excel_public_school/utils/color.dart';
 import 'package:excel_public_school/widgets/logout_popup.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +10,13 @@ class WidgetAppbar extends StatelessWidget {
       {Key? key,
         required this.title,
         required this.onPress,
-        required this.icon})
+        required this.icon, required this.color})
       : super(key: key);
 
   final String title;
   final Function onPress;
   final String icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class WidgetAppbar extends StatelessWidget {
         style: const TextStyle(color: Colors.white, fontFamily: 'Roboto',fontWeight: FontWeight.bold, fontSize: 24),
       ),
       centerTitle: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: color,
       shadowColor: Colors.transparent,
       actions: [
         Padding(

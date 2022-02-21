@@ -6,13 +6,12 @@ import 'package:excel_public_school/ui_pages/calendar.dart';
 import 'package:excel_public_school/ui_pages/newDashboard.dart';
 import 'package:excel_public_school/ui_pages/notice.dart';
 import 'package:excel_public_school/ui_pages/settings.dart';
-import 'package:excel_public_school/utils/color.dart';
-import 'package:excel_public_school/widgets/bottom_nav_bar.dart';
-
+import 'package:excel_public_school/ui_pages/student_details.dart';
+import 'package:excel_public_school/ui_pages/homework.dart';
 import 'package:excel_public_school/widgets/logout_popup.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+
 
 
 
@@ -48,17 +47,14 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>  {
+class _HomePageState extends State<HomePage> {
 
-  final bool _showNotch = true;
-  final FloatingActionButtonLocation
-  _fabLocation = FloatingActionButtonLocation.centerDocked;
-   int index  = 0;
-  final screens = <Widget> [
-      AdminBio(),
-     const Calendar(),
-     const Notice(),
-     const Settings(),
+  int index = 0;
+  final screens = <Widget>[
+    AdminBio(),
+    const Calendar(),
+    const Notice(),
+    const Settings(),
   ];
 
 
@@ -68,97 +64,84 @@ class _HomePageState extends State<HomePage>  {
 
       actionButton: CurvedActionBar(
           onTab: (value) {
-            /// perform action here
             print(value);
           },
           activeIcon: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration:
-            BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-            child: Icon(
+            const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+            child: const Icon(
               Icons.home,
               size: 50,
               color: Colors.orange,
             ),
           ),
           inActiveIcon: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration:
-            BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-            child: Icon(
+            const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+            child: const Icon(
               Icons.home_filled,
               size: 50,
               color: Colors.orange,
             ),
           ),
-          text: "Camera"),
+          text: "Home"),
       activeColor: Colors.blue,
       navBarBackgroundColor: Colors.grey,
       inActiveColor: Colors.black45,
       appBarItems: [
         FABBottomAppBarItem(
-            activeIcon: Icon(
-              Icons.home,
+            activeIcon: const Icon(
+              Icons.person,
               color: Colors.blue,
             ),
-            inActiveIcon: Icon(
-              Icons.home,
+            inActiveIcon: const Icon(
+              Icons.person_outline_outlined,
               color: Colors.black26,
             ),
-            text: 'Home'),
+            text: 'Profile'),
         FABBottomAppBarItem(
-            activeIcon: Icon(
-              Icons.home,
+            activeIcon: const Icon(
+              Icons.calendar_today,
               color: Colors.blue,
             ),
-            inActiveIcon: Icon(
-              Icons.home,
+            inActiveIcon: const Icon(
+              Icons.calendar_today_outlined,
               color: Colors.black26,
             ),
-            text: 'Home'),
+            text: 'Calendar'),
         FABBottomAppBarItem(
-            activeIcon: Icon(
-              Icons.home,
+            activeIcon: const Icon(
+              Icons.home_work,
               color: Colors.blue,
             ),
-            inActiveIcon: Icon(
-              Icons.home,
+            inActiveIcon: const Icon(
+              Icons.home_work_outlined,
               color: Colors.black26,
             ),
-            text: 'Home'),
+            text: 'Homework'),
         FABBottomAppBarItem(
-            activeIcon: Icon(
-              Icons.wallet_giftcard,
+            activeIcon: const Icon(
+              Icons.settings,
               color: Colors.blue,
             ),
-            inActiveIcon: Icon(
-              Icons.wallet_giftcard,
+            inActiveIcon: const Icon(
+              Icons.settings_accessibility_rounded,
               color: Colors.black26,
             ),
-            text: 'Wallet'),
+            text: 'Settings'),
+
+
       ],
       bodyItems: [
+        const StudentDetails(),
         const Calendar(),
-        const Calendar(),
-        const Calendar(),
-
-        Container(
-          height: MediaQuery.of(context).size.height,
-          color: Colors.pinkAccent,
-        )
+        Homework(),
+        const Settings(),
       ],
-      actionBarView: Container(
-
-        height: MediaQuery.of(context).size.height,
-        color: Colors.red,
-      ),
+      actionBarView: NewDashboard(),
     );
-  }
-
-  void onChangedTab(int index){
-    setState(() {
-      this.index = index;
-    });
   }
 }
 
