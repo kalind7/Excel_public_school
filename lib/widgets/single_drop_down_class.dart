@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/utils/color.dart';
 
 class SingleDropDownClass extends StatefulWidget {
   const SingleDropDownClass({Key? key}) : super(key: key);
@@ -9,14 +8,12 @@ class SingleDropDownClass extends StatefulWidget {
 }
 
 class _SingleDropDownClassState extends State<SingleDropDownClass> {
-
-
   int _value = 1;
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      margin: EdgeInsets.only( top: 10.0, bottom: 5.0),
+    return Container(
+      margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
@@ -29,7 +26,10 @@ class _SingleDropDownClassState extends State<SingleDropDownClass> {
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        style: TextStyle(fontSize: 16.0, color: Colors.black87, fontFamily: 'MontserratAlternates'),
+        style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.black87,
+            fontFamily: 'MontserratAlternates'),
         value: _value,
         items: [
           DropdownMenuItem(
@@ -53,13 +53,12 @@ class _SingleDropDownClassState extends State<SingleDropDownClass> {
             value: 5,
           ),
         ],
-        onChanged: (int? value){
+        onChanged: (int? value) {
           setState(() {
             _value = value!;
           });
         },
       ),
     );
-
   }
 }

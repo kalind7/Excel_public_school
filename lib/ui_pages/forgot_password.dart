@@ -127,10 +127,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         text: 'Verify Email',
                         onPress: () {
                           if (formkey.currentState!.validate()) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Dashboard()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => Dashboard()));
                           } else {
                             return _showToast();
                           }

@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
-import 'package:flutter/cupertino.dart';
+// Color orangeOne = Color(0xFC6075);
 
-
-Color redOne = Color(0xFFE57373);
-Color redTwo = Color(0xFFEF5350);
-Color orangeOne = Color(0xFFFF8A65);
-Color orangeTwo = Color(0xFFFF7043);
+Color pinkColor = Color(0xffFC6075);
+Color greyish = Color(0xffE1E5EC);
+const  pinkg = Colors.pink;
+Color white = Colors.white;
+Color black = Colors.black87;
+Color orangeOne = HexColor('#FE8457');
+Color pink = HexColor('#FC6075');

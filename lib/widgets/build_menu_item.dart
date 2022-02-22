@@ -5,7 +5,6 @@ Widget buildMenuItem({
   required IconData icon,
   required Function onpress,
 }) {
-  final color = Colors.white;
   final hoverColor = Colors.white70;
   return ListTile(
     leading: Icon(

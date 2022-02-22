@@ -1,143 +1,123 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/events.dart';
-import 'package:new_project_work/ui_pages/fees.dart';
-import 'package:new_project_work/ui_pages/function_dashboard.dart';
-import 'package:new_project_work/ui_pages/list_of_students.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
-import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/admin_bio.dart';
-import 'package:new_project_work/widgets/appbar.dart';
-import 'package:new_project_work/widgets/build_menu_item.dart';
-import 'package:new_project_work/widgets/category_drawer.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
-import 'package:new_project_work/widgets/text_field.dart';
 
-class Dashboard extends StatefulWidget {
-  @override
-  _DashboardState createState() => _DashboardState();
-}
+// import 'package:flutter/material.dart';
 
-class _DashboardState extends State<Dashboard> {
+// import 'package:new_project_work/utils/color.dart';
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+// import 'package:new_project_work/widgets/appbar.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    List<Dashmodels> dashModels = [
-      Dashmodels(
-        image: 'images/allStudents.jpg',
-        title: 'All Students',
-        onPress: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => StudentLists()));
-        },
-      ),
-      Dashmodels(
-        image: 'images/functionDashboard.png',
-        title: 'Function Dashboard',
-        onPress: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GradStudent()));
-        },
-      ),
-      Dashmodels(
-        image: 'images/eventsss.jpg',
-        title: 'Upcoming Events',
-        onPress: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Events()));
-        },
-      ),
-      Dashmodels(
-        image: 'images/examD.png',
-        title: 'Exam Results',
-        onPress: () {},
-      ),
-      Dashmodels(
-        image: 'images/teacherRecord.png',
-        title: 'Teachers Record',
-        onPress: () {},
-      ),
-      Dashmodels(
-        image: 'images/logout.jpg',
-        title: 'Logout',
-        onPress: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => BuildPopupDialog(),
-          );
-        },
-      ),
-    ];
+// import 'package:new_project_work/widgets/category_drawer.dart';
+// import 'package:new_project_work/widgets/grid_view.dart';
 
 
-    return SafeArea(
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
-          child: WidgetAppbar(
-              title: 'Dashboard',
-              onPress: () => _scaffoldKey.currentState!.openDrawer(),
-              icon: Icons.menu,
-          ),
-        ),
-        drawer: CategoryDrawer(),
-        body:  Stack(
-          children: <Widget>[
-            SafeArea(
-              child: Column(
-                children: <Widget>[
+// class Dashboard extends StatefulWidget {
+//   @override
+//   _DashboardState createState() => _DashboardState();
+// }
 
-                  SizedBox(height: 10.0),
-                  NewTextField(
-                    text: 'Search for requirements.',
-                  ),
-                  SizedBox(height: 10.0),
-                  Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      children: List.generate(dashModels.length, (index) {
-                        return Card(
-                          // borderOnForeground: true,
-                          color: Colors.grey.shade50,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  dashModels[index].onPress();
-                                },
-                                child: Image(
-                                  height: 120,
-                                  image: AssetImage(dashModels[index].image),
-                                ),
-                              ),
-                              Text(dashModels[index].title, style: TextStyle(fontFamily: 'OpenSans', color: redTwo, fontWeight: FontWeight.w600),),
-                            ],
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class _DashboardState extends State<Dashboard> {
+//   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-class Dashmodels {
-  final String image;
-  final String title;
-  final Function onPress;
-
-  Dashmodels({required this.image, required this.title, required this.onPress});
-}
-
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         extendBodyBehindAppBar: true,
+//         key: _scaffoldKey,
+//         appBar: PreferredSize(
+//           preferredSize: Size.fromHeight(55.0),
+//           child: WidgetAppbar(
+//             title: '',
+//             onPress: () => _scaffoldKey.currentState!.openDrawer(),
+//             icon: Icons.menu,
+//           ),
+//         ),
+//         drawer: CategoryDrawer(),
+//         body: Stack(
+//           // clipBehavior: Clip.hardEdge,
+//           // overflow: Overflow.clip,
+//           children: <Widget>[
+//             Column(
+//               children: <Widget>[
+//                 Container(
+//                   height: 155.0,
+//                   // child: Center(
+//                   //   child: CircleAvatar(
+//                   //     backgroundColor: Colors.green,
+//                   //     radius: 70.0,
+//                   //   ),
+//                   // ),
+//                   decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.only(
+//                         bottomLeft: Radius.circular(18),
+//                         bottomRight: Radius.circular(18)),
+//                     gradient: LinearGradient(
+//                         colors: [pink, orange],
+//                         end: Alignment.bottomCenter,
+//                         begin: Alignment.topCenter),
+//                   ),
+//                 ),
+//                 Gridview(),
+//               ],
+//             ),
+//             Positioned(
+//               left: 10,
+//               right: 10,
+//               top: 120,
+//               // alignment: Alignment.center,
+//               child: Card(
+//                 shadowColor: pink,
+//                 clipBehavior: Clip.antiAlias,
+//                 elevation: 15.0,
+//                 shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(10),
+//                     side: BorderSide(width: 1, color: pink)),
+//                 child: Container(
+//                   width: MediaQuery.of(context).size.width - 80,
+//                   height: 60,
+//                   child: Center(
+//                       child: Padding(
+//                     padding: const EdgeInsets.only(top: 20.0, bottom: 5.0),
+//                     child: Text(
+//                       "Dhiraj Shrestha",
+//                       style: TextStyle(
+//                           fontSize: 20.0,
+//                           color: pink,
+//                           fontWeight: FontWeight.bold),
+//                     ),
+//                   )),
+//                 ),
+//               ),
+//             ),
+//             Positioned(
+//               left: 20,
+//               right: 20,
+//               top: 35,
+//               // alignment: Alignment.center,
+//               child: Container(
+//                 padding: const EdgeInsets.all(4.0),
+//                 decoration: BoxDecoration(
+//                   gradient: LinearGradient(
+//                       colors: [pink, orange],
+//                       end: Alignment.bottomCenter,
+//                       begin: Alignment.topCenter),
+//                   shape: BoxShape.circle,
+//                 ),
+//                 child: CircleAvatar(
+//                   backgroundColor: Colors.white,
+//                   radius: 55.0,
+//                   child: Image(
+//                     image: AssetImage('images/excellogo.png'),
+//                     fit: BoxFit.cover,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             SizedBox(
+//               height: 100.0,
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

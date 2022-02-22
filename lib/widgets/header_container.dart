@@ -12,7 +12,7 @@ class HeaderContainer extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.33,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [orangeOne, redOne],
+              colors: [orangeOne, pink],
               end: Alignment.bottomCenter,
               begin: Alignment.topCenter),
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100))),

@@ -44,7 +44,6 @@ class _FilterListState extends State<FilterList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _foundUsers = _allUsers;
     super.initState();
   }

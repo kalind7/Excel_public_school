@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/models/fees_list.dart';
-import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 

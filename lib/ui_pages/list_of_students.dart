@@ -48,13 +48,14 @@ class _StudentListsState extends State<StudentLists> {
               child: Button(
                 text: 'Search',
                 onPress: () {},
-                shadowColor: orangeTwo,
+                shadowColor: orangeOne,
                 color: orangeOne,
               ),
             ),
             Column(
               children: [
-                Obx(() => studentController.loading.value? CircularProgressIndicator()
+                Obx(() => studentController.loading.value
+                    ? CircularProgressIndicator()
                     : ListView.builder(
                         padding: EdgeInsets.only(top: 10.0),
                         physics: ClampingScrollPhysics(),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class Power extends StatelessWidget {
   const Power({Key? key}) : super(key: key);

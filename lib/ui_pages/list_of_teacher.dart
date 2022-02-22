@@ -5,7 +5,6 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/admin_bio.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/elevated_button.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
 import 'package:new_project_work/widgets/single_drop_down_class.dart';
 import 'package:new_project_work/widgets/single_drop_down_name.dart';
 import 'package:new_project_work/widgets/text_field.dart';
@@ -42,7 +41,15 @@ class _TeacherListsState extends State<TeacherLists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(child: WidgetAppbar(title: 'Teacher List', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
+      appBar: PreferredSize(
+        child: WidgetAppbar(
+            title: 'Teacher List',
+            onPress: () {
+              Navigator.pop(context);
+            },
+            icon: Icons.arrow_back),
+        preferredSize: Size.fromHeight(55.0),
+      ),
       body: ListView(
         children: [
           Row(
@@ -52,19 +59,19 @@ class _TeacherListsState extends State<TeacherLists> {
           NewTextField(
             text: 'Search ',
           ),
-
           SizedBox(height: 10.0),
-
           Center(
-            child: Button(text: 'Search', onPress: (){}, color: orangeOne, shadowColor: orangeTwo),
+            child: Button(
+                text: 'Search',
+                onPress: () {},
+                color: orangeOne,
+                shadowColor: orangeOne),
           ),
-
-
           Column(
             children: [
               GetX<StudentController>(builder: (controller) {
                 return ListView.builder(
-                  padding: EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.only(top: 10.0),
                     physics: ClampingScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
@@ -188,8 +195,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: Colors.black45,
-                                                    fontFamily:
-                                                        'OpenSans',
+                                                    fontFamily: 'OpenSans',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                             Text(
@@ -197,8 +203,7 @@ class _TeacherListsState extends State<TeacherLists> {
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: Colors.black87,
-                                                    fontFamily:
-                                                        'Roboto',
+                                                    fontFamily: 'Roboto',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ],
@@ -236,16 +241,14 @@ class _TeacherListsState extends State<TeacherLists> {
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: Colors.black45,
-                                                    fontFamily:
-                                                        'OpenSans',
+                                                    fontFamily: 'OpenSans',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                             Text('9860052311',
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: Colors.black87,
-                                                    fontFamily:
-                                                        'Roboto',
+                                                    fontFamily: 'Roboto',
                                                     fontWeight:
                                                         FontWeight.w600)),
                                           ],

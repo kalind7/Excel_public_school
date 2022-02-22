@@ -1,173 +1,232 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/models/notice_list.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:new_project_work/controller/notice/notice_controller.dart';
+
+import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Notice extends StatefulWidget {
-  const Notice({
-    Key? key,
-  }) : super(key: key);
-
   @override
-  _NoticeState createState() => _NoticeState();
+  State<Notice> createState() => _NoticeState();
 }
 
-class _NoticeState extends State<Notice> {
+class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  final NoticeController noticeController = Get.put(NoticeController());
+  bool load = false;
   @override
   Widget build(BuildContext context) {
-    List<NoticeList> list = [
-      NoticeList(
-        image: 'images/marathon.jpg',
-        title: 'Marathon',
-        description: 'Running is good for health. \n'
-            'So, participate in our marathon to win certificates and exiciting prizes.\n'
-            'Total distance to jog is only 5KM and there will be services provided throughout the race.\nPopular guest are arriving, below you can see a glimpse of who they are.',
-      ),
-      NoticeList(
-        image: 'images/concert.jpg',
-        title: 'Concert',
-        description: 'Want to win some money playing GAMES ?? \n'
-            'Here we have Outdoor games such as : Crcket, Football, BasketBall, Badminton and much more plus students are able to play indoor games such as: Table Tennis, Snooker, Pool.\n'
-            'BONUS: PLAYSTATION GAMES TOO ARE AVAILABLE',
-      ),
-      NoticeList(
-        image: 'images/games.jpg',
-        title: 'Games',
-        description:
-            'We highly encourage students to participate in singing competetion we are hosting this year.\n You could win amazing instruments if you are th top 3 singers \n'
-            'BONUS: check the guest list for singers to perform , they could be an inspiration for you. ',
-      ),
-    ];
+    super.build(context);
+    return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          child: WidgetAppbar(
+              title: 'Notice',
+              onPress: () {
+                Navigator.pop(context);
+              },
+              icon: Icons.arrow_back),
+          preferredSize: Size.fromHeight(55.0),
+        ),
+        body: ProfileBodyContainer(
+            widget: Obx(
+              () {
+                return Container(
+                  height: MediaQuery.of(context).size.height / 1.45,
+                  child: noticeController.isloading.value
+                      ? Shimmer.fromColors(
+                          // baseColor: Colors.grey.shade400,
+                          period: const Duration(milliseconds: 500),
+                          // highlightColor: Colors.grey.shade300,
+                          baseColor: Colors.grey.shade300,
+                          highlightColor: Colors.grey.shade100,
+                          child: ListView.builder(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 5.0),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                    ),
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            const BorderRadius.vertical(
+                                                top: const Radius.circular(10),
+                                                bottom: Radius.circular(10)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: orangeOne,
+                                            // spreadRadius: 5,
+                                            blurRadius: 4,
+                                            blurStyle: BlurStyle.inner,
+                                            offset: const Offset(0, 3),
+                                          ),
+                                        ]),
+                                    child: ExpansionTile(
+                                      initiallyExpanded:
+                                          index == 0 ? true : false,
+                                      title: Container(
+                                        height: 20,
+                                        width: double.infinity,
+                                      ),
+                                      subtitle: Container(
+                                        height: 20,
+                                        width: double.infinity,
+                                      ),
+                                      children: [
+                                        Container(
+                                          height: 200,
+                                          width: double.infinity,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                        )
 
-    List<NoticeList> list2 = [
+                      // ? Center(child: CircularProgressIndicator())
+                      : SmartRefresher(
+                          controller: noticeController.refreshController,
+                          enablePullUp: true,
+                          enablePullDown: false,
+                          onLoading: () async {
+                            if (noticeController.lastpage.value == false) {
+                              final result = await noticeController.getNotice();
+                              if (result) {
+                                noticeController.refreshController
+                                    .loadComplete();
+                              } else {
+                                noticeController.refreshController.loadFailed();
+                              }
+                            } else {
+                              noticeController.refreshController.loadNoData();
+                            }
+                          },
+                          child: ListView(
+                            children: [
+                              ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 5.0, horizontal: 5.0),
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  physics: ClampingScrollPhysics(),
+                                  itemCount: noticeController.noticeList.length,
+                                  itemBuilder: (context, index) {
+                                    var myitem =
+                                        noticeController.noticeList[index];
+                                    log(noticeController.noticeList.length
+                                        .toString());
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                        ),
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: const BorderRadius
+                                                    .vertical(
+                                                top: const Radius.circular(10),
+                                                bottom: Radius.circular(10)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: orangeOne,
+                                                // spreadRadius: 5,
+                                                blurRadius: 4,
+                                                blurStyle: BlurStyle.inner,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ]),
+                                        child: ExpansionTile(
+                                          initiallyExpanded:
+                                              index == 0 ? true : false,
+                                          title: Text(myitem.noticeTitle),
+                                          subtitle: Text(
+                                              DateFormat('yyyy-MM-dd – hh:mm')
+                                                  .format(myitem.noticeDate)
+                                                  .toString()),
+                                          children: [
+                                            Html(data: myitem.noticeMessage)
+                                          ],
+                                        ),
 
-      NoticeList(
-          image: 'images/memo.png',
-          title: 'Fees',
-          description: 'images/memo.png'
-      ),
-
-      NoticeList(
-          image: 'images/syllabus.png',
-          title: 'Syllabus',
-          description: 'images/syllabus.png'
-      ),
-    ];
-
-          return  SafeArea(
-            child: Scaffold(
-            appBar: PreferredSize(child: WidgetAppbar(title: 'Notice', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
-          body: ListView(
-            children: [
-              ListView.builder(
-                  padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
-                                image: DecorationImage(
-                                  image: AssetImage(list[index].image),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-
-                          ExpansionTile(
-                            title: Text(
-                              list[index].title,
-                              style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'OpenSans',
-                            ),
-                            ),
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: 20.0, right: 15.0, bottom: 10.0),
-                                child: Text(
-                                  list[index].description,
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.italic,
-                                      fontFamily: 'Roboto'),
-                                ),
-                              ),
+                                        //  ExpandablePanel(
+                                        //   theme: const ExpandableThemeData(
+                                        //       iconColor: Color(0xffFC6075),
+                                        //       expandIcon: Icons.add,
+                                        //       collapseIcon: Icons.minimize),
+                                        //   header: Padding(
+                                        //     padding: EdgeInsets.all(5.0),
+                                        //     child: Text(
+                                        //       myitem.noticeTitle,
+                                        //       style: TextStyle(
+                                        //           height: 1.5,
+                                        //           color: Color(0xffFC6075),
+                                        //           fontWeight: FontWeight.bold),
+                                        //     ),
+                                        //   ),
+                                        //   collapsed: const Text(
+                                        //     '',
+                                        //     softWrap: true,
+                                        //     maxLines: 1,
+                                        //     overflow: TextOverflow.ellipsis,
+                                        //   ),
+                                        //   expanded: Column(
+                                        //     children: [
+                                        //       Html(data: myitem.noticeMessage),
+                                        //     ],
+                                        //     // children: List.generate(
+                                        //     //   _listOfUserCourses.length,
+                                        //     //   (int index) {
+                                        //     //     var accountData = _listOfUserCourses[index];
+                                        //     //     return InkWell(
+                                        //     //       onTap: () {
+                                        //     //         Navigator.push(
+                                        //     //             context,
+                                        //     //             MaterialPageRoute(
+                                        //     //                 builder: (context) =>
+                                        //     //                     SingleProductPage(
+                                        //     //                         libraryItems:
+                                        //     //                             accountData)));
+                                        //     //       },
+                                        //     //       child: Card(
+                                        //     //         elevation: 0.5,
+                                        //     //         child: ListTile(
+                                        //     //           leading: Image.network(accountData.image),
+                                        //     //           title: Text(accountData.title.toString()),
+                                        //     //         ),
+                                        //     //       ),
+                                        //     //     );
+                                        //     //   },
+                                        //     // ),
+                                        //   ),
+                                        // ),
+                                      ),
+                                    );
+                                  }),
                             ],
                           ),
-                        ],
-                      ),
-                    );
-                  }),
-
-              ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: list2.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                           Container(
-                             margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
-                                image: DecorationImage(
-                                  image: AssetImage(list2[index].image),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-
-                          ExpansionTile(
-                            title: Text(
-                              list2[index].title,
-                              style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'OpenSans',
-                                 ),
-                            ),
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: 20.0, right: 15.0, bottom: 10.0),
-                                child: Image(
-                                  image: AssetImage(list2[index].image),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            ],
-          ),
+                        ),
+                );
+              },
             ),
-    );
+            text: 'Today Notice'));
   }
 }

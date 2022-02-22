@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class StudentDetails {
   final String name;
   final String Class;
