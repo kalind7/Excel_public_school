@@ -15,14 +15,27 @@ class NepaliCalendar extends StatelessWidget {
     NepaliDateTime first = NepaliDateTime(1998, 1);
     NepaliDateTime last = NepaliDateTime(2080, 12);
     return Scaffold(
-      body: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: const ClampingScrollPhysics(),
-        children: [
-          const SizedBox(height: 20.0,),
+      body: Column(
 
-          CleanNepaliCalendar(
+        children: [
+
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 3,vertical: 10),
+        height: MediaQuery.of(context).size.height * 0.45 ,
+        decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(5.0),
+            boxShadow: [
+              BoxShadow(
+                color: orangeOne,
+                spreadRadius: 0.8,
+                blurRadius: 4,
+                blurStyle: BlurStyle.inner,
+                offset: const Offset(0, 3),
+              ),
+            ]
+        ),
+        child: CleanNepaliCalendar(
             controller: _nepaliCalendarController,
             initialDate: NepaliDateTime.now(),
             firstDate: first,
@@ -32,7 +45,7 @@ class NepaliCalendar extends StatelessWidget {
               return Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
+                  padding: const EdgeInsets.only(top: 5.0),
                   child: Text('$_',
                     style: TextStyle(color: (index == 6) ? Colors.red : null),),
 
@@ -40,8 +53,8 @@ class NepaliCalendar extends StatelessWidget {
               );
             },
 
-
             headerDayType: HeaderDayType.halfName,
+
             onHeaderLongPressed: (date) {
               if (kDebugMode) {
                 print('header long pressed $date');
@@ -62,15 +75,19 @@ class NepaliCalendar extends StatelessWidget {
               renderDaysOfWeek: true,
               highlightToday: true,
             ),
-            headerStyle: const HeaderStyle(
+            headerStyle:  HeaderStyle(
 
+              decoration: BoxDecoration(
+                color: pinkOne,
+                borderRadius: BorderRadius.circular(5.0),
+              ),
               titleTextStyle: TextStyle(fontSize: 16),
               leftChevronPadding: EdgeInsets.all(10),
               rightChevronPadding: EdgeInsets.all(10),
               leftChevronIcon: Icon(Icons.chevron_left_outlined),
               rightChevronIcon: Icon(Icons.chevron_right_outlined),
               enableFadeTransition: false,
-              centerHeaderTitle: false,
+              centerHeaderTitle: true,
             ),
             onDaySelected: (day) {
               if (kDebugMode) {
@@ -79,6 +96,7 @@ class NepaliCalendar extends StatelessWidget {
             },
             // dateCellBuilder: cellBuilder,
           ),
+      ),
         ],
       ),
     );
