@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/student/routine/routine_list_get.dart';
+
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
-import 'package:new_project_work/widgets/routine_list_get.dart';
 
 class Routine extends StatelessWidget {
   const Routine({Key? key}) : super(key: key);

@@ -1,18 +1,15 @@
 import 'package:get/get.dart';
-
 import 'package:new_project_work/api/ApiServices.dart';
-import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/event_model.dart';
-import 'package:new_project_work/global/alert.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class TableEventController extends GetxController {
-  List event = <Datum>[].obs;
   var eventList = [].obs;
   var isloading = true.obs;
   var lastpage = false.obs;
   var currentPage = 1.obs;
   var isMoreDataAvailable = false.obs;
+
+  var event = <Datum>[].obs;
 
   @override
   void onInit() {
@@ -22,24 +19,26 @@ class TableEventController extends GetxController {
   }
 
   Future getEvent() async {
-    print(currentPage.value);
-
-    // isloading.value = true;
-    // isRefresh ? isloading.value = true : false;
-
+    isloading.value = true;
     var response = await ApiServices().get('event');
 
     var res = eventModelFromJson(response);
 
     if (res.success) {
-      event = res.data;
+      event.value = res.data;
+      isloading.value = false;
+
+      print('Data');
+
+      print(event[0].fromDate);
+
       // final eventsConvert =
       //     event.map((fromDate) => (DateTime.parse(date))).toList();
 
-      eventList.assignAll(event);
+      // eventList.assignAll(event);
 
-      print(eventList);
-      print(res.toString());
+      // print(eventList);
+      // print(res.toString());
     } else {
       print('data failed');
     }

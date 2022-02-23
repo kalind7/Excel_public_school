@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/settings/settings.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
@@ -24,7 +24,9 @@ class WidgetAppbar extends StatelessWidget {
       automaticallyImplyLeading: false,
       leading: icon != null
           ? IconButton(
-              onPressed: () => onPress,
+              onPressed: () {
+                onPress();
+              },
               icon: Icon(
                 icon,
                 color: Colors.white,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/elevated_button.dart';
-import 'package:new_project_work/widgets/get_otp.dart';
+import 'package:new_project_work/ui_pages/auth_logins/auth_widgets/get_otp.dart';
 
 class CodePage extends StatefulWidget {
   const CodePage({Key? key}) : super(key: key);

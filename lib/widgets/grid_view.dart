@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/fees.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
 class Model {
@@ -24,11 +24,6 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Settings(),
-              ));
         },
       ),
       Model(
@@ -37,6 +32,11 @@ class Gridview extends StatelessWidget {
         onPress: () {
           if (kDebugMode) {
             print('anything');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Fees(),
+                ));
           }
           // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },

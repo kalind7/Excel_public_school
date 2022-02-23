@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/account_settings.dart';
-import 'package:new_project_work/ui_pages/notifications.dart';
+import 'package:new_project_work/ui_pages/settings/account_settings.dart';
+import 'package:new_project_work/ui_pages/settings/notifications.dart';
+
 import 'package:new_project_work/widgets/logout_popup.dart';
 
 class Settings extends StatefulWidget {

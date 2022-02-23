@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/settings/settings.dart';
 import 'package:new_project_work/ui_pages/student/drawer/drawer_footer.dart';
 import 'package:new_project_work/ui_pages/student/drawer/drawer_item.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -30,6 +30,9 @@ class _StudentDrawerState extends State<StudentDrawer> {
               ),
             ),
             child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              physics: ClampingScrollPhysics(),
               children: <Widget>[
                 Container(
                   margin: const EdgeInsets.only(top: 15.0),
@@ -220,7 +223,7 @@ class _StudentDrawerState extends State<StudentDrawer> {
                             builder: (context) => const Settings()));
                   },
                 ),
-                const DrawerFooter(),
+                DrawerFooter(),
               ],
             ),
           ),
