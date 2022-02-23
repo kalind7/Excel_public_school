@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/constant.dart';
 import 'package:new_project_work/widgets/simmer/calendar_shimmer.dart';
@@ -171,7 +172,7 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                       month = focusedDay.month;
                       _selectedDay = null;
                       tableEventController.getEvent();
-                 
+
                       _focusedDay = focusedDay;
                     },
                   ),
@@ -211,7 +212,9 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                                               fontFamily: 'Roboto'),
                                         ),
                                         Text(
-                                          myitem.fromDate.month.toString(),
+                                          DateFormat('MMM')
+                                              .format(myitem.fromDate)
+                                              .toString(),
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'Roboto'),
@@ -219,7 +222,10 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                                       ],
                                     )),
                                 Text(
-                                  myitem.fromDate.weekday.toString(),
+                                  DateFormat('EEEE')
+                                      .format(myitem.fromDate)
+                                      .toString(),
+                                  // myitem.fromDate.weekday.toString(),
                                   style: TextStyle(
                                       color: Colors.pink, fontFamily: 'Roboto'),
                                 ),
@@ -251,6 +257,8 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                           padding: const EdgeInsets.only(bottom: 15),
                           child: Text(
                             myitem.eventDes,
+                            maxLines: 2,
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
                                 fontSize: 15,
                                 color: pink,
