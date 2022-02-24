@@ -3,15 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:new_project_work/api/api_url.dart';
-import 'package:new_project_work/appointment.dart';
-import 'package:new_project_work/ui_pages/events.dart';
-
-// import 'package:new_project_work/ui_pages/dashboard.dart';
-// import 'package:new_project_work/ui_pages/forgot_password.dart';
-import 'package:new_project_work/ui_pages/login_page.dart';
-import 'package:new_project_work/ui_pages/student/homepage/student_home_page.dart';
+import 'package:new_project_work/ui_pages/auth_logins/login_page.dart';
+import 'package:new_project_work/ui_pages/student/homework/student_homework.dart';
 import 'package:new_project_work/ui_pages/student/landing/student_landing_page.dart';
 import 'package:new_project_work/utils/color.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -55,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.off(isLoggedIn
         ? role == 2
             ? StudentLandingPage()
-            : Events()
+            : StudentHomework()
         : LoginPage());
   }
 

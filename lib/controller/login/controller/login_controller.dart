@@ -5,8 +5,8 @@ import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/global/alert.dart';
 import 'package:new_project_work/models/student/student_model.dart';
 import 'package:new_project_work/route/router_constant.dart';
+import 'package:new_project_work/ui_pages/student/landing/student_landing_page.dart';
 
-import 'package:new_project_work/ui_pages/list_of_students.dart';
 
 class LoginDataController extends GetxController {
   var loginDetails = <Welcome>[].obs;
@@ -42,7 +42,7 @@ class LoginDataController extends GetxController {
       isloading.value = false;
       var roll = box.get(Constants.roll);
       // log(roll.toString());
-      roll == 2 ? Get.offNamed(studentDashBoard) : Get.off(StudentLists());
+      roll == 2 ? Get.offNamed(studentDashBoard) : Get.off(StudentLandingPage());
     } else {
       Alert.showSnackBar(res.message, true);
     }

@@ -3,9 +3,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/controller/login/controller/login_controller.dart';
 import 'package:new_project_work/global/InternetConnection.dart';
-import 'package:new_project_work/ui_pages/forgot_password.dart';
+import 'package:new_project_work/ui_pages/auth_logins/email_verification.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/footer.dart';
+import 'package:new_project_work/ui_pages/auth_logins/auth_widgets/login_footer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late SharedPreferences localStorage;

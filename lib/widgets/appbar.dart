@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/settings/settings.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
@@ -9,6 +9,7 @@ class WidgetAppbar extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.onPress,
+        this.shape,
       this.icon,
       this.color})
       : super(key: key);
@@ -16,15 +17,17 @@ class WidgetAppbar extends StatelessWidget {
   final String title;
   final Function onPress;
   IconData? icon;
+  ShapeBorder? shape;
   Color? color;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      shape: shape,
       automaticallyImplyLeading: false,
       leading: icon != null
           ? IconButton(
-              onPressed: () {onPress();},
+              onPressed: () {onPress();} ,
               icon: Icon(
                 icon,
                 color: Colors.white,

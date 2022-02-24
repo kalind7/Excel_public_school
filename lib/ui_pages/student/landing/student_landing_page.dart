@@ -8,30 +8,6 @@ import 'package:new_project_work/ui_pages/student/notice/notice.dart';
 import 'package:new_project_work/ui_pages/student/profile/student_profile.dart';
 import 'package:new_project_work/utils/color.dart';
 
-// ignore: non_constant_identifier_names
-// void SelectedItem(BuildContext context, item) {
-//   switch (item) {
-//     case 0:
-//       Navigator.of(context)
-//           .push(MaterialPageRoute(builder: (context) => const Settings()));
-//       break;
-//     case 1:
-//       if (kDebugMode) {
-//         print("Privacy Clicked");
-//       }
-//       break;
-//     case 2:
-//       if (kDebugMode) {
-//         print("User Logged out");
-//       }
-//       showDialog(
-//           context: context,
-//           builder: (BuildContext context) {
-//             return const BuildPopupDialog();
-//           });
-//   }
-// }
-
 class StudentLandingPage extends StatefulWidget {
   @override
   State<StudentLandingPage> createState() => _StudentLandingPageState();
@@ -154,30 +130,5 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
         ),
       ),
     );
-    // return Scaffold(
-    //   extendBody: true,
-    //   floatingActionButton: _showNotch? FloatingActionButton(
-    //
-    //     splashColor: pinkOne,
-    //     backgroundColor: HexColor('#E1E5EC'),
-    //     onPressed: (){
-    //       Navigator.push(context, MaterialPageRoute(builder: (context) => NewDashboard() ));
-    //     },
-    //     tooltip: 'Home',
-    //     child: ImageIcon(const AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
-    //   ): null,
-    //   floatingActionButtonLocation: _fabLocation,
-    //   // bottomNavigationBar: TabBarMaterialWidget(
-    //   //   index : index,
-    //   //   onChangedTab: onChangedTab,
-    //   // ),
-    //   body: screens[index],
-    //
-    //   bottomNavigationBar: TabBarMaterialWidget(
-    //     index : index,
-    //     onChangedTab: onChangedTab,
-    //   ),
-    // );
-    //
   }
 }

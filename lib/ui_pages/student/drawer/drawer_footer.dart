@@ -44,7 +44,7 @@ class DrawerFooter extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {},
-            iconSize: 70,
+            iconSize: 80,
             icon: Image.asset(
               'images/allstart.png',
             ),

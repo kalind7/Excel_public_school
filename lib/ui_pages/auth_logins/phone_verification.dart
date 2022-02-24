@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/code_page.dart';
-import 'package:new_project_work/ui_pages/forgot_password.dart';
+import 'package:new_project_work/ui_pages/auth_logins/phone_otp.dart';
+import 'package:new_project_work/ui_pages/auth_logins/email_verification.dart';
+
 import 'package:new_project_work/widgets/elevated_button.dart';
-import 'package:new_project_work/widgets/footer.dart';
+import 'package:new_project_work/ui_pages/auth_logins/auth_widgets/login_footer.dart';
 
 class ForgotPassword2 extends StatefulWidget {
   @override

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,6 @@ import 'package:new_project_work/controller/notice/notice_controller.dart';
 
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/appbar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -23,6 +23,14 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
   bool load = false;
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitUp,
+    ]);
+
+
     super.build(context);
     return Scaffold(
         body: ProfileBodyContainer(

@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
 import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/event_model.dart';
-import 'package:new_project_work/utils.dart';
 
 class TableEventController extends GetxController {
-
-  List selectedEvents = <Datum>[].obs;
   var eventList = [].obs;
   var isloading = true.obs;
   var lastpage = false.obs;
@@ -21,39 +18,26 @@ class TableEventController extends GetxController {
     super.onInit();
   }
 
-  List<Datum> getEventsForDay(DateTime day) {
-    // Implementation example
-    // return kEvents[day] ?? [];
-    return event
-        .where((element) => element.fromDate.isAtSameMomentAs(day))
-        .toList();
-  }
-
-  List<Datum> getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
-
-    return [
-      for (final d in days) ...getEventsForDay(d),
-    ];
-  }
-
-
   Future getEvent() async {
+    isloading.value = true;
     var response = await ApiServices().get('event');
 
     var res = eventModelFromJson(response);
 
     if (res.success) {
-      // event = res.data;
+      event.value = res.data;
+      isloading.value = false;
 
+      print('Data');
+
+      print(event[0].fromDate);
 
       // final eventsConvert =
       //     event.map((fromDate) => (DateTime.parse(date))).toList();
-event.value = res.data;
-      // event.assignAll(res.data);
 
-      print(event);
+      // eventList.assignAll(event);
+
+      // print(eventList);
       // print(res.toString());
     } else {
       print('data failed');

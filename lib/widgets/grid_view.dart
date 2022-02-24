@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/fees/fees.dart';
 import 'package:new_project_work/ui_pages/library.dart';
-import 'package:new_project_work/ui_pages/routine.dart';
-import 'package:new_project_work/ui_pages/settings.dart';
+import 'package:new_project_work/ui_pages/student/routine/routine.dart';
+import 'package:new_project_work/ui_pages/teachers/teacher_home_page.dart';
 import 'package:new_project_work/utils/fonts.dart';
+
 
 class Model {
   final String text;
@@ -27,11 +29,6 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Settings(),
-              ));
         },
       ),
       Model(
@@ -42,6 +39,11 @@ class Gridview extends StatelessWidget {
 
           if (kDebugMode) {
             print('anything');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Fees(),
+                ));
           }
           // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },
@@ -108,7 +110,7 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          // Get.toNamed('/teacherlist');
+          Get.to(TeacherHomePage());
         },
       ),
       Model(
