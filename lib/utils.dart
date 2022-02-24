@@ -25,7 +25,7 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
 
 final _kEventSource = Map.fromIterable(
   List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
+    key: (item) => DateTime.utc(kFirstDay.year -4, kFirstDay.month, item * 5),
     value: (item) => List.generate(
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
   ..addAll({
@@ -49,5 +49,5 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
 }
 
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, 1, 1);
+final kFirstDay = DateTime(kToday.year -4, 1, 1);
 final kLastDay = DateTime(kToday.year, 12, kToday.day);

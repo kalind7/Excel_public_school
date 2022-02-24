@@ -2,9 +2,12 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:new_project_work/ui_pages/calender/eventmode.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/simmer/simmer_for_event.dart';
+import 'package:new_project_work/widgets/simmer/main_shimmer.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
@@ -25,11 +28,15 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
 
     setState(()=> isLoading = true );
 
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
+
+
     models = List.of(allModel);
 
     setState(()=> isLoading = false );
   }
+
+
 
   late Map<DateTime, List<Event>> selectedEvents;
 
@@ -79,16 +86,12 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                   ),
                 ]),
             child: TableCalendar(
+
               shouldFillViewport: true,
               focusedDay: selectedDay,
               firstDay: DateTime(1970),
               lastDay: DateTime(2040),
               calendarFormat: format,
-              // onFormatChanged: (CalendarFormat _format) {
-              //   setState(() {
-              //     format = _format;
-              //   });
-              // },
               startingDayOfWeek: StartingDayOfWeek.sunday,
               daysOfWeekVisible: true,
               onDaySelected: (DateTime selectDay, DateTime focusDay) {
@@ -103,6 +106,14 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
               selectedDayPredicate: (DateTime date) {
                 return isSameDay(selectedDay, date);
               },
+              calendarBuilders: CalendarBuilders(
+                dowBuilder: (context, day) {
+                  final text = DateFormat.E().format(day);
+                  return Center(
+                    child: Text(text, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                  );
+                },
+              ),
 
               eventLoader: _getEventsFromDay,
 
@@ -134,7 +145,7 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                 headerPadding: const EdgeInsets.only(bottom: 5),
                 leftChevronVisible: true,
                 rightChevronVisible: true,
-                formatButtonVisible: true,
+                formatButtonVisible: false,
                 titleCentered: true,
                 titleTextStyle: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black87),
@@ -156,12 +167,8 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                 child: ListView.builder(
                     itemCount: isLoading ? 4 : models.length,
                     itemBuilder: (context, index) {
-                      if(isLoading){
-                        return buildEventShimmer();
-                      }else{
                         final event = allModel[index];
                         return buildEvents(event);
-                      }
                     }),
               )),
         ],
@@ -227,62 +234,6 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
         ),
       ),
     ) ;
-  }
-
-  Widget buildEventShimmer() {
-    return ListTile(
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-
-              ShimmerWidget.rectangular(
-                width: 50,
-                height: 50,
-                shapeBorder:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              ),
-
-              const SizedBox(height: 1,),
-
-              ShimmerWidget.rectangular(
-                width:  MediaQuery.of(context).size.width * 0.11,
-                  height: 5,
-              ),
-            ],
-          ),
-
-          const SizedBox(width: 7,),
-
-         const Padding(
-           padding: EdgeInsets.only(top: 5),
-           child:  ShimmerWidget.rectangular(
-             width:  4,
-             height: 40,
-           ),
-         ),
-
-        ],
-      ),
-      title:  Align(
-        alignment: Alignment.centerLeft,
-        child: ShimmerWidget.rectangular(
-          width: MediaQuery.of(context).size.width * 0.3,
-          height: 16,
-        ),
-      ),
-      subtitle:  Align(
-        alignment: Alignment.centerLeft,
-        child: ShimmerWidget.rectangular(
-          width: MediaQuery.of(context).size.width * 0.35,
-          height: 16,
-        ),
-      ),
-    );
   }
 }
 

@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/fees.dart';
+import 'package:new_project_work/ui_pages/library.dart';
+import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/settings.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -35,6 +38,8 @@ class Gridview extends StatelessWidget {
         text: 'Fees',
         iconTitle: 'images/gridview_logo/fees.jpg',
         onPress: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
+
           if (kDebugMode) {
             print('anything');
           }
@@ -72,6 +77,8 @@ class Gridview extends StatelessWidget {
         text: 'Routine',
         iconTitle: 'images/gridview_logo/routine.jpg',
         onPress: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Routine()));
+
           if (kDebugMode) {
             print('anything');
           }
@@ -81,7 +88,7 @@ class Gridview extends StatelessWidget {
         text: 'Library',
         iconTitle: 'images/gridview_logo/library.jpg',
         onPress: () {
-          // Get.toNamed('/routine');
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Library()));
         },
       ),
       Model(

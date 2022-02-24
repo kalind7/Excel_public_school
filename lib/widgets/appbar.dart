@@ -24,7 +24,7 @@ class WidgetAppbar extends StatelessWidget {
       automaticallyImplyLeading: false,
       leading: icon != null
           ? IconButton(
-              onPressed: () => onPress,
+              onPressed: () {onPress();},
               icon: Icon(
                 icon,
                 color: Colors.white,

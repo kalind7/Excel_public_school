@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/fees.dart';
+import 'package:new_project_work/ui_pages/library.dart';
+import 'package:new_project_work/ui_pages/routine.dart';
 import 'package:new_project_work/ui_pages/settings.dart';
 import 'package:new_project_work/ui_pages/student/drawer/drawer_footer.dart';
 import 'package:new_project_work/ui_pages/student/drawer/drawer_item.dart';
@@ -17,8 +20,12 @@ class _StudentDrawerState extends State<StudentDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       elevation: 3.0,
       child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: AlwaysScrollableScrollPhysics(),
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
@@ -30,6 +37,7 @@ class _StudentDrawerState extends State<StudentDrawer> {
               ),
             ),
             child: ListView(
+
               children: <Widget>[
                 Container(
                   margin: const EdgeInsets.only(top: 15.0),
@@ -127,7 +135,10 @@ class _StudentDrawerState extends State<StudentDrawer> {
                 BuildDrawerItem(
                   text: 'Fees',
                   iconTitle: 'assets/drawer_icons/fees.png',
-                  onPress: () {},
+                  onPress: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
+
+                  },
                 ),
                 BuildDrawerItem(
                   text: 'Results',
@@ -161,14 +172,14 @@ class _StudentDrawerState extends State<StudentDrawer> {
                   text: 'Routine',
                   iconTitle: 'assets/drawer_icons/routine.png',
                   onPress: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => Routine()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Routine()));
                   },
                 ),
                 BuildDrawerItem(
                   text: 'Library',
                   iconTitle: 'assets/drawer_icons/library.png',
                   onPress: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
                   },
                 ),
                 BuildDrawerItem(
@@ -220,7 +231,12 @@ class _StudentDrawerState extends State<StudentDrawer> {
                             builder: (context) => const Settings()));
                   },
                 ),
-                const DrawerFooter(),
+                DrawerFooter(),
+
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 8,
+                ),
+
               ],
             ),
           ),

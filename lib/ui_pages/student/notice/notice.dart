@@ -29,7 +29,7 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
             widget: Obx(
               () {
                 return Container(
-                  height: MediaQuery.of(context).size.height / 1.45,
+                  height: MediaQuery.of(context).size.height / 1.58,
                   child: noticeController.isloading.value
                       ? Shimmer.fromColors(
                           // baseColor: Colors.grey.shade400,

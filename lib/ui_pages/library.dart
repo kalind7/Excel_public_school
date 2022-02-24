@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/models/library_books.dart';
+import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/library_books.dart';
 import 'package:new_project_work/widgets/text_field.dart';
@@ -100,7 +101,7 @@ class _LibraryState extends State<Library> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(child: WidgetAppbar(title: 'Library', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
+        appBar: PreferredSize(child: WidgetAppbar(color: pink,title: 'Library', onPress: (){Navigator.pop(context);}, icon: Icons.arrow_back), preferredSize: Size.fromHeight(55.0),),
 
         body: ListView(
           shrinkWrap: true,

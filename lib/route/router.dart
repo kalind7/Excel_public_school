@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/appointment.dart';
 import 'package:new_project_work/ui_pages/dashboard.dart';
 import 'package:new_project_work/ui_pages/list_of_students.dart';
 import 'package:new_project_work/ui_pages/login_page.dart';
@@ -17,9 +18,12 @@ class Routers {
         return MaterialPageRoute(builder: (_) => const StudentLists());
       case splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+
       case studentLandingPage:
         return MaterialPageRoute(builder: (_) =>  StudentLandingPage());
 
+      case testingevent:
+        return MaterialPageRoute(builder: (_) =>  TableEventsExample());
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }

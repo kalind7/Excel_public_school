@@ -6,8 +6,8 @@ class DrawerFooter extends StatelessWidget {
   const DrawerFooter({Key? key}) : super(key: key);
 
   final String _facebook = 'https://www.facebook.com/allstartechnos';
-  final String _linkedIn =
-      'https://www.linkedin.com/company/allstar-techno/about';
+  final String _linkedIn = 'https://www.linkedin.com/company/allstar-techno/about';
+  final String _youtube = 'https://www.youtube.com/channel/UCsdGOZxPJFdfv42oqfJ3xkQ';
 
   void _launchFacebook() async {
     if (await canLaunch(_facebook)) {
@@ -24,21 +24,29 @@ class DrawerFooter extends StatelessWidget {
       throw "could not open $_linkedIn";
     }
   }
+  void _launchYoutube () async {
+    if (await canLaunch(_youtube)) {
+      await launch(_youtube);
+    } else {
+      throw "could not open $_youtube";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 22.0, left: 5.0, right: 22.0),
-      height: MediaQuery.of(context).size.height / 8,
+      padding: EdgeInsets.only(bottom: 10
+          ,left: 10,right: 20.0),
+      height: MediaQuery.of(context).size.height / 9,
       color: HexColor("#E1E5EC"),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
             onPressed: () {},
-            iconSize: 100,
+            iconSize: 70,
             icon: Image.asset(
-              'assets/images/allstar.png',
+              'images/allstart.png',
             ),
           ),
           Row(
@@ -61,6 +69,7 @@ class DrawerFooter extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  _launchYoutube();
                   print('youtube');
                 },
                 child: Image(
