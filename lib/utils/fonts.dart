@@ -85,3 +85,17 @@ const subTitle = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: 'Roboto',
     color: Color(0xFFF06292));
+
+//* Teacher Grid Views *//
+
+const headingTitle = TextStyle(
+    fontSize: 16,
+    color:  Color(0xFFF06292),
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Roboto');
+
+const iconTitle = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+    color: Color(0xFFF06292),
+    fontFamily: 'Roboto');

@@ -1,8 +1,6 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart' hide CalendarDatePicker;
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:new_project_work/controller/event/table_event_controller.dart';
@@ -20,7 +18,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
   final tableEventController = Get.put(TableEventController());
 
   final ValueNotifier<NepaliDateTime> _selectedDate =
-      ValueNotifier(NepaliDateTime.now());
+  ValueNotifier(NepaliDateTime.now());
 
   late List<Datum> event;
 
@@ -61,7 +59,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
           onDateChanged: (date) => _selectedDate.value = date,
           dayBuilder: (dayToBuild) {
             return Obx(
-              () => Stack(
+                  () => Stack(
                 children: <Widget>[
                   Center(
                     child: Text(
@@ -100,128 +98,128 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
           ),
         ),
         Obx(
-          () => Expanded(
+              () => Expanded(
             child: tableEventController.isloading.value
                 ? CalendarShimmer()
                 : ValueListenableBuilder<NepaliDateTime>(
-                    valueListenable: _selectedDate,
-                    builder: (context, date, _) {
-                      try {
-                        event = tableEventController.eventNepali
-                            .where((e) =>
-                                _dayEquals(e.fromDate.toNepaliDateTime(), date))
-                            .toList();
-                      } on StateError {
-                        event = [];
-                      }
+              valueListenable: _selectedDate,
+              builder: (context, date, _) {
+                try {
+                  event = tableEventController.eventNepali
+                      .where((e) =>
+                      _dayEquals(e.fromDate.toNepaliDateTime(), date))
+                      .toList();
+                } on StateError {
+                  event = [];
+                }
 
-                      if (event.isEmpty) {
-                        return Center(
-                          child: Text('No Events'),
-                        );
-                      }
+                if (event.isEmpty) {
+                  return Center(
+                    child: Text('No Events'),
+                  );
+                }
 
-                      return ListView.builder(
-                        itemCount: event.length,
-                        itemBuilder: (context, index) {
-                          var myitem = event[index];
-                          return ListTile(
-                            leading: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 38,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
-                                          color: pink,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              NepaliDateFormat(
-                                                      'd', Language.nepali)
-                                                  .format(myitem.fromDate
-                                                      .toNepaliDateTime())
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Roboto'),
-                                            ),
-                                            Text(
-                                              NepaliDateFormat(
-                                                      'MMMM', Language.nepali)
-                                                  .format(myitem.fromDate
-                                                      .toNepaliDateTime())
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Roboto'),
-                                            ),
-                                          ],
-                                        )),
-                                    Text(
-                                      NepaliDateFormat('EEE', Language.nepali)
-                                          .format(myitem.fromDate
-                                              .toNepaliDateTime())
-                                          .toString(),
-                                      // myitem.fromDate.weekday.toString(),
-                                      style: TextStyle(
-                                          color: Colors.pink,
-                                          fontFamily: 'Roboto'),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                  height: 40,
-                                  child: VerticalDivider(
-                                    width: 4,
-                                    thickness: 4,
+                return ListView.builder(
+                  itemCount: event.length,
+                  itemBuilder: (context, index) {
+                    var myitem = event[index];
+                    return ListTile(
+                      leading: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                  height: 38,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(5.0),
                                     color: pink,
                                   ),
-                                ),
-                              ],
-                            ),
-                            title: Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: Text(
-                                myitem.eventTitle,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        NepaliDateFormat(
+                                            'd', Language.nepali)
+                                            .format(myitem.fromDate
+                                            .toNepaliDateTime())
+                                            .toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Roboto'),
+                                      ),
+                                      Text(
+                                        NepaliDateFormat(
+                                            'MMMM', Language.nepali)
+                                            .format(myitem.fromDate
+                                            .toNepaliDateTime())
+                                            .toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Roboto'),
+                                      ),
+                                    ],
+                                  )),
+                              Text(
+                                NepaliDateFormat('EEE', Language.nepali)
+                                    .format(myitem.fromDate
+                                    .toNepaliDateTime())
+                                    .toString(),
+                                // myitem.fromDate.weekday.toString(),
                                 style: TextStyle(
-                                    fontSize: 18,
-                                    color: pink,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w600),
+                                    color: Colors.pink,
+                                    fontFamily: 'Roboto'),
                               ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20,
+                            height: 40,
+                            child: VerticalDivider(
+                              width: 4,
+                              thickness: 4,
+                              color: pink,
                             ),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.only(bottom: 15),
-                              child: Text(
-                                myitem.eventDes,
-                                maxLines: 2,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: pink,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          );
-                        },
-                        // separatorBuilder: (context, _) => Divider(),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                      title: Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          myitem.eventTitle,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: pink,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Text(
+                          myitem.eventDes,
+                          maxLines: 2,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: pink,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    );
+                  },
+                  // separatorBuilder: (context, _) => Divider(),
+                );
+              },
+            ),
           ),
         ),
       ],
@@ -231,9 +229,9 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
 
   bool _dayEquals(NepaliDateTime? a, NepaliDateTime? b) =>
       a != null &&
-      b != null &&
-      a.toIso8601String().substring(0, 10) ==
-          b.toIso8601String().substring(0, 10);
+          b != null &&
+          a.toIso8601String().substring(0, 10) ==
+              b.toIso8601String().substring(0, 10);
 }
 
 ///

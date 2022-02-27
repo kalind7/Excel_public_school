@@ -62,7 +62,7 @@ dependencies:
   pie_chart: ^5.1.0
   searchfield: ^0.5.6
   filter_list: ^1.0.1
-  # flutter_svg: ^1.0.0
+  flutter_svg: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +94,7 @@ flutter:
 
   # To add images to your application, add an images section, like this:
   assets:
+    - assets/teacher_homepage_icons/
     - assets/drawer_icons/
     - assets/homework_icons/
     - images/

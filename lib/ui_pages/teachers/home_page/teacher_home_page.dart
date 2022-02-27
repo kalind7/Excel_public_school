@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
@@ -6,7 +5,13 @@ import 'package:new_project_work/ui_pages/teachers/profile/teacher_profile.dart'
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/exam_info_teacher_gridview_homepage.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/homework_teacher_gridview_homepage.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/leave_gridview_homepage.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/lessonplan_teacher_gridview_homepage.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/teacher_gridview_homepage.dart';
 import 'package:new_project_work/widgets/teacher_widgets/row_data_teacherDetails.dart';
+import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/student_info_teacher_gridview_homepage.dart';
 
 class TeacherHomePage extends StatelessWidget {
   TeacherHomePage({Key? key}) : super(key: key);
@@ -77,43 +82,44 @@ class TeacherHomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Beli Lama', style: nameTitle),
-
                     RowData(
-                        text: 'Role',
+                      text: 'Role',
                       differentiator: ':',
                       answer: 'Teacher',
                       height: 7,
                     ),
-
                     RowData(
                       text: 'Designation',
                       differentiator: ':',
                       answer: 'Teacher',
                       height: 7,
                     ),
-
                     RowData(
                       text: 'Department',
                       differentiator: ':',
                       answer: 'Academic',
                       height: 7,
                     ),
-
                     Center(
                       child: InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherDetails()));
-                        },
-                        child: Hero(tag: 'heroTag', child: Text(
-                          'View More',
-                          style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 15,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w600,
-                              decoration: TextDecoration.underline),
-                        ),)
-                      ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TeacherDetails()));
+                          },
+                          child: Hero(
+                            tag: 'heroTag',
+                            child: Text(
+                              'View More',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 15,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          )),
                     )
                   ],
                 ),
@@ -121,13 +127,36 @@ class TeacherHomePage extends StatelessWidget {
             ],
           ),
         ),
-        bodyWidget: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Text('Haha');
-          },
+        bodyWidget: ListView(
+          children: [
+            StudentInfoGridView(context),
+
+            SizedBox(height: 5,),
+
+            ExamInfoGridView(context),
+
+            SizedBox(height: 5,),
+
+            HomeworkInfoGridView(context),
+
+            SizedBox(height: 5,),
+
+            LessonInfoGridView(context),
+
+            SizedBox(height: 5,),
+
+            TeacherInfoGridView(context),
+
+            SizedBox(height: 5,),
+
+            LeaveInfoGridView(context),
+
+
+          ],
         ),
       ),
     );
   }
 }
+
+

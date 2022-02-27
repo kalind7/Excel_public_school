@@ -17,7 +17,8 @@ class StudentHomework extends StatelessWidget {
         body: BodyWithWidgetContainer(
             bodyWidget: Container(
                 height: MediaQuery.of(context).size.height / 1.45,
-                child: ListView(children: [
+                child: ListView(
+                    children: [
                   homeworkContainer(context),
                   homeworkContainer(context),
                   homeworkContainer(context),

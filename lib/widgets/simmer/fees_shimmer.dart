@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/widgets/simmer/main_shimmer.dart';
 
 class FeesShimmer extends StatelessWidget {
   const FeesShimmer({Key? key}) : super(key: key);
@@ -20,65 +18,85 @@ class FeesShimmer extends StatelessWidget {
                child:  Row(
                  children: [
 
-                   ShimmerWidget.rectangular(
+
+                   Container(
                      height: MediaQuery.of(context).size.height * 0.125,
                      width: MediaQuery.of(context).size.width * 0.2,
-                     shapeBorder: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(3.0),
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(7),
+                       color: Colors.grey.shade200,
                      ),
-                     child: Center(child:
-                       ShimmerWidget.rectangular(
-                           height: MediaQuery.of(context).size.height * 0.0125,
-                         width: MediaQuery.of(context).size.width * 0.02,
-                       ),
 
-                       ),
+                     child:   Center(child: Container(
+                       height: 10,
+                       width: 50,
+                       color: Colors.black12,
+                     ),)
                    ),
+
+
 
                    SizedBox(width: 10,),
 
-                   ShimmerWidget.rectangular(
-                     height: MediaQuery.of(context).size.height * 0.125,
-                     width:  MediaQuery.of(context).size.width / 1.37,
-                     shapeBorder: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(3.0),
+                   Container(
+                      height: MediaQuery.of(context).size.height * 0.125,
+                      width:  MediaQuery.of(context).size.width / 1.37,
+                     decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(7),
+                       color: Colors.grey.shade200,
                      ),
-                     child: Center(
-                       child: Row(
-                         children: [
-                           Column(
-                             children: [
-                               ShimmerWidget.rectangular(
-                                 height: 10,
-                                 width: 20,
-                               ),
-                               SizedBox(height: 3.0,),
+                     child: Row(
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       mainAxisSize: MainAxisSize.max,
+                       children: [
 
-                               ShimmerWidget.rectangular(
-                                 height: 10,
-                                 width: 10,
-                               ),
-                             ],
+                         Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Container(
+                               height: 10,
+                               width: 50,
+                               color: Colors.black12,
+                             ),
+
+
+                             SizedBox(height: 3,),
+
+                             Container(
+                               height: 5,
+                               width: 25,
+                               color: Colors.black12,
+                             ),
+                           ],
+                         ),
+
+                         Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Container(
+                               height: 10,
+                               width: 40,
+                               color: Colors.black12,
+                             ),
+
+
+                             SizedBox(height: 3,),
+
+
+                             Container(
+                               height: 7,
+                               width: 60,
+                               color: Colors.black12,
+                             ),
+                           ],
+                         ),
+                       ],
                            ),
-
-                           Column(
-                             children: [
-                               ShimmerWidget.rectangular(
-                                 height: 10,
-                                 width: 20,
-                               ),
-                               SizedBox(height: 3.0,),
-
-                               ShimmerWidget.rectangular(
-                                 height: 20,
-                                 width: 30,
-                               ),
-                             ],
-                           ),
-                         ],
-                       ),
-                     ),
                    ),
+
 
                  ],
                ),

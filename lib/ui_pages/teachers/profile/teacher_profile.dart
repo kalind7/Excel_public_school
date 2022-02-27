@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
-import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
@@ -73,11 +71,15 @@ class TeacherDetails extends StatelessWidget {
                           SizedBox(height: 5,),
                           Text('belli@excelpublischool.edu.np',style: eventDescription),
                           SizedBox(height: 15,),
-                          Divider(
-                            height: 1,
-                            thickness: 1,
-                            color: pink,
-                          ),
+                         Padding(
+                             padding: EdgeInsets.symmetric(horizontal: 8),
+                           child:  Divider(
+                             height: 1,
+                             thickness: 1,
+                             color: pink,
+                           ),
+
+                         ),
                         ],
                       ),
                       Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),child:

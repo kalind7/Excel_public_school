@@ -131,7 +131,7 @@ Widget homeworkContainer(BuildContext context) {
               );
             }),
           ),
-        )
+        ),
       ],
     ),
   );
