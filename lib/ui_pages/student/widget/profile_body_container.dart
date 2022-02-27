@@ -12,8 +12,7 @@ class ProfileBodyContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      // clipBehavior: Clip.hardEdge,
-      // overflow: Overflow.clip,
+
       children: <Widget>[
         Column(
           children: <Widget>[

@@ -132,30 +132,5 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
         ),
       ),
     );
-    // return Scaffold(
-    //   extendBody: true,
-    //   floatingActionButton: _showNotch? FloatingActionButton(
-    //
-    //     splashColor: pinkOne,
-    //     backgroundColor: HexColor('#E1E5EC'),
-    //     onPressed: (){
-    //       Navigator.push(context, MaterialPageRoute(builder: (context) => NewDashboard() ));
-    //     },
-    //     tooltip: 'Home',
-    //     child: ImageIcon(const AssetImage('files/bottom_navbar_icons/home.png'),color: pinkOne,size: 40,),
-    //   ): null,
-    //   floatingActionButtonLocation: _fabLocation,
-    //   // bottomNavigationBar: TabBarMaterialWidget(
-    //   //   index : index,
-    //   //   onChangedTab: onChangedTab,
-    //   // ),
-    //   body: screens[index],
-    //
-    //   bottomNavigationBar: TabBarMaterialWidget(
-    //     index : index,
-    //     onChangedTab: onChangedTab,
-    //   ),
-    // );
-    //
   }
 }

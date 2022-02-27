@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -22,13 +23,21 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
   bool load = false;
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitUp,
+    ]);
+
+
     super.build(context);
     return Scaffold(
         body: ProfileBodyContainer(
             widget: Obx(
               () {
                 return Container(
-                  height: MediaQuery.of(context).size.height / 1.45,
+                  height: MediaQuery.of(context).size.height / 1.58,
                   child: noticeController.isloading.value
                       ? Shimmer.fromColors(
                           // baseColor: Colors.grey.shade400,

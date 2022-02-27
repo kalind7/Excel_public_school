@@ -13,9 +13,7 @@ class BodyWithWidgetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      // clipBehavior: Clip.hardEdge,
-      // overflow: Overflow.clip,
-      children: <Widget>[
+            children: <Widget>[
         Column(
           children: <Widget>[
             Container(
@@ -34,9 +32,9 @@ class BodyWithWidgetContainer extends StatelessWidget {
           ],
         ),
         Positioned(
-          left: 20,
-          right: 20,
-          top: 35,
+          left: 10,
+          right: 10,
+          top: 75,
           child: uppderWidget,
         ),
       ],
