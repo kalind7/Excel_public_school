@@ -6,8 +6,12 @@ class ApiUrl {
   static const String login = "login";
   static String noticelistCurrentIndex(id) => "notice-list?page=$id";
   static String eventList(year, month) => 'event?year=$year&month=$month';
+  static String studentFees(studentid) => 'student-fees/$studentid';
+  static String studentFeesDetail(studentid, feeid, type) =>
+      'student-fees-details/$studentid?id=$feeid&type=$type';
   static String studentattendencelist(id, year, month) =>
       'student-my-attendance/$id?year=$year&month=$month';
+
   // static const String {} = "v2/notice-list?page=14";
 }
 

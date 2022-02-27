@@ -12,7 +12,6 @@ class ProfileBodyContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -34,7 +33,7 @@ class ProfileBodyContainer extends StatelessWidget {
         Positioned(
           left: 10,
           right: 10,
-          top: 120,
+          top: 125,
           // alignment: Alignment.center,
           child: Card(
             shadowColor: pink,
@@ -45,10 +44,10 @@ class ProfileBodyContainer extends StatelessWidget {
                 side: BorderSide(width: 1, color: pink)),
             child: Container(
               width: MediaQuery.of(context).size.width - 80,
-              height: 60,
+              height: 63,
               child: Center(
                   child: Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 5.0),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
                 child: Text(
                   text,
                   style: TextStyle(

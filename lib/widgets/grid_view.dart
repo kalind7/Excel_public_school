@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees/fees.dart';
+import 'package:new_project_work/ui_pages/fees/views/fees.dart';
+
 
 import 'package:new_project_work/utils/fonts.dart';
 

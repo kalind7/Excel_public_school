@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart' hide CalendarDatePicker;
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:new_project_work/controller/event/table_event_controller.dart';
@@ -85,7 +83,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.purple),
                       ),
-                    )
+                    )                                         
                 ],
               ),
             );
@@ -93,7 +91,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
           selectedDayDecoration: BoxDecoration(
             color: Colors.deepOrange,
             shape: BoxShape.circle,
-          ),
+          ),                              
           todayDecoration: BoxDecoration(
             gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
             shape: BoxShape.circle,
