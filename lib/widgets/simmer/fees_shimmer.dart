@@ -46,9 +46,34 @@ class FeesShimmer extends StatelessWidget {
                      child: Center(
                        child: Row(
                          children: [
-                           ShimmerWidget.rectangular(
-                               height: 10,
-                             width: 20,
+                           Column(
+                             children: [
+                               ShimmerWidget.rectangular(
+                                 height: 10,
+                                 width: 20,
+                               ),
+                               SizedBox(height: 3.0,),
+
+                               ShimmerWidget.rectangular(
+                                 height: 10,
+                                 width: 10,
+                               ),
+                             ],
+                           ),
+
+                           Column(
+                             children: [
+                               ShimmerWidget.rectangular(
+                                 height: 10,
+                                 width: 20,
+                               ),
+                               SizedBox(height: 3.0,),
+
+                               ShimmerWidget.rectangular(
+                                 height: 20,
+                                 width: 30,
+                               ),
+                             ],
                            ),
                          ],
                        ),
