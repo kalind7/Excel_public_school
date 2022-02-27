@@ -7,22 +7,24 @@ import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:new_project_work/controller/event/table_event_controller.dart';
 import 'package:new_project_work/event_model.dart';
+import 'package:new_project_work/ui_pages/student/attendance/controller/student_attendeence_controllert.dart';
+import 'package:new_project_work/ui_pages/student/attendance/model/student_attendence_model.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/simmer/calendar_shimmer.dart';
 
-class CalendarDatePickerWidget extends StatefulWidget {
+class StudentAttendanceView extends StatefulWidget {
   @override
-  State<CalendarDatePickerWidget> createState() =>
-      _CalendarDatePickerWidgetState();
+  State<StudentAttendanceView> createState() => _StudentAttendanceViewState();
 }
 
-class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
-  final tableEventController = Get.put(TableEventController());
+class _StudentAttendanceViewState extends State<StudentAttendanceView> {
+  final studentAttendanceViewController =
+      Get.put(StudentAttendenceViewController());
 
   final ValueNotifier<NepaliDateTime> _selectedDate =
       ValueNotifier(NepaliDateTime.now());
 
-  late List<Datum> event;
+  late List<Attendance> attendance;
 
   /// Events
   // final List<Event> events = [
@@ -41,42 +43,41 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
   @override
   Widget build(BuildContext context) {
     // return Obx(
-    //   () => tableEventController.isloading.value
+    //   () => studentAttendanceViewController.isloading.value
     //       ? CalendarShimmer()
     //       :
-    return Column(
-      children: [
-        CalendarDatePicker(
-          onDisplayedMonthChanged: (date) {
-            // _selectedDate.value = date;
-            // var english = date.toDateTime();
-            // log(english.year.toString());
-            // log(english.month.toString());
-            tableEventController.getEventNepali(
-                date.toDateTime().year, date.toDateTime().month);
-          },
-          initialDate: NepaliDateTime.now(),
-          firstDate: NepaliDateTime(2078),
-          lastDate: NepaliDateTime(2079),
-          onDateChanged: (date) => _selectedDate.value = date,
-          dayBuilder: (dayToBuild) {
-            return Obx(
-              () => Stack(
+    return Obx(
+      () => 
+      studentAttendanceViewController.isloading.value? CircularProgressIndicator():
+      Column(
+        children: [
+          CalendarDatePicker(
+            onDisplayedMonthChanged: (date) {
+              // _selectedDate.value = date;
+              // var english = date.toDateTime();
+              // log(english.year.toString());
+              // log(english.month.toString());
+            },
+            initialDate: NepaliDateTime.now(),
+            firstDate: NepaliDateTime(2077),
+            lastDate: NepaliDateTime(2079),
+            onDateChanged: (date) => _selectedDate.value = date,
+            dayBuilder: (dayToBuild) {
+              return Stack(
                 children: <Widget>[
                   Center(
                     child: Text(
-                      NepaliUtils().language == Language.nepali
+                      NepaliUtils().language == Language.english
                           ? '${dayToBuild.day}'
                           : NepaliUnicode.convert('${dayToBuild.day}'),
                       style: TextStyle(
                           color: dayToBuild.weekday == 07
-                              ? Colors.red
+                              ?  Colors.red
                               : Colors.black),
                     ),
                   ),
-                  if (tableEventController.eventNepali.any((event) =>
-                      _dayEquals(
-                          event.fromDate.toNepaliDateTime(), dayToBuild)))
+                  if (studentAttendanceViewController.attendencelist.any(
+                      (event) => _dayEquals(event.attendanceDate, dayToBuild)))
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
@@ -87,44 +88,42 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                       ),
                     )
                 ],
-              ),
-            );
-          },
-          selectedDayDecoration: BoxDecoration(
-            color: Colors.deepOrange,
-            shape: BoxShape.circle,
+              );
+            },
+            selectedDayDecoration: BoxDecoration(
+              color: Colors.deepOrange,
+              shape: BoxShape.circle,
+            ),
+            todayDecoration: BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
+              shape: BoxShape.circle,
+            ),
           ),
-          todayDecoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
-            shape: BoxShape.circle,
-          ),
-        ),
-        Obx(
-          () => Expanded(
-            child: tableEventController.isloading.value
+          Expanded(
+            child: studentAttendanceViewController.isloading.value
                 ? CalendarShimmer()
                 : ValueListenableBuilder<NepaliDateTime>(
                     valueListenable: _selectedDate,
                     builder: (context, date, _) {
                       try {
-                        event = tableEventController.eventNepali
-                            .where((e) =>
-                                _dayEquals(e.fromDate.toNepaliDateTime(), date))
+                        attendance = studentAttendanceViewController
+                            .attendencelist
+                            .where((e) => _dayEquals(e.attendanceDate, date))
                             .toList();
                       } on StateError {
-                        event = [];
+                        attendance = [];
                       }
 
-                      if (event.isEmpty) {
+                      if (attendance.isEmpty) {
                         return Center(
                           child: Text('No Events'),
                         );
                       }
 
                       return ListView.builder(
-                        itemCount: event.length,
+                        itemCount: attendance.length,
                         itemBuilder: (context, index) {
-                          var myitem = event[index];
+                          var myitem = attendance[index];
                           return ListTile(
                             leading: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,8 +149,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                                             Text(
                                               NepaliDateFormat(
                                                       'd', Language.nepali)
-                                                  .format(myitem.fromDate
-                                                      .toNepaliDateTime())
+                                                  .format(myitem.attendanceDate)
                                                   .toString(),
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -160,8 +158,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                                             Text(
                                               NepaliDateFormat(
                                                       'MMMM', Language.nepali)
-                                                  .format(myitem.fromDate
-                                                      .toNepaliDateTime())
+                                                  .format(myitem.attendanceDate)
                                                   .toString(),
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -171,8 +168,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                                         )),
                                     Text(
                                       NepaliDateFormat('EEE', Language.nepali)
-                                          .format(myitem.fromDate
-                                              .toNepaliDateTime())
+                                          .format(myitem.attendanceDate)
                                           .toString(),
                                       // myitem.fromDate.weekday.toString(),
                                       style: TextStyle(
@@ -195,7 +191,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                             title: Padding(
                               padding: const EdgeInsets.only(bottom: 5),
                               child: Text(
-                                myitem.eventTitle,
+                                myitem.attendanceType,
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: pink,
@@ -206,7 +202,7 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                             subtitle: Padding(
                               padding: const EdgeInsets.only(bottom: 15),
                               child: Text(
-                                myitem.eventDes,
+                                myitem.attendanceDate.toString(),
                                 maxLines: 2,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
@@ -223,9 +219,9 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
                     },
                   ),
           ),
-        ),
-      ],
-      // ),
+        ],
+        // ),
+      ),
     );
   }
 

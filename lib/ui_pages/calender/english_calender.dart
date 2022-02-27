@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:new_project_work/controller/event/table_event_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/constant.dart';
 import 'package:new_project_work/widgets/simmer/calendar_shimmer.dart';
@@ -7,7 +8,6 @@ import 'package:table_calendar/table_calendar.dart';
 
 import 'package:get/get.dart';
 import 'package:new_project_work/event_model.dart';
-import 'package:new_project_work/table_event_controller.dart';
 
 class EnglishCalendar extends StatefulWidget {
   @override
@@ -103,83 +103,90 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => tableEventController.isloading.value
-          ? CalendarShimmer()
-          : Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.circular(5.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: orangeOne,
-                          spreadRadius: 0.8,
-                          blurRadius: 4,
-                          blurStyle: BlurStyle.inner,
-                          offset: const Offset(0, 3),
-                        ),
-                      ]),
-                  child: TableCalendar<Datum>(
-                    startingDayOfWeek: StartingDayOfWeek.monday,
-                    shouldFillViewport: true,
-                    firstDay:
-                        toogled ? DateTime(kToday.year, month, 1) : kFirstDay,
-                    lastDay: toogled
-                        ? DateTime(kToday.year, month + 1, 0)
-                        : kLastDay,
-                    focusedDay: _focusedDay,
-                    selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                    rangeStartDay: _rangeStart,
-                    rangeEndDay: _rangeEnd,
-                    calendarFormat: _calendarFormat,
-                    rangeSelectionMode: _rangeSelectionMode,
-                    eventLoader: _getEventsForDay,
-                    headerStyle: HeaderStyle(
-                      decoration: BoxDecoration(
-                        color: pink,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      headerMargin: const EdgeInsets.only(bottom: 10, top: 10),
-                      headerPadding: const EdgeInsets.only(bottom: 5),
-                      leftChevronVisible: true,
-                      rightChevronVisible: true,
-                      formatButtonVisible: false,
-                      titleCentered: true,
-                      titleTextStyle: const TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                      formatButtonShowsNext: false,
-                      formatButtonDecoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      formatButtonTextStyle:
-                          const TextStyle(color: Colors.white),
-                    ),
-                    onDaySelected: _onDaySelected,
-                    onRangeSelected: _onRangeSelected,
-                    onFormatChanged: (format) {
-                      if (_calendarFormat != format) {
-                        setState(() {
-                          _calendarFormat = format;
-                        });
-                      }
-                    },
-                    onPageChanged: (focusedDay) {
-                      _selectedEvents.clear();
-                      month = focusedDay.month;
-                      _selectedDay = null;
-                      tableEventController.getEvent();
-
-                      _focusedDay = focusedDay;
-                    },
+      () => Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 3),
+            height: MediaQuery.of(context).size.height * 0.45,
+            decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.circular(5.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: orangeOne,
+                    spreadRadius: 0.8,
+                    blurRadius: 4,
+                    blurStyle: BlurStyle.inner,
+                    offset: const Offset(0, 3),
                   ),
+                ]),
+            child: TableCalendar<Datum>(
+              locale: 'en_US',
+              calendarBuilders: CalendarBuilders(
+                holidayBuilder: (context, day, focusedDay) {
+                  return Text('ff');
+                },
+                todayBuilder: (context, day, focusedDay) {
+                  // return  TextStyle(color: Colors.red);
+                },
+              ),
+              weekendDays: [DateTime.saturday],
+              daysOfWeekStyle:
+                  DaysOfWeekStyle(weekendStyle: TextStyle(color: Colors.red)),
+              startingDayOfWeek: StartingDayOfWeek.sunday,
+              shouldFillViewport: true,
+              firstDay: toogled ? DateTime(kToday.year, month, 1) : kFirstDay,
+              lastDay: toogled ? DateTime(kToday.year, month + 1, 0) : kLastDay,
+              focusedDay: _focusedDay,
+              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+              rangeStartDay: _rangeStart,
+              // Calendar Dates styling
+              calendarStyle: const CalendarStyle(
+                // Weekend dates color (Sat & Sun Column)
+                weekendTextStyle: TextStyle(color: Colors.red),
+              ),
+              rangeEndDay: _rangeEnd,
+              calendarFormat: _calendarFormat,
+              rangeSelectionMode: _rangeSelectionMode,
+              eventLoader: _getEventsForDay,
+              headerStyle: HeaderStyle(
+                decoration: BoxDecoration(
+                  color: pink,
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                const SizedBox(height: 8.0),
-                Expanded(
-                  child: ListView.builder(
+                headerMargin: const EdgeInsets.only(bottom: 10, top: 10),
+                headerPadding: const EdgeInsets.only(bottom: 5),
+                leftChevronVisible: true,
+                rightChevronVisible: true,
+                formatButtonVisible: false,
+                titleCentered: true,
+                titleTextStyle: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.white),
+                formatButtonShowsNext: false,
+                formatButtonDecoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                formatButtonTextStyle: const TextStyle(color: Colors.white),
+              ),
+              onDaySelected: _onDaySelected,
+              onRangeSelected: _onRangeSelected,
+              onPageChanged: (focusedDay) {
+                _selectedEvents.clear();
+                month = focusedDay.month;
+                _selectedDay = null;
+                tableEventController.getEvent(
+                    focusedDay.year, focusedDay.month);
+
+                _focusedDay = focusedDay;
+              },
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Expanded(
+            child: tableEventController.isloading.value
+                ? CalendarShimmer()
+                : ListView.builder(
                     itemCount: _selectedEvents.length,
                     itemBuilder: (context, index) {
                       var myitem = _selectedEvents[index];
@@ -269,9 +276,9 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                       );
                     },
                   ),
-                ),
-              ],
-            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:new_project_work/table_event_controller.dart';
+import 'package:new_project_work/controller/event/table_event_controller.dart';
+
 import 'package:new_project_work/ui_pages/calender/english_calender.dart';
+import 'package:new_project_work/ui_pages/calender/nepali_calender.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/simmer/main_shimmer.dart';
@@ -87,7 +87,7 @@ class Calendar extends StatelessWidget {
               Flexible(
                   child: TabBarView(children: <Widget>[
                 EnglishCalendar(),
-                Text('cae')
+                CalendarDatePickerWidget(),
                 // NepaliCalendar(),
               ])),
             ]),
