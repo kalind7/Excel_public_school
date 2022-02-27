@@ -9,7 +9,6 @@ import 'package:new_project_work/widgets/appbar.dart';
 
 class Fees extends StatefulWidget {
   Fees({Key? key}) : super(key: key);
-
   @override
   _FeesState createState() => _FeesState();
 }

@@ -1,12 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart' hide CalendarDatePicker;
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:nepali_utils/nepali_utils.dart';
-import 'package:new_project_work/controller/event/table_event_controller.dart';
-import 'package:new_project_work/event_model.dart';
 import 'package:new_project_work/ui_pages/student/attendance/controller/student_attendeence_controllert.dart';
 import 'package:new_project_work/ui_pages/student/attendance/model/student_attendence_model.dart';
 import 'package:new_project_work/utils/color.dart';

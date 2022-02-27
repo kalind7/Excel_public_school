@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/ui_pages/student/homework/student_homework_container.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
-import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/utils/fonts.dart';
 
 class StudentHomework extends StatelessWidget {
   StudentHomework({Key? key}) : super(key: key);

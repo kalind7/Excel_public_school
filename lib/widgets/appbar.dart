@@ -4,6 +4,7 @@ import 'package:new_project_work/ui_pages/settings/settings.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/logout_popup.dart';
 
+// ignore: must_be_immutable
 class WidgetAppbar extends StatelessWidget {
   WidgetAppbar(
       {Key? key,

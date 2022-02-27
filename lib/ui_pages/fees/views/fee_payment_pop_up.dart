@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees/widget_listTile.dart';
+import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
+import 'package:new_project_work/ui_pages/fees/views/widget_listTile.dart';
 import 'package:new_project_work/utils/color.dart';
 
-Widget feesPopup(BuildContext context) {
+Widget feesPopup(BuildContext context, FeePaymentData? data, month) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
   return Dialog(
@@ -12,19 +13,19 @@ Widget feesPopup(BuildContext context) {
     ),
     child: Container(
       height: height * 0.5,
-      width: width ,
+      width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.white,
           boxShadow: [
-        BoxShadow(
-          color: orangeOne,
-          // spreadRadius: 5,
-          blurRadius: 4,
-          blurStyle: BlurStyle.inner,
-          offset: const Offset(0, 3),
-        ),
-      ]),
+            BoxShadow(
+              color: orangeOne,
+              // spreadRadius: 5,
+              blurRadius: 4,
+              blurStyle: BlurStyle.inner,
+              offset: const Offset(0, 3),
+            ),
+          ]),
       child: Column(
         children: [
           Container(
@@ -40,7 +41,7 @@ Widget feesPopup(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Payment of Baisakh',
+                  'Payment of $month',
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Roboto',
@@ -48,11 +49,12 @@ Widget feesPopup(BuildContext context) {
                       color: Colors.white),
                 ),
                 IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
-
                   },
-                  icon :Icon(Icons.cancel_outlined,),
+                  icon: Icon(
+                    Icons.cancel_outlined,
+                  ),
                   color: Colors.white,
                 ),
               ],
@@ -67,9 +69,14 @@ Widget feesPopup(BuildContext context) {
             child: Column(
               children: [
                 listDetails(title: 'Fee Details', answer: 'Amount'),
-                listDetails(title: 'Pre Amount', answer: 'Rs. 4400'),
-                listDetails(title: 'Amount Paid', answer: 'Rs. 950'),
-                listDetails(title: 'Balance Due', answer: 'Rs. 3450'),
+                listDetails(
+                    title: 'Pre Amount', answer: 'Rs. ${data!.preAmount}'),
+                listDetails(
+                    title: 'Amount Paid', answer: 'Rs. ${data.amountPaid}'),
+                data.balanceDue == null
+                    ? SizedBox()
+                    : listDetails(
+                        title: 'Balance Due', answer: 'Rs. ${data.balanceDue}'),
               ],
             ),
           ),

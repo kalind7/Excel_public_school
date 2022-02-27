@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/settings/settings.dart';
 import 'package:new_project_work/ui_pages/student/attendance/views/student_attendance.dart';
-import 'package:new_project_work/ui_pages/student/drawer/drawer_footer.dart';
 import 'package:new_project_work/ui_pages/student/drawer/drawer_item.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/logout_popup.dart';
 
 class StudentDrawer extends StatefulWidget {
   const StudentDrawer({Key? key}) : super(key: key);

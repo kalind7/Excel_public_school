@@ -4,8 +4,6 @@ import 'package:new_project_work/ui_pages/student/widget/row_details.dart';
 
 import 'package:new_project_work/utils/color.dart';
 
-import 'package:new_project_work/widgets/appbar.dart';
-import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 
 class StudentDetails extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

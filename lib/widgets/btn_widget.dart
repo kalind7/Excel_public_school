@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 
+// ignore: must_be_immutable
 class ButtonWidget extends StatelessWidget {
   var btnText = "";
   var onClick;
