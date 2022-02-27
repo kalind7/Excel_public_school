@@ -10,6 +10,7 @@ final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, 1, 1);
 final kLastDay = DateTime(kToday.year, 12, kToday.day);
 
+
 TextStyle titleStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
@@ -20,4 +21,3 @@ TextStyle answerStyle = TextStyle(
     fontWeight: FontWeight.w300,
     fontFamily: 'Roboto',
     color: pink);
-

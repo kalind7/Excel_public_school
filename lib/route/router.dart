@@ -8,10 +8,10 @@ import 'router_constant.dart';
 class Routers {
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-
+   
       case loginRoute:
         return MaterialPageRoute(builder: (_) => LoginPage());
-
+      
       case splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case studentLandingPage:

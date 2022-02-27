@@ -20,7 +20,9 @@ class StudentHomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(55.0),
         child: WidgetAppbar(
           title: '',
-          onPress: () {_scaffoldKey.currentState!.openDrawer();},
+          onPress: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
           icon: Icons.menu,
         ),
       ),

@@ -1,15 +1,16 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/table_event_controller.dart';
+import 'package:new_project_work/controller/event/table_event_controller.dart';
+
 import 'package:new_project_work/ui_pages/calender/english_calender.dart';
+import 'package:new_project_work/ui_pages/calender/nepali_calender.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/simmer/main_shimmer.dart';
 
 class Calendar extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   //  final tableEventController = Get.find(());
   final tableEventController = Get.put(TableEventController());
 
@@ -18,18 +19,8 @@ class Calendar extends StatelessWidget {
     return Scaffold(
         key: _scaffoldKey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(85),
-          child: WidgetAppbar(
-              title: 'Calender',
-              color: orangeOne,
-              onPress: () {},
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-              ),
-            ),
-          ),
+          preferredSize: Size.fromHeight(55),
+          child: WidgetAppbar(title: 'Calender', color: pink, onPress: () {}),
         ),
         body: SafeArea(
           child: DefaultTabController(
@@ -96,7 +87,7 @@ class Calendar extends StatelessWidget {
               Flexible(
                   child: TabBarView(children: <Widget>[
                 EnglishCalendar(),
-                Text('cae')
+                CalendarDatePickerWidget(),
                 // NepaliCalendar(),
               ])),
             ]),

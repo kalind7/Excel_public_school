@@ -15,6 +15,24 @@ class ApiServices {
     }
   }
 
+  Future getwithbody(String endpoint) async {
+    try {
+      final month = {
+        'year': '2022',
+        'month': '02',
+      };
+
+      final uri = Uri.http(ApiUrl.baseUrl, endpoint, month);
+      final response = await http.get(uri);
+      print(response.toString());
+
+      // var response = await http.get(Uri.parse(ApiUrl.baseUrl  + endpoint,'/path' ,month));
+      return response.body;
+    } catch (e) {
+      Alert.showSnackBar(e.toString(), true);
+    }
+  }
+
   Future post(url, data) async {
     try {
       var res;

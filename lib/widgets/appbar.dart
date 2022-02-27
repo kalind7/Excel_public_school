@@ -9,7 +9,6 @@ class WidgetAppbar extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.onPress,
-        this.shape,
       this.icon,
       this.color})
       : super(key: key);
@@ -17,17 +16,17 @@ class WidgetAppbar extends StatelessWidget {
   final String title;
   final Function onPress;
   IconData? icon;
-  ShapeBorder? shape;
   Color? color;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      shape: shape,
       automaticallyImplyLeading: false,
       leading: icon != null
           ? IconButton(
-              onPressed: () {onPress();} ,
+              onPressed: () {
+                onPress();
+              },
               icon: Icon(
                 icon,
                 color: Colors.white,

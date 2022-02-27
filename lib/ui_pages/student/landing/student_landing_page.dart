@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:new_project_work/ui_pages/calender/calender.dart';
 import 'package:new_project_work/ui_pages/student/homepage/student_home_page.dart';
 import 'package:new_project_work/ui_pages/student/homework/student_homework.dart';
@@ -17,6 +18,7 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
   var _pageController;
   final screens = <Widget>[
     StudentDetails(),
+    // StudentAttendanceView(),
     Calendar(),
     StudentHomePage(),
     StudentHomework(),

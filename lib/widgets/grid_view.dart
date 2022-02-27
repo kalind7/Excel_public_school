@@ -1,12 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/fees/fees.dart';
-import 'package:new_project_work/ui_pages/library.dart';
-import 'package:new_project_work/ui_pages/student/routine/routine.dart';
-import 'package:new_project_work/ui_pages/teachers/teacher_home_page.dart';
-import 'package:new_project_work/utils/fonts.dart';
 
+import 'package:new_project_work/utils/fonts.dart';
 
 class Model {
   final String text;
@@ -35,8 +31,6 @@ class Gridview extends StatelessWidget {
         text: 'Fees',
         iconTitle: 'images/gridview_logo/fees.jpg',
         onPress: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
-
           if (kDebugMode) {
             print('anything');
             Navigator.push(
@@ -79,8 +73,6 @@ class Gridview extends StatelessWidget {
         text: 'Routine',
         iconTitle: 'images/gridview_logo/routine.jpg',
         onPress: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Routine()));
-
           if (kDebugMode) {
             print('anything');
           }
@@ -90,7 +82,7 @@ class Gridview extends StatelessWidget {
         text: 'Library',
         iconTitle: 'images/gridview_logo/library.jpg',
         onPress: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Library()));
+          // Get.toNamed('/routine');
         },
       ),
       Model(
@@ -110,7 +102,7 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          Get.to(TeacherHomePage());
+          // Get.toNamed('/teacherlist');
         },
       ),
       Model(

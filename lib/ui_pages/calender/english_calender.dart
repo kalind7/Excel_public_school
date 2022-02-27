@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:new_project_work/controller/event/table_event_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/constant.dart';
-import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/simmer/calendar_shimmer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'package:get/get.dart';
 import 'package:new_project_work/event_model.dart';
-import 'package:new_project_work/table_event_controller.dart';
 
 class EnglishCalendar extends StatefulWidget {
   @override
@@ -44,16 +43,16 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
     final dayCount = last.difference(first).inDays + 1;
     return List.generate(
       dayCount,
-          (index) => DateTime.utc(first.year, first.month, first.day + index),
+      (index) => DateTime.utc(first.year, first.month, first.day + index),
     );
   }
 
   List<Datum> _getEventsForDay(DateTime day) {
     return tableEventController.event
         .where((element) =>
-    element.fromDate.year == day.year &&
-        element.fromDate.month == day.month &&
-        element.fromDate.day == day.day)
+            element.fromDate.year == day.year &&
+            element.fromDate.month == day.month &&
+            element.fromDate.day == day.day)
         .toList();
   }
 
@@ -104,9 +103,7 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => tableEventController.isloading.value
-          ? CalendarShimmer()
-          : Column(
+      () => Column(
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 3),
@@ -124,16 +121,30 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                   ),
                 ]),
             child: TableCalendar<Datum>(
-              startingDayOfWeek: StartingDayOfWeek.monday,
+              locale: 'en_US',
+              calendarBuilders: CalendarBuilders(
+                holidayBuilder: (context, day, focusedDay) {
+                  return Text('ff');
+                },
+                todayBuilder: (context, day, focusedDay) {
+                  // return  TextStyle(color: Colors.red);
+                },
+              ),
+              weekendDays: [DateTime.saturday],
+              daysOfWeekStyle:
+                  DaysOfWeekStyle(weekendStyle: TextStyle(color: Colors.red)),
+              startingDayOfWeek: StartingDayOfWeek.sunday,
               shouldFillViewport: true,
-              firstDay:
-              toogled ? DateTime(kToday.year, month, 1) : kFirstDay,
-              lastDay: toogled
-                  ? DateTime(kToday.year, month + 1, 0)
-                  : kLastDay,
+              firstDay: toogled ? DateTime(kToday.year, month, 1) : kFirstDay,
+              lastDay: toogled ? DateTime(kToday.year, month + 1, 0) : kLastDay,
               focusedDay: _focusedDay,
               selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
               rangeStartDay: _rangeStart,
+              // Calendar Dates styling
+              calendarStyle: const CalendarStyle(
+                // Weekend dates color (Sat & Sun Column)
+                weekendTextStyle: TextStyle(color: Colors.red),
+              ),
               rangeEndDay: _rangeEnd,
               calendarFormat: _calendarFormat,
               rangeSelectionMode: _rangeSelectionMode,
@@ -156,23 +167,16 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                formatButtonTextStyle:
-                const TextStyle(color: Colors.white),
+                formatButtonTextStyle: const TextStyle(color: Colors.white),
               ),
               onDaySelected: _onDaySelected,
               onRangeSelected: _onRangeSelected,
-              onFormatChanged: (format) {
-                if (_calendarFormat != format) {
-                  setState(() {
-                    _calendarFormat = format;
-                  });
-                }
-              },
               onPageChanged: (focusedDay) {
                 _selectedEvents.clear();
                 month = focusedDay.month;
                 _selectedDay = null;
-                tableEventController.getEvent();
+                tableEventController.getEvent(
+                    focusedDay.year, focusedDay.month);
 
                 _focusedDay = focusedDay;
               },
@@ -180,82 +184,98 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: ListView.builder(
-              itemCount: _selectedEvents.length,
-              itemBuilder: (context, index) {
-                var myitem = _selectedEvents[index];
+            child: tableEventController.isloading.value
+                ? CalendarShimmer()
+                : ListView.builder(
+                    itemCount: _selectedEvents.length,
+                    itemBuilder: (context, index) {
+                      var myitem = _selectedEvents[index];
 
-                return ListTile(
-                  leading: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
+                      return ListTile(
+                        leading: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                    height: 40,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      color: pink,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          myitem.fromDate.day.toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Roboto'),
+                                        ),
+                                        Text(
+                                          DateFormat('MMM')
+                                              .format(myitem.fromDate)
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Roboto'),
+                                        ),
+                                      ],
+                                    )),
+                                Text(
+                                  DateFormat('EEEE')
+                                      .format(myitem.fromDate)
+                                      .toString(),
+                                  // myitem.fromDate.weekday.toString(),
+                                  style: TextStyle(
+                                      color: Colors.pink, fontFamily: 'Roboto'),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
                               height: 40,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
+                              child: VerticalDivider(
+                                width: 4,
+                                thickness: 4,
                                 color: pink,
                               ),
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    myitem.fromDate.day.toString(),
-                                    style: eventDate
-                                  ),
-                                  Text(
-                                    DateFormat('MMM')
-                                        .format(myitem.fromDate)
-                                        .toString(),
-                                    style: eventDate,
-                                  ),
-                                ],
-                              )),
-                          Text(
-                            DateFormat('EEEE')
-                                .format(myitem.fromDate)
-                                .toString(),
-                            style: eventDay,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                        height: 40,
-                        child: VerticalDivider(
-                          width: 4,
-                          thickness: 4,
-                          color: pink,
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 5),
+                          child: Text(
+                            myitem.eventTitle,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: pink,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: Text(
+                            myitem.eventDes,
+                            maxLines: 2,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: pink,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      myitem.eventTitle,
-                      style: eventText,
-                    ),
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Text(
-                      myitem.eventDes,
-                      maxLines: 2,
-                      textAlign: TextAlign.justify,
-                      style: eventDescription,
-                    ),
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),
