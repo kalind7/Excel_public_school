@@ -33,7 +33,7 @@ class FeeController extends GetxController {
       date: 'Date',
       amount1: 'Paid',
       amount2: 'Rs .2200',
-      details: 'Button',
+      details: 'View Details',
     ),
     FeeModel(
       status: false,
@@ -42,7 +42,7 @@ class FeeController extends GetxController {
       date: 'Date',
       amount1: 'Paid',
       amount2: 'Rs.3300',
-      details: 'Button',
+      details: 'View Details',
     ),
     FeeModel(
       status: true,
@@ -51,7 +51,7 @@ class FeeController extends GetxController {
       date: 'Date',
       amount1: 'Paid',
       amount2: 'Rs. 2200',
-      details: 'Show Details',
+      details: 'View Details',
     )
   ];
 

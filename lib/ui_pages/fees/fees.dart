@@ -6,6 +6,7 @@ import 'package:new_project_work/ui_pages/fees/widget_pop_up.dart';
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/simmer/fees_shimmer.dart';
 
 class Fees extends StatefulWidget {
    Fees({Key? key}) : super(key: key);
@@ -31,17 +32,14 @@ class _FeesState extends State<Fees> {
           onPress: () {},
         ),
       ),
-      body:
-     Obx(() =>
-         feesController.isLoading.value ? CircularProgressIndicator() :
-         ProfileBodyContainer(
+      body: ProfileBodyContainer(
        text: 'Net Payable Rs. 2200',
        widget: Expanded(
-         child: ListView.builder(
+         child: Obx(()=> feesController.isLoading.value? FeesShimmer(): ListView.builder(
              itemCount: feesController.feeList.length,
              itemBuilder: (context, index) {
                var  myitem = feesController.feeList[index];
-               return Container(
+               return  Container(
                  padding: EdgeInsets.symmetric(horizontal: 7),
                  height: height * 0.15,
                  width: width / 4,
@@ -127,10 +125,10 @@ class _FeesState extends State<Fees> {
                    ],
                  ),
                );
-             }),
+             }),)
        ),
      ),
-     ),
+     
     );
   }
 }
