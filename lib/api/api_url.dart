@@ -3,7 +3,9 @@ class ApiUrl {
   static const String URL = "https://ems.allstar.com.np/";
   // static const String baseUrl = "https://mis.excelpsschool.edu.np/api/";
   static const String baseUrl = "https://ems.allstar.com.np/api/";
-  static const String login = "login";
+  static const String login = "v2/auth/login";
+  static const String refreshToken = "v2/refresh";
+  static String studentHomework(duration,id) => "v2/homeworklist?days=$duration&page=$id";
   static String noticelistCurrentIndex(id) => "notice-list?page=$id";
   static String eventList(year, month) => 'event?year=$year&month=$month';
   static String studentFees(studentid) => 'student-fees/$studentid';
@@ -21,6 +23,11 @@ class Constants {
   static const String isLoggedIn = "isLoggedIn";
   static const String name = "name";
   static const String userName = "userName";
+  static const String className = "9";
+  static const String sectionName = "A";
+  static const String email = "email";
+  static const int admissionNumber = 1;
   static const String roll = "roll";
   static const String profileImage = "profileImage";
+  static const String accesstoken = "token";
 }

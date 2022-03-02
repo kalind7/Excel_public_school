@@ -9,13 +9,23 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/simmer/main_shimmer.dart';
 
-class Calendar extends StatelessWidget {
+class Calendar extends StatefulWidget {
+  @override
+  State<Calendar> createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   //  final tableEventController = Get.find(());
   final tableEventController = Get.put(TableEventController());
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         key: _scaffoldKey,
         appBar: PreferredSize(

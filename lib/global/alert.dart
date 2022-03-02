@@ -7,11 +7,11 @@ import 'package:new_project_work/main.dart';
 import 'AppColors.dart';
 
 class Alert {
-  static void showSnackBar(message, bool top) {
-    Get.snackbar('Network Error', message,
+  static void showSnackBar({title, message,  top}) {
+    Get.snackbar(title, message,
         isDismissible: true,
         // icon: Icon(Icons.no_cell),
-        snackPosition: top?SnackPosition.TOP: SnackPosition.BOTTOM);
+        snackPosition: top ==true ? SnackPosition.TOP : SnackPosition.BOTTOM);
     // final snackBar = SnackBar(
     //     content: Text(
     //       mesage,
@@ -28,27 +28,22 @@ class Alert {
     // ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  exitornot()  {
-
-       Get.defaultDialog(
-        title: '',
-        content: const Text('Do you want to exit the App?'),
-           actions: <Widget>[
-              TextButton(
-                onPressed: () => Get.back(),
-                child: const Text('No'),
-              ),
-              TextButton(
-                onPressed: () => exit(0),
-                child: const Text('Yes'),
-              )
-            ],
-
-         );
-
-    }
-
-   
+  exitornot() {
+    Get.defaultDialog(
+      title: '',
+      content: const Text('Do you want to exit the App?'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Get.back(),
+          child: const Text('No'),
+        ),
+        TextButton(
+          onPressed: () => exit(0),
+          child: const Text('Yes'),
+        )
+      ],
+    );
+  }
 
   static Future<void> showGlobalSnackBar(mesage) async {
     final context = navigatorKey.currentContext!;

@@ -51,47 +51,92 @@ class FeeInvoiceData {
       };
 }
 
+
 class Fees {
-  Fees({
-    required this.timeline,
-    required this.total,
-    required this.grandtotal,
-  });
+    Fees({
+        required this.timeline,
+        required this.total,
+        required this.grandtotal,
+    });
 
-  List<Timeline> timeline;
-  int total;
-  int grandtotal;
+    List<Timeline> timeline;
+    int total;
+    int grandtotal;
 
-  factory Fees.fromJson(Map<String, dynamic> json) => Fees(
-        timeline: List<Timeline>.from(
-            json["timeline"].map((x) => Timeline.fromJson(x))),
+    factory Fees.fromJson(Map<String, dynamic> json) => Fees(
+        timeline: List<Timeline>.from(json["timeline"].map((x) => Timeline.fromJson(x))),
         total: json["total"],
         grandtotal: json["grandtotal"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "timeline": List<dynamic>.from(timeline.map((x) => x.toJson())),
         "total": total,
         "grandtotal": grandtotal,
-      };
+    };
 }
 
 class Timeline {
-  Timeline({
-    required this.monthly,
-     this.exam,
-  });
+    Timeline({
+         this.monthly,
+        this.exam,
+    });
 
-  int? monthly;
-  int? exam;
+    int? monthly;
+    int? exam;
 
-  factory Timeline.fromJson(Map<String, dynamic> json) => Timeline(
+    factory Timeline.fromJson(Map<String, dynamic> json) => Timeline(
         monthly: json["Monthly"] == null ? null : json["Monthly"],
-        exam: json["Exam"] == null ? null : json["Exam"],
-      );
+        exam: json["Exam"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "Monthly": monthly,
+    Map<String, dynamic> toJson() => {
+        "Monthly": monthly == null ? null : monthly,
         "Exam": exam,
-      };
+    };
 }
+
+
+// class Fees {
+//   Fees({
+//     required this.timeline,
+//     required this.total,
+//     required this.grandtotal,
+//   });
+
+//   Timeline timeline;
+//   int total;
+//   int grandtotal;
+
+//   factory Fees.fromJson(Map<String, dynamic> json) => Fees(
+//         timeline: Timeline.fromJson(json["timeline"]),
+//         total: json["total"],
+//         grandtotal: json["grandtotal"],
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "timeline": timeline.toJson(),
+//         "total": total,
+//         "grandtotal": grandtotal,
+//       };
+// }
+
+// class Timeline {
+//   Timeline({
+//     required this.monthly,
+//      this.exam,
+//   });
+
+//   int? monthly;
+//   int? exam;
+
+//   factory Timeline.fromJson(Map<String, dynamic> json) => Timeline(
+//         monthly: json["Monthly"] == null ? null : json["Monthly"],
+//         exam: json["Exam"] == null ? null : json["Exam"],
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "Monthly": monthly,
+//         "Exam": exam,
+//       };
+// }

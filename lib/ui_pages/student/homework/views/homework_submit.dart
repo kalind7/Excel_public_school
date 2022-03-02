@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_invoice_model.dart';
-import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
-import 'package:new_project_work/ui_pages/fees/views/widget_listTile.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 
-Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
+Widget uploadPopUp(BuildContext context) {
+  final StudentHomeworkController studentHomeworkController =
+      Get.find<StudentHomeworkController>();
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
   return Dialog(
@@ -31,7 +33,7 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 2.0),
-            padding: EdgeInsets.symmetric(horizontal: 7),
+            padding: EdgeInsets.only(left: width / 3.5, right: 7),
             height: height * 0.09,
             decoration: BoxDecoration(
               color: pink,
@@ -39,12 +41,13 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
             ),
             child: Row(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Invoice of $month',
+                  'Upload',
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
@@ -62,31 +65,21 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
             ),
           ),
           Container(
+            padding: EdgeInsets.only(top: 50),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.circular(10.0),
             )),
-            child: Column(
-              children: [
-                listDetails(title: 'Invoice Description', answer: 'Amount'),
-                data!.fees.timeline.length == 0
-                    ? SizedBox()
-                    : data.fees.timeline.first.monthly == null
-                        ? SizedBox()
-                        : listDetails(
-                            title: 'Monthly',
-                            answer: 'Rs. ${data.fees.timeline.first.monthly}'),
-                data.fees.timeline.first.exam == null
-                    ? SizedBox()
-                    : listDetails(
-                        title: 'Exam',
-                        answer: 'Rs. ${data.fees.timeline.first.exam}'),
-                listDetails(title: 'Total', answer: 'Rs. ${data.fees.total}'),
-                listDetails(
-                    title: 'Grand Total',
-                    answer: 'Rs. ${data.fees.grandtotal}'),
-              ],
+            child: GestureDetector(
+              onTap: () {
+                studentHomeworkController.pickImage();
+              },
+              child: SvgPicture.asset(
+                'assets/homework_icons/Vector.svg',
+                height: 115,
+                width: 115,
+              ),
             ),
           ),
         ],
