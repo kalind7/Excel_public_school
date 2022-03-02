@@ -5,9 +5,10 @@ import 'package:new_project_work/utils/color.dart';
 class BodyWithWidgetContainer extends StatelessWidget {
   final Widget bodyWidget;
   final Widget uppderWidget;
+  final double? height;
 
   const BodyWithWidgetContainer(
-      {Key? key, required this.bodyWidget, required this.uppderWidget})
+      {Key? key, required this.bodyWidget, required this.uppderWidget, this.height})
       : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class BodyWithWidgetContainer extends StatelessWidget {
         Column(
           children: <Widget>[
             Container(
-              height: 155.0,
+              height: height != null ? height : 155.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(18),

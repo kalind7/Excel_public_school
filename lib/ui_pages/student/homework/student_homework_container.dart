@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:new_project_work/ui_pages/student/homework/upload_pop_up.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -24,6 +25,12 @@ Widget homeworkContainer(BuildContext context) {
         title: 'Upload',
         icon: Image.asset('assets/homework_icons/upload.png'),
         onPress: () {
+          showDialog(
+              context: context,
+              builder: (context){
+                return uploadPopUp(context);
+              }
+          );
           print('thisis 2.');
         }),
     Choice(

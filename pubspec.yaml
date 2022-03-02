@@ -63,6 +63,7 @@ dependencies:
   searchfield: ^0.5.6
   filter_list: ^1.0.1
   flutter_svg: ^1.0.0
+  syncfusion_flutter_datagrid: ^19.4.54
 
 dev_dependencies:
   flutter_test:

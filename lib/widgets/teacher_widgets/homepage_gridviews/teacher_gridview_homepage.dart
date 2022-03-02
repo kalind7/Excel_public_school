@@ -16,7 +16,7 @@ Widget TeacherInfoGridView(BuildContext context){
   List<TeacherInfo> teacherChoice = [
     TeacherInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/Book.png',
+        'assets/teacher_homepage_icons/upload_content.png',
       ),
       iconTitle: 'Upload \n'
           'Content',
@@ -24,7 +24,7 @@ Widget TeacherInfoGridView(BuildContext context){
     ),
     TeacherInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/lesson_list.png',
+        'assets/teacher_homepage_icons/assignment.png',
       ),
       iconTitle: 'Assignment',
 
@@ -32,7 +32,7 @@ Widget TeacherInfoGridView(BuildContext context){
     ),
     TeacherInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/approved_lesson_list.png',
+        'assets/teacher_homepage_icons/study_material.png',
       ),
       iconTitle: 'Study\n'
           'Material',
@@ -40,7 +40,7 @@ Widget TeacherInfoGridView(BuildContext context){
     ),
     TeacherInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/disapproved_ll.png',
+        'assets/teacher_homepage_icons/Syllabus.png',
       ),
       iconTitle: 'Syllabus',
       onPress: () {},
@@ -48,7 +48,7 @@ Widget TeacherInfoGridView(BuildContext context){
 
     TeacherInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/disapproved_ll.png',
+        'assets/teacher_homepage_icons/downloads.png',
       ),
       iconTitle: 'Other\n'
           'Downloads',
@@ -67,7 +67,7 @@ Widget TeacherInfoGridView(BuildContext context){
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'LESSON PLAN',
+            'TEACHER',
             style: headingTitle,
           ),
           SizedBox(

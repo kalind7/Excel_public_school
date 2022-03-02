@@ -128,29 +128,21 @@ class TeacherHomePage extends StatelessWidget {
           ),
         ),
         bodyWidget: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: ClampingScrollPhysics(),
           children: [
             StudentInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             ExamInfoGridView(context),
-
-            SizedBox(height: 5,),
 
             HomeworkInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             LessonInfoGridView(context),
-
-            SizedBox(height: 5,),
 
             TeacherInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             LeaveInfoGridView(context),
-
 
           ],
         ),

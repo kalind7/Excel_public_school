@@ -8,6 +8,7 @@ import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_invoice_
 import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_model.dart' as feemodel;
 import 'package:new_project_work/ui_pages/fees/views/fee_payment_pop_up.dart';
+import 'package:new_project_work/ui_pages/fees/views/invoice_payment_popup.dart';
 
 class FeeController extends GetxController {
   var feeList = <feemodel.Timeline?>[].obs;
@@ -53,7 +54,11 @@ class FeeController extends GetxController {
         isFeeDetailLoading.value = false;
         print('data from invoice');
         print(isFeeDetailLoading.value);
-        Get.defaultDialog(title: 'Fee for $month');
+        showDialog(
+            context: context,
+            builder: (context) {
+              return invoiceFeesPopup(context, res.data);
+            });
         // feesPopup();
       }
     } else {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees/views/widget_listTile.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_project_work/utils/color.dart';
 
-Widget invoiceFeesPopup(BuildContext context,  month) {
+Widget uploadPopUp(BuildContext context) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
   return Dialog(
@@ -29,7 +29,7 @@ Widget invoiceFeesPopup(BuildContext context,  month) {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 2.0),
-            padding: EdgeInsets.symmetric(horizontal: 7),
+            padding: EdgeInsets.only(left: width /3.5,right: 7),
             height: height * 0.09,
             decoration: BoxDecoration(
               color: pink,
@@ -37,16 +37,18 @@ Widget invoiceFeesPopup(BuildContext context,  month) {
             ),
             child: Row(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Invoice of month',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
+                 Text(
+                    'Upload',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
+                  ),
+
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -60,22 +62,20 @@ Widget invoiceFeesPopup(BuildContext context,  month) {
             ),
           ),
           Container(
+            padding: EdgeInsets.only(top: 50),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),
                 )),
-            child: Column(
-              children: [
-                listDetails(title: 'Fee Description', answer: 'Amount'),
-                listDetails(
-                    title: 'Monthly', answer: 'Rs. 2200'),
-                listDetails(
-                    title: 'Exam', answer: 'Rs. 3300'),
-                 listDetails(
-                    title: 'Balance Due', answer: 'Rs. 4400'),
-              ],
-            ),
+            child: GestureDetector(
+                onTap: (){
+
+
+                  print('upload');
+                },
+                child: SvgPicture.asset('assets/homework_icons/upload.svg', height: 115,width: 115,),
+              ),
           ),
         ],
       ),

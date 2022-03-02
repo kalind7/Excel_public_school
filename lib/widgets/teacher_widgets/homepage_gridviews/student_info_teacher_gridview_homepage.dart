@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/student_attendance.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance/views/scrollable_column_details.dart';
 
 class StudentInfo {
   final Widget icon;
@@ -20,7 +22,10 @@ Widget StudentInfoGridView(BuildContext context){
       ),
       iconTitle: 'Student\n'
           'Attendance',
-      onPress: () {},
+      onPress: () {
+        print('student attendance');
+        Navigator.push(context, MaterialPageRoute(builder: (context) => StudentAttendance()));
+      },
     ),
     StudentInfo(
       icon: Image.asset(
@@ -28,7 +33,9 @@ Widget StudentInfoGridView(BuildContext context){
       ),
       iconTitle: 'Attendance\n'
           'Report',
-      onPress: () {},
+      onPress: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ScrollableColumnView()));
+      },
     ),
     StudentInfo(
       icon: Image.asset(
