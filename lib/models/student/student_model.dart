@@ -10,7 +10,7 @@ String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
 class Welcome {
   bool success;
-  late Data? data;
+  Data? data;
   String message;
 
   Welcome({
@@ -24,7 +24,7 @@ class Welcome {
         data: (json['data'] != null ? Data.fromJson(json['data']) : null),
         // data: json['data'] != null ? new Data.fromJson(json['data']) : null;
         message: json["message"],
-      );                              
+      );
 
   Map<String, dynamic> toJson() => {
         "success": success,
@@ -35,13 +35,14 @@ class Welcome {
 
 class Data {
   Data({
+    required this.token,
     required this.user,
     required this.userDetails,
     this.religion,
     this.bloodGroup,
     this.transport,
   });
-
+  String token;
   User user;
   dynamic userDetails;
   dynamic religion;
@@ -49,6 +50,7 @@ class Data {
   dynamic transport;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+        token: json["token"],
         user: User.fromJson(json["user"]),
         userDetails: User.fromJson(json["user"]).roleId == 2
             ? UserDetails.fromJson(json["userDetails"])
@@ -59,6 +61,7 @@ class Data {
       );
 
   Map<String, dynamic> toJson() => {
+        "token": token,
         "user": user.toJson(),
         "userDetails": userDetails.toJson(),
         "religion": religion,
@@ -76,7 +79,6 @@ class User {
     this.usertype,
     required this.accessStatus,
     required this.activeStatus,
-    required this.randomCode,
     this.notificationToken,
     this.lastLogin,
     required this.createdAt,
@@ -94,7 +96,6 @@ class User {
   dynamic usertype;
   int accessStatus;
   int activeStatus;
-  String randomCode;
   dynamic notificationToken;
   dynamic lastLogin;
   DateTime createdAt;
@@ -112,7 +113,6 @@ class User {
         usertype: json["usertype"] ?? "",
         accessStatus: json["access_status"],
         activeStatus: json["active_status"],
-        randomCode: json["random_code"],
         notificationToken: json["notificationToken"],
         lastLogin: json["last_login"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -131,7 +131,6 @@ class User {
         "usertype": usertype,
         "access_status": accessStatus,
         "active_status": activeStatus,
-        "random_code": randomCode,
         "notificationToken": notificationToken,
         "last_login": lastLogin,
         "created_at": createdAt.toIso8601String(),

@@ -14,7 +14,10 @@ class EnglishCalendar extends StatefulWidget {
   State<EnglishCalendar> createState() => _EnglishCalendarState();
 }
 
-class _EnglishCalendarState extends State<EnglishCalendar> {
+class _EnglishCalendarState extends State<EnglishCalendar>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   int month = kToday.month;
 
   final tableEventController = Get.put(TableEventController());
@@ -102,6 +105,7 @@ class _EnglishCalendarState extends State<EnglishCalendar> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Obx(
       () => Column(
         children: [

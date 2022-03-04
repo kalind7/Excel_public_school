@@ -222,6 +222,7 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
                             ],
                           ),
                         ),
+                
                 );
               },
             ),

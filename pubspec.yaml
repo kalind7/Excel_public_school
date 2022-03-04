@@ -63,6 +63,9 @@ dependencies:
   filter_list: ^1.0.1
   flutter_svg: ^1.0.0
   image_picker: ^0.8.4+10
+  flutter_downloader: ^1.7.2
+  path_provider: ^2.0.9
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:

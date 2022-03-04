@@ -28,74 +28,74 @@ class _CalendarDatePickerWidgetState extends State<CalendarDatePickerWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-    Center(
-    child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 3),
-      height: MediaQuery.of(context).size.height * 0.45,
-      decoration: BoxDecoration(
-          color: Colors.grey[50],
-          borderRadius: BorderRadius.circular(5.0),
-          boxShadow: [
-            BoxShadow(
-              color: orangeOne,
-              spreadRadius: 0.8,
-              blurRadius: 4,
-              blurStyle: BlurStyle.inner,
-              offset: const Offset(0, 3),
-            ),
-          ]),
-      child: CalendarDatePicker(
-
-        onDisplayedMonthChanged: (date) {
-          tableEventController.getEventNepali(
-              date.toDateTime().year, date.toDateTime().month);
-        },
-        initialDate: NepaliDateTime.now(),
-        firstDate: NepaliDateTime(2078),
-        lastDate: NepaliDateTime(2079),
-        onDateChanged: (date) => _selectedDate.value = date,
-        dayBuilder: (dayToBuild) {
-          return Obx(
-                () => Stack(
-              children: <Widget>[
-                Center(
-                  child: Text(
-                    NepaliUtils().language == Language.nepali
-                        ? '${dayToBuild.day}'
-                        : NepaliUnicode.convert('${dayToBuild.day}'),
-                    style: TextStyle(
-                        color: dayToBuild.weekday == 07
-                            ? Colors.red
-                            : Colors.black),
-                  ),
-                ),
-                if (tableEventController.eventNepali.any((event) =>
-                    _dayEquals(
-                        event.fromDate.toNepaliDateTime(), dayToBuild)))
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.purple),
+        Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 3),
+              height: MediaQuery.of(context).size.height * 0.45,
+              decoration: BoxDecoration(
+                  color: Colors.grey[50],
+                  borderRadius: BorderRadius.circular(5.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: orangeOne,
+                      spreadRadius: 0.8,
+                      blurRadius: 4,
+                      blurStyle: BlurStyle.inner,
+                      offset: const Offset(0, 3),
                     ),
-                  )
-              ],
-            ),
-          );
-        },
+                  ]),
+              child: CalendarDatePicker(
 
-        selectedDayDecoration: BoxDecoration(
-          color: Colors.deepOrange,
-          shape: BoxShape.circle,
-        ),
-        todayDecoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
-          shape: BoxShape.circle,
-        ),
-      ),
-    )),
+                onDisplayedMonthChanged: (date) {
+                  tableEventController.getEventNepali(
+                      date.toDateTime().year, date.toDateTime().month);
+                },
+                initialDate: NepaliDateTime.now(),
+                firstDate: NepaliDateTime(2078),
+                lastDate: NepaliDateTime(2079),
+                onDateChanged: (date) => _selectedDate.value = date,
+                dayBuilder: (dayToBuild) {
+                  return Obx(
+                        () => Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Text(
+                            NepaliUtils().language == Language.nepali
+                                ? '${dayToBuild.day}'
+                                : NepaliUnicode.convert('${dayToBuild.day}'),
+                            style: TextStyle(
+                                color: dayToBuild.weekday == 07
+                                    ? Colors.red
+                                    : Colors.black),
+                          ),
+                        ),
+                        if (tableEventController.eventNepali.any((event) =>
+                            _dayEquals(
+                                event.fromDate.toNepaliDateTime(), dayToBuild)))
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              width: 6,
+                              height: 6,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.purple),
+                            ),
+                          )
+                      ],
+                    ),
+                  );
+                },
+
+                selectedDayDecoration: BoxDecoration(
+                  color: Colors.deepOrange,
+                  shape: BoxShape.circle,
+                ),
+                todayDecoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [Colors.yellow, Colors.orange]),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            )),
 
 
         Obx(

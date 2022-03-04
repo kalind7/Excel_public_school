@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_invoice_model.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
 import 'package:new_project_work/ui_pages/fees/views/widget_listTile.dart';
+import 'package:new_project_work/ui_pages/student/homework/model/student_homework_model.dart';
 import 'package:new_project_work/utils/color.dart';
 
-Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
+Widget feesPopup(BuildContext context, StudentHomeWorkData myitem) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
   return Dialog(
@@ -41,7 +43,7 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Invoice of $month',
+                  'Homework of ${myitem.subjectName}',
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Roboto',
@@ -61,32 +63,13 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
             ),
           ),
           Container(
+            width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10.0),
-                  topRight: Radius.circular(10.0),
-                )),
-            child: Column(
-              children: [
-                listDetails(title: 'Invoice Description', answer: 'Amount'),
-                data!.fees.timeline.length == 0
-                    ? SizedBox()
-                    : data.fees.timeline.first.monthly == null
-                    ? SizedBox()
-                    : listDetails(
-                    title: 'Monthly',
-                    answer: 'Rs. ${data.fees.timeline.first.monthly}'),
-                data.fees.timeline.first.exam == null
-                    ? SizedBox()
-                    : listDetails(
-                    title: 'Exam',
-                    answer: 'Rs. ${data.fees.timeline.first.exam}'),
-                listDetails(title: 'Total', answer: 'Rs. ${data.fees.total}'),
-                listDetails(
-                    title: 'Grand Total',
-                    answer: 'Rs. ${data.fees.grandtotal}'),
-              ],
-            ),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            )),
+            child: Html(data: myitem.description),
           ),
         ],
       ),

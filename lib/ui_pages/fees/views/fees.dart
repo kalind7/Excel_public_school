@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:new_project_work/ui_pages/fees/controller/student_fees_controller.dart';
+import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/simmer/fees_shimmer.dart';
 
 class Fees extends StatefulWidget {
   Fees({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class Fees extends StatefulWidget {
 
 class _FeesState extends State<Fees> {
   final feesController = Get.put(FeeController());
+  final studentHomeController = Get.find<StudentHomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +29,16 @@ class _FeesState extends State<Fees> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(55.0),
         child: WidgetAppbar(
+          icon: Icons.arrow_back,
           title: 'Fees',
-          onPress: () {},
+          onPress: () {
+            Get.back();
+          },
         ),
       ),
       body: Obx(
         () => feesController.isLoading.value
-            ? Center(child: Text('...'))
+            ? FeesShimmer()
             : ProfileBodyContainer(
                 text:
                     'Net Payable Rs. ${feesController.netPayable.toString()} \nOpening Credit Rs. ${feesController.credit.toString()}',
@@ -136,32 +142,31 @@ class _FeesState extends State<Fees> {
                                             onTap: () {
                                               feesController.fetchFeeDetails(
                                                   context,
-                                                  feesController.studentId,
+                                                  studentHomeController
+                                                      .id.value,
                                                   myitem.id,
                                                   myitem.type,
                                                   myitem.month);
                                             },
-                                            child: feesController
-                                                    .isFeeDetailLoading.value
-                                                ? CircularProgressIndicator()
-                                                : Container(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: 2.0),
-                                                    margin: EdgeInsets.only(
-                                                        top: 3.0),
-                                                    height: height * 0.035,
-                                                    width: width * 0.24,
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        border: Border.all(
-                                                            color: Colors.white,
-                                                            width: 1)),
-                                                    child: Center(
-                                                        child: Text('Details',
-                                                            style:
-                                                                secondTitle)),
-                                                  ),
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 2.0),
+                                              margin: EdgeInsets.only(top: 3.0),
+                                              height: height * 0.035,
+                                              width: width * 0.24,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  border: Border.all(
+                                                      color: Colors.white,
+                                                      width: 1)),
+                                              child: Center(
+                                                  child: feesController
+                                                          .isFeeDetailLoading
+                                                          .value
+                                                      ? CircularProgressIndicator()
+                                                      : Text('Details',
+                                                          style: secondTitle)),
+                                            ),
                                           ),
                                         ],
                                       ),

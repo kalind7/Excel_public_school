@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/route/router_constant.dart';
+import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 
 class BuildPopupDialog extends StatelessWidget {
   const BuildPopupDialog({Key? key}) : super(key: key);
@@ -82,6 +83,9 @@ class BuildPopupDialog extends StatelessWidget {
   logout() async {
     var box = await Hive.openBox(Constants.APPNAME);
     box.clear();
+    Get.deleteAll();
+    // Get.delete<StudentHomeController>();
+    // Get.offNamed(loginRoute);
     Get.offNamed(loginRoute);
   }
 }

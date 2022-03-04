@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
-
 
 import 'package:new_project_work/widgets/appbar.dart';
 
@@ -10,6 +12,8 @@ import 'package:new_project_work/widgets/grid_view.dart';
 
 class StudentHomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // final studentHomeController = Get.put(StudentHomeController());
+  final studentHomeController = Get.find<StudentHomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +31,12 @@ class StudentHomePage extends StatelessWidget {
         ),
       ),
       drawer: StudentDrawer(),
-      body: ProfileBodyContainer(
-          widget: Gridview(),
-          text: 'Dhiraj Shrestha',
-          image: 'images/excellogo.png'),
-  
+      body: Obx(
+        () => ProfileBodyContainer(
+            widget: Gridview(),
+            text: studentHomeController.name.value.toString(),
+            image: 'images/excellogo.png'),
+      ),
     );
   }
 }

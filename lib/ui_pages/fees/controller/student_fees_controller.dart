@@ -6,22 +6,25 @@ import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_invoice_model.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
-import 'package:new_project_work/ui_pages/fees/model/student_fee_model.dart' as feemodel;
+import 'package:new_project_work/ui_pages/fees/model/student_fee_model.dart'
+as feemodel;
 import 'package:new_project_work/ui_pages/fees/views/fee_payment_pop_up.dart';
 import 'package:new_project_work/ui_pages/fees/views/invoice_payment_popup.dart';
+import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 
 class FeeController extends GetxController {
+  final studentHomeController = Get.find<StudentHomeController>();
   var feeList = <feemodel.Timeline?>[].obs;
 
   var isLoading = true.obs;
   var isFeeDetailLoading = false.obs;
   var netPayable = 0.obs;
   var credit = 0.obs;
-  int studentId = 4890;
+  int studentId = 0;
 
   @override
   void onInit() {
-    fetchDetails(studentId);
+    fetchDetails(studentHomeController.id.toInt());
     super.onInit();
   }
 
@@ -57,14 +60,15 @@ class FeeController extends GetxController {
         showDialog(
             context: context,
             builder: (context) {
-              return invoiceFeesPopup(context, res.data);
+              return feesInvoicePopup(context, res.data, month);
             });
+
+        // Get.defaultDialog(title: 'Fee for $month');
         // feesPopup();
       }
     } else {
       var res = StudentFeeDetailPaymentModelFromJson(response);
       if (res.success) {
-      
         isFeeDetailLoading.value = false;
 
         print('data from payment');
