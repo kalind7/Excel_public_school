@@ -62,6 +62,14 @@ const monthTitle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+const tabTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
+    letterSpacing: 1.0,
+    color: Colors.white,
+);
+
 const firstTitle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,

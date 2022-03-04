@@ -135,7 +135,7 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                 text: 'Submit',
                 onPress: () {
                   studentHomeworkController.seeSubmitedHomework(context, myitem.id);
-                  print('Dhirah');
+           
                 }),
           ],
         )

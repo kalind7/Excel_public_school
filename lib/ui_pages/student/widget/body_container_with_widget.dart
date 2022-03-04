@@ -1,19 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 
 class BodyWithWidgetContainer extends StatelessWidget {
   final Widget bodyWidget;
-  final Widget uppderWidget;
+  final Widget upperWidget;
+  final double top;
 
   const BodyWithWidgetContainer(
-      {Key? key, required this.bodyWidget, required this.uppderWidget})
+      {Key? key, required this.bodyWidget, required this.upperWidget, required this.top})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-            children: <Widget>[
+      children: <Widget>[
         Column(
           children: <Widget>[
             Container(
@@ -34,8 +34,8 @@ class BodyWithWidgetContainer extends StatelessWidget {
         Positioned(
           left: 10,
           right: 10,
-          top: 75,
-          child: uppderWidget,
+          top: top,
+          child: upperWidget,
         ),
       ],
     );

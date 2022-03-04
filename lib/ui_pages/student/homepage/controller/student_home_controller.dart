@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/models/routine_list.dart';
 

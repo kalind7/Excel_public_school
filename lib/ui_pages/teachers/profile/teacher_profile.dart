@@ -26,7 +26,8 @@ class TeacherDetails extends StatelessWidget {
         ),
       ),
       body: BodyWithWidgetContainer(
-        uppderWidget: Center(
+        top: 100,
+        upperWidget: Center(
             child: Padding(
           padding: EdgeInsets.only(top: 20),
           child: CircleAvatar(

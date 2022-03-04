@@ -11,11 +11,51 @@ import 'package:new_project_work/global/alert.dart';
 
 import 'package:new_project_work/ui_pages/student/homework/model/student_homework_model.dart';
 import 'package:new_project_work/ui_pages/student/homework/model/submitted_homework_model.dart';
+import 'package:new_project_work/ui_pages/student/homework/views/submited_work_view.dart';
+import 'package:new_project_work/utils/fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class StudentHomeworkController extends GetxController {
-  var homeworkList = <StudentHomeWorkData>[].obs;
-  var currentPage = 1.obs;
+class StudentHomeworkController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  final List<Tab> myTabs = const <Tab>[
+    Tab(
+        child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      child: Text(
+        'Today',
+        style: tabTitle,
+      ),
+    )),
+    Tab(
+        child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      child: Text(
+        'Weekly',
+        style: tabTitle,
+      ),
+    )),
+    Tab(
+        child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      child: Text('Monthly', style: tabTitle),
+    )),
+  ];
+
+  late TabController controller;
+
+  @override
+  void onClose() {
+    controller.dispose();
+
+    super.onClose();
+  }
+
+  var todayHomeworkList = <StudentHomeWorkData>[].obs;
+  var weeklyHomeworkList = <StudentHomeWorkData>[].obs;
+  var monthlyHomeworkList = <StudentHomeWorkData>[].obs;
+  var todayCurrentPage = 1.obs;
+  var weeklyCurrentPage = 1.obs;
+  var monthlyCurrentPage = 1.obs;
   final ImagePicker _picker = ImagePicker();
   var imageFileList = <XFile>[].obs;
   var submittedWorkList = <HomeworkUploadDetail>[].obs;
@@ -24,16 +64,25 @@ class StudentHomeworkController extends GetxController {
 
   var isloading = true.obs;
   var isUploading = false.obs;
-  var duration = "monthly";
-  var lastpage = false.obs;
+  var duration = "";
+  var todayLastpage = false.obs;
+  var weeklyLastpage = false.obs;
+  var monthlyLastpage = false.obs;
 
   var isMoreDataAvailable = false.obs;
-  final RefreshController refreshController =
+  final RefreshController todayRefreshController =
       RefreshController(initialRefresh: true);
+  final RefreshController weeklyRefreshController =
+      RefreshController(initialRefresh: false);
+  final RefreshController monthlyRefreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   void onInit() {
-    getHomeWork();
+    controller = TabController(vsync: this, length: myTabs.length);
+    getHomeWorkToday();
+    getHomeWorkWeekly();
+    getHomeworkMontly();
     // paginateTask();
     super.onInit();
   }
@@ -93,14 +142,14 @@ class StudentHomeworkController extends GetxController {
     }
   }
 
-  Future<bool> getHomeWork() async {
-    print(currentPage.value);
+  Future<bool> getHomeWorkToday() async {
+    print(todayCurrentPage.value);
 
     // isloading.value = true;
     // isRefresh ? isloading.value = true : false;
 
     var response = await ApiServices()
-        .getWithToken(ApiUrl.studentHomework(duration, currentPage.value));
+        .getWithToken(ApiUrl.studentHomework(duration, todayCurrentPage.value));
 
     if (response != null) {
       var res = studentHomeWorkModelFromJson(response);
@@ -108,15 +157,109 @@ class StudentHomeworkController extends GetxController {
       print(res);
 
       if (res.success) {
-        homeworkList.addAll(res.data!.data);
-        currentPage++;
+        todayHomeworkList.addAll(res.data!.data);
+        todayCurrentPage++;
 
-        if (currentPage.value == res.data?.lastPage) {
+        if (todayCurrentPage.value == res.data?.lastPage) {
           // lastpage.value = true;
-          refreshController.loadNoData();
+          todayRefreshController.loadNoData();
         }
-        if (currentPage.value > res.data!.lastPage) {
-          lastpage.value = true;
+        if (todayCurrentPage.value > res.data!.lastPage) {
+          todayLastpage.value = true;
+          // refreshController.loadNoData();
+        }
+
+        // noticeList. = res.data.data;
+        isloading.value = false;
+        return true;
+      } else {
+        Alert.showSnackBar(title: 'Error', message: res.message, top: false);
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> getHomeWorkWeekly(
+      {bool isRefresh = false, bool islLoading = false}) async {
+    // isRefresh ? isloading.value = true : false;
+
+    var response = await ApiServices().getWithToken(
+        ApiUrl.studentHomework('weekly', weeklyCurrentPage.value));
+
+    if (response != null) {
+      var res = studentHomeWorkModelFromJson(response);
+
+      print(res);
+
+      if (res.success) {
+        if (isRefresh) {
+          // weeklyCurrentPage.value = 1;
+          print('page');
+          print(weeklyCurrentPage);
+          weeklyHomeworkList.value = res.data!.data;
+        } else if (islLoading) {
+          weeklyHomeworkList.addAll(res.data!.data);
+          weeklyCurrentPage++;
+        } else {
+          weeklyHomeworkList.addAll(res.data!.data);
+        }
+
+        if (weeklyCurrentPage.value == res.data?.lastPage) {
+          // lastpage.value = true;
+          weeklyRefreshController.loadNoData();
+        }
+        if (weeklyCurrentPage.value > res.data!.lastPage) {
+          weeklyLastpage.value = true;
+          // refreshController.loadNoData();
+        }
+
+        // noticeList. = res.data.data;
+        isloading.value = false;
+        return true;
+      } else {
+        Alert.showSnackBar(title: 'Error', message: res.message, top: false);
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> getHomeworkMontly({
+    bool isRefresh = false,
+  }) async {
+    print(todayCurrentPage.value);
+
+    // isRefresh ? isloading.value = true : false;
+
+    var response = await ApiServices().getWithToken(
+        ApiUrl.studentHomework('monthly', monthlyCurrentPage.value));
+
+    if (response != null) {
+      var res = studentHomeWorkModelFromJson(response);
+
+      if (res.success) {
+        if (isRefresh) {
+          // weeklyCurrentPage.value = 1;
+          print('page');
+          print(monthlyCurrentPage);
+          monthlyHomeworkList.value = res.data!.data;
+          monthlyCurrentPage++;
+        } else {
+          // weeklyHomeworkList.value = res.data!.data;
+          monthlyCurrentPage++;
+
+          monthlyHomeworkList.addAll(res.data!.data);
+        }
+
+        if (monthlyCurrentPage.value == res.data?.lastPage) {
+          // lastpage.value = true;
+          monthlyRefreshController.loadNoData();
+        }
+        if (monthlyCurrentPage.value > res.data!.lastPage) {
+          monthlyLastpage.value = true;
           // refreshController.loadNoData();
         }
 
@@ -143,37 +286,35 @@ class StudentHomeworkController extends GetxController {
           submittedWorkList.value = res.data!.homeworkUploadDetails;
           // submittedWorkList.add(res.data!.homeworkUploadDetails);
 
-          Get.defaultDialog(
-              title: 'Submitted Work',
-              content: Container(
-                width: 300,
-                height: 400,
-                child: submittedWorkList.isEmpty ? Center(child: Text("No work Submitted"),):
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: submittedWorkList.length,
-                  itemBuilder: (context, index) {
-                    var myitem = submittedWorkList[index];
-                    return Image.network(
-                      myitem.file!,
-                      height: 200,
-                    );
-                  },
-                ),
-              ));
-
-          // Get.defaultDialog(title: 'Fee for $month');
-          // feesPopup();
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (context) {
+                return submittedWork(context, submittedWorkList);
+              });
 
           // Get.defaultDialog(
-          //   content:  Text
+          //     title: 'Submitted Work',
+          //     content: Container(
+          //       width: 300,
+          //       height: 400,
+          //       child: submittedWorkList.isEmpty
+          //           ? Center(
+          //               child: Text("No work Submitted"),
+          //             )
+          //           : ListView.builder(
+          //               scrollDirection: Axis.horizontal,
+          //               itemCount: submittedWorkList.length,
+          //               itemBuilder: (context, index) {
+          //                 var myitem = submittedWorkList[index];
+          //                 return Image.network(
+          //                   myitem.file!,
+          //                   height: 200,
+          //                 );
+          //               },
+          //             ),
+          //     ));
 
-          // );
-
-          // Alert.showSnackBar(
-          //     title: 'Uploaded', message: res["message"], top: true);
-          // log(res["data"].toString());
-          // imageFileList.remove();
         } else {
           Alert.showSnackBar(
               title: '', message: 'Something went wrong'.toString(), top: true);
@@ -181,7 +322,7 @@ class StudentHomeworkController extends GetxController {
 
         // await Future.delayed(Duration(seconds: 5));
 
-        isUploading.value = false;
+        // isUploading.value = false;
       } else {
         Alert.showSnackBar(
             title: 'Upload Fail', message: 'Response Error', top: false);
@@ -189,7 +330,7 @@ class StudentHomeworkController extends GetxController {
 
       // _saveImage();
     } finally {
-      isUploading.value = false;
+      // isUploading.value = false;
     }
   }
 }
