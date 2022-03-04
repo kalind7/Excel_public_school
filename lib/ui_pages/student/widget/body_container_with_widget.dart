@@ -4,11 +4,12 @@ import 'package:new_project_work/utils/color.dart';
 
 class BodyWithWidgetContainer extends StatelessWidget {
   final Widget bodyWidget;
-  final Widget uppderWidget;
+  final Widget upperWidget;
   final double? height;
+  final double? top;
 
   const BodyWithWidgetContainer(
-      {Key? key, required this.bodyWidget, required this.uppderWidget, this.height})
+      {Key? key, required this.bodyWidget, required this.upperWidget, this.height,  this.top})
       : super(key: key);
 
   @override
@@ -35,8 +36,8 @@ class BodyWithWidgetContainer extends StatelessWidget {
         Positioned(
           left: 10,
           right: 10,
-          top: 75,
-          child: uppderWidget,
+          top: top != null ? top: 75,
+          child: upperWidget,
         ),
       ],
     );

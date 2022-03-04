@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/widgets/appbar.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance/views/fixed_column_view.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance/views/scrollable_column_details.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_column_details.dart';
+
 
 class StudentAttendance extends StatefulWidget {
   const StudentAttendance({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _StudentAttendanceState extends State<StudentAttendance> {
           ),
           preferredSize: Size.fromHeight(55.0)),
       body: BodyWithWidgetContainer(
-        uppderWidget: Column(
+        upperWidget: Column(
           children: [
             Container(
               margin: EdgeInsets.fromLTRB(5, 0, 5, 5),
@@ -92,7 +93,6 @@ class _StudentAttendanceState extends State<StudentAttendance> {
 
                     ScrollableColumnView(),
 
-
                   ],
                 ),
 
@@ -103,11 +103,7 @@ class _StudentAttendanceState extends State<StudentAttendance> {
 
 
       ),
-      // body: BodyWithWidgetContainer(
-      //   uppderWidget: uppderWidget,
-      //   bodyWidget: bodyWidget,
-      //
-      // ),
+
     );
   }
 }

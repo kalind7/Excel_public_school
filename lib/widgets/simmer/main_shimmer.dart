@@ -7,13 +7,11 @@ class ShimmerWidget extends StatelessWidget {
   final double width;
   final double height;
   final ShapeBorder shapeBorder;
-  final Widget ? child;
 
   const ShimmerWidget.rectangular(
       {Key? key,
       this.width = double.infinity,
       required this.height,
-        this.child ,
       this.shapeBorder = const RoundedRectangleBorder()})
 
       : super(key: key);
@@ -30,7 +28,7 @@ class ShimmerWidget extends StatelessWidget {
         width: width,
         decoration: ShapeDecoration(
           shape: shapeBorder,
-          color: Colors.grey.shade200,
+          color:  Colors.grey.shade300,
         ),
 
       ),

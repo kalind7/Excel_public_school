@@ -51,7 +51,6 @@ dependencies:
   # clean_nepali_calendar: ^1.2.0
   connectivity: ^3.0.6
   flutter_html: ^3.0.0-alpha.2
-
   hive_flutter: ^1.1.0
   flutter_launcher_icons: ^0.9.2
   get: ^4.6.1
@@ -63,7 +62,7 @@ dependencies:
   searchfield: ^0.5.6
   filter_list: ^1.0.1
   flutter_svg: ^1.0.0
-  syncfusion_flutter_datagrid: ^19.4.54
+  image_picker: ^0.8.4+10
 
 dev_dependencies:
   flutter_test:

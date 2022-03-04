@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 const headerStyle =
     TextStyle(fontSize: 16, color: Colors.black54, fontFamily: 'Roboto');
 const gridTextStyle =
@@ -99,3 +100,29 @@ const iconTitle = TextStyle(
     fontWeight: FontWeight.w600,
     color: Color(0xFFF06292),
     fontFamily: 'Roboto');
+
+//* Buttons Homework Tabbar *//
+
+const tabTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
+    letterSpacing: 1.0,
+    color: Colors.white,
+);
+
+//* Student Attendance *//
+const mainName = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+  color: Colors.white,
+  fontFamily: 'Roboto',
+);
+
+
+const headerName = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+);

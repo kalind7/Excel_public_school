@@ -24,44 +24,44 @@ class StudentAttendanceController extends GetxController {
   List<StudentAttendanceDetails> list = [
 
     StudentAttendanceDetails(
-        roll: 1, stdName: 'Name 1',present: true,
-        absent: false, homework: true,
+        roll: 1, stdName: 'Kashis KC',present: false,
+        absent: false, homework: false,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
+      roll: 2, stdName: 'Hari Lal Yadav',present: false,
+      absent: false, homework: false,
+    ),
+    StudentAttendanceDetails(
+      roll: 3, stdName: 'Ram Babu ',present: false,
+      absent: false, homework: false,
+    ),
+    StudentAttendanceDetails(
+      roll: 4, stdName: 'Sita K Thapa',present: false,
+      absent: false, homework: false,
+    ),
+    StudentAttendanceDetails(
+      roll: 5, stdName: 'Radha Krishna',present: false,
       absent: false, homework: true,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
+      roll: 6, stdName: 'Shiva Parvati',present: false,
+      absent: false, homework: false,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
+      roll: 7, stdName: 'Bishnu Koirala',present: false,
+      absent: false, homework: false,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
+      roll: 8, stdName: 'Brahma Hero',present: false,
+      absent: false, homework: false,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
+      roll: 9, stdName: 'Balram Khatri',present: false,
+      absent: false, homework: false,
     ),
     StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
-    ),
-    StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
-    ),
-    StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
-    ),
-    StudentAttendanceDetails(
-      roll: 1, stdName: 'Name 1',present: true,
-      absent: false, homework: true,
+      roll: 10, stdName: 'Basu P Bista',present: false,
+      absent: false, homework: false,
     ),
   ];
 
