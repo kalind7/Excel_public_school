@@ -23,7 +23,7 @@ class StudentHomework extends StatelessWidget {
               bodyWidget: Container(
                 height: MediaQuery.of(context).size.height / 1.45,
                 child: studentHomeworkController.isloading.value
-                    ? CircularProgressIndicator()
+                    ? Center(child: CircularProgressIndicator())
                     : SmartRefresher(
                         controller: studentHomeworkController.refreshController,
                         enablePullUp: true,

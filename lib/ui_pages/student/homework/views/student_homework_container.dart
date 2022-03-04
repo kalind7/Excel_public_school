@@ -4,7 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:new_project_work/global/alert.dart';
 import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
-import 'package:new_project_work/ui_pages/student/homework/model/student_homrwork_model.dart';
+import 'package:new_project_work/ui_pages/student/homework/model/student_homework_model.dart';
 import 'package:new_project_work/ui_pages/student/homework/views/homework_submit.dart';
 import 'package:new_project_work/ui_pages/student/homework/views/homework_view.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -102,6 +102,7 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                 text: 'View',
                 onPress: () {
                   showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) {
                         return feesPopup(context, myitem);
@@ -112,9 +113,10 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                 text: 'Upload',
                 onPress: () {
                   showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) {
-                        return uploadPopUp(context);
+                        return uploadPopUp(context, myitem);
                       });
                 }),
             homeworkSubItems(
@@ -132,6 +134,7 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                 icon: Image.asset('assets/homework_icons/submit.png'),
                 text: 'Submit',
                 onPress: () {
+                  studentHomeworkController.seeSubmitedHomework(context, myitem.id);
                   print('Dhirah');
                 }),
           ],
@@ -140,22 +143,6 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
     ),
   );
 }
-
-// class HomeworkSubItems extends StatelessWidget {
-//   final Widget icon;
-//   final String text;
-//   // final  Function  onPress;
-//   final GestureTapCallback onPress;
-
-//   const HomeworkSubItems(
-//       {Key? key, required this.icon, required this.text, required this.onPress})
-//       : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(onTap: onPress, child: Container());
-//   }
-// }
 
 Widget homeworkSubItems(
     {required Widget icon,

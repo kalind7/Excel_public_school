@@ -3,9 +3,15 @@ class ApiUrl {
   static const String URL = "https://ems.allstar.com.np/";
   // static const String baseUrl = "https://mis.excelpsschool.edu.np/api/";
   static const String baseUrl = "https://ems.allstar.com.np/api/";
+
   static const String login = "v2/auth/login";
+  static const String studentUploadHomework = "v2/student-upload-homework";
   static const String refreshToken = "v2/refresh";
-  static String studentHomework(duration,id) => "v2/homeworklist?days=$duration&page=$id";
+  static String studentHomework(duration, id) =>
+      "v2/homeworklist?days=$duration&page=$id";
+  static String studentSubmittedHomeworkView(id) =>
+      "v2/student-upload-homework-view?homework_id=$id";
+
   static String noticelistCurrentIndex(id) => "notice-list?page=$id";
   static String eventList(year, month) => 'event?year=$year&month=$month';
   static String studentFees(studentid) => 'student-fees/$studentid';

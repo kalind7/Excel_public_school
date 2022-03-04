@@ -1,5 +1,6 @@
 // import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
@@ -89,5 +90,54 @@ class ApiServices {
     //     throw Exception(getDioException(e));
     //   }
     // }
+  }
+
+  Future postWithToken(url, data) async {
+    try {
+      await Hive.openBox(Constants.APPNAME);
+      var box = Hive.box(Constants.APPNAME);
+      final token = box.get(Constants.accesstoken);
+
+      var response = await http.post(Uri.parse(ApiUrl.baseUrl + url),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+          body: jsonEncode(data));
+      if (response.statusCode == 403) {
+        Alert.showSnackBar(
+            title: 'Token Expire',
+            message: 'Token Expire please login'.toString(),
+            top: true);
+        box.clear();
+
+        Get.deleteAll();
+        Get.offNamed(loginRoute);
+      } else {
+        return response.body;
+      }
+    } catch (e) {
+      Alert.showSnackBar(title: 'Error', message: e.toString(), top: true);
+    }
+  }
+
+  patchImage(String url, int homeworkId, String filePath) async {
+    await Hive.openBox(Constants.APPNAME);
+    var box = Hive.box(Constants.APPNAME);
+    final token = box.get(Constants.accesstoken);
+
+    var request =
+        http.MultipartRequest('post', Uri.parse(ApiUrl.baseUrl + url));
+    request.fields['homework_id'] = homeworkId.toString();
+    request.files.add(await http.MultipartFile.fromPath('file', filePath));
+    request.headers.addAll({
+      'Content-type': 'multipart/form-data',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    var streamedResponse = await request.send();
+    var response = await http.Response.fromStream(streamedResponse);
+    return response.body;
   }
 }
