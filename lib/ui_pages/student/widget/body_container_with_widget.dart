@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 
@@ -15,7 +14,7 @@ class BodyWithWidgetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-            children: <Widget>[
+      children: <Widget>[
         Column(
           children: <Widget>[
             Container(

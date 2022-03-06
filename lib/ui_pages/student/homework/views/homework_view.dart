@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
-import 'package:new_project_work/ui_pages/fees/views/widget_listTile.dart';
 import 'package:new_project_work/ui_pages/student/homework/model/student_homework_model.dart';
 import 'package:new_project_work/utils/color.dart';
 

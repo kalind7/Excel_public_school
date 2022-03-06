@@ -12,8 +12,6 @@ import 'package:new_project_work/utils/fonts.dart';
 
 Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
 
-
-
   final StudentHomeworkController studentHomeworkController =
       Get.find<StudentHomeworkController>();
 
@@ -123,12 +121,10 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                       });
                 }),
             homeworkSubItems(
-                icon: Image.asset('assets/homework_icons/download.png'),
-                text: 'Download',
+                icon:  Image.asset('assets/homework_icons/download.png') ,
+                text:  'Download :${studentHomeworkController.progress()}',
                 onPress: () {
-
                   print('Download');
-
                   myitem.file == ""
                       ? Alert.showSnackBar(
                           title: 'No files',
@@ -143,6 +139,8 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                   studentHomeworkController.seeSubmitedHomework(
                       context, myitem.id);
                   print('Dhiraj');
+                  studentHomeworkController.seeSubmitedHomework(context, myitem.id);
+           
                 }),
           ],
         )

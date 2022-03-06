@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';

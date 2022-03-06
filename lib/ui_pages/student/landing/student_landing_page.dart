@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 
 import 'package:new_project_work/ui_pages/calender/calender.dart';
 import 'package:new_project_work/ui_pages/student/homepage/student_home_page.dart';
-import 'package:new_project_work/ui_pages/student/homework/views/student_homework.dart';
+import 'package:new_project_work/ui_pages/student/homework/views/student_today_homework.dart';
+import 'package:new_project_work/ui_pages/student/homework/views/student_homework_landing.dart';
 import 'package:new_project_work/ui_pages/student/notice/notice.dart';
 import 'package:new_project_work/ui_pages/student/profile/student_profile.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -21,7 +22,7 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
     // StudentAttendanceView(),
     Calendar(),
     StudentHomePage(),
-    StudentHomework(),
+    StudentHomeworkLanding(),
     Notice(),
   ];
 
