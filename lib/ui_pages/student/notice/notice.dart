@@ -164,58 +164,6 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
                                             Html(data: myitem.noticeMessage)
                                           ],
                                         ),
-
-                                        //  ExpandablePanel(
-                                        //   theme: const ExpandableThemeData(
-                                        //       iconColor: Color(0xffFC6075),
-                                        //       expandIcon: Icons.add,
-                                        //       collapseIcon: Icons.minimize),
-                                        //   header: Padding(
-                                        //     padding: EdgeInsets.all(5.0),
-                                        //     child: Text(
-                                        //       myitem.noticeTitle,
-                                        //       style: TextStyle(
-                                        //           height: 1.5,
-                                        //           color: Color(0xffFC6075),
-                                        //           fontWeight: FontWeight.bold),
-                                        //     ),
-                                        //   ),
-                                        //   collapsed: const Text(
-                                        //     '',
-                                        //     softWrap: true,
-                                        //     maxLines: 1,
-                                        //     overflow: TextOverflow.ellipsis,
-                                        //   ),
-                                        //   expanded: Column(
-                                        //     children: [
-                                        //       Html(data: myitem.noticeMessage),
-                                        //     ],
-                                        //     // children: List.generate(
-                                        //     //   _listOfUserCourses.length,
-                                        //     //   (int index) {
-                                        //     //     var accountData = _listOfUserCourses[index];
-                                        //     //     return InkWell(
-                                        //     //       onTap: () {
-                                        //     //         Navigator.push(
-                                        //     //             context,
-                                        //     //             MaterialPageRoute(
-                                        //     //                 builder: (context) =>
-                                        //     //                     SingleProductPage(
-                                        //     //                         libraryItems:
-                                        //     //                             accountData)));
-                                        //     //       },
-                                        //     //       child: Card(
-                                        //     //         elevation: 0.5,
-                                        //     //         child: ListTile(
-                                        //     //           leading: Image.network(accountData.image),
-                                        //     //           title: Text(accountData.title.toString()),
-                                        //     //         ),
-                                        //     //       ),
-                                        //     //     );
-                                        //     //   },
-                                        //     // ),
-                                        //   ),
-                                        // ),
                                       ),
                                     );
                                   }),

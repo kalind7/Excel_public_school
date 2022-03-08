@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'package:new_project_work/ui_pages/calender/calender.dart';
@@ -100,19 +101,15 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
                   },
                   items: [
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.person), label: 'Profile'),
+                        icon: SvgPicture.asset('assets/nav_bar_icons/profile.svg'), label: 'Profile'),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.calendar_today), label: 'Calender'),
+                        icon: SvgPicture.asset('assets/nav_bar_icons/calendar.svg'), label: 'Calender'),
                     BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.home,
-                          color: Colors.transparent,
-                        ),
-                        label: 'Home'),
+                        icon:Icon(Icons.home), label: 'Home'),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.book), label: 'Homework'),
+                        icon:SvgPicture.asset('assets/nav_bar_icons/homework.svg'), label: 'Homework'),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.event), label: 'Notice')
+                        icon: SvgPicture.asset('assets/nav_bar_icons/notice2.svg'), label: 'Notice')
                   ]),
             ),
           ),

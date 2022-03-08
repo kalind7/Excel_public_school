@@ -25,7 +25,7 @@ class Gridview extends StatelessWidget {
     List<Model> model = [
       Model(
         text: 'Online Class',
-        iconTitle: 'images/gridview_logo/onlineClass.jpg',
+        iconTitle: 'assets/gridview_logo/onlineClass.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -34,7 +34,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Fees',
-        iconTitle: 'images/gridview_logo/fees.jpg',
+        iconTitle: 'assets/gridview_logo/fees.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -45,7 +45,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Result',
-        iconTitle: 'images/gridview_logo/results.jpg',
+        iconTitle: 'assets/gridview_logo/results.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -54,14 +54,14 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Attendance',
-        iconTitle: 'images/gridview_logo/attendance.jpg',
+        iconTitle: 'assets/gridview_logo/attendance.jpg',
         onPress: () {
           Get.to(StudentAttendanceView());
         },
       ),
       Model(
         text: 'Subjects',
-        iconTitle: 'images/gridview_logo/subjetcs.jpg',
+        iconTitle: 'assets/gridview_logo/subjects.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -70,21 +70,21 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Routine',
-        iconTitle: 'images/gridview_logo/routine.jpg',
+        iconTitle: 'assets/gridview_logo/routine.jpg',
         onPress: () {
           Get.to(Routine());
         },
       ),
       Model(
         text: 'Library',
-        iconTitle: 'images/gridview_logo/library.jpg',
+        iconTitle: 'assets/gridview_logo/library.jpg',
         onPress: () {
           Get.to(Library());
         },
       ),
       Model(
         text: 'Online Exam',
-        iconTitle: 'images/gridview_logo/onlineExam.jpg',
+        iconTitle: 'assets/gridview_logo/onlineExam.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -94,7 +94,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Teachers',
-        iconTitle: 'images/gridview_logo/teacher.jpg',
+        iconTitle: 'assets/gridview_logo/teacher.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -104,7 +104,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Dormitory',
-        iconTitle: 'images/gridview_logo/dormitory.jpg',
+        iconTitle: 'assets/gridview_logo/dormitory.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -114,7 +114,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Transport',
-        iconTitle: 'images/gridview_logo/transport.jpg',
+        iconTitle: 'assets/gridview_logo/transport.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -123,7 +123,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Download',
-        iconTitle: 'images/gridview_logo/download.png',
+        iconTitle: 'assets/gridview_logo/download.png',
         onPress: () {
           if (kDebugMode) {
             print('anything');

@@ -102,7 +102,8 @@ flutter:
     - assets/drawer_icons/
     - assets/homework_icons/
     - images/
-    - images/gridview_logo/
+    - assets/gridview_logo/
+    - assets/nav_bar_icons/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
