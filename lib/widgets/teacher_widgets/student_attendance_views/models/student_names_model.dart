@@ -96,7 +96,7 @@ class Class {
     createdBy: json["created_by"],
     updatedBy: json["updated_by"],
     schoolId: json["school_id"],
-    sectionName: json["section_name"] == null ? null : json["section_name"],
+    sectionName: json["section_name"] == null ? "" : json["section_name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -121,7 +121,7 @@ class NewStudent {
     required this.lastName,
     required this.fullName,
     required this.dateOfBirth,
-    required this.dateOfBirthAd,
+    // this.dateOfBirthAd,
     required this.caste,
     required this.email,
     required this.mobile,
@@ -139,20 +139,14 @@ class NewStudent {
     this.previousSchoolDetails,
     this.aditionalNotes,
     this.documentTitle1,
-    required this.documentFile1,
-    this.documentTitle2,
-    required this.documentFile2,
-    this.documentTitle3,
-    required this.documentFile3,
-    this.documentTitle4,
-    required this.documentFile4,
+
     required this.activeStatus,
     required this.allowFeesView,
     required this.parentAllowFees,
     required this.createdAt,
     required this.updatedAt,
     this.bloodgroupId,
-    required this.religionId,
+
     this.routeListId,
     this.dormitoryId,
     this.vechileId,
@@ -170,8 +164,8 @@ class NewStudent {
     required this.schoolId,
     required this.joinedSessionId,
     required this.newStudent,
-    required this.newStudentClass,
-    required this.section,
+    //  this.newStudentClass,
+    //  this.section,
   });
 
   int id;
@@ -181,7 +175,7 @@ class NewStudent {
   String lastName;
   String fullName;
   String dateOfBirth;
-  DateTime dateOfBirthAd;
+  // DateTime? dateOfBirthAd;
   String caste;
   String email;
   String mobile;
@@ -199,20 +193,14 @@ class NewStudent {
   dynamic previousSchoolDetails;
   dynamic aditionalNotes;
   dynamic documentTitle1;
-  String documentFile1;
-  dynamic documentTitle2;
-  String documentFile2;
-  dynamic documentTitle3;
-  String documentFile3;
-  dynamic documentTitle4;
-  String documentFile4;
+
   int activeStatus;
   int allowFeesView;
   int parentAllowFees;
   DateTime createdAt;
   DateTime updatedAt;
   dynamic bloodgroupId;
-  int religionId;
+
   dynamic routeListId;
   dynamic dormitoryId;
   dynamic vechileId;
@@ -230,8 +218,8 @@ class NewStudent {
   int schoolId;
   int joinedSessionId;
   int newStudent;
-  Class newStudentClass;
-  Class section;
+  // Class? newStudentClass;
+  // Class? section;
 
   factory NewStudent.fromJson(Map<String, dynamic> json) => NewStudent(
     id: json["id"],
@@ -240,17 +228,17 @@ class NewStudent {
     firstName: json["first_name"],
     lastName: json["last_name"],
     fullName: json["full_name"],
-    dateOfBirth: json["date_of_birth"],
-    dateOfBirthAd: json["date_of_birth_ad"] ,
-    caste: json["caste"] == null ? null : json["caste"],
+    dateOfBirth: json["date_of_birth"] == null ? "" :json["date_of_birth"] ,
+    // dateOfBirthAd: json["date_of_birth_ad"],
+    caste: json["caste"] == null ? "" : json["caste"],
     email: json["email"],
-    mobile: json["mobile"] == null ? null : json["mobile"],
+    mobile: json["mobile"] == null ? "" : json["mobile"],
     admissionDate: DateTime.parse(json["admission_date"]),
     studentPhoto: json["student_photo"],
     height: json["height"],
     weight: json["weight"],
-    currentAddress: json["current_address"] == null ? null : json["current_address"],
-    permanentAddress: json["permanent_address"] == null ? null : json["permanent_address"],
+    currentAddress: json["current_address"] == null ? "" : json["current_address"],
+    permanentAddress: json["permanent_address"] == null ? "" : json["permanent_address"],
     driverId: json["driver_id"],
     nationalIdNo: json["national_id_no"],
     localIdNo: json["local_id_no"],
@@ -259,20 +247,14 @@ class NewStudent {
     previousSchoolDetails: json["previous_school_details"],
     aditionalNotes: json["aditional_notes"],
     documentTitle1: json["document_title_1"],
-    documentFile1: json["document_file_1"] == null ? null : json["document_file_1"],
-    documentTitle2: json["document_title_2"],
-    documentFile2: json["document_file_2"] == null ? null : json["document_file_2"],
-    documentTitle3: json["document_title_3"],
-    documentFile3: json["document_file_3"] == null ? null : json["document_file_3"],
-    documentTitle4: json["document_title_4"],
-    documentFile4: json["document_file_4"] == null ? null : json["document_file_4"],
+  
     activeStatus: json["active_status"],
     allowFeesView: json["allow_fees_view"],
     parentAllowFees: json["parent_allow_fees"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
     bloodgroupId: json["bloodgroup_id"],
-    religionId: json["religion_id"] == null ? null : json["religion_id"],
+
     routeListId: json["route_list_id"],
     dormitoryId: json["dormitory_id"],
     vechileId: json["vechile_id"],
@@ -290,8 +272,8 @@ class NewStudent {
     schoolId: json["school_id"],
     joinedSessionId: json["joined_session_id"],
     newStudent: json["new_student"],
-    newStudentClass: json["class"] ,
-    section: json["section"] ,
+    // newStudentClass: json["class"] ,
+    // section: json["section"] ,
   );
 
   Map<String, dynamic> toJson() => {
@@ -302,7 +284,7 @@ class NewStudent {
     "last_name": lastName,
     "full_name": fullName,
     "date_of_birth": dateOfBirth == null ? null : dateOfBirth,
-    "date_of_birth_ad": dateOfBirthAd == null ? null : "${dateOfBirthAd.year.toString().padLeft(4, '0')}-${dateOfBirthAd.month.toString().padLeft(2, '0')}-${dateOfBirthAd.day.toString().padLeft(2, '0')}",
+    // "date_of_birth_ad": dateOfBirthAd == null ? null : "${dateOfBirthAd!.year.toString().padLeft(4, '0')}-${dateOfBirthAd!.month.toString().padLeft(2, '0')}-${dateOfBirthAd?.day.toString().padLeft(2, '0')}",
     "caste": caste == null ? null : caste,
     "email": email,
     "mobile": mobile == null ? null : mobile,
@@ -320,20 +302,12 @@ class NewStudent {
     "previous_school_details": previousSchoolDetails,
     "aditional_notes": aditionalNotes,
     "document_title_1": documentTitle1,
-    "document_file_1": documentFile1 == null ? null : documentFile1,
-    "document_title_2": documentTitle2,
-    "document_file_2": documentFile2 == null ? null : documentFile2,
-    "document_title_3": documentTitle3,
-    "document_file_3": documentFile3 == null ? null : documentFile3,
-    "document_title_4": documentTitle4,
-    "document_file_4": documentFile4 == null ? null : documentFile4,
     "active_status": activeStatus,
     "allow_fees_view": allowFeesView,
     "parent_allow_fees": parentAllowFees,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
     "bloodgroup_id": bloodgroupId,
-    "religion_id": religionId == null ? null : religionId,
     "route_list_id": routeListId,
     "dormitory_id": dormitoryId,
     "vechile_id": vechileId,
@@ -351,7 +325,7 @@ class NewStudent {
     "school_id": schoolId,
     "joined_session_id": joinedSessionId,
     "new_student": newStudent,
-    "class": newStudentClass == null ? null : newStudentClass.toJson(),
-    "section": section == null ? null : section.toJson(),
+    // "class": newStudentClass == null ? null : newStudentClass!.toJson(),
+    // "section": section == null ? null : section!.toJson(),
   };
 }
