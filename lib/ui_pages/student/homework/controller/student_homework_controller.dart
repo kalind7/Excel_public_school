@@ -45,7 +45,6 @@ class StudentHomeworkController extends GetxController
   ];
 
   late TabController controller;
-
   @override
   void onClose() {
     controller.dispose();
