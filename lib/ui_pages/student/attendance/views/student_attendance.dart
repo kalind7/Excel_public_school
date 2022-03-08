@@ -20,7 +20,7 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
   final studentAttendanceViewController =
       Get.put(StudentAttendenceViewController());
 
-  Attendance? selectedAttendence;
+  Attendance? selectedAttendence = null;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +40,9 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
                 studentAttendanceViewController.attendencelist.clear();
                 studentAttendanceViewController.getstudentattencelist(
                     date.year, date.month);
+                setState(() {
+                  selectedAttendence = null;
+                });
               },
               initialDate: NepaliDateTime.now(),
               firstDate: NepaliDateTime(
@@ -48,7 +51,7 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
                 NepaliDateTime.now().day,
               ),
               lastDate: NepaliDateTime.now(),
-              onDateChanged: (date) {},
+              // onDateChanged: (date) {},
               dayBuilder: (dayToBuild) {
                 // var attendences =
                 //     studentAttendanceViewController.attendencelist;
@@ -77,7 +80,8 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
                 //   ),
                 // );
 
-                return studentAttendanceViewController.isloading.value
+                return studentAttendanceViewController.isloading.value &&
+                        selectedAttendence == null
                     ? CalenderDayShimmer()
                     : Stack(
                         children: <Widget>[
@@ -87,25 +91,19 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
                                   ? '${dayToBuild.day}'
                                   : NepaliUnicode.convert('${dayToBuild.day}'),
                               style: TextStyle(
-                                color: (selectedAttendence != null &&
-                                        selectedAttendence!.attendanceType ==
-                                            "P")
-                                    ? Colors.green
-                                    : (selectedAttendence != null &&
-                                            selectedAttendence!
-                                                    .attendanceType ==
-                                                "L")
-                                        ? Colors.orange
-                                        : (selectedAttendence != null &&
-                                                selectedAttendence!
-                                                        .attendanceType ==
-                                                    "A")
-                                            ? Colors.blue
-                                            : (selectedAttendence == null &&
-                                                    dayToBuild.weekday == 7)
-                                                ? Colors.red
-                                                : Colors.black,
-                              ),
+                                  color: selectedAttendence == null
+                                      ? Colors.amber
+                                      : Colors.green
+                                  // color: selectedAttendence == null
+                                  //     ? Colors.amber
+                                  //     : (selectedAttendence?.attendanceType ==
+                                  //             "P")
+                                  //         ? Colors.green
+                                  //         : (selectedAttendence?.attendanceType ==
+                                  //                 "A")
+                                  //             ? Colors.red
+                                  //             : Colors.black,
+                                  ),
                             ),
                           ),
                         ],
