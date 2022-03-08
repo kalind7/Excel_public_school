@@ -4,28 +4,29 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/student_attendance_controller.dart';
 
-class FixedColumnWidget extends StatefulWidget {
-  const FixedColumnWidget({Key? key}) : super(key: key);
+class FixedColumnNameWidget extends StatefulWidget {
+  const FixedColumnNameWidget({Key? key}) : super(key: key);
 
   @override
-  _FixedColumnWidgetState createState() => _FixedColumnWidgetState();
+  _FixedColumnNameWidgetState createState() => _FixedColumnNameWidgetState();
 }
 
-class _FixedColumnWidgetState extends State<FixedColumnWidget> {
+class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
 
   StudentAttendanceController attendanceController = Get.put(StudentAttendanceController());
 
-  int _currentSortColumn = 0;
-  bool _isAscending = true;
+  int ? sortColumnIndex;
+  bool isAscending = false;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() =>  Flexible(
+    return Obx(() =>
+        Flexible(
       flex: 1,
       fit: FlexFit.tight,
       child: DataTable(
-        sortColumnIndex: _currentSortColumn,
-        sortAscending: _isAscending,
+        sortAscending: isAscending,
+        sortColumnIndex: sortColumnIndex,
         showBottomBorder: true,
         horizontalMargin: 10,
         columnSpacing: 20,
@@ -39,15 +40,7 @@ class _FixedColumnWidgetState extends State<FixedColumnWidget> {
         columns: [
           DataColumn(
             label: Text('Name',style: mainName,),
-            onSort: (columnIndex, _){
-              setState(() {
-                _currentSortColumn = columnIndex;
-                if(_isAscending == true){
-                  _isAscending = false;
-                  // attendanceController.studentAttendanceList.sort((a , b) => b[].compareTo (a[]) );
-                }
-              });
-            }
+            onSort: onSort,
           ),
         ],
         rows: [
@@ -65,4 +58,19 @@ class _FixedColumnWidgetState extends State<FixedColumnWidget> {
       ),
     ),);
   }
+
+  void onSort(int columnIndex, bool ascending){
+    setState(() {
+
+      if(columnIndex ==0){
+        attendanceController.studentAttendanceList.sort((user1, user2) =>
+            compareString(ascending, user1.stdName, user2.stdName));
+      }
+      this.sortColumnIndex = columnIndex;
+      this.isAscending = ascending;
+    });
+  }
+  int compareString(bool ascending, String value1, String value2) =>
+     ascending ? value1.compareTo(value2) : value2.compareTo(value1);
+
 }

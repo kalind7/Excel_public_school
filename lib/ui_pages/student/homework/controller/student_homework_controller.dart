@@ -67,6 +67,7 @@ class StudentHomeworkController extends GetxController
 
   var isloading = true.obs;
   var isUploading = false.obs;
+  var isDownloading = false.obs;
   var duration = "";
   var lastpage = false.obs;
 
@@ -89,8 +90,8 @@ class StudentHomeworkController extends GetxController
     fetchDetails();
     IsolateNameServer.registerPortWithName(receivePort.sendPort, "downloadPdf");
     receivePort.listen((message) {
-      progress = message  ;
-        print(progress);
+      progress.value = message ;
+        print(progress.value);
     });
     FlutterDownloader.registerCallback(downloadCallback);
     controller = TabController(vsync: this, length: myTabs.length);
@@ -101,9 +102,6 @@ class StudentHomeworkController extends GetxController
     super.onInit();
   }
 
-
-
-
  static downloadCallback(id, status, progress){
     SendPort? sendPort = IsolateNameServer.lookupPortByName("downloadPdf");
     sendPort!.send([id,status, progress]);
@@ -112,6 +110,8 @@ class StudentHomeworkController extends GetxController
   void downloadFile(String file) async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
+      isDownloading.value = true;
+      await Future.delayed(Duration(seconds: 3));
       final baseStorage = await getExternalStorageDirectory();
 
       print(baseStorage!.path);
@@ -126,8 +126,9 @@ class StudentHomeworkController extends GetxController
         openFileFromNotification: true,
       );
     } else {
-      print('not granted');
+      Alert.showSnackBar(title: 'ERROR !!!' ,message: 'Couldn\'t show download', top: true);
     }
+    isDownloading.value = false;
   }
 
   void fetchDetails() async{

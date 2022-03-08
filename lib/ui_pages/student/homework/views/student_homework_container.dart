@@ -11,7 +11,6 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
 Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
-
   final StudentHomeworkController studentHomeworkController =
       Get.find<StudentHomeworkController>();
 
@@ -121,15 +120,22 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                       });
                 }),
             homeworkSubItems(
-                icon:  Image.asset('assets/homework_icons/download.png') ,
-                text:  'Download :${studentHomeworkController.progress()}',
+                icon: Obx(() =>  studentHomeworkController.isDownloading.value
+                    ? CircularProgressIndicator(
+                  color: Colors.black,
+                  // value: studentHomeworkController.progress.value
+                  //     .toDouble(),
+                )
+                    : Image.asset('assets/homework_icons/download.png'),
+                ),
+                text: 'Download',
                 onPress: () {
                   print('Download');
                   myitem.file == ""
                       ? Alert.showSnackBar(
-                          title: 'No files',
-                          message: 'No file to download',
-                          top: true)
+                      title: 'No files',
+                      message: 'No file to download',
+                      top: true)
                       : studentHomeworkController.downloadFile(myitem.file);
                 }),
             homeworkSubItems(
@@ -139,19 +145,16 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                   studentHomeworkController.seeSubmitedHomework(
                       context, myitem.id);
                   print('Dhiraj');
-                  studentHomeworkController.seeSubmitedHomework(context, myitem.id);
-           
+                  studentHomeworkController.seeSubmitedHomework(
+                      context, myitem.id);
                 }),
           ],
-        )
+        ),
+
       ],
     ),
   );
 }
-
-
-
-
 
 Widget homeworkSubItems(
     {required Widget icon,

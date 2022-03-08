@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/utils/color.dart';
 
 
 const headerStyle =
@@ -125,4 +126,21 @@ const headerName = TextStyle(
   fontWeight: FontWeight.w600,
   color: Color(0xFFF06292),
   fontFamily: 'Roboto',
+);
+
+
+const reportHeader = TextStyle(
+  fontSize: 22.0,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w700,
+);
+
+
+//* DropDown *//
+const dropDownTitle = TextStyle(
+  fontSize: 12,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w600,
 );
