@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:nepali_utils/nepali_utils.dart';
 import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/api/api_url.dart';
 
@@ -11,27 +12,33 @@ class StudentAttendenceViewController extends GetxController {
   var id = 4886;
 
   var attendencelist = <Attendance>[].obs;
+ Rx<Details> detaillist = Details(p: 0, l: 0, a: 0, h: 0, f: 0).obs;
 
-  var year = 2077;
-  var month = 06;
+  var year = NepaliDateTime.now().year;
+  var month = NepaliDateTime.now().month;
 
   @override
   void onInit() {
-    getstudentattencelist(id, year, month);
+    getstudentattencelist(year, month);
+    print(year.toString());
+    print(month.toString());
     super.onInit();
   }
 
-  Future getstudentattencelist(id, year, month) async {
+  Future getstudentattencelist(year, month) async {
+    attendencelist.clear();
     isloading.value = true;
-    var response =
-        await ApiServices().get(ApiUrl.studentattendencelist(id, year, month));
+    var response = await ApiServices()
+        .getWithToken(ApiUrl.studentattendencelist(year, month));
 
     print(response);
 
     var res = studentAttendanceModelFromJson(response);
 
     if (res.success) {
-      attendencelist.value = res.data!.attendances;
+      attendencelist.value = res.data.attendances;
+      detaillist.value = res.data.details;
+
       isloading.value = false;
       print(attendencelist);
       print('Data');

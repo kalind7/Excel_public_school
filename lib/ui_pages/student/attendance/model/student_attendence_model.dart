@@ -13,12 +13,12 @@ String studentAttendanceModelToJson(StudentAttendanceModel data) => json.encode(
 class StudentAttendanceModel {
     StudentAttendanceModel({
         required this.success,
-         this.data,
+         required this.data,
         this.message,
     });
 
     bool success;
-    Data? data;
+    Data data;
     dynamic message;
 
     factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) => StudentAttendanceModel(
@@ -29,7 +29,7 @@ class StudentAttendanceModel {
 
     Map<String, dynamic> toJson() => {
         "success": success,
-        "data": data?.toJson(),
+        "data": data.toJson(),
         "message": message,
     };
 }

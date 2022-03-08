@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
 import 'package:new_project_work/ui_pages/student/homework/model/submitted_homework_model.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -11,6 +13,7 @@ Widget submittedWork(BuildContext context, List<HomeworkUploadDetail>? data) {
       Get.find<StudentHomeworkController>();
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
+
   return Dialog(
     backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
@@ -84,10 +87,31 @@ Widget submittedWork(BuildContext context, List<HomeworkUploadDetail>? data) {
                         children: [
                           SizedBox(
                             height: height * 0.2,
-                            child: Image.network(
-                              myitem.file!,
-                              // fit: BoxFit.contain,
+                            child: CachedNetworkImage(
+                              imageUrl: myitem.file!,
+                              placeholder: (context, url) => SizedBox(
+                                height: 140,
+                                width: 150,
+                                child: Center(
+                                  child: LiquidCircularProgressIndicator(
+                                    value: 0.35,
+                                    valueColor: AlwaysStoppedAnimation(pink),
+                                    backgroundColor: white,
+                                    borderColor: orangeOne,
+                                    borderWidth: 5.0,
+                                    direction: Axis.vertical,
+                                    center: Text("Loading..."),
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  new Icon(Icons.error),
                             ),
+
+                            // Image.network(
+                            //   myitem.file!,
+                            //   // fit: BoxFit.contain,
+                            // ),
                           ),
                           Container(
                             height: 130,

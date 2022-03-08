@@ -1,18 +1,19 @@
 // // Copyright 2019 Aleksander Woźniak
 // // SPDX-License-Identifier: Apache-2.0
-//
+
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import 'package:new_project_work/table_event_controller.dart';
+// import 'package:new_project_work/controller/event/table_event_controller.dart';
+// import 'package:new_project_work/utils/constant.dart';
 // import 'package:table_calendar/table_calendar.dart';
-//
+
 // import '../utils.dart';
-//
+
 // class TableEventsExample extends StatefulWidget {
 //   @override
 //   _TableEventsExampleState createState() => _TableEventsExampleState();
 // }
-//
+
 // class _TableEventsExampleState extends State<TableEventsExample> {
 //   int month = kToday.month;
 //   final tableEventController = Get.put(TableEventController());
@@ -27,36 +28,36 @@
 //   DateTime? _selectedDay;
 //   DateTime? _rangeStart;
 //   DateTime? _rangeEnd;
-//
-//
+
+
 //   @override
 //   void initState() {
 //     super.initState();
-//
+
 //     _selectedDay = _focusedDay;
 //     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
 //   }
-//
+
 //   @override
 //   void dispose() {
 //     _selectedEvents.dispose();
 //     super.dispose();
 //   }
-//
+
 //   List<Event> _getEventsForDay(DateTime day) {
 //     // Implementation example
 //     return kEvents[day] ?? [];
 //   }
-//
+
 //   List<Event> _getEventsForRange(DateTime start, DateTime end) {
 //     // Implementation example
 //     final days = daysInRange(start, end);
-//
+
 //     return [
 //       for (final d in days) ..._getEventsForDay(d),
 //     ];
 //   }
-//
+
 //   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
 //     if (!isSameDay(_selectedDay, selectedDay)) {
 //       setState(() {
@@ -67,11 +68,11 @@
 //         _rangeEnd = null;
 //         _rangeSelectionMode = RangeSelectionMode.toggledOff;
 //       });
-//
+
 //       _selectedEvents.value = _getEventsForDay(selectedDay);
 //     }
 //   }
-//
+
 //   void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
 //     setState(() {
 //       toogled = true;
@@ -81,7 +82,7 @@
 //       _rangeEnd = end;
 //       _rangeSelectionMode = RangeSelectionMode.toggledOn;
 //     });
-//
+
 //     // `start` or `end` could be null
 //     if (start != null && end != null) {
 //       _selectedEvents.value = _getEventsForRange(start, end);
@@ -91,7 +92,7 @@
 //       _selectedEvents.value = _getEventsForDay(end);
 //     }
 //   }
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -107,7 +108,7 @@
 //             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
 //             rangeStartDay: _rangeStart,
 //             rangeEndDay: _rangeEnd,
-//
+
 //             calendarFormat: _calendarFormat,
 //             rangeSelectionMode: _rangeSelectionMode,
 //             eventLoader: _getEventsForDay,
