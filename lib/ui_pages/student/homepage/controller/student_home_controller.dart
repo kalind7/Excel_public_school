@@ -29,16 +29,4 @@ class StudentHomeController extends GetxController {
     email.value = box.get(Constants.email);
     admissionNumber.value = box.get(Constants.admissionNumber).toString();
   }
-
-
-
-    // final XFile images = await _picker.pickImage(source: source)
-   
-
-    // if (image != null) {
-    //   file = File(image.path);
-    //   uploadImage();
-    //   setState(() {});
-    // }
-
 }

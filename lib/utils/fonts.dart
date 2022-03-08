@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_project_work/utils/color.dart';
+
 
 const headerStyle =
     TextStyle(fontSize: 16, color: Colors.black54, fontFamily: 'Roboto');
@@ -107,3 +109,38 @@ const iconTitle = TextStyle(
     fontWeight: FontWeight.w600,
     color: Color(0xFFF06292),
     fontFamily: 'Roboto');
+
+
+
+//* Student Attendance *//
+const mainName = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+  color: Colors.white,
+  fontFamily: 'Roboto',
+);
+
+
+const headerName = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+);
+
+
+const reportHeader = TextStyle(
+  fontSize: 22.0,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w700,
+);
+
+
+//* DropDown *//
+const dropDownTitle = TextStyle(
+  fontSize: 12,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w600,
+);

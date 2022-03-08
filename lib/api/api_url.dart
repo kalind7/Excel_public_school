@@ -20,6 +20,8 @@ class ApiUrl {
   static String studentattendencelist(year, month) =>
       'v2/student-my-attendance?year=$year&month=$month';
 
+  static const String teacherAttendanceList = "student-search";
+  // static String teacherAttendanceList(classes,section,date) => 'student-search?class=$classes&section=$section&attendance_date=$date';
   // static const String {} = "v2/notice-list?page=14";
 }
 

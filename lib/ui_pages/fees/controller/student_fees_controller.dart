@@ -7,7 +7,7 @@ import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_invoice_model.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_detail_payment_model.dart';
 import 'package:new_project_work/ui_pages/fees/model/student_fee_model.dart'
-    as feemodel;
+as feemodel;
 import 'package:new_project_work/ui_pages/fees/views/fee_payment_pop_up.dart';
 import 'package:new_project_work/ui_pages/fees/views/invoice_payment_popup.dart';
 import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';

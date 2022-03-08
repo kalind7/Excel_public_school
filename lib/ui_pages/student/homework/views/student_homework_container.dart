@@ -16,7 +16,7 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
 
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-    height: MediaQuery.of(context).size.height * 0.27,
+    height: MediaQuery.of(context).size.height * 0.3,
     width: MediaQuery.of(context).size.width,
     decoration: BoxDecoration(
       color: Colors.grey.shade50,
@@ -120,25 +120,37 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                       });
                 }),
             homeworkSubItems(
-                icon: Image.asset('assets/homework_icons/download.png'),
+                icon: Obx(() =>  studentHomeworkController.isDownloading.value
+                    ? CircularProgressIndicator(
+                  color: Colors.black,
+                  // value: studentHomeworkController.progress.value
+                  //     .toDouble(),
+                )
+                    : Image.asset('assets/homework_icons/download.png'),
+                ),
                 text: 'Download',
                 onPress: () {
+                  print('Download');
                   myitem.file == ""
                       ? Alert.showSnackBar(
-                          title: 'No files',
-                          message: 'No file to download',
-                          top: true)
-                      : print('Dhirah');
+                      title: 'No files',
+                      message: 'No file to download',
+                      top: true)
+                      : studentHomeworkController.downloadFile(myitem.file);
                 }),
             homeworkSubItems(
                 icon: Image.asset('assets/homework_icons/submit.png'),
                 text: 'Submit',
                 onPress: () {
-                  studentHomeworkController.seeSubmitedHomework(context, myitem.id);
-           
+                  studentHomeworkController.seeSubmitedHomework(
+                      context, myitem.id);
+                  print('Dhiraj');
+                  studentHomeworkController.seeSubmitedHomework(
+                      context, myitem.id);
                 }),
           ],
-        )
+        ),
+
       ],
     ),
   );

@@ -1,18 +1,21 @@
 import 'dart:convert';
-import 'dart:developer';
-
+import 'dart:isolate';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/global/alert.dart';
-
 import 'package:new_project_work/ui_pages/student/homework/model/student_homework_model.dart';
 import 'package:new_project_work/ui_pages/student/homework/model/submitted_homework_model.dart';
+
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:new_project_work/ui_pages/student/homework/views/submited_work_view.dart';
 import 'package:new_project_work/utils/fonts.dart';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class StudentHomeworkController extends GetxController
@@ -42,8 +45,6 @@ class StudentHomeworkController extends GetxController
   ];
 
   late TabController controller;
-  
-
   @override
   void onClose() {
     controller.dispose();
@@ -65,7 +66,10 @@ class StudentHomeworkController extends GetxController
 
   var isloading = true.obs;
   var isUploading = false.obs;
+  var isDownloading = false.obs;
   var duration = "";
+  var lastpage = false.obs;
+
   var todayLastpage = false.obs;
   var weeklyLastpage = false.obs;
   var monthlyLastpage = false.obs;
@@ -77,9 +81,18 @@ class StudentHomeworkController extends GetxController
       RefreshController(initialRefresh: false);
   final RefreshController monthlyRefreshController =
       RefreshController(initialRefresh: false);
+  RxInt progress = 0.obs ;
+  final ReceivePort receivePort = ReceivePort();
 
   @override
   void onInit() {
+    fetchDetails();
+    IsolateNameServer.registerPortWithName(receivePort.sendPort, "downloadPdf");
+    receivePort.listen((message) {
+      progress.value = message ;
+        print(progress.value);
+    });
+    FlutterDownloader.registerCallback(downloadCallback);
     controller = TabController(vsync: this, length: myTabs.length);
     getHomeWorkToday();
     getHomeWorkWeekly();
@@ -88,6 +101,41 @@ class StudentHomeworkController extends GetxController
     super.onInit();
   }
   
+
+ static downloadCallback(id, status, progress){
+    SendPort? sendPort = IsolateNameServer.lookupPortByName("downloadPdf");
+    sendPort!.send([id,status, progress]);
+  }
+
+  void downloadFile(String file) async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      isDownloading.value = true;
+      await Future.delayed(Duration(seconds: 3));
+      final baseStorage = await getExternalStorageDirectory();
+
+      print(baseStorage!.path);
+
+      final id = await FlutterDownloader.enqueue(
+          url: file,
+          savedDir: baseStorage.path,
+        fileName: 'Download File',
+        saveInPublicStorage: true,
+        headers: {"download": "testing"},
+        showNotification: true,
+        openFileFromNotification: true,
+      );
+    } else {
+      Alert.showSnackBar(title: 'ERROR !!!' ,message: 'Couldn\'t show download', top: true);
+    }
+    isDownloading.value = false;
+  }
+
+  void fetchDetails() async{
+    isloading.value = true;
+    await Future.delayed(Duration(seconds: 3));
+    isloading.value = false;
+  }
 
   void uploadImage(homeworkId, XFile filepath) async {
     try {
@@ -288,6 +336,24 @@ class StudentHomeworkController extends GetxController
           submittedWorkList.value = res.data!.homeworkUploadDetails;
           // submittedWorkList.add(res.data!.homeworkUploadDetails);
 
+          Get.defaultDialog(
+              title: 'Submitted Work',
+              content: Container(
+                width: 300,
+                height: 400,
+                child: submittedWorkList.isEmpty ? Center(child: Text("No work Submitted"),):
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: submittedWorkList.length,
+                  itemBuilder: (context, index) {
+                    var myitem = submittedWorkList[index];
+                    return Image.network(
+                      myitem.file!,
+                      height: 200,
+                    );
+                  },
+                ),
+              ));
           showDialog(
               barrierDismissible: false,
               context: context,

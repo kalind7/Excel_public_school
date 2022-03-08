@@ -26,6 +26,7 @@ class TeacherDetails extends StatelessWidget {
         ),
       ),
       body: BodyWithWidgetContainer(
+
         top: 100,
         upperWidget: Center(
             child: Padding(

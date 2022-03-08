@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
+import 'package:new_project_work/ui_pages/teachers/drawer/teacher_drawer.dart';
 import 'package:new_project_work/ui_pages/teachers/profile/teacher_profile.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
@@ -35,8 +36,9 @@ class TeacherHomePage extends StatelessWidget {
           },
         ),
       ),
-      drawer: StudentDrawer(),
+      drawer: TeacherDrawer(),
       body: BodyWithWidgetContainer(
+
         top: 100,
         upperWidget: Container(
           height: height * 0.23,
@@ -129,29 +131,23 @@ class TeacherHomePage extends StatelessWidget {
           ),
         ),
         bodyWidget: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: ClampingScrollPhysics(),
           children: [
-            StudentInfoGridView(context),
-
             SizedBox(height: 5,),
+
+            StudentInfoGridView(context),
 
             ExamInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             HomeworkInfoGridView(context),
-
-            SizedBox(height: 5,),
 
             LessonInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             TeacherInfoGridView(context),
 
-            SizedBox(height: 5,),
-
             LeaveInfoGridView(context),
-
 
           ],
         ),

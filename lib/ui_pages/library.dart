@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/models/library_books.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
@@ -25,14 +26,14 @@ class _LibraryState extends State<Library> {
         author: 'Mr. XXX YYY',
         price: 200,
         onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> LibraryBooks(
-            title: 'Title of Book',
-            image: 'images/book2.jpg',
-            price: 200,
-            description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
-                "podcast host and author KK unmasks the hidden internal forces",
-            author: 'Kalind Koirala',
-          )));
+         Get.to( LibraryBooks(
+           title: 'Title of Book',
+           image: 'images/book2.jpg',
+           price: 200,
+           description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
+               "podcast host and author KK unmasks the hidden internal forces",
+           author: 'Kalind Koirala',
+         ),);
         },
       ),
       Books(
@@ -41,14 +42,14 @@ class _LibraryState extends State<Library> {
         author: 'Mr. XXXX YYY',
         price: 300,
         onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> LibraryBooks(
+          Get.to( LibraryBooks(
             title: 'Title of Book',
             image: 'images/book3.jpg',
             price: 300,
             description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
                 "podcast host and author KK unmasks the hidden internal forces",
             author: 'Kalind Koirala',
-          )));
+          ),);
         },
       ),
       Books(
@@ -57,14 +58,14 @@ class _LibraryState extends State<Library> {
         author: 'Mr. XXXX YYY',
         price: 400,
         onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> LibraryBooks(
+          Get.to( LibraryBooks(
             title: 'Title of Book',
             image: 'images/book4.jpg',
             price: 400,
             description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
                 "podcast host and author KK unmasks the hidden internal forces",
             author: 'Kalind Koirala',
-          )));
+          ));
         },
       ),
       Books(
@@ -73,14 +74,14 @@ class _LibraryState extends State<Library> {
         author: 'Mr. XXXX YYY',
         price: 500,
         onpress: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> LibraryBooks(
+          Get.to(LibraryBooks(
             title: 'Title of Book',
             image: 'images/book5.webp',
             price: 500,
             description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
                 "podcast host and author KK unmasks the hidden internal forces",
             author: 'Kalind Koirala',
-          )));
+          ));
         },
       ),
       Books(
@@ -88,14 +89,16 @@ class _LibraryState extends State<Library> {
         title: 'Fifth Book',
         author: 'Mr. XXXX YYY',
         price: 600,
-        onpress: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=> LibraryBooks(
-          title: 'Title of Book',
-          image: 'images/book6.jpg',
-          price: 600,
-          description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
-              "podcast host and author KK unmasks the hidden internal forces",
-          author: 'Kalind Koirala',
-        )));},
+        onpress: (){
+          Get.to(LibraryBooks(
+            title: 'Title of Book',
+            image: 'images/book6.jpg',
+            price: 600,
+            description: "In a world that promises a 30 days time travelling \nand 'one secret trick' to fix your life,\n"
+                "podcast host and author KK unmasks the hidden internal forces",
+            author: 'Kalind Koirala',
+          ));
+          },
       ),
     ];
 
@@ -116,7 +119,7 @@ class _LibraryState extends State<Library> {
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w700,
-                    fontFamily: 'OpenSans'),
+                    fontFamily: 'Roboto'),
               ),
             ),
             NewTextField(text: 'Titles, authors or topics'),
@@ -134,11 +137,11 @@ class _LibraryState extends State<Library> {
                   labelStyle: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'OpenSans'),
+                      fontFamily: 'Roboto'),
                   unselectedLabelStyle: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'OpenSans'),
+                      fontFamily: 'Roboto'),
                   indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(width: 2.0, color: Colors.black),
                     insets: EdgeInsets.only(right: 35.0),
@@ -225,7 +228,7 @@ class _LibraryState extends State<Library> {
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w700,
-                    fontFamily: 'OpenSans'),
+                    fontFamily: 'Roboto'),
               ),
             ),
             ListView.builder(
@@ -283,7 +286,7 @@ class _LibraryState extends State<Library> {
                               style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w700,
-                                  fontFamily: 'OpenSans'),
+                                  fontFamily: 'Roboto'),
                             ),
                             SizedBox(
                               height: 5,
@@ -292,14 +295,14 @@ class _LibraryState extends State<Library> {
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black38,
-                                fontFamily: 'OpenSans'),),
+                                fontFamily: 'Roboto'),),
                             SizedBox(
                               height: 5,
                             ),
                             Text('Rs.${book[index].price}'.toString(), style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.w400,
-                                fontFamily: 'OpenSans'),),
+                                fontFamily: 'Roboto'),),
                           ],
                         ),
                       ],

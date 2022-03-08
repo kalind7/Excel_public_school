@@ -1,10 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/ui_pages/student/attendance/views/student_attendance.dart';
+import 'package:new_project_work/ui_pages/student/routine/routine.dart';
+
+
 import 'package:new_project_work/ui_pages/teachers/home_page/teacher_home_page.dart';
 import 'package:new_project_work/utils/fonts.dart';
-
 import '../ui_pages/fees/views/fees.dart';
 
 class Model {
@@ -23,7 +26,7 @@ class Gridview extends StatelessWidget {
     List<Model> model = [
       Model(
         text: 'Online Class',
-        iconTitle: 'images/gridview_logo/onlineClass.jpg',
+        iconTitle: 'assets/gridview_logo/onlineClass.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -32,22 +35,18 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Fees',
-        iconTitle: 'images/gridview_logo/fees.jpg',
+        iconTitle: 'assets/gridview_logo/fees.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Fees(),
-                ));
+            Get.to(Fees());
           }
           // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },
       ),
       Model(
         text: 'Result',
-        iconTitle: 'images/gridview_logo/results.jpg',
+        iconTitle: 'assets/gridview_logo/results.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -56,14 +55,14 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Attendance',
-        iconTitle: 'images/gridview_logo/attendance.jpg',
+        iconTitle: 'assets/gridview_logo/attendance.jpg',
         onPress: () {
           Get.to(StudentAttendanceView());
         },
       ),
       Model(
         text: 'Subjects',
-        iconTitle: 'images/gridview_logo/subjetcs.jpg',
+        iconTitle: 'assets/gridview_logo/subjects.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -72,23 +71,21 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Routine',
-        iconTitle: 'images/gridview_logo/routine.jpg',
+        iconTitle: 'assets/gridview_logo/routine.jpg',
         onPress: () {
-          if (kDebugMode) {
-            print('anything');
-          }
+          Get.to(Routine());
         },
       ),
       Model(
         text: 'Library',
-        iconTitle: 'images/gridview_logo/library.jpg',
+        iconTitle: 'assets/gridview_logo/library.jpg',
         onPress: () {
-          // Get.toNamed('/routine');
+          Get.to(Library());
         },
       ),
       Model(
         text: 'Online Exam',
-        iconTitle: 'images/gridview_logo/onlineExam.jpg',
+        iconTitle: 'assets/gridview_logo/onlineExam.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -98,18 +95,21 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Teachers',
-        iconTitle: 'images/gridview_logo/teacher.jpg',
+        iconTitle: 'assets/gridview_logo/teacher.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
           }
+          Get.to(TeacherHomePage());
+
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => TeacherHomePage()));
+
         },
       ),
       Model(
         text: 'Dormitory',
-        iconTitle: 'images/gridview_logo/dormitory.jpg',
+        iconTitle: 'assets/gridview_logo/dormitory.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -119,7 +119,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Transport',
-        iconTitle: 'images/gridview_logo/transport.jpg',
+        iconTitle: 'assets/gridview_logo/transport.jpg',
         onPress: () {
           if (kDebugMode) {
             print('anything');
@@ -128,7 +128,7 @@ class Gridview extends StatelessWidget {
       ),
       Model(
         text: 'Download',
-        iconTitle: 'images/gridview_logo/download.png',
+        iconTitle: 'assets/gridview_logo/download.png',
         onPress: () {
           if (kDebugMode) {
             print('anything');

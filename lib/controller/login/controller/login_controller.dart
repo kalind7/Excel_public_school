@@ -17,15 +17,7 @@ class LoginDataController extends GetxController {
     isloading.value = true;
 
     var response = await ApiServices().post(ApiUrl.login, data);
-
-    // var res = j
-
-    // var res = Welcome.fromJson(jsonDecode(response));
     var res = welcomeFromJson(response);
-    // var res = jsonDecode(response);
-
-    // print(res['success']);
-
     if (res.success) {
       await Hive.openBox(Constants.APPNAME);
       var box = Hive.box(Constants.APPNAME);
@@ -39,13 +31,6 @@ class LoginDataController extends GetxController {
       box.put(Constants.admissionNumber, res.data!.userDetails.admissionNo);
 
       print(box.get(Constants.accesstoken.toString()));
-
-      /*if (res.data!.phoneVerify == 0) {
-          Routes.navigateToOtpScreen(context,userName);
-        } else {
-          box.put(Constants.isLoggedIn, true);
-          Routes.navigateToDashboardScreen(context,0);
-        }*/
       box.put(Constants.isLoggedIn, true);
       isloading.value = false;
       var roll = box.get(Constants.roll);
@@ -54,8 +39,6 @@ class LoginDataController extends GetxController {
       } else {
         Get.off(StudentLandingPage());
       }
-      // log(roll.toString());
-
     } else {
       Alert.showSnackBar(
           title: 'Wrong Credentials', message: res.message, top: false);

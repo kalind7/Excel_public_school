@@ -1,4 +1,3 @@
-// import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -78,6 +77,7 @@ class ApiServices {
           headers: setHeaders(), body: jsonEncode(data));
 
       return response.body;
+
     } catch (e) {
       Alert.showSnackBar(title: 'Error', message: e.toString(), top: true);
     }

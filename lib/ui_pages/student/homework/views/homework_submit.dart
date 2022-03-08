@@ -13,7 +13,6 @@ Widget uploadPopUp(BuildContext context, StudentHomeWorkData mydata) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
   return Dialog(
-    
     backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),

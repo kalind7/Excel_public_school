@@ -83,6 +83,7 @@ class WidgetAppbar extends StatelessWidget {
           ),
         ),
       ],
+
     );
   }
 }

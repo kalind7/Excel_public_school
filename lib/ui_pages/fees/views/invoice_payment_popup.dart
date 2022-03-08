@@ -63,24 +63,24 @@ Widget feesInvoicePopup(BuildContext context, FeeInvoiceData? data, month) {
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-            )),
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
+                )),
             child: Column(
               children: [
                 listDetails(title: 'Invoice Description', answer: 'Amount'),
                 data!.fees.timeline.length == 0
                     ? SizedBox()
                     : data.fees.timeline.first.monthly == null
-                        ? SizedBox()
-                        : listDetails(
-                            title: 'Monthly',
-                            answer: 'Rs. ${data.fees.timeline.first.monthly}'),
+                    ? SizedBox()
+                    : listDetails(
+                    title: 'Monthly',
+                    answer: 'Rs. ${data.fees.timeline.first.monthly}'),
                 data.fees.timeline.first.exam == null
                     ? SizedBox()
                     : listDetails(
-                        title: 'Exam',
-                        answer: 'Rs. ${data.fees.timeline.first.exam}'),
+                    title: 'Exam',
+                    answer: 'Rs. ${data.fees.timeline.first.exam}'),
                 listDetails(title: 'Total', answer: 'Rs. ${data.fees.total}'),
                 listDetails(
                     title: 'Grand Total',

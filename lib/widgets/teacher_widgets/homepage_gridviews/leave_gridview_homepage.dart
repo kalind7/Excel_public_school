@@ -16,7 +16,7 @@ Widget LeaveInfoGridView(BuildContext context){
   List<LeaveInfo> leaveChoice = [
     LeaveInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/Attendance.jpg',
+        'assets/teacher_homepage_icons/approve_leave_request.png',
       ),
       iconTitle: 'Approve\n'
           'Leave Request',
@@ -24,7 +24,7 @@ Widget LeaveInfoGridView(BuildContext context){
     ),
     LeaveInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_report.jpg',
+        'assets/teacher_homepage_icons/pending_leave.png',
       ),
       iconTitle: 'Pending\n'
           'Leave',
@@ -32,7 +32,7 @@ Widget LeaveInfoGridView(BuildContext context){
     ),
     LeaveInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_summary.jpg',
+        'assets/teacher_homepage_icons/apply_leave.png',
       ),
       iconTitle: 'Apply\n'
           'Leave',
