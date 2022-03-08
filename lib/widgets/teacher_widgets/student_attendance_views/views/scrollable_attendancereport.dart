@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/student_attendance_controller.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 // ignore: must_be_immutable
 class ScrollableAttendanceReport extends StatelessWidget {
    ScrollableAttendanceReport({Key? key}) : super(key: key);
 
-  StudentAttendanceController attendanceController = Get.find();
+  TeacherAttendanceController attendanceController = Get.find();
+
+  bool _value1 = false;
+   bool _value2 = true;
+   bool _value3 = false;
+   bool _value4 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +83,7 @@ class ScrollableAttendanceReport extends StatelessWidget {
                                 fontFamily: 'Roboto')))),
               ],
               rows: [
-                ...attendanceController.studentAttendanceList
+                ...attendanceController.teacherAttendanceList
                     .map((attendance) => DataRow(
                   cells: [
                     DataCell(
@@ -89,7 +94,7 @@ class ScrollableAttendanceReport extends StatelessWidget {
                           MaterialStateProperty.all(Colors.green),
                           checkColor: Colors.green,
                           shape: CircleBorder(),
-                          value: attendance.present,
+                          value: _value1,
                           onChanged: (value){},
                         ),
                       ),
@@ -101,9 +106,9 @@ class ScrollableAttendanceReport extends StatelessWidget {
                         child: Checkbox(
                           fillColor:
                           MaterialStateProperty.all(Colors.green),
-                          checkColor: pink,
+                          checkColor: Colors.green,
                           shape: CircleBorder(),
-                          value: attendance.present,
+                          value: _value2,
                           onChanged: (value){},
                         ),
                       ),
@@ -117,7 +122,7 @@ class ScrollableAttendanceReport extends StatelessWidget {
                           MaterialStateProperty.all(Colors.red),
                           checkColor: Colors.red,
                           shape: CircleBorder(),
-                          value: attendance.absent,
+                          value: _value3,
                           onChanged: (value){}
                     ))),
                     DataCell(Container(
@@ -127,7 +132,7 @@ class ScrollableAttendanceReport extends StatelessWidget {
                           MaterialStateProperty.all(Colors.orange),
                           checkColor: Colors.orange,
                           shape: CircleBorder(),
-                          value: attendance.homework,
+                          value: _value4,
                           onChanged: (value) {}),
                     )),
                   ],

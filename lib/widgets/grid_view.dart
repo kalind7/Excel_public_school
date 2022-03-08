@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/library.dart';
 import 'package:new_project_work/ui_pages/student/attendance/views/student_attendance.dart';
 import 'package:new_project_work/ui_pages/student/routine/routine.dart';
+
+
 import 'package:new_project_work/ui_pages/teachers/home_page/teacher_home_page.dart';
 import 'package:new_project_work/utils/fonts.dart';
-
 import '../ui_pages/fees/views/fees.dart';
 
 class Model {
@@ -100,6 +101,10 @@ class Gridview extends StatelessWidget {
             print('anything');
           }
           Get.to(TeacherHomePage());
+
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => TeacherHomePage()));
+
         },
       ),
       Model(

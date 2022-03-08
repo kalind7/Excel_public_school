@@ -7,7 +7,6 @@ import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/drop_down/section_drop_down.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendance_view.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendancereport.dart';
 
 import '../../../../../widgets/drop_down/class_drop_down.dart';

@@ -41,7 +41,8 @@ Widget feesPopup(BuildContext context, StudentHomeWorkData myitem) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Homework of ${myitem.subjectName}',
+                  '${myitem.subjectName}',
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Roboto',

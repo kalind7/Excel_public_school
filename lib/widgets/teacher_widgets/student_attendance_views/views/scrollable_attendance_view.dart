@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/student_attendance_controller.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class ScrollableAttendanceView extends StatefulWidget {
   const ScrollableAttendanceView({Key? key}) : super(key: key);
@@ -10,12 +10,13 @@ class ScrollableAttendanceView extends StatefulWidget {
 }
 
 class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
-  StudentAttendanceController attendanceController = Get.find();
+  TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
+  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Flexible(
+      () =>  Flexible(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
@@ -36,18 +37,18 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
               columns: [
                 DataColumn(
                   label: Padding(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: GestureDetector(
-                        onTap: (){
-                          print('tapped');
-                        },
-                        child: Text('P',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.green.shade300,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Roboto')),
-                      ),
+                    padding: EdgeInsets.only(left: 15.0),
+                    child: GestureDetector(
+                      onTap: (){
+                        print('tapped');
+                      },
+                      child: Text('P',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.green.shade300,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Roboto')),
+                    ),
                   ),
                 ),
                 DataColumn(
@@ -70,65 +71,58 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                 fontFamily: 'Roboto')))),
               ],
               rows: [
-                ...attendanceController.studentAttendanceList
+                ...attendanceController.teacherAttendanceList
                     .map((attendance) => DataRow(
-                          cells: [
-                            DataCell(
-                              Container(
-                                alignment: AlignmentDirectional.center,
-                                child: Checkbox(
-                                  fillColor:
-                                      MaterialStateProperty.all(Colors.green),
-                                  checkColor: Colors.green,
-                                  shape: CircleBorder(),
-                                  value: attendance.present,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      attendance.present = newValue!;
-                                      attendance.absent = !newValue;
-                                      attendance.homework = !newValue;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                            DataCell(Container(
-                              alignment: AlignmentDirectional.center,
-                              child: Checkbox(
-                                  fillColor:
-                                      MaterialStateProperty.all(Colors.red),
-                                  checkColor: Colors.red,
-                                  shape: CircleBorder(),
-                                  value: attendance.absent,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      attendance.absent = newValue!;
-                                      attendance.present = !newValue;
-                                      attendance.homework = !newValue;
-                                    });
-                                  }),
-                            )),
-                            DataCell(Container(
-                              alignment: AlignmentDirectional.center,
-                              child: Checkbox(
-                                  fillColor:
-                                      MaterialStateProperty.all(Colors.orange),
-                                  checkColor: Colors.orange,
-                                  shape: CircleBorder(),
-                                  value: attendance.homework,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      attendance.homework = newValue!;
-                                      attendance.present = !newValue;
-                                      attendance.absent = !newValue;
-                                    });
-                                  }),
-                            )),
-                          ],
-                        ))
+                  cells: [
+                    DataCell(
+                      Container(
+                        alignment: AlignmentDirectional.center,
+                        child: Checkbox(
+                          fillColor:
+                          MaterialStateProperty.all(Colors.green),
+                          checkColor: Colors.green,
+                          shape: CircleBorder(),
+                          value: value,
+                          onChanged: (newValue) {
+                            setState(() {
+                              value = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    DataCell(Container(
+                      alignment: AlignmentDirectional.center,
+                      child: Checkbox(
+                          fillColor:
+                          MaterialStateProperty.all(Colors.red),
+                          checkColor: Colors.red,
+                          shape: CircleBorder(),
+                          value: value,
+                          onChanged: (newValue) {
+                            setState(() {
+                              value = newValue!;
+                            });
+                          }),
+                    )),
+                    DataCell(Container(
+                      alignment: AlignmentDirectional.center,
+                      child: Checkbox(
+                          fillColor:
+                          MaterialStateProperty.all(Colors.orange),
+                          checkColor: Colors.orange,
+                          shape: CircleBorder(),
+                          value: value,
+                          onChanged: (newValue) {
+                            setState(() {
+                              value = newValue!;
+                            });
+                          }),
+                    )),
+                  ],
+                ))
               ]),
         ),
-      ),
-    );
+      ),);
   }
 }

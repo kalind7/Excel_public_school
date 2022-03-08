@@ -77,6 +77,7 @@ class ApiServices {
           headers: setHeaders(), body: jsonEncode(data));
 
       return response.body;
+
     } catch (e) {
       Alert.showSnackBar(title: 'Error', message: e.toString(), top: true);
     }

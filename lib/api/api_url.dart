@@ -17,9 +17,11 @@ class ApiUrl {
   static String studentFees(studentid) => 'student-fees/$studentid';
   static String studentFeesDetail(studentid, feeid, type) =>
       'student-fees-details/$studentid?id=$feeid&type=$type';
-  static String studentattendencelist(id, year, month) =>
-      'student-my-attendance/$id?year=$year&month=$month';
+  static String studentattendencelist(year, month) =>
+      'v2/student-my-attendance?year=$year&month=$month';
 
+  static const String teacherAttendanceList = "student-search";
+  // static String teacherAttendanceList(classes,section,date) => 'student-search?class=$classes&section=$section&attendance_date=$date';
   // static const String {} = "v2/notice-list?page=14";
 }
 
