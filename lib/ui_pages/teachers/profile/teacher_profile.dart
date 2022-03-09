@@ -63,6 +63,7 @@ class TeacherDetails extends StatelessWidget {
                   ]
               ),
               child: Hero(
+                transitionOnUserGestures: true,
                   tag: 'heroTag',
                   child: ListView(
                     children: [
@@ -84,8 +85,9 @@ class TeacherDetails extends StatelessWidget {
                          ),
                         ],
                       ),
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),child:
-                      Column(
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                        child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,9 +100,6 @@ class TeacherDetails extends StatelessWidget {
                           RowData(text: 'DOB',differentiator: ':'  ,answer: '1st Jan,1970',height: 10),
                         ],
                       ),)
-
-
-
                     ],
                   )
               ),

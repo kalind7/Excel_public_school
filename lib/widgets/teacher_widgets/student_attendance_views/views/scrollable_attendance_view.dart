@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 
 class ScrollableAttendanceView extends StatefulWidget {
   const ScrollableAttendanceView({Key? key}) : super(key: key);
@@ -12,7 +13,12 @@ class ScrollableAttendanceView extends StatefulWidget {
 class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
   TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
-  bool value = false;
+  int selectedValue = 0 ;
+
+  bool _value1 = false;
+  bool _value2 = false;
+  bool _value3 = false;
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -77,47 +83,41 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                     DataCell(
                       Container(
                         alignment: AlignmentDirectional.center,
-                        child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.green),
-                          checkColor: Colors.green,
-                          shape: CircleBorder(),
-                          value: value,
-                          onChanged: (newValue) {
-                            setState(() {
-                              value = newValue!;
-                            });
-                          },
+                        child: Radio(
+                            value: 0,
+                            groupValue: selectedValue,
+                            onChanged: (value){
+                              setState(() {
+                                selectedValue = value as int;
+                              });
+                            }
                         ),
                       ),
                     ),
                     DataCell(Container(
                       alignment: AlignmentDirectional.center,
-                      child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.red),
-                          checkColor: Colors.red,
-                          shape: CircleBorder(),
-                          value: value,
-                          onChanged: (newValue) {
+                      child: Radio(
+                          value: 1,
+                          groupValue: selectedValue,
+                          onChanged: (value){
                             setState(() {
-                              value = newValue!;
+                              selectedValue = value as int;
+
                             });
-                          }),
+                          }
+                      ),
                     )),
                     DataCell(Container(
                       alignment: AlignmentDirectional.center,
-                      child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.orange),
-                          checkColor: Colors.orange,
-                          shape: CircleBorder(),
-                          value: value,
-                          onChanged: (newValue) {
+                      child: Radio(
+                          value: 2,
+                          groupValue: selectedValue,
+                          onChanged: (value){
                             setState(() {
-                              value = newValue!;
+                              selectedValue = value as int;
                             });
-                          }),
+                          }
+                      ),
                     )),
                   ],
                 ))

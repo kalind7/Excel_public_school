@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/calender/date_picker.dart';
+import 'package:new_project_work/ui_pages/calender/attendance_date_picker.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
@@ -73,29 +74,42 @@ class _StudentAttendanceState extends State<StudentAttendance> {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              height: MediaQuery.of(context).size.height * 0.070,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ClassDropDown(),
-                  SectionDropDown(),
-                  Flexible(
-                    flex: 1,
-                    child: AttendanceDatePicker(),
+
+
+                Container(
+                  padding: EdgeInsets.only(right: 5.0),
+                  margin: EdgeInsets.fromLTRB(5, 0, 5, 5),
+                  height: MediaQuery.of(context).size.height * 0.070,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                ],
-              ),
-            ),
-          ],
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    physics: ClampingScrollPhysics(),
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          IconButton(onPressed: (){}, icon: Icon(Icons.search,color: Colors.pink,size: 34,)),
+
+                          ClassDropDown(value: 0.27, expanded: false,iconSize: 24,),
+
+                          SectionDropDown(value: 0.29, expanded: false,iconSize: 24,),
+
+                          AttendanceDatePicker(),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
         ),
+
         bodyWidget: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,

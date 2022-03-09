@@ -19,8 +19,7 @@ class _AttendanceDatePickerState extends State<AttendanceDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return  Center(
         child: Row(
           children: <Widget>[
 
@@ -51,7 +50,7 @@ class _AttendanceDatePickerState extends State<AttendanceDatePicker> {
 
           ],
         ),
-      ),
-    );
+      );
+
   }
 }

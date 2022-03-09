@@ -144,3 +144,12 @@ const dropDownTitle = TextStyle(
   fontFamily: 'Roboto',
   fontWeight: FontWeight.w600,
 );
+
+//* Teacher Exam View *//
+
+const examRowTitle = TextStyle(
+  fontSize: 16,
+  color: Color(0xFFF06292),
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w600,
+);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/ui_pages/teachers/drawer/teacher_drawer.dart';
@@ -106,12 +107,10 @@ class TeacherHomePage extends StatelessWidget {
                     Center(
                       child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TeacherDetails()));
+                            Get.to(TeacherDetails());
                           },
                           child: Hero(
+                            transitionOnUserGestures: true,
                             tag: 'heroTag',
                             child: Text(
                               'View More',

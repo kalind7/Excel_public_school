@@ -13,7 +13,7 @@ class FixedColumnNameWidget extends StatefulWidget {
 
 class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
 
-  TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
+  TeacherAttendanceController attendanceController = Get.find();
 
   int ? sortColumnIndex;
   bool isAscending = false;

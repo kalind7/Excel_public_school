@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/practical_exam.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -20,7 +22,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Add Exam\n'
           'Practical',
-      onPress: () {},
+      onPress: () {
+        Get.to(ExamPractical());
+      },
     ),
     ExamInfo(
       icon: Image.asset(

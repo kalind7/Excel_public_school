@@ -44,8 +44,6 @@ class TeacherAttendanceController extends GetxController {
   }
 
 
-
-
 //import 'package:get/get.dart';
 //
 //

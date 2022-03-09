@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
-class SectionDropDown extends StatefulWidget {
-   SectionDropDown({Key? key, required this.value, required this.expanded, required this.iconSize }) : super(key: key);
+class ExamDropDown extends StatefulWidget {
+  ExamDropDown({Key? key, required this.value, required this.expanded, required this.iconSize }) : super(key: key);
 
 
   double  value;
@@ -11,17 +11,17 @@ class SectionDropDown extends StatefulWidget {
   double iconSize;
 
   @override
-  _SectionDropDownState createState() => _SectionDropDownState();
+  _ExamDropDownState createState() => _ExamDropDownState();
 }
 
-class _SectionDropDownState extends State<SectionDropDown> {
+class _ExamDropDownState extends State<ExamDropDown> {
 
 
-  final List<String> sections = [
-    "Select Section",'Section A', 'Section B', 'Section C','Section D'
+  final List<String> exams = [
+    "Select Exam Type",'Pre SEE', 'SEE', 'First Terminal','Second Terminal', 'Third Terminal',
   ];
 
-  String selectedSection = 'Select Section';
+  String selectedExamType = 'Select Exam Type';
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +45,16 @@ class _SectionDropDownState extends State<SectionDropDown> {
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        value: selectedSection,
-        onChanged: (value){
+        value: selectedExamType,
+        onChanged: (newValue){
           setState(() {
-            selectedSection = value!;
+            selectedExamType = newValue!;
           });
         },
-        items: sections.map<DropdownMenuItem <String>>((value) {
+        items: exams.map<DropdownMenuItem <String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle,),
-                  value: value,
+            child: Text(value,style: dropDownTitle,),
+            value: value,
           );
         }).toList(),
       ),

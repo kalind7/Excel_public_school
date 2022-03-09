@@ -3,24 +3,26 @@ import 'package:new_project_work/utils/fonts.dart';
 
 import '../../utils/color.dart';
 
-class ClassDropDown extends StatefulWidget {
-   ClassDropDown({Key? key, required this.value,required this.iconSize ,required this.expanded })  : super(key: key);
+class YearDropDown extends StatefulWidget {
+   YearDropDown({Key? key, required this.value,required this.iconSize ,required this.expanded}) : super(key: key);
 
-   double  value;
-   double iconSize;
-   bool  expanded ;
+
+  double  value;
+  double iconSize;
+  bool expanded ;
 
   @override
-  _ClassDropDownState createState() => _ClassDropDownState();
+  _YearDropDownState createState() => _YearDropDownState();
 }
 
-class _ClassDropDownState extends State<ClassDropDown> {
+class _YearDropDownState extends State<YearDropDown> {
 
-  final List<String> classes = [
-    "Select Class","Class 1", "Class 2", "Class 3", "Class 4","Class 5",
+
+  final List<String> years = [
+    "Select Year","2074", "2075", "2076", "2077", "2078",
   ];
 
-  String selectedClass = "Select Class";
+  String selectedYear = "Select Year";
 
 
   @override
@@ -28,9 +30,10 @@ class _ClassDropDownState extends State<ClassDropDown> {
     Size width = MediaQuery.of(context).size;
 
     return  Container(
-      width: width.width * widget.value ,
+
+      width: width.width * widget.value,
       padding: EdgeInsets.only(left: 2.0),
-      // margin: EdgeInsets.all(5.0),
+      margin: EdgeInsets.only( top: 5.0, bottom: 5.0, left: 5, right: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
@@ -38,21 +41,21 @@ class _ClassDropDownState extends State<ClassDropDown> {
       ),
       child: DropdownButton<String>(
         isExpanded: widget.expanded,
+        iconSize: widget.iconSize,
         iconDisabledColor: pink,
         iconEnabledColor: pink,
-        iconSize: widget.iconSize,
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        value: selectedClass,
+        value: selectedYear,
         onChanged: (value){
           setState(() {
-            selectedClass = value!;
+            selectedYear = value!;
           });
         },
-        items: classes.map<DropdownMenuItem<String>>((value) {
+        items: years.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle ,),
+            child: Text(value,style: dropDownTitle,),
             value: value,
           );
         }).toList(),
