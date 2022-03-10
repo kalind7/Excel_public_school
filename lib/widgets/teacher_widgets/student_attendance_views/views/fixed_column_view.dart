@@ -5,7 +5,10 @@ import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class FixedColumnNameWidget extends StatefulWidget {
-  const FixedColumnNameWidget({Key? key}) : super(key: key);
+   FixedColumnNameWidget({Key? key, this.color, this.textColor}) : super(key: key);
+
+  Color ? color;
+  Color ? textColor;
 
   @override
   _FixedColumnNameWidgetState createState() => _FixedColumnNameWidgetState();
@@ -13,10 +16,11 @@ class FixedColumnNameWidget extends StatefulWidget {
 
 class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
 
-  TeacherAttendanceController attendanceController = Get.find();
+  TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
   int ? sortColumnIndex;
   bool isAscending = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
           showBottomBorder: true,
           horizontalMargin: 10,
           columnSpacing: 20,
-          headingRowColor: MaterialStateProperty.all(pink),
+          headingRowColor: MaterialStateProperty.all(widget.color == null ? pink : widget.color),
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(width: 0.5,color: Colors.grey),
@@ -51,7 +55,12 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
                     DataCell(
                         Text(
                           '${attendance.id.toString()}   ${attendance.fullName}',
-                          style: headerName,
+                          style:  TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: widget.textColor == null ? pink : widget.textColor,
+                            fontFamily: 'Roboto',
+                          ),
                         )),
 
                   ],

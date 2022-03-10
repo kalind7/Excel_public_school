@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/assign_marks/assign_marks.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/eca_grades/eca_grades.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/practical_exam.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_result/practical_result.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -15,6 +18,7 @@ class ExamInfo {
 
 Widget ExamInfoGridView(BuildContext context){
 
+
   List<ExamInfo> examChoice = [
     ExamInfo(
       icon: Image.asset(
@@ -23,7 +27,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Add Exam\n'
           'Practical',
       onPress: () {
-        Get.to(ExamPractical());
+        Get.to(ExamPractical(title: 'Add Exam Practical', secondTitle: 'Add New Practical',));
       },
     ),
     ExamInfo(
@@ -32,7 +36,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Practical\n'
           'Result',
-      onPress: () {},
+      onPress: () {
+        Get.to(PracticalResult());
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -40,7 +46,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Assign\n'
           'Marks',
-      onPress: () {},
+      onPress: () {
+        Get.to(AssignMarks());
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -48,7 +56,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'ECA\n'
           'Grades',
-      onPress: () {},
+      onPress: () {
+        Get.to( ECAGrades());
+      },
     ),
     ExamInfo(
       icon: Image.asset(

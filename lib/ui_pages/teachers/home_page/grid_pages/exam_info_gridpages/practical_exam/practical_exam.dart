@@ -4,6 +4,7 @@ import 'package:new_project_work/ui_pages/student/widget/body_container_with_wid
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/after_search_done.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/transfer_page.dart';
 import 'package:new_project_work/utils/color.dart';
+import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/drop_down/class_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/exam_type_drop_down.dart';
@@ -12,7 +13,14 @@ import 'package:new_project_work/widgets/drop_down/subject_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/year_drop_down.dart';
 
 class ExamPractical extends StatelessWidget {
-  const ExamPractical({Key? key}) : super(key: key);
+   ExamPractical({Key? key,this.widget,this.widget2,this.onPress,this.buttonHeader,required this.secondTitle ,required this.title}) : super(key: key);
+
+  String title;
+  String secondTitle;
+  Function ? onPress;
+  String ? buttonHeader;
+  Widget? widget;
+   Widget? widget2;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class ExamPractical extends StatelessWidget {
         preferredSize: Size.fromHeight(55.0),
         child: WidgetAppbar(
           icon: Icons.arrow_back,
-            title: 'Add Exam Practical',
+            title: title,
             onPress: (){
             Get.back();
             },
@@ -30,14 +38,14 @@ class ExamPractical extends StatelessWidget {
       ),
       body: BodyWithWidgetContainer(
           upperWidget: Container(
-            margin: EdgeInsets.fromLTRB(5, 20, 5, 0),
-            height: MediaQuery.of(context).size.height * 0.05,
+            margin: EdgeInsets.fromLTRB(5, 30, 5, 0),
+            height: MediaQuery.of(context).size.height * 0.06,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,
             ),
-            child: Center(child: Text('Add New Practical',style: TextStyle(fontSize: 18.0,color: pink,fontFamily: 'Roboto',),),),
+            child: Center(child: Text(secondTitle,style: examPageHeadTitle),),
           ),
           bodyWidget: SingleChildScrollView(
             physics: ClampingScrollPhysics(),
@@ -71,7 +79,7 @@ class ExamPractical extends StatelessWidget {
                        Padding(padding: EdgeInsets.symmetric(horizontal: 7.0),child: Divider(thickness: 1,height: 1,color: pink,),),
                        SubjectDropDown(value: 0.8, expanded: true, iconSize: 35),
                        Padding(padding: EdgeInsets.symmetric(horizontal: 7.0),child: Divider(thickness: 1,height: 1,color: pink,),),
-                       ExamDropDown(value: 0.8, expanded: true, iconSize: 35),
+                       widget2 == null ? ExamDropDown(value: 0.8, expanded: true, iconSize: 35): widget2!,
                        Padding(padding: EdgeInsets.symmetric(horizontal: 7.0),child: Divider(thickness: 1,height: 1,color: pink,),),
                        SizedBox(
                          width: 150,
@@ -79,22 +87,19 @@ class ExamPractical extends StatelessWidget {
                            style: ElevatedButton.styleFrom(
                                primary: pink,
                                elevation: 5,
+                               shadowColor: orangeOne,
                                shape: RoundedRectangleBorder(
                                    borderRadius: BorderRadius.circular(10)),
                                padding: EdgeInsets.all(5)),
                            onPressed: () {
-                             Get.to(SecondExamPractical());
+                            onPress == null ?  Get.to(SecondExamPractical()) : onPress!() ;
                            },
                            child: Hero(
                              transitionOnUserGestures: true,
                              tag: 'newTag',
                              child: Text(
-                               'Search Subject',
-                               style: TextStyle(
-                                   fontSize: 16,
-                                   color: Colors.white,
-                                   fontFamily: 'Roboto',
-                                   fontWeight: FontWeight.w600),
+                               buttonHeader == null ? 'Search Subject' : buttonHeader!,
+                               style:buttonTitle,
                              ),
                            ),
                          ),
@@ -105,12 +110,13 @@ class ExamPractical extends StatelessWidget {
 
                  SizedBox(height: 5.0,),
 
-                 SizedBox(
+                 widget == null ? SizedBox(
                    width: 150,
                    child: ElevatedButton(
                      style: ElevatedButton.styleFrom(
                          primary: pink,
                          elevation: 5,
+                         shadowColor: orangeOne,
                          shape: RoundedRectangleBorder(
                              borderRadius: BorderRadius.circular(10)),
                          padding: EdgeInsets.all(5)),
@@ -122,17 +128,11 @@ class ExamPractical extends StatelessWidget {
                        tag: 'secondTag',
                        child: Text(
                          'Transfer',
-                         style: TextStyle(
-                             fontSize: 16,
-                             color: Colors.white,
-                             fontFamily: 'Roboto',
-                             fontWeight: FontWeight.w600),
+                         style: buttonTitle,
                        ),
                      ),
                    ),
-                 ),
-
-
+                 ) : widget!,
                ],
              ),
 

@@ -4,11 +4,12 @@ import 'package:new_project_work/utils/fonts.dart';
 import '../../utils/color.dart';
 
 class ClassDropDown extends StatefulWidget {
-   ClassDropDown({Key? key, required this.value,required this.iconSize ,required this.expanded })  : super(key: key);
+   ClassDropDown({Key? key,this.color ,required this.value,required this.iconSize ,required this.expanded })  : super(key: key);
 
    double  value;
    double iconSize;
    bool  expanded ;
+   Color? color;
 
   @override
   _ClassDropDownState createState() => _ClassDropDownState();
@@ -32,9 +33,8 @@ class _ClassDropDownState extends State<ClassDropDown> {
       padding: EdgeInsets.only(left: 2.0),
       // margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
-        // border: Border.all(width: 0.5,color: pink),
+        border: Border.all(width: 0.5,color: widget.color == null ? Colors.transparent : widget.color!),
       ),
       child: DropdownButton<String>(
         isExpanded: widget.expanded,

@@ -3,12 +3,13 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
 class ExamDropDown extends StatefulWidget {
-  ExamDropDown({Key? key, required this.value, required this.expanded, required this.iconSize }) : super(key: key);
+  ExamDropDown({Key? key,this.color ,required this.value, required this.expanded, required this.iconSize }) : super(key: key);
 
 
   double  value;
   bool expanded ;
   double iconSize;
+  Color? color;
 
   @override
   _ExamDropDownState createState() => _ExamDropDownState();
@@ -32,9 +33,9 @@ class _ExamDropDownState extends State<ExamDropDown> {
       padding: EdgeInsets.only(left: 2.0),
       margin: EdgeInsets.only( top: 5.0, bottom: 5.0, left: 5, right: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        // borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
-        // border: Border.all(width: 0.5,color: pink),
+        border: Border.all(width: 0.5,color: widget.color ==null ?Colors.transparent: widget.color! ),
       ),
 
       child: DropdownButton<String>(

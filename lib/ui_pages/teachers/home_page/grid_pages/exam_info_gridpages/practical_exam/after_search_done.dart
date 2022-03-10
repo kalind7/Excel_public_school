@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
@@ -25,8 +24,8 @@ class SecondExamPractical extends StatelessWidget {
       ),
       body: BodyWithWidgetContainer(
         upperWidget: Container(
-          margin: EdgeInsets.fromLTRB(5, 20, 5, 0),
-          height: MediaQuery.of(context).size.height * 0.05,
+          margin: EdgeInsets.fromLTRB(5, 30, 5, 0),
+          height: MediaQuery.of(context).size.height * 0.06,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
@@ -35,11 +34,7 @@ class SecondExamPractical extends StatelessWidget {
           child: Center(
             child: Text(
               'Add New Practical',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: pink,
-                fontFamily: 'Roboto',
-              ),
+              style: examPageHeadTitle
             ),
           ),
         ),
@@ -78,14 +73,7 @@ class SecondExamPractical extends StatelessWidget {
                         'Action',
                         style: examRowTitle,
                       )),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   rowData(
                       serialNum: '1',
                       title: 'Attendance',
@@ -96,14 +84,7 @@ class SecondExamPractical extends StatelessWidget {
                             Icons.delete,
                             color: pink,
                           ))),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   rowData(
                       serialNum: '2',
                       title: 'Homework',
@@ -111,14 +92,7 @@ class SecondExamPractical extends StatelessWidget {
                       action: IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.delete, color: pink))),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   rowData(
                       serialNum: '3',
                       title: 'Classwork',
@@ -126,14 +100,7 @@ class SecondExamPractical extends StatelessWidget {
                       action: IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.delete, color: pink))),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   rowData(
                       serialNum: '4',
                       title: 'Discipline',
@@ -141,14 +108,7 @@ class SecondExamPractical extends StatelessWidget {
                       action: IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.delete, color: pink))),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   rowData(
                       serialNum: '5',
                       title: 'Unit Test',
@@ -156,31 +116,23 @@ class SecondExamPractical extends StatelessWidget {
                       action: IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.delete, color: pink))),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
-                    child: Divider(
-                      thickness: 1,
-                      height: 1,
-                      color: pink,
-                    ),
-                  ),
+
                   SizedBox(
                     width: 150,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: pink,
                           elevation: 5,
+                          shadowColor: orangeOne,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           padding: EdgeInsets.all(5)),
-                      onPressed: () {},
+                      onPressed: () {
+                        // Get.to(TransferPage());
+                      },
                       child: Text(
                         'Submit',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600),
+                        style: buttonTitle,
                       ),
                     ),
                   ),
@@ -199,26 +151,39 @@ class SecondExamPractical extends StatelessWidget {
     required String marks,
     required Widget action,
   }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
       children: [
-        Text(
-          serialNum,
-          style: examRowTitle,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              serialNum,
+              style: examRowTitle,
+            ),
+            Text(
+              title,
+              style: examRowTitle,
+            ),
+            SizedBox(width: 3.0,),
+            Text(
+              marks,
+              style: examRowTitle,
+            ),
+            SizedBox(
+              child: action,
+            ),
+
+          ],
         ),
-        Text(
-          title,
-          style: examRowTitle,
-        ),
-        SizedBox(width: 3.0,),
-        Text(
-          marks,
-          style: examRowTitle,
-        ),
-        SizedBox(
-          child: action,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
+          child: Divider(
+            thickness: 1,
+            height: 1,
+            color: pink,
+          ),
         ),
       ],
     );

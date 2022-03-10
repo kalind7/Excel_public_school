@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 
 class ScrollableAttendanceView extends StatefulWidget {
   const ScrollableAttendanceView({Key? key}) : super(key: key);
@@ -15,9 +14,9 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
 
   int selectedValue = 0 ;
 
-  bool _value1 = false;
-  bool _value2 = false;
-  bool _value3 = false;
+  // bool _value1 = false;
+  // bool _value2 = false;
+  // bool _value3 = false;
 
   @override
   Widget build(BuildContext context) {
