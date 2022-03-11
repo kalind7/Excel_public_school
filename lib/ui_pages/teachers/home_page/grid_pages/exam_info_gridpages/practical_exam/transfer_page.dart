@@ -9,6 +9,7 @@ import 'package:new_project_work/widgets/drop_down/class_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/exam_type_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/section_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/subject_drop_down.dart';
+import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 
 class TransferPage extends StatelessWidget {
   const TransferPage({Key? key}) : super(key: key);
@@ -229,25 +230,7 @@ class TransferPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
-                width: 120,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: pink,
-                      onPrimary: Colors.white,
-                      onSurface: Colors.grey,
-                      shadowColor: orangeOne,
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: EdgeInsets.all(5)),
-                  onPressed: () {},
-                  child: Text(
-                    'Transfer',
-                    style: buttonTitle,
-                  ),
-                ),
-              ),
+              button(title: 'Transfer', onPress: (){}, width: 120),
 
             ],
           ),

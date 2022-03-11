@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 
 class AssignMarksTable extends StatelessWidget {
   const AssignMarksTable({Key? key}) : super(key: key);
@@ -88,25 +90,28 @@ class AssignMarksTable extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
-                      width: 120,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: pink,
-                            elevation: 5,
-                            shadowColor: orangeOne,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            padding: EdgeInsets.all(5)),
-                        onPressed: () {
-                          // Get.to(TransferPage());
-                        },
-                        child:Text(
-                          'Save',
-                          style: buttonTitle,
+                    button(
+                        title: 'Save',
+                        onPress: () => Get.snackbar(
+                          'Access Denied',
+                          'You\'re not the class teacher\n for this class',
+                          duration:  Duration(seconds: 2),
+                          snackPosition: SnackPosition.TOP,
+                          colorText: Colors.white,
+                          borderRadius: 10.0,
+                          backgroundColor: HexColor('#C45954'),
+                          boxShadows: [
+                            BoxShadow(
+                              color: HexColor('#C45954'),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                              blurStyle: BlurStyle.inner,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          icon: Icon(Icons.warning,size: 30,color: Colors.white,),
                         ),
-                      ),
-                    )
+                        width: 120),
                   ],
                 ),
               ))),

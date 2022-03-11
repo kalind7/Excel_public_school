@@ -116,13 +116,9 @@ const iconTitle = TextStyle(
 const mainName = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.w600,
-  color: Colors.black54,
+  color: Colors.white,
   fontFamily: 'Roboto',
 );
-
-
-
-
 
 const reportHeader = TextStyle(
   fontSize: 22.0,
@@ -183,7 +179,7 @@ const buttonTitle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 const scrollTitle = TextStyle(
-  fontSize: 16,
+  fontSize: 14,
   color: Colors.black54,
   fontFamily: 'Roboto',
   fontWeight: FontWeight.w600,

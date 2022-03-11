@@ -13,7 +13,7 @@ import 'package:new_project_work/widgets/drop_down/subject_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/year_drop_down.dart';
 
 class ExamPractical extends StatelessWidget {
-   ExamPractical({Key? key,this.widget,this.widget2,this.onPress,this.buttonHeader,required this.secondTitle ,required this.title}) : super(key: key);
+   ExamPractical({Key? key,this.widget,this.height,this.widget2,this.onPress,this.buttonHeader,required this.secondTitle ,required this.title}) : super(key: key);
 
   String title;
   String secondTitle;
@@ -21,6 +21,7 @@ class ExamPractical extends StatelessWidget {
   String ? buttonHeader;
   Widget? widget;
    Widget? widget2;
+   double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class ExamPractical extends StatelessWidget {
       body: BodyWithWidgetContainer(
           upperWidget: Container(
             margin: EdgeInsets.fromLTRB(5, 30, 5, 0),
-            height: MediaQuery.of(context).size.height * 0.06,
+            height:  MediaQuery.of(context).size.height * 0.06,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
@@ -54,7 +55,7 @@ class ExamPractical extends StatelessWidget {
                children: [
                  Container(
                    margin: EdgeInsets.fromLTRB(10,30,10,0),
-                   height: MediaQuery.of(context).size.height * 0.56,
+                   height: height == null ? MediaQuery.of(context).size.height * 0.56 : MediaQuery.of(context).size.height * height!,
                    width: MediaQuery.of(context).size.width,
                    decoration: BoxDecoration(
                      borderRadius: BorderRadius.circular(7.5),
@@ -108,7 +109,7 @@ class ExamPractical extends StatelessWidget {
                    ),
                  ),
 
-                 SizedBox(height: 5.0,),
+                 SizedBox(height: 10.0,),
 
                  widget == null ? SizedBox(
                    width: 150,

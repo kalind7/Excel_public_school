@@ -5,8 +5,9 @@ import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class FixedColumnNameWidget extends StatefulWidget {
-   FixedColumnNameWidget({Key? key, this.color, this.textColor}) : super(key: key);
+   FixedColumnNameWidget({Key? key,this.textStyle ,this.color, this.textColor}) : super(key: key);
 
+   TextStyle ? textStyle;
   Color ? color;
   Color ? textColor;
 
@@ -43,7 +44,7 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
           ),
           columns: [
             DataColumn(
-              label: Text('Name',style: mainName,),
+              label: Text('Name',style: widget.textStyle == null ? mainName : widget.textStyle),
               onSort: onSort,
             ),
           ],
@@ -54,9 +55,9 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
                   cells: [
                     DataCell(
                         Text(
-                          '${attendance.id.toString()}   ${attendance.fullName}',
+                          '${attendance.id.toString()} ${attendance.firstName} ${attendance.lastName}',
                           style:  TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: widget.textColor == null ? pink : widget.textColor,
                             fontFamily: 'Roboto',

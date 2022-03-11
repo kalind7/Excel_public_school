@@ -4,6 +4,7 @@ import 'package:new_project_work/ui_pages/student/widget/body_container_with_wid
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
+import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 
 class SecondExamPractical extends StatelessWidget {
   const SecondExamPractical({Key? key}) : super(key: key);
@@ -117,25 +118,7 @@ class SecondExamPractical extends StatelessWidget {
                           onPressed: () {},
                           icon: Icon(Icons.delete, color: pink))),
 
-                  SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: pink,
-                          elevation: 5,
-                          shadowColor: orangeOne,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          padding: EdgeInsets.all(5)),
-                      onPressed: () {
-                        // Get.to(TransferPage());
-                      },
-                      child: Text(
-                        'Submit',
-                        style: buttonTitle,
-                      ),
-                    ),
-                  ),
+                  button(title: 'Submit', onPress: (){}, width: 150),
                 ],
               ),
             ),

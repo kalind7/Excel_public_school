@@ -7,6 +7,7 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/drop_down/class_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/section_drop_down.dart';
+import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendance_view.dart';
@@ -128,41 +129,7 @@ class _StudentAttendanceState extends State<StudentAttendance> {
                             ScrollableAttendanceView(),
                           ],
                         ),
-                        Center(
-                          child: SizedBox(
-                            width: 120,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: pink,
-                                  onPrimary: Colors.white,
-                                  onSurface: Colors.grey,
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  padding: EdgeInsets.all(5)),
-                              onPressed: () {},
-                              child: Row(
-                                // crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(Icons.save),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 5.0),
-                                    child: Text(
-                                      'Save',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                      Center(child:  button(title: 'Save', onPress: (){}, width: 120),),
                       ],
                     ),
                   ),
