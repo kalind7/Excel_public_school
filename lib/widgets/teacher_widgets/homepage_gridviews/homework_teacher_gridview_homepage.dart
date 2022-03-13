@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/add_homework.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/homework_list.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/homework_list_table.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -14,17 +15,19 @@ class HomeworkInfo {
       {required this.onPress, required this.iconTitle, required this.icon});
 }
 
-Widget HomeworkInfoGridView(BuildContext context){
-
+Widget HomeworkInfoGridView(BuildContext context) {
   List<HomeworkInfo> homeworkChoice = [
     HomeworkInfo(
       icon: Image.asset(
         'assets/teacher_homepage_icons/add_homework.png',
       ),
-      iconTitle:'Add\n'
+      iconTitle: 'Add\n'
           'Homework',
       onPress: () {
-        Get.to(AddHomework());
+        Get.to(() => AddHomework(
+              title: 'Add Homework',
+              onPress: () {},
+            ));
       },
     ),
     HomeworkInfo(
@@ -33,7 +36,17 @@ Widget HomeworkInfoGridView(BuildContext context){
       ),
       iconTitle: 'Homework List',
       onPress: () {
-        Get.to(HomeworkList());
+        Get.to(() => HomeworkList(
+              title: 'Homework',
+              title2: 'Homework List',
+              onPress: () => Get.to(() => HomeworkListTable(
+                  title: 'Homework',
+                  title2: 'Homework List',
+                editOnPress: () {},
+                deleteOnPress: () {} ,
+              ),
+              ),
+            ));
       },
     ),
   ];
@@ -82,8 +95,7 @@ Widget HomeworkInfoGridView(BuildContext context){
                       child: Column(
                         children: [
                           IconButton(
-                            onPressed: () =>
-                                homeworkDetails.onPress(),
+                            onPressed: () => homeworkDetails.onPress(),
                             icon: homeworkDetails.icon,
                             iconSize: 50,
                           ),

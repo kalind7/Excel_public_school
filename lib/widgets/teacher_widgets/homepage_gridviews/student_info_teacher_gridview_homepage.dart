@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_report.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_sumary.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/student_attendance.dart';
@@ -25,7 +26,7 @@ Widget StudentInfoGridView(BuildContext context){
           'Attendance',
       onPress: () {
         print('student attendance');
-        Navigator.push(context, MaterialPageRoute(builder: (context) => StudentAttendance()));
+        Get.to(() => StudentAttendance());
       },
     ),
     StudentInfo(
@@ -35,7 +36,7 @@ Widget StudentInfoGridView(BuildContext context){
       iconTitle: 'Attendance\n'
           'Report',
       onPress: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AttendanceReport()));
+        Get.to(() => AttendanceReport());
       },
     ),
     StudentInfo(
@@ -45,7 +46,7 @@ Widget StudentInfoGridView(BuildContext context){
       iconTitle: 'Attendance\n'
           'Summary',
       onPress: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AttendanceSummary()));
+        Get.to(() => AttendanceSummary());
       },
     ),
   ];

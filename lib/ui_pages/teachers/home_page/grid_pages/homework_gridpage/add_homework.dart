@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/calender/attendance_date_picker.dart';
@@ -13,11 +12,12 @@ import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 import 'package:new_project_work/widgets/teacher_widgets/container_with_dropdown.dart';
 
 class AddHomework extends StatelessWidget {
-   AddHomework({Key? key,this.title,this.widget }) : super(key: key);
+   AddHomework({Key? key,required this.title,this.mainTitle,this.buttonTitle ,required this.onPress }) : super(key: key);
 
-
-  String?  title;
-  Widget? widget;
+  final String title;
+  String ? mainTitle;
+  String ? buttonTitle;
+  final Function onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AddHomework extends StatelessWidget {
         preferredSize: Size.fromHeight(55.0),
         child: WidgetAppbar(
             icon: Icons.arrow_back,
-            title: 'Homework',
+            title: mainTitle == null ? 'Homework' : mainTitle!,
             onPress: () {
               Get.back();
             }
@@ -44,7 +44,7 @@ class AddHomework extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             color: Colors.white,
           ),
-          child: Center(child: Text('Add New Homework',style: examPageHeadTitle,),),
+          child: Center(child: Text(title,style: examPageHeadTitle,),),
         ),
           bodyWidget: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -115,7 +115,7 @@ class AddHomework extends StatelessWidget {
                 ),
 
                 SizedBox(height: 7,),
-                button(title: 'Save Homework', onPress: (){}, width: 130),
+                button(title: buttonTitle == null ? 'Save Homework' : buttonTitle! , onPress: () => onPress(), width: 130),
               ],
             ),
           ),

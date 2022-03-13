@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/lesson_gridview/add_lesson.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -20,7 +22,9 @@ Widget LessonInfoGridView(BuildContext context){
       ),
       iconTitle: 'Add \n'
           'Lesson Plan',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => AddLesson());
+      },
     ),
     LessonInfo(
       icon: Image.asset(
@@ -28,7 +32,8 @@ Widget LessonInfoGridView(BuildContext context){
       ),
       iconTitle: 'Lesson\n'
           'List',
-      onPress: () {},
+      onPress: () {
+      },
     ),
     LessonInfo(
       icon: Image.asset(

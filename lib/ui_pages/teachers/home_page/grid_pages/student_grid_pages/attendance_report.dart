@@ -17,7 +17,7 @@ import '../../../../../widgets/drop_down/class_drop_down.dart';
 class AttendanceReport extends StatelessWidget {
    AttendanceReport({Key? key}) : super(key: key);
 
-  TeacherAttendanceController attendanceController = Get.find();
+  TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
   @override
   Widget build(BuildContext context) {
@@ -73,15 +73,15 @@ class AttendanceReport extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),
-              child: Column(
+              child: Obx(() => attendanceController.isLoading.value ? CircularProgressIndicator() : Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    Text('Class -',style: reportHeader,),
-                    SizedBox(width: 5,),
-                    Text('Section',style: reportHeader,),
-                  ],),
+                      Text('Class -',style: reportHeader,),
+                      SizedBox(width: 5,),
+                      Text('Section',style: reportHeader,),
+                    ],),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -115,9 +115,13 @@ class AttendanceReport extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
+              ), ),
             ),
           ),
+
+
+
+
       ),
     );
   }

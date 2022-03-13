@@ -185,4 +185,5 @@ const scrollTitle = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+const textStyle = TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Color(0xFFF06292),fontFamily: 'Roboto');
 

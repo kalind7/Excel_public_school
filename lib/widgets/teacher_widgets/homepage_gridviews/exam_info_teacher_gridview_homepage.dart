@@ -29,7 +29,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Add Exam\n'
           'Practical',
       onPress: () {
-        Get.to(ExamPractical(title: 'Add Exam Practical', secondTitle: 'Add New Practical',));
+        Get.to(() => ExamPractical(title: 'Add Exam Practical', secondTitle: 'Add New Practical',));
       },
     ),
     ExamInfo(
@@ -39,7 +39,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Practical\n'
           'Result',
       onPress: () {
-        Get.to(PracticalResult());
+        Get.to(() => PracticalResult());
       },
     ),
     ExamInfo(
@@ -49,7 +49,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Assign\n'
           'Marks',
       onPress: () {
-        Get.to(AssignMarks());
+        Get.to(() => AssignMarks());
       },
     ),
     ExamInfo(
@@ -59,7 +59,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'ECA\n'
           'Grades',
       onPress: () {
-        Get.to( ECAGrades());
+        Get.to( () => ECAGrades());
       },
     ),
     ExamInfo(
@@ -69,7 +69,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Classwise\n'
           'Result',
       onPress: () {
-        Get.to(ClasswiseResult());
+        Get.to(() => ClasswiseResult());
       },
     ),
 
@@ -89,7 +89,7 @@ Widget ExamInfoGridView(BuildContext context){
       iconTitle: 'Exam\n'
           'Remarks',
       onPress: () {
-        Get.to(ExamRemarks());
+        Get.to(() => ExamRemarks());
       },
     ),
   ];

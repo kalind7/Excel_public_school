@@ -11,121 +11,121 @@ class SecondExamPractical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(55.0),
-        child: WidgetAppbar(
-          icon: Icons.arrow_back,
-          title: 'Add Exam Practical',
-          onPress: () {
-            Get.back();
-          },
-        ),
-      ),
-      body: BodyWithWidgetContainer(
-        upperWidget: Container(
-          margin: EdgeInsets.fromLTRB(5, 30, 5, 0),
-          height: MediaQuery.of(context).size.height * 0.06,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
-          ),
-          child: Center(
-            child: Text(
-              'Add New Practical',
-              style: examPageHeadTitle
-            ),
+    return  Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(55.0),
+          child: WidgetAppbar(
+            icon: Icons.arrow_back,
+            title: 'Add Exam Practical',
+            onPress: () {
+              Get.back();
+            },
           ),
         ),
-        bodyWidget: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          child: Container(
-            padding: EdgeInsets.only(top: 5.0),
-            margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
-            height: MediaQuery.of(context).size.height * 0.59,
+        body: BodyWithWidgetContainer(
+          upperWidget: Container(
+            margin: EdgeInsets.fromLTRB(5, 30, 5, 0),
+            height: MediaQuery.of(context).size.height * 0.06,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.5),
+              borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: orangeOne,
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  blurStyle: BlurStyle.inner,
-                  offset: const Offset(0, 3),
-                ),
-              ],
             ),
-            child: Hero(
-              tag: 'newTag',
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  rowData(
-                      serialNum: 'S.N',
-                      title: 'Title',
-                      marks: 'Marks',
-                      action: Text(
-                        'Action',
-                        style: examRowTitle,
-                      )),
-
-                  rowData(
-                      serialNum: '1',
-                      title: 'Attendance',
-                      marks: '5',
-                      action: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.delete,
-                            color: pink,
-                          ))),
-
-                  rowData(
-                      serialNum: '2',
-                      title: 'Homework',
-                      marks: '5',
-                      action: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete, color: pink))),
-
-                  rowData(
-                      serialNum: '3',
-                      title: 'Classwork',
-                      marks: '5',
-                      action: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete, color: pink))),
-
-                  rowData(
-                      serialNum: '4',
-                      title: 'Discipline',
-                      marks: '5',
-                      action: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete, color: pink))),
-
-                  rowData(
-                      serialNum: '5',
-                      title: 'Unit Test',
-                      marks: '5',
-                      action: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete, color: pink))),
-
-                  button(title: 'Submit', onPress: (){}, width: 150),
+            child: Center(
+              child: Text(
+                  'Add New Practical',
+                  style: examPageHeadTitle
+              ),
+            ),
+          ),
+          bodyWidget: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            child: Container(
+              padding: EdgeInsets.only(top: 5.0),
+              margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
+              height: MediaQuery.of(context).size.height * 0.59,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7.5),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: orangeOne,
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    blurStyle: BlurStyle.inner,
+                    offset: const Offset(0, 3),
+                  ),
                 ],
+              ),
+              child: Hero(
+                tag: 'newTag',
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    rowData(
+                        serialNum: 'S.N',
+                        title: 'Title',
+                        marks: 'Marks',
+                        action: Text(
+                          'Action',
+                          style: examRowTitle,
+                        )),
+
+                    rowData(
+                        serialNum: '1',
+                        title: 'Attendance',
+                        marks: '5',
+                        action: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.delete,
+                              color: pink,
+                            ))),
+
+                    rowData(
+                        serialNum: '2',
+                        title: 'Homework',
+                        marks: '5',
+                        action: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.delete, color: pink))),
+
+                    rowData(
+                        serialNum: '3',
+                        title: 'Classwork',
+                        marks: '5',
+                        action: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.delete, color: pink))),
+
+                    rowData(
+                        serialNum: '4',
+                        title: 'Discipline',
+                        marks: '5',
+                        action: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.delete, color: pink))),
+
+                    rowData(
+                        serialNum: '5',
+                        title: 'Unit Test',
+                        marks: '5',
+                        action: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.delete, color: pink))),
+
+                    button(title: 'Submit', onPress: (){}, width: 150),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget rowData({

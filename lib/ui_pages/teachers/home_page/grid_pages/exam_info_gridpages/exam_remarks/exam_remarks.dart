@@ -8,8 +8,6 @@ import 'package:new_project_work/widgets/appbar.dart';
 class ExamRemarks extends StatelessWidget {
    ExamRemarks({Key? key}) : super(key: key);
 
-  TextStyle textStyle = TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: pink,fontFamily: 'Roboto');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

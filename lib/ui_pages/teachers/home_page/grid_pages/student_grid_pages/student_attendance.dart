@@ -112,28 +112,30 @@ class _StudentAttendanceState extends State<StudentAttendance> {
         ),
 
         bodyWidget: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  margin: EdgeInsets.only(bottom: 10),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    physics: ClampingScrollPhysics(),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            FixedColumnNameWidget(),
-                            ScrollableAttendanceView(),
-                          ],
-                        ),
-                      Center(child:  button(title: 'Save', onPress: (){}, width: 120),),
-                      ],
-                    ),
-                  ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          margin: EdgeInsets.only(bottom: 10),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: ClampingScrollPhysics(),
+            child: Obx(() => attendanceController.isLoading.value ? CircularProgressIndicator() : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    FixedColumnNameWidget(),
+                    ScrollableAttendanceView(),
+                  ],
                 ),
+                Center(child:  button(title: 'Save', onPress: (){}, width: 120),),
+              ],
+            ),),
+          ),
+        ),
+
+
         ),
     );
   }

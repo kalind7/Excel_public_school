@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/calender/attendance_date_picker.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
-import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/homework_list_table.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
@@ -14,8 +13,19 @@ import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 import 'package:new_project_work/widgets/teacher_widgets/container_with_dropdown.dart';
 
 class HomeworkList extends StatelessWidget {
-   HomeworkList({Key? key}) : super(key: key);
-  TextStyle textStyle = TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: pink,fontFamily: 'Roboto');
+  HomeworkList({Key? key, required this.title, required this.title2, required this.onPress, this.buttonTitle}) : super(key: key);
+
+  final String title;
+  final String title2;
+   String ? buttonTitle;
+  final Function  onPress ;
+
+  TextStyle textStyle = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: pink,
+      fontFamily: 'Roboto');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +34,7 @@ class HomeworkList extends StatelessWidget {
         preferredSize: Size.fromHeight(55.0),
         child: WidgetAppbar(
             icon: Icons.arrow_back,
-            title: 'Homework',
+            title: title,
             onPress: () {
               Get.back();
             }),
@@ -39,7 +49,7 @@ class HomeworkList extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Search Homework',
+                title2,
                 style: examPageHeadTitle,
               ),
             ),
@@ -49,56 +59,74 @@ class HomeworkList extends StatelessWidget {
             physics: ClampingScrollPhysics(),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 10),
-              child:  Column(
-
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      newContainer(
-                        title: 'Class',
-                        widget: ClassDropDown(value: 0.08, iconSize: 25, expanded: false),
-                        height: MediaQuery.of(context).size,
-                        width: MediaQuery.of(context).size * 0.35,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        newContainer(
+                          title: 'Class',
+                          widget: ClassDropDown(
+                              value: 0.08, iconSize: 25, expanded: false),
+                          height: MediaQuery.of(context).size,
+                          width: MediaQuery.of(context).size * 0.35,
+                        ),
+                        newContainer(
+                          title: 'Section',
+                          widget: SectionDropDown(
+                              value: 0.08, iconSize: 25, expanded: false),
+                          height: MediaQuery.of(context).size,
+                          width: MediaQuery.of(context).size * 0.35,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    newContainer(
+                      title: 'Subject',
+                      widget: ClassDropDown(
+                          value: 0.8, iconSize: 25, expanded: true),
+                      height: MediaQuery.of(context).size,
+                      width: MediaQuery.of(context).size,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    newContainer(
+                      title: 'Duration',
+                      widget: DurationDropdown(
+                          value: 0.8, iconSize: 25, expanded: true),
+                      height: MediaQuery.of(context).size,
+                      width: MediaQuery.of(context).size,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    newContainer(
+                      title: 'Submission Date',
+                      widget: Padding(
+                        padding: EdgeInsets.only(left: 7),
+                        child: AttendanceDatePicker(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          textStyle: textStyle,
+                        ),
                       ),
-                      newContainer(
-                        title: 'Section',
-                        widget: SectionDropDown(value: 0.08, iconSize: 25, expanded: false),
-                        height: MediaQuery.of(context).size,
-                        width: MediaQuery.of(context).size * 0.35,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  newContainer(
-                    title: 'Subject',
-                    widget: ClassDropDown(value: 0.8, iconSize: 25, expanded: true),
-                    height: MediaQuery.of(context).size,
-                    width: MediaQuery.of(context).size ,
-                  ),
-                  SizedBox(height: 10,),
-                  newContainer(
-                    title: 'Duration',
-                    widget: DurationDropdown(value: 0.8, iconSize: 25, expanded: true),
-                    height: MediaQuery.of(context).size,
-                    width: MediaQuery.of(context).size ,
-                  ),
-                  SizedBox(height: 10,),
-              newContainer(
-                title: 'Submission Date',
-                widget: Padding(padding: EdgeInsets.only(left: 7),child: AttendanceDatePicker(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  textStyle: textStyle,
-                ),),
-                height: MediaQuery.of(context).size,
-                width: MediaQuery.of(context).size,
-              ),
-                  SizedBox(height: 10,),
-                  button(title: 'Search Homework',width: 150,onPress: (){Get.to(HomeworkListTable());}),
-                ]
-              ),
+                      height: MediaQuery.of(context).size,
+                      width: MediaQuery.of(context).size,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    button(
+                        title: buttonTitle == null ? 'Search Homework' : buttonTitle!,
+                        width: 150,
+                        onPress: () => onPress(),),
+                  ]),
             ),
           )),
     );
