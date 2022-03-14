@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/utils/fonts.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 
 import '../../utils/color.dart';
 
 class ClassDropDown extends StatefulWidget {
-   ClassDropDown({Key? key,this.color ,required this.value,required this.iconSize ,required this.expanded })  : super(key: key);
+   ClassDropDown({Key? key,this.color , this.value,required this.iconSize ,required this.expanded })  : super(key: key);
 
-   double  value;
+   double ?  value;
    double iconSize;
    bool  expanded ;
    Color? color;
@@ -17,19 +20,21 @@ class ClassDropDown extends StatefulWidget {
 
 class _ClassDropDownState extends State<ClassDropDown> {
 
-  final List<String> classes = [
-    "Select Class","Class 1", "Class 2", "Class 3", "Class 4","Class 5",
-  ];
+  TeacherAttendanceController attendanceController = Get.find();
 
-  String selectedClass = "Select Class";
+  // final List<String> classes = [
+  //   "Select Class","Class 1", "Class 2", "Class 3", "Class 4","Class 5",
+  // ];
+
+  // ignore: invalid_use_of_protected_member
 
 
   @override
   Widget build(BuildContext context) {
-    Size width = MediaQuery.of(context).size;
+    // Size width = MediaQuery.of(context).size;
 
-    return  Container(
-      width: width.width * widget.value ,
+    return  Obx(() => Container(
+      // width: width.width * widget.value ,
       padding: EdgeInsets.only(left: 2.0),
       // margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
@@ -44,20 +49,22 @@ class _ClassDropDownState extends State<ClassDropDown> {
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        value: selectedClass,
+        value: attendanceController.selectedClass  ,
+        hint: Text('Select Class'),
         onChanged: (value){
+          attendanceController.getSection(value);
           setState(() {
-            selectedClass = value!;
+            attendanceController.selectedClass  = value!;
           });
         },
-        items: classes.map<DropdownMenuItem<String>>((value) {
+        items: attendanceController.studentClassList.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle ,),
-            value: value,
+            child: Text(value['class_name'],style: dropDownTitle ,),
+            value: value['id'].toString(),
           );
         }).toList(),
       ),
-    );
+    ),);
 
   }
 }

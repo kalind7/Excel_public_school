@@ -149,17 +149,17 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
                       children: [
                        BuildDrawerItem(
                          text: 'Student Attendance',
-                         iconTitle: 'assets/teacher_homepage_icons/Attendance.jpg',
+                         iconTitle: 'assets/teacher_homepage_icons/Attendance.png',
                          onPress: () => Get.to(() => StudentAttendance()),
                        ),
                         BuildDrawerItem(
                           text: 'Attendance Report',
-                          iconTitle: 'assets/teacher_homepage_icons/attendance_report.jpg',
+                          iconTitle: 'assets/teacher_homepage_icons/attendance_report.png',
                           onPress: () => Get.to(() => AttendanceReport()),
                         ),
                         BuildDrawerItem(
                           text: 'Attendance Summary',
-                          iconTitle: 'assets/teacher_homepage_icons/attendance_summary.jpg',
+                          iconTitle: 'assets/teacher_homepage_icons/attendance_summary.png',
                           onPress: () => Get.to(() => AttendanceSummary()),
                         ),
                       ],

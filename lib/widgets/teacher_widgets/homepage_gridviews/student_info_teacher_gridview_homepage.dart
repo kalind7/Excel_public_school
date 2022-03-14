@@ -20,7 +20,7 @@ Widget StudentInfoGridView(BuildContext context){
   List<StudentInfo> studentChoice = [
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/Attendance.jpg',
+        'assets/teacher_homepage_icons/Attendance.png',
       ),
       iconTitle: 'Student\n'
           'Attendance',
@@ -31,7 +31,7 @@ Widget StudentInfoGridView(BuildContext context){
     ),
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_report.jpg',
+        'assets/teacher_homepage_icons/attendance_report.png',
       ),
       iconTitle: 'Attendance\n'
           'Report',
@@ -41,7 +41,7 @@ Widget StudentInfoGridView(BuildContext context){
     ),
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_summary.jpg',
+        'assets/teacher_homepage_icons/attendance_summary.png',
       ),
       iconTitle: 'Attendance\n'
           'Summary',

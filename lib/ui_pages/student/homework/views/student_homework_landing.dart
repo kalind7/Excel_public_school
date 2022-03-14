@@ -25,7 +25,7 @@ class StudentHomeworkLanding extends StatelessWidget {
           child: WidgetAppbar(
             title: '',
             onPress: () {
-              // studentHomeworkController.fetchDetails();
+              studentHomeworkController.fetchDetails();
             },
             icon: Icons.refresh,
           ),
@@ -52,56 +52,6 @@ class StudentHomeworkLanding extends StatelessWidget {
                 StudentMonthlyHomework()
               ],
             )
-
-            // studentHomeworkController.isloading.value
-            //     ?  HomeworkShimmer()
-            //     : SmartRefresher(
-            //   controller: studentHomeworkController.refreshController,
-            //   enablePullUp: true,
-            //   enablePullDown: false,
-            //   onLoading: () async {
-            //     if (studentHomeworkController.lastpage.value ==
-            //         false) {
-            //       final result =
-            //       await studentHomeworkController.getHomeWork();
-            //       if (result) {
-            //         studentHomeworkController.refreshController
-            //             .loadComplete();
-            //       } else {
-            //         studentHomeworkController.refreshController
-            //             .loadFailed();
-            //       }
-            //     } else {
-            //       studentHomeworkController.refreshController
-            //           .loadNoData();
-            //     }
-            //   },
-            //   child: ListView(
-            //     children: [
-            //       ListView.builder(
-            //           padding: EdgeInsets.symmetric(
-            //               vertical: 5.0, horizontal: 5.0),
-            //           shrinkWrap: true,
-            //           scrollDirection: Axis.vertical,
-            //           physics: ClampingScrollPhysics(),
-            //           itemCount: studentHomeworkController
-            //               .homeworkList.length,
-            //           itemBuilder: (context, index) {
-            //             var myitem = studentHomeworkController
-            //                 .homeworkList[index];
-
-            //             // log(studentHomeworkController.homeworkList.length.toString());
-            //             return studentHomeworkController
-            //                 .homeworkList.isEmpty
-            //                 ? Center(
-            //               child: Text('No homework available'),
-            //             )
-            //                 : homeworkContainer(context, myitem);
-            //           }),
-            //     ],
-            //   ),
-            // ),
-
             ),
       ),
     );

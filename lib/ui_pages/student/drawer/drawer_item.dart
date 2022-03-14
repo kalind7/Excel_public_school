@@ -11,8 +11,7 @@ Widget BuildDrawerItem({
         leading: IconButton(
           onPressed: (){},
           iconSize: 16,
-          color: Colors.white,
-          icon: Image.asset(iconTitle),
+          icon: Image.asset(iconTitle,color: Colors.white,),
         ),
         title: Text(text,
             style: const TextStyle(

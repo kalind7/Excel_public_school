@@ -6,8 +6,10 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/teacher_widgets/button.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_class_attendancesummary.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendance_summary.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendance_view.dart';
 
 class AttendanceSummary extends StatefulWidget {
@@ -77,7 +79,6 @@ class _AttendanceSummaryState extends State<AttendanceSummary> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
                   children: [
                     Text(
@@ -91,23 +92,29 @@ class _AttendanceSummaryState extends State<AttendanceSummary> {
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.w600,
                       ),
-
                       icon: Text(''),
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
-                    FixedColumnNameWidget(),
-                    ScrollableAttendanceView(),
+                    FixedClassAttendanceSummary(
+                      color: Colors.grey.shade300,
+                      textColor: Colors.blueGrey.shade300,
+                      textStyle: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black54),
+                    ),
+                    ScrollableAttendanceSummary(),
                   ],
                 ),
                 Center(
-                  child: button(title: 'Save', onPress: (){}, width: 120),
+                  child: button(title: 'Save', onPress: () {}, width: 120),
                 ),
               ],
             ),

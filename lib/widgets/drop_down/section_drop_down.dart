@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class SectionDropDown extends StatefulWidget {
-   SectionDropDown({Key? key,this.color ,required this.value, required this.expanded, required this.iconSize }) : super(key: key);
+   SectionDropDown({Key? key,this.color , this.value, required this.expanded, required this.iconSize }) : super(key: key);
 
 
-  double  value;
+  double ? value;
   bool expanded ;
   double iconSize;
   Color? color;
@@ -18,18 +20,20 @@ class SectionDropDown extends StatefulWidget {
 class _SectionDropDownState extends State<SectionDropDown> {
 
 
-  final List<String> sections = [
-    "Select Section",'Section A', 'Section B', 'Section C','Section D'
-  ];
+  TeacherAttendanceController attendanceController = Get.find();
 
-  String selectedSection = 'Select Section';
+  // final List<String> sections = [
+  //   "Select Section",'Section A', 'Section B', 'Section C','Section D'
+  // ];
+
+
 
   @override
   Widget build(BuildContext context) {
-    Size width = MediaQuery.of(context).size;
+    // Size width = MediaQuery.of(context).size;
 
-    return  Container(
-      width: width.width * widget.value,
+    return  Obx(() => Container(
+      // width: width.width * widget.value,
       padding: EdgeInsets.only(left: 2.0),
       margin: EdgeInsets.all( 5.0),
       decoration: BoxDecoration(
@@ -46,20 +50,21 @@ class _SectionDropDownState extends State<SectionDropDown> {
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        value: selectedSection,
+        hint: Text('Select Section'),
+        value: attendanceController.selectedSection,
         onChanged: (value){
           setState(() {
-            selectedSection = value!;
+            attendanceController.selectedSection = value! ;
           });
         },
-        items: sections.map<DropdownMenuItem <String>>((value) {
+        items: attendanceController.studentSectionList.map<DropdownMenuItem <String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle,),
-                  value: value,
+            child: Text(value['section_name'].toString(),style: dropDownTitle,),
+            value: value['id'].toString(),
           );
         }).toList(),
       ),
-    );
+    ),);
 
   }
 }
