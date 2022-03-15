@@ -7,7 +7,6 @@ import 'package:new_project_work/widgets/drop_down/class_drop_down.dart';
 import 'package:new_project_work/widgets/drop_down/section_drop_down.dart';
 import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendance_view.dart';
 
@@ -21,10 +20,6 @@ class StudentAttendance extends StatefulWidget {
 }
 
 class _StudentAttendanceState extends State<StudentAttendance> {
-
-
-
-
 
   TeacherAttendanceController attendanceController =
       Get.put(TeacherAttendanceController());
@@ -143,14 +138,24 @@ class _StudentAttendanceState extends State<StudentAttendance> {
                         ),
                         Center(
                           child:
-                              button(
-                                  title: 'Save',
-                                  onPress: () {
-
-                                  },
-                                  width: 120
-                              ),
+                          button(
+                              title: 'Save',
+                              onPress: () {
+                                setState(() {
+                                  var datas = {
+                                    "id": attendanceController.idList,
+                                    "date": "2078-11-20",
+                                    "note": attendanceController.note,
+                                    "attendance": attendanceController.data
+                                  };
+                                  print(datas);
+                                  attendanceController.submitTeacherAttendance(datas);
+                                });
+                              },
+                              width: 120
+                          ),
                         ),
+
                       ],
                     ),
             ),

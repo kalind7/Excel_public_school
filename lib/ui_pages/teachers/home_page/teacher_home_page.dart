@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
+import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/ui_pages/teachers/drawer/teacher_drawer.dart';
 import 'package:new_project_work/ui_pages/teachers/profile/teacher_profile.dart';
@@ -17,6 +20,9 @@ import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/stud
 
 class TeacherHomePage extends StatelessWidget {
   TeacherHomePage({Key? key}) : super(key: key);
+
+
+  StudentHomeworkController homeworkController = Get.find();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -39,7 +45,6 @@ class TeacherHomePage extends StatelessWidget {
       ),
       drawer: TeacherDrawer(),
       body: BodyWithWidgetContainer(
-
         top: 100,
         upperWidget: Container(
           height: height * 0.23,
@@ -60,15 +65,15 @@ class TeacherHomePage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20),
-                child: CircleAvatar(
+                child: Obx(() => CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.grey.shade100,
-                  child: Image(
-                    height: 75,
-                    width: 75,
-                    image: AssetImage('images/allstart.png'),
-                  ),
-                ),
+                  backgroundImage: homeworkController.isImagePathSet.value ==
+                      true
+                      ? FileImage(File(homeworkController
+                      .profilePicPath.value)) as ImageProvider
+                      : AssetImage('images/excellogo.png'),
+                ),),
               ),
               SizedBox(
                 width: 20,

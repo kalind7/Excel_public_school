@@ -12,6 +12,7 @@ import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_inf
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_result/practical_result.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/add_homework.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/homework_gridpage/homework_list.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/lesson_gridview/add_lesson.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_report.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_sumary.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/student_attendance.dart';
@@ -229,6 +230,25 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
                           onPress: () => Get.to(() => HomeworkList(title: 'Homework', title2: 'Homework List', onPress: (){})),
                         ),
 
+                      ],
+                    ),
+                    ExpansionTile(
+                      collapsedIconColor: Colors.white,
+                      title: Text(
+                        'Lesson Plan',
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Roboto'),
+                      ),
+                      children: [
+                        BuildDrawerItem(
+                          text: 'Add Lesson Plan',
+                          iconTitle: 'assets/teacher_homepage_icons/Book.png',
+                          onPress: () => Get.to(() => AddLesson(),
+                        ),
+                        ),
                       ],
                     ),
                     BuildDrawerItem(

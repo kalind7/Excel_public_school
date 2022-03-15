@@ -36,36 +36,113 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
         body: ProfileBodyContainer(
             widget: Obx(
               () {
-                return Container(
-                  height: MediaQuery.of(context).size.height / 1.58,
-                  child: noticeController.isloading.value
-                      ? Shimmer.fromColors(
-                          // baseColor: Colors.grey.shade400,
-                          period: const Duration(milliseconds: 500),
-                          // highlightColor: Colors.grey.shade300,
-                          baseColor: Colors.grey.shade300,
-                          highlightColor: Colors.grey.shade100,
-                          child: ListView.builder(
+                return  Container(
+
+                    height: MediaQuery.of(context).size.height / 1.58,
+                    child: noticeController.isloading.value
+                        ? Shimmer.fromColors(
+                      // baseColor: Colors.grey.shade400,
+                      period: const Duration(milliseconds: 500),
+                      // highlightColor: Colors.grey.shade300,
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child: ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 5.0),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                ),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                    const BorderRadius.vertical(
+                                        top: const Radius.circular(10),
+                                        bottom: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: orangeOne,
+                                        // spreadRadius: 5,
+                                        blurRadius: 4,
+                                        blurStyle: BlurStyle.inner,
+                                        offset: const Offset(0, 3),
+                                      ),
+                                    ]),
+                                child: ExpansionTile(
+                                  initiallyExpanded:
+                                  index == 0 ? true : false,
+                                  title: Container(
+                                    height: 20,
+                                    width: double.infinity,
+                                  ),
+                                  subtitle: Container(
+                                    height: 20,
+                                    width: double.infinity,
+                                  ),
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: double.infinity,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                    )
+
+                    // ? Center(child: CircularProgressIndicator())
+                        : SmartRefresher(
+                      controller: noticeController.refreshController,
+                      enablePullUp: true,
+                      enablePullDown: false,
+                      onLoading: () async {
+                        if (noticeController.lastpage.value == false) {
+                          final result = await noticeController.getNotice();
+                          if (result) {
+                            noticeController.refreshController
+                                .loadComplete();
+                          } else {
+                            noticeController.refreshController.loadFailed();
+                          }
+                        } else {
+                          noticeController.refreshController.loadNoData();
+                        }
+                      },
+                      child: ListView(
+                        children: [
+                          ListView.builder(
                               padding: EdgeInsets.symmetric(
                                   vertical: 5.0, horizontal: 5.0),
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 5,
+                              physics: ClampingScrollPhysics(),
+                              itemCount: noticeController.noticeList.length,
                               itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    margin: const EdgeInsets.symmetric(
-                                      horizontal: 15,
+                                var myitem =
+                                noticeController.noticeList[index];
+                                log(noticeController.noticeList.length
+                                    .toString());
+                                return Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    margin: const EdgeInsets.only(
+                                      left: 15,right: 15.0, top: 10
                                     ),
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius:
-                                            const BorderRadius.vertical(
-                                                top: const Radius.circular(10),
-                                                bottom: Radius.circular(10)),
+                                        borderRadius: const BorderRadius
+                                            .vertical(
+                                            top: const Radius.circular(10),
+                                            bottom: Radius.circular(10)),
                                         boxShadow: [
                                           BoxShadow(
                                             color: orangeOne,
@@ -77,101 +154,23 @@ class _NoticeState extends State<Notice> with AutomaticKeepAliveClientMixin {
                                         ]),
                                     child: ExpansionTile(
                                       initiallyExpanded:
-                                          index == 0 ? true : false,
-                                      title: Container(
-                                        height: 20,
-                                        width: double.infinity,
-                                      ),
-                                      subtitle: Container(
-                                        height: 20,
-                                        width: double.infinity,
-                                      ),
+                                      index == 0 ? true : false,
+                                      title: Text(myitem.noticeTitle),
+                                      subtitle: Text(
+                                          DateFormat('yyyy-MM-dd – hh:mm')
+                                              .format(myitem.noticeDate)
+                                              .toString()),
                                       children: [
-                                        Container(
-                                          height: 200,
-                                          width: double.infinity,
-                                        ),
+                                        Html(data: myitem.noticeMessage)
                                       ],
                                     ),
-                                  ),
-                                );
+                                  );
                               }),
-                        )
+                        ],
+                      ),
+                    ),
 
-                      // ? Center(child: CircularProgressIndicator())
-                      : SmartRefresher(
-                          controller: noticeController.refreshController,
-                          enablePullUp: true,
-                          enablePullDown: false,
-                          onLoading: () async {
-                            if (noticeController.lastpage.value == false) {
-                              final result = await noticeController.getNotice();
-                              if (result) {
-                                noticeController.refreshController
-                                    .loadComplete();
-                              } else {
-                                noticeController.refreshController.loadFailed();
-                              }
-                            } else {
-                              noticeController.refreshController.loadNoData();
-                            }
-                          },
-                          child: ListView(
-                            children: [
-                              ListView.builder(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 5.0, horizontal: 5.0),
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  physics: ClampingScrollPhysics(),
-                                  itemCount: noticeController.noticeList.length,
-                                  itemBuilder: (context, index) {
-                                    var myitem =
-                                        noticeController.noticeList[index];
-                                    log(noticeController.noticeList.length
-                                        .toString());
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                        ),
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: const BorderRadius
-                                                    .vertical(
-                                                top: const Radius.circular(10),
-                                                bottom: Radius.circular(10)),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: orangeOne,
-                                                // spreadRadius: 5,
-                                                blurRadius: 4,
-                                                blurStyle: BlurStyle.inner,
-                                                offset: const Offset(0, 3),
-                                              ),
-                                            ]),
-                                        child: ExpansionTile(
-                                          initiallyExpanded:
-                                              index == 0 ? true : false,
-                                          title: Text(myitem.noticeTitle),
-                                          subtitle: Text(
-                                              DateFormat('yyyy-MM-dd – hh:mm')
-                                                  .format(myitem.noticeDate)
-                                                  .toString()),
-                                          children: [
-                                            Html(data: myitem.noticeMessage)
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ],
-                          ),
-                        ),
-                
-                );
+                  );
               },
             ),
             text: 'Today Notice'));

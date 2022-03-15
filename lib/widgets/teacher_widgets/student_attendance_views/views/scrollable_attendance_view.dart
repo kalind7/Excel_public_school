@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class ScrollableAttendanceView extends StatefulWidget {
@@ -13,11 +12,11 @@ class ScrollableAttendanceView extends StatefulWidget {
 class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
   TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
-  var data = Map<String , String>();
-
-  var note = Map<String, dynamic>();
-
-  List <int> idList = [];
+  // var data = Map<String , String>();
+  //
+  // var note = Map<String, dynamic>();
+  //
+  // List <int> idList = [];
 
   int selectedValue = 0 ;
   bool value = true;
@@ -98,22 +97,21 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                       setState(() {
                                         // data[attendance.id.toString()] = value.toString();
 
-                                        if (note.containsKey(attendance.id.toString() )){
-                                          note.update(attendance.id.toString(), (value) => 'P');
+                                        if (attendanceController.note.containsKey(attendance.id.toString() )){
+                                          attendanceController.note[attendance.id.toString()] = null;
                                         }else{
-                                          note[attendance.id.toString()] = null;
+                                          attendanceController.note[attendance.id.toString()] = null;
                                         }
 
+                                        attendanceController.idList.contains(attendance.id) ? null : attendanceController.idList.add(attendance.id);
+                                        print(attendanceController.idList);
 
-                                        idList.contains(attendance.id) ? null : idList.add(attendance.id);
-                                        print(idList);
-
-                                        if (data.containsKey(attendance.id.toString() )){
-                                          data.update(attendance.id.toString(), (value) => 'P');
+                                        if (attendanceController.data.containsKey(attendance.id.toString() )){
+                                          attendanceController.data.update(attendance.id.toString(), (value) => 'P');
                                         }else{
-                                          data[attendance.id.toString()] = 'P';
+                                          attendanceController.data[attendance.id.toString()] = 'P';
                                         }
-                                        print(data);
+                                        print(attendanceController.data);
                                         attendance.id = newValue as int;
                                       });
                                     }
@@ -128,21 +126,20 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                   onChanged: (newValue){
                                     setState(() {
 
-                                      if (note.containsKey(attendance.id.toString() )){
-                                        note.update(attendance.id.toString(), (value) => null);
+                                      if (attendanceController.note.containsKey(attendance.id.toString() )){
+                                        attendanceController.note[attendance.id.toString()] = null;
                                       }else{
-                                        note[attendance.id.toString()] = null;
+                                        attendanceController.note[attendance.id.toString()] = null;
                                       }
+                                      attendanceController.idList.contains(attendance.id) ? null : attendanceController.idList.add(attendance.id);
+                                      print(attendanceController.idList);
 
-                                      idList.contains(attendance.id) ? null : idList.add(attendance.id);
-                                      print(idList);
-
-                                      if (data.containsKey(attendance.id.toString() )){
-                                        data.update(attendance.id.toString(), (value) => 'A');
+                                      if (attendanceController.data.containsKey(attendance.id.toString() )){
+                                        attendanceController.data[attendance.id.toString()] = 'A';
                                       }else{
-                                        data[attendance.id.toString()] = 'A';
+                                        attendanceController.data[attendance.id.toString()] = 'A';
                                       }
-                                      print(data);
+                                      print(attendanceController.data);
                                       attendance.id = newValue as int;
                                     });
                                   }
@@ -156,20 +153,21 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                   onChanged: (newValue){
                                     setState(() {
 
-                                      if (note.containsKey(attendance.id.toString() )){
-                                        note.update(attendance.id.toString(), (value) => null);
+                                      if (attendanceController.note.containsKey(attendance.id.toString() )){
+                                        attendanceController.note.update(attendance.id.toString(), (value) => null );
                                       }else{
-                                        note[attendance.id.toString()] = null;
+                                        attendanceController.note[attendance.id.toString()] = null;
                                       }
 
-                                      idList.contains(attendance.id) ? null : idList.add(attendance.id);
-                                      print(idList);
-                                      if (data.containsKey(attendance.id.toString() )){
-                                        data.update(attendance.id.toString(), (value) => 'H');
+                                      attendanceController.idList.contains(attendance.id) ? null : attendanceController.idList.add(attendance.id);
+                                      print(attendanceController.idList);
+
+                                      if (attendanceController.data.containsKey(attendance.id.toString() )){
+                                        attendanceController.data[attendance.id.toString()] = 'H'  ;
                                       }else{
-                                        data[attendance.id.toString()] = 'H';
+                                        attendanceController.data[attendance.id.toString()] = 'H';
                                       }
-                                      print(data);
+                                      print(attendanceController.data);
                                       attendance.id = newValue as int;
                                     });
                                   }
@@ -179,23 +177,23 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                         )).toList(),
                   ]),
 
-              Center(
-                child:
-                button(
-                    title: 'Save',
-                    onPress: () {
-                      var datas = {
-                        "id": idList,
-                        "date":"2078-11-20",
-                        "note": note,
-                        "attendance": data
-                      };
-                      print(datas);
-                      attendanceController.submitTeacherAttendance(datas);
-                    },
-                    width: 120
-                ),
-              ),
+              // Center(
+              //   child:
+              //   button(
+              //       title: 'Save',
+              //       onPress: () {
+              //         var datas = {
+              //           "id": idList,
+              //           "date":"2078-11-20",
+              //           "note": note,
+              //           "attendance": data
+              //         };
+              //         print(datas);
+              //         attendanceController.submitTeacherAttendance(datas);
+              //       },
+              //       width: 120
+              //   ),
+              // ),
             ],
           ),
         ),

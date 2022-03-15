@@ -8,6 +8,7 @@ import 'package:new_project_work/global/alert.dart';
 import 'package:new_project_work/models/student/student_model.dart';
 import 'package:new_project_work/route/router_constant.dart';
 import 'package:new_project_work/ui_pages/student/landing/student_landing_page.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/teacher_landing_page.dart';
 
 class LoginDataController extends GetxController {
   var loginDetails = <Welcome>[].obs;
@@ -37,9 +38,10 @@ class LoginDataController extends GetxController {
       if (roll == 2) {
         Get.offNamed(studentLandingPage);
       } else {
-        Get.off(StudentLandingPage());
+        Get.offNamed(teacherLandingPage);
       }
     } else {
+
       Alert.showSnackBar(
           title: 'Wrong Credentials', message: res.message, top: false);
     }

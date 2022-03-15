@@ -7,6 +7,7 @@ import 'package:new_project_work/ui_pages/student/routine/routine.dart';
 
 
 import 'package:new_project_work/ui_pages/teachers/home_page/teacher_home_page.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/teacher_landing_page.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import '../ui_pages/fees/views/fees.dart';
 
@@ -37,7 +38,7 @@ class Gridview extends StatelessWidget {
         onPress: () {
           if (kDebugMode) {
             print('anything');
-            Get.to(() =>Fees());
+            Get.to(() => Fees());
           }
           // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },
@@ -96,7 +97,7 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          Get.to(() => TeacherHomePage());
+          Get.to(() => TeacherLandingPage());
 
         },
       ),

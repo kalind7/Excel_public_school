@@ -50,7 +50,7 @@ class _ClassDropDownState extends State<ClassDropDown> {
         dropdownColor: Colors.white,
         underline: SizedBox(),
         value: attendanceController.selectedClass  ,
-        hint: Text('Select Class'),
+        hint: Text('Select Class', style: dropDownTitle,),
         onChanged: (value){
           attendanceController.getSection(value);
           setState(() {

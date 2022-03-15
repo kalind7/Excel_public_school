@@ -134,9 +134,9 @@ class _FeesState extends State<Fees> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                              myitem.billingDate != null
+                                              'Rs. ${myitem.billingDate != null
                                                   ? myitem.debit.toString()
-                                                  : myitem.credit.toString(),
+                                                  : myitem.credit.toString()}',
                                               style: firstTitle),
                                           GestureDetector(
                                             onTap: () {

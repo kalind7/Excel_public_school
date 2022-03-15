@@ -15,6 +15,11 @@ class TeacherAttendanceController extends GetxController {
   String ? selectedClass ;
   var selectedDate = ''.obs;
 
+  var data = Map<String , String>().obs;
+
+  var note = Map<String, dynamic>().obs;
+
+  RxList idList = [].obs;
 
   var isLoading = false.obs;
 

@@ -50,7 +50,7 @@ class _SectionDropDownState extends State<SectionDropDown> {
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        hint: Text('Select Section'),
+        hint: Text('Select Section',style: dropDownTitle,),
         value: attendanceController.selectedSection,
         onChanged: (value){
           setState(() {
