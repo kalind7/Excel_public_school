@@ -75,6 +75,8 @@ class ProfileBodyContainer extends StatelessWidget {
                     backgroundColor: Colors.white,
                     radius: 55.0,
                     child: Image(
+                      height: 100,
+                      width: 100,
                       image: AssetImage(image!),
                       fit: BoxFit.cover,
                     ),

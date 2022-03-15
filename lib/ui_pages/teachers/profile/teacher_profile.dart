@@ -12,8 +12,8 @@ import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/teacher_widgets/row_data_teacherDetails.dart';
 
-class TeacherDetails extends StatelessWidget {
-  TeacherDetails({Key? key}) : super(key: key);
+class TeacherProfile extends StatelessWidget {
+  TeacherProfile({Key? key}) : super(key: key);
 
   StudentHomeworkController homeworkController = Get.find();
 
@@ -54,7 +54,7 @@ class TeacherDetails extends StatelessWidget {
                               true
                               ? FileImage(File(homeworkController
                               .profilePicPath.value)) as ImageProvider
-                              : AssetImage('images/excellogo.png'),
+                              : AssetImage('images/profile.png'),
                       ),),
 
                   Positioned(
@@ -66,7 +66,7 @@ class TeacherDetails extends StatelessWidget {
                               context: context,
                               builder: (context) => PickImageButtonSheet());
                         },
-                        icon: Icon(Icons.camera_alt, color: Colors.green,),
+                        icon: Icon(Icons.camera_alt, color: Colors.white,),
                       )),
                 ],
               ),

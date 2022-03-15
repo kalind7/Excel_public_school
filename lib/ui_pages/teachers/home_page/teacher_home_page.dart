@@ -72,7 +72,7 @@ class TeacherHomePage extends StatelessWidget {
                       true
                       ? FileImage(File(homeworkController
                       .profilePicPath.value)) as ImageProvider
-                      : AssetImage('images/excellogo.png'),
+                      : AssetImage('images/profile.png'),
                 ),),
               ),
               SizedBox(
@@ -112,7 +112,7 @@ class TeacherHomePage extends StatelessWidget {
                     Center(
                       child: InkWell(
                           onTap: () {
-                            Get.to(TeacherDetails());
+                            Get.to(TeacherProfile());
                           },
                           child: Hero(
                             transitionOnUserGestures: true,

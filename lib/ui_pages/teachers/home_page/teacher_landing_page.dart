@@ -19,7 +19,7 @@ class TeacherLandingPage extends StatefulWidget {
 class _TeacherLandingPageState extends State<TeacherLandingPage> {
   var _pageController;
   final screens = <Widget>[
-    TeacherDetails(),
+    TeacherProfile(),
     // StudentAttendanceView(),
     Calendar(),
     TeacherHomePage(),
