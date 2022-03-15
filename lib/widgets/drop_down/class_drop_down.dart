@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/utils/fonts.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 
 import '../../utils/color.dart';
 
 class ClassDropDown extends StatefulWidget {
-  const ClassDropDown({Key? key}) : super(key: key);
+   ClassDropDown({Key? key,this.color , this.value,required this.iconSize ,required this.expanded })  : super(key: key);
+
+   double ?  value;
+   double iconSize;
+   bool  expanded ;
+   Color? color;
 
   @override
   _ClassDropDownState createState() => _ClassDropDownState();
@@ -12,45 +20,51 @@ class ClassDropDown extends StatefulWidget {
 
 class _ClassDropDownState extends State<ClassDropDown> {
 
+  TeacherAttendanceController attendanceController = Get.find();
 
+  // final List<String> classes = [
+  //   "Select Class","Class 1", "Class 2", "Class 3", "Class 4","Class 5",
+  // ];
 
-  final List<String> classes = [
-    "Select Class","Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"
-  ];
+  // ignore: invalid_use_of_protected_member
 
-  String selectedClass = "Select Class";
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    // Size width = MediaQuery.of(context).size;
+
+    return  Obx(() => Container(
+      // width: width.width * widget.value ,
       padding: EdgeInsets.only(left: 2.0),
-      margin: EdgeInsets.only( top: 5.0, bottom: 5.0, left: 5, right: 5.0),
+      // margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
-        border: Border.all(width: 0.5,color: pink),
+        border: Border.all(width: 0.5,color: widget.color == null ? Colors.transparent : widget.color!),
       ),
       child: DropdownButton<String>(
+        isExpanded: widget.expanded,
         iconDisabledColor: pink,
         iconEnabledColor: pink,
+        iconSize: widget.iconSize,
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        style: TextStyle(fontSize: 14.0, color: Colors.black87, fontFamily: 'Roboto'),
-        value: selectedClass,
+        value: attendanceController.selectedClass  ,
+        hint: Text('Select Class', style: dropDownTitle,),
         onChanged: (value){
+          attendanceController.getSection(value);
           setState(() {
-            selectedClass = value!;
+            attendanceController.selectedClass  = value!;
           });
         },
-        items: classes.map<DropdownMenuItem<String>>((value) {
+        items: attendanceController.studentClassList.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle,),
-            value: value,
+            child: Text(value['class_name'],style: dropDownTitle ,),
+            value: value['id'].toString(),
           );
         }).toList(),
       ),
-    );
+    ),);
 
   }
 }

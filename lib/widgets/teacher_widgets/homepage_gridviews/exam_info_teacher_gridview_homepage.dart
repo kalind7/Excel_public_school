@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/assign_marks/assign_marks.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/classwise_result/classwise_result.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/eca_grades/eca_grades.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/exam_remarks/exam_remarks.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/practical_exam.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_result/practical_result.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 
@@ -13,6 +20,7 @@ class ExamInfo {
 
 Widget ExamInfoGridView(BuildContext context){
 
+
   List<ExamInfo> examChoice = [
     ExamInfo(
       icon: Image.asset(
@@ -20,7 +28,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Add Exam\n'
           'Practical',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => ExamPractical(title: 'Add Exam Practical', secondTitle: 'Add New Practical',));
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -28,7 +38,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Practical\n'
           'Result',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => PracticalResult());
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -36,7 +48,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Assign\n'
           'Marks',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => AssignMarks());
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -44,7 +58,9 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'ECA\n'
           'Grades',
-      onPress: () {},
+      onPress: () {
+        Get.to( () => ECAGrades());
+      },
     ),
     ExamInfo(
       icon: Image.asset(
@@ -52,8 +68,11 @@ Widget ExamInfoGridView(BuildContext context){
       ),
       iconTitle: 'Classwise\n'
           'Result',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => ClasswiseResult());
+      },
     ),
+
     ExamInfo(
       icon: Image.asset(
         'assets/teacher_homepage_icons/classwise_eca.png',
@@ -62,13 +81,16 @@ Widget ExamInfoGridView(BuildContext context){
           'ECA Result',
       onPress: () {},
     ),
+
     ExamInfo(
       icon: Image.asset(
         'assets/teacher_homepage_icons/exam_remarks.png',
       ),
       iconTitle: 'Exam\n'
           'Remarks',
-      onPress: () {},
+      onPress: () {
+        Get.to(() => ExamRemarks());
+      },
     ),
   ];
 

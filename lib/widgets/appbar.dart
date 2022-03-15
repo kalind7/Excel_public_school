@@ -41,6 +41,7 @@ class WidgetAppbar extends StatelessWidget {
       centerTitle: true,
       backgroundColor: color == null ? Colors.transparent : color,
       shadowColor: Colors.transparent,
+
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 3.0, top: 2.0),

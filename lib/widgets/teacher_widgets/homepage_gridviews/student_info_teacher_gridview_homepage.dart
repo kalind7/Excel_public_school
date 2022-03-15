@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_report.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/attendance_sumary.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/student_grid_pages/student_attendance.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/api_view.dart';
 
 class StudentInfo {
   final Widget icon;
@@ -19,33 +20,33 @@ Widget StudentInfoGridView(BuildContext context){
   List<StudentInfo> studentChoice = [
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/Attendance.jpg',
+        'assets/teacher_homepage_icons/Attendance.png',
       ),
       iconTitle: 'Student\n'
           'Attendance',
       onPress: () {
         print('student attendance');
-        Navigator.push(context, MaterialPageRoute(builder: (context) => StudentAttendance()));
+        Get.to(() => StudentAttendance());
       },
     ),
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_report.jpg',
+        'assets/teacher_homepage_icons/attendance_report.png',
       ),
       iconTitle: 'Attendance\n'
           'Report',
       onPress: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AttendanceReport()));
+        Get.to(() => AttendanceReport());
       },
     ),
     StudentInfo(
       icon: Image.asset(
-        'assets/teacher_homepage_icons/attendance_summary.jpg',
+        'assets/teacher_homepage_icons/attendance_summary.png',
       ),
       iconTitle: 'Attendance\n'
           'Summary',
       onPress: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ApiView()));
+        Get.to(() => AttendanceSummary());
       },
     ),
   ];

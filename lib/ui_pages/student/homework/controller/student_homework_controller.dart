@@ -63,13 +63,13 @@ class StudentHomeworkController extends GetxController
   var submittedWorkList = <HomeworkUploadDetail>[].obs;
   // XFile? imageFile = null.obs as XFile?;
   var isImagePathSet = false.obs;
+  var profilePicPath = "".obs;
 
   var isloading = true.obs;
   var isUploading = false.obs;
   var isDownloading = false.obs;
   var duration = "";
   var lastpage = false.obs;
-
   var todayLastpage = false.obs;
   var weeklyLastpage = false.obs;
   var monthlyLastpage = false.obs;
@@ -175,21 +175,26 @@ class StudentHomeworkController extends GetxController
 
   void pickImage(ImageSource source) async {
     try {
-      final pickedImage =
-          await _picker.pickImage(source: source, imageQuality: 100);
+      final pickedImage = await _picker.pickImage(source: source, imageQuality: 100);
 
       if (pickedImage != null) {
         imageFileList.add(pickedImage);
+
       } else {
         Alert.showSnackBar(
             title: 'No Image', message: 'No Image Selected', top: true);
-      }
+       }
 
-      // imageFile = pickedImage;
-      // print(imageFile!.path);
+      setProfilePicPath(pickedImage!.path);
     } catch (e) {
       print(e);
     }
+    Get.back();
+  }
+
+  void setProfilePicPath(String path){
+    profilePicPath.value = path ;
+    isImagePathSet.value = true;
   }
 
   Future<bool> getHomeWorkToday() async {
@@ -336,24 +341,24 @@ class StudentHomeworkController extends GetxController
           submittedWorkList.value = res.data!.homeworkUploadDetails;
           // submittedWorkList.add(res.data!.homeworkUploadDetails);
 
-          Get.defaultDialog(
-              title: 'Submitted Work',
-              content: Container(
-                width: 300,
-                height: 400,
-                child: submittedWorkList.isEmpty ? Center(child: Text("No work Submitted"),):
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: submittedWorkList.length,
-                  itemBuilder: (context, index) {
-                    var myitem = submittedWorkList[index];
-                    return Image.network(
-                      myitem.file!,
-                      height: 200,
-                    );
-                  },
-                ),
-              ));
+          // Get.defaultDialog(
+          //     title: 'Submitted Work',
+          //     content: Container(
+          //       width: 300,
+          //       height: 400,
+          //       child: submittedWorkList.isEmpty ? Center(child: Text("No work Submitted"),):
+          //       ListView.builder(
+          //         scrollDirection: Axis.horizontal,
+          //         itemCount: submittedWorkList.length,
+          //         itemBuilder: (context, index) {
+          //           var myitem = submittedWorkList[index];
+          //           return Image.network(
+          //             myitem.file!,
+          //             height: 200,
+          //           );
+          //         },
+          //       ),
+          //     ));
           showDialog(
               barrierDismissible: false,
               context: context,

@@ -142,8 +142,7 @@ Widget homeworkContainer(BuildContext context, StudentHomeWorkData myitem) {
                 icon: Image.asset('assets/homework_icons/submit.png'),
                 text: 'Submit',
                 onPress: () {
-                  studentHomeworkController.seeSubmitedHomework(
-                      context, myitem.id);
+
                   print('Dhiraj');
                   studentHomeworkController.seeSubmitedHomework(
                       context, myitem.id);

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -5,19 +7,14 @@ import 'package:new_project_work/widgets/teacher_widgets/student_attendance_view
 
 // ignore: must_be_immutable
 class ScrollableAttendanceReport extends StatelessWidget {
-   ScrollableAttendanceReport({Key? key}) : super(key: key);
+  ScrollableAttendanceReport({Key? key}) : super(key: key);
 
   TeacherAttendanceController attendanceController = Get.find();
-
-  bool _value1 = false;
-   bool _value2 = true;
-   bool _value3 = false;
-   bool _value4 = true;
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Flexible(
+      () => Flexible(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
@@ -38,9 +35,9 @@ class ScrollableAttendanceReport extends StatelessWidget {
               columns: [
                 DataColumn(
                   label: Padding(
-                    padding: EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.only(left: 10.0),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         print('tapped');
                       },
                       child: Text('P',
@@ -52,20 +49,18 @@ class ScrollableAttendanceReport extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 DataColumn(
                     label: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
+                        padding: EdgeInsets.only(left: 10.0),
                         child: Text('L',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: pink,
                                 fontWeight: FontWeight.w600,
                                 fontFamily: 'Roboto')))),
-
                 DataColumn(
                     label: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
+                        padding: EdgeInsets.only(left: 10.0),
                         child: Text('A',
                             style: TextStyle(
                                 fontSize: 18,
@@ -74,69 +69,74 @@ class ScrollableAttendanceReport extends StatelessWidget {
                                 fontFamily: 'Roboto')))),
                 DataColumn(
                     label: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
+                        padding: EdgeInsets.only(left: 10.0),
                         child: Text('H',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.orange.shade300,
                                 fontWeight: FontWeight.w600,
                                 fontFamily: 'Roboto')))),
+                DataColumn(
+                    label: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Text('%',
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Roboto')))),
               ],
               rows: [
                 ...attendanceController.teacherAttendanceList
                     .map((attendance) => DataRow(
-                  cells: [
-                    DataCell(
-                      Container(
-                        alignment: AlignmentDirectional.center,
-                        child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.green),
-                          checkColor: Colors.green,
-                          shape: CircleBorder(),
-                          value: _value1,
-                          onChanged: (value){},
-                        ),
-                      ),
-                    ),
-
-                    DataCell(
-                      Container(
-                        alignment: AlignmentDirectional.center,
-                        child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.green),
-                          checkColor: Colors.green,
-                          shape: CircleBorder(),
-                          value: _value2,
-                          onChanged: (value){},
-                        ),
-                      ),
-                    ),
-
-                    DataCell(
-                        Container(
-                      alignment: AlignmentDirectional.center,
-                      child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.red),
-                          checkColor: Colors.red,
-                          shape: CircleBorder(),
-                          value: _value3,
-                          onChanged: (value){}
-                    ))),
-                    DataCell(Container(
-                      alignment: AlignmentDirectional.center,
-                      child: Checkbox(
-                          fillColor:
-                          MaterialStateProperty.all(Colors.orange),
-                          checkColor: Colors.orange,
-                          shape: CircleBorder(),
-                          value: _value4,
-                          onChanged: (value) {}),
-                    )),
-                  ],
-                ))
+                          cells: [
+                            DataCell(
+                              Container(
+                                  padding: EdgeInsets.only(left: 5),
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(
+                                    '22',
+                                    style: TextStyle(
+                                        color: Colors.green.shade300,
+                                        fontSize: 18),
+                                  )),
+                            ),
+                            DataCell(
+                              Container(
+                                  padding: EdgeInsets.only(left: 5),
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(
+                                    '1',
+                                    style: TextStyle(color: pink, fontSize: 18),
+                                  )),
+                            ),
+                            DataCell(Container(
+                                padding: EdgeInsets.only(left: 5),
+                                alignment: AlignmentDirectional.center,
+                                child: Text(
+                                  '2',
+                                  style: TextStyle(
+                                      color: Colors.red.shade300, fontSize: 18),
+                                ))),
+                            DataCell(Container(
+                                padding: EdgeInsets.only(left: 5),
+                                alignment: AlignmentDirectional.center,
+                                child: Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: Colors.orange.shade300,
+                                      fontSize: 18),
+                                ))),
+                            DataCell(Container(
+                                padding: EdgeInsets.only(left: 5),
+                                alignment: AlignmentDirectional.center,
+                                child: Text(
+                                  '93%',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 18),
+                                ))),
+                          ],
+                        ))
               ]),
         ),
       ),

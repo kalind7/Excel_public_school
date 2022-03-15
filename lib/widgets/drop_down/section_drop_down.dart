@@ -1,59 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
-
-// class SectionDropDown extends StatefulWidget {
-//   const SectionDropDown({Key? key}) : super(key: key);
-//
-//   @override
-//   _SectionDropDownState createState() => _SectionDropDownState();
-// }
-//
-// class _SectionDropDownState extends State<SectionDropDown> {
-//   final items = [
-//     'Section : A',
-//     'Section : A',
-//     'Section : A',
-//     'Section : A',
-//     'Section : A',
-//   ];
-//    String ? value;
-//
-//   @override
-//   Widget build(BuildContext context) =>
-//      Scaffold(
-//        body: Container(
-//          width: 100,
-//          padding: EdgeInsets.only(left: 2.0),
-//          margin: EdgeInsets.only( top: 5.0, bottom: 5.0, left: 5, right: 3.0),
-//          decoration: BoxDecoration(
-//            borderRadius: BorderRadius.circular(10.0),
-//            color: Colors.white,
-//            border: Border.all(width: 0.5,color: Colors.grey.shade300),
-//          ),
-//          child: DropdownButton<String>(
-//            isExpanded: true,
-//              items: items.map((buildMenuItem)).toList(),
-//            onChanged: (value){
-//                setState(() {
-//                  this.value = value ;
-//                });
-//            },
-//          ),
-//        ),
-//      );
-//
-//   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-//     value: item,
-//       child: Text(item,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: 'Roboto'),),
-//   );
-//
-// }
-
-
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class SectionDropDown extends StatefulWidget {
-  const SectionDropDown({Key? key}) : super(key: key);
+   SectionDropDown({Key? key,this.color , this.value, required this.expanded, required this.iconSize }) : super(key: key);
+
+
+  double ? value;
+  bool expanded ;
+  double iconSize;
+  Color? color;
 
   @override
   _SectionDropDownState createState() => _SectionDropDownState();
@@ -62,44 +20,51 @@ class SectionDropDown extends StatefulWidget {
 class _SectionDropDownState extends State<SectionDropDown> {
 
 
-  final List<String> sections = [
-    'Select Section','Section A', 'Section B', 'Section C'
-  ];
+  TeacherAttendanceController attendanceController = Get.find();
 
-  String selectedSection = 'Select Section';
+  // final List<String> sections = [
+  //   "Select Section",'Section A', 'Section B', 'Section C','Section D'
+  // ];
+
+
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    // Size width = MediaQuery.of(context).size;
+
+    return  Obx(() => Container(
+      // width: width.width * widget.value,
       padding: EdgeInsets.only(left: 2.0),
-      margin: EdgeInsets.only( top: 5.0, bottom: 5.0, left: 5, right: 5.0),
+      margin: EdgeInsets.all( 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        // borderRadius: BorderRadius.circular(10.0),
         color: Colors.white,
-        border: Border.all(width: 0.5,color: pink),
+        border: Border.all(width: 0.5,color: widget.color == null ? Colors.transparent : widget.color!),
       ),
 
       child: DropdownButton<String>(
+        isExpanded: widget.expanded,
+        iconSize: widget.iconSize,
         iconDisabledColor: pink,
         iconEnabledColor: pink,
         focusColor: Colors.white,
         dropdownColor: Colors.white,
         underline: SizedBox(),
-        style: TextStyle(fontSize: 14.0, color: Colors.black87, fontFamily: 'Roboto'),
-        value: selectedSection,
+        hint: Text('Select Section',style: dropDownTitle,),
+        value: attendanceController.selectedSection,
         onChanged: (value){
           setState(() {
-            selectedSection = value!;
+            attendanceController.selectedSection = value! ;
           });
         },
-        items: sections.map<DropdownMenuItem <String>>((value) {
+        items: attendanceController.studentSectionList.map<DropdownMenuItem <String>>((value) {
           return DropdownMenuItem(
-              child: Text(value,style: dropDownTitle,),
-                  value: value,
+            child: Text(value['section_name'].toString(),style: dropDownTitle,),
+            value: value['id'].toString(),
           );
         }).toList(),
       ),
-    );
+    ),);
 
   }
 }

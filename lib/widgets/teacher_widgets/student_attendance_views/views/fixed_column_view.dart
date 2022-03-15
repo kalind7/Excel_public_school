@@ -5,7 +5,11 @@ import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 
 class FixedColumnNameWidget extends StatefulWidget {
-  const FixedColumnNameWidget({Key? key}) : super(key: key);
+   FixedColumnNameWidget({Key? key,this.textStyle ,this.color, this.textColor}) : super(key: key);
+
+   TextStyle ? textStyle;
+  Color ? color;
+  Color ? textColor;
 
   @override
   _FixedColumnNameWidgetState createState() => _FixedColumnNameWidgetState();
@@ -17,6 +21,7 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
 
   int ? sortColumnIndex;
   bool isAscending = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
           showBottomBorder: true,
           horizontalMargin: 10,
           columnSpacing: 20,
-          headingRowColor: MaterialStateProperty.all(pink),
+          headingRowColor: MaterialStateProperty.all(widget.color == null ? pink : widget.color),
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(width: 0.5,color: Colors.grey),
@@ -39,7 +44,7 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
           ),
           columns: [
             DataColumn(
-              label: Text('Name',style: mainName,),
+              label: Text('Name',style: widget.textStyle == null ? mainName : widget.textStyle),
               onSort: onSort,
             ),
           ],
@@ -50,8 +55,13 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
                   cells: [
                     DataCell(
                         Text(
-                          '${attendance.id.toString()}   ${attendance.fullName}',
-                          style: headerName,
+                          '${attendance.id.toString()} ${attendance.firstName} ${attendance.lastName}',
+                          style:  TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: widget.textColor == null ? pink : widget.textColor,
+                            fontFamily: 'Roboto',
+                          ),
                         )),
 
                   ],

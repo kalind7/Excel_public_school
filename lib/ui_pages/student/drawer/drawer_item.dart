@@ -11,7 +11,7 @@ Widget BuildDrawerItem({
         leading: IconButton(
           onPressed: (){},
           iconSize: 16,
-          icon: Image.asset(iconTitle),
+          icon: Image.asset(iconTitle,color: Colors.white,),
         ),
         title: Text(text,
             style: const TextStyle(
@@ -27,8 +27,8 @@ Widget BuildDrawerItem({
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: Divider(
-          thickness: 1,
-          height: 1,
+          thickness: 2,
+          height: 2,
           color: Colors.white,
         ),
 

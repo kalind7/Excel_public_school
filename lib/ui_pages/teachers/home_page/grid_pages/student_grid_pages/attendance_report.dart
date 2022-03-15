@@ -1,18 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:new_project_work/ui_pages/calender/date_picker.dart';
+import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/calender/attendance_date_picker.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/drop_down/section_drop_down.dart';
+import 'package:new_project_work/widgets/drop_down/year_drop_down.dart';
+import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/fixed_column_view.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/views/scrollable_attendancereport.dart';
 
 import '../../../../../widgets/drop_down/class_drop_down.dart';
 
 class AttendanceReport extends StatelessWidget {
-  const AttendanceReport({Key? key}) : super(key: key);
+   AttendanceReport({Key? key}) : super(key: key);
+
+  TeacherAttendanceController attendanceController = Get.put(TeacherAttendanceController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +38,28 @@ class AttendanceReport extends StatelessWidget {
         upperWidget: Column(
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(5, 0, 5, 5),
+              margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
               height: MediaQuery.of(context).size.height * 0.090,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                physics: ClampingScrollPhysics(),
                 children: [
-                  ClassDropDown(),
-                  SectionDropDown(),
-                  Flexible(child: AttendanceDatePicker(),)
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(onPressed: (){}, icon: Icon(Icons.search,color: Colors.pink,size: 34.0,)),
+                      ClassDropDown(value: 0.27, expanded: false, iconSize: 24,),
+                      SectionDropDown(value: 0.29, expanded: false,iconSize: 24,),
+                      YearDropDown(value: 0.27, expanded: false,iconSize: 24,),
+                      AttendanceDatePicker(),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -60,15 +73,15 @@ class AttendanceReport extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),
-              child: Column(
+              child: Obx(() => attendanceController.isLoading.value ? CircularProgressIndicator() : Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    Text('Class -',style: reportHeader,),
-                    SizedBox(width: 5,),
-                    Text('Section',style: reportHeader,),
-                  ],),
+                      Text('Class -',style: reportHeader,),
+                      SizedBox(width: 5,),
+                      Text('Section',style: reportHeader,),
+                    ],),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -102,9 +115,13 @@ class AttendanceReport extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
+              ), ),
             ),
           ),
+
+
+
+
       ),
     );
   }

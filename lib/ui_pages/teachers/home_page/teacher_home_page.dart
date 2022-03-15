@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
+import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
 import 'package:new_project_work/ui_pages/teachers/drawer/teacher_drawer.dart';
 import 'package:new_project_work/ui_pages/teachers/profile/teacher_profile.dart';
@@ -38,7 +42,6 @@ class TeacherHomePage extends StatelessWidget {
       ),
       drawer: TeacherDrawer(),
       body: BodyWithWidgetContainer(
-
         top: 100,
         upperWidget: Container(
           height: height * 0.23,
@@ -62,11 +65,7 @@ class TeacherHomePage extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.grey.shade100,
-                  child: Image(
-                    height: 75,
-                    width: 75,
-                    image: AssetImage('images/allstart.png'),
-                  ),
+                  backgroundImage: AssetImage('images/excellogo.png'),
                 ),
               ),
               SizedBox(
@@ -106,12 +105,10 @@ class TeacherHomePage extends StatelessWidget {
                     Center(
                       child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TeacherDetails()));
+                            Get.to(TeacherDetails());
                           },
                           child: Hero(
+                            transitionOnUserGestures: true,
                             tag: 'heroTag',
                             child: Text(
                               'View More',
@@ -135,25 +132,18 @@ class TeacherHomePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           physics: ClampingScrollPhysics(),
           children: [
-            SizedBox(height: 5,),
-
+            SizedBox(
+              height: 5,
+            ),
             StudentInfoGridView(context),
-
             ExamInfoGridView(context),
-
             HomeworkInfoGridView(context),
-
             LessonInfoGridView(context),
-
             TeacherInfoGridView(context),
-
             LeaveInfoGridView(context),
-
           ],
         ),
       ),
     );
   }
 }
-
-

@@ -7,6 +7,7 @@ import 'package:new_project_work/ui_pages/student/routine/routine.dart';
 
 
 import 'package:new_project_work/ui_pages/teachers/home_page/teacher_home_page.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/teacher_landing_page.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import '../ui_pages/fees/views/fees.dart';
 
@@ -28,9 +29,7 @@ class Gridview extends StatelessWidget {
         text: 'Online Class',
         iconTitle: 'assets/gridview_logo/onlineClass.jpg',
         onPress: () {
-          if (kDebugMode) {
             print('anything');
-          }
         },
       ),
       Model(
@@ -39,7 +38,7 @@ class Gridview extends StatelessWidget {
         onPress: () {
           if (kDebugMode) {
             print('anything');
-            Get.to(Fees());
+            Get.to(() => Fees());
           }
           // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
         },
@@ -48,49 +47,47 @@ class Gridview extends StatelessWidget {
         text: 'Result',
         iconTitle: 'assets/gridview_logo/results.jpg',
         onPress: () {
-          if (kDebugMode) {
+
             print('anything');
-          }
         },
       ),
       Model(
         text: 'Attendance',
         iconTitle: 'assets/gridview_logo/attendance.jpg',
         onPress: () {
-          Get.to(StudentAttendanceView());
+          Get.to(() => StudentAttendanceView());
         },
       ),
       Model(
         text: 'Subjects',
         iconTitle: 'assets/gridview_logo/subjects.jpg',
         onPress: () {
-          if (kDebugMode) {
+
             print('anything');
-          }
+
         },
       ),
       Model(
         text: 'Routine',
         iconTitle: 'assets/gridview_logo/routine.jpg',
         onPress: () {
-          Get.to(Routine());
+          Get.to(() => Routine());
         },
       ),
       Model(
         text: 'Library',
         iconTitle: 'assets/gridview_logo/library.jpg',
         onPress: () {
-          Get.to(Library());
+          Get.to(() => Library());
         },
       ),
       Model(
         text: 'Online Exam',
         iconTitle: 'assets/gridview_logo/onlineExam.jpg',
         onPress: () {
-          if (kDebugMode) {
+
             print('anything');
-          }
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => Library()));
+
         },
       ),
       Model(
@@ -100,10 +97,7 @@ class Gridview extends StatelessWidget {
           if (kDebugMode) {
             print('anything');
           }
-          Get.to(TeacherHomePage());
-
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TeacherHomePage()));
+          Get.to(() => TeacherLandingPage());
 
         },
       ),
@@ -111,28 +105,25 @@ class Gridview extends StatelessWidget {
         text: 'Dormitory',
         iconTitle: 'assets/gridview_logo/dormitory.jpg',
         onPress: () {
-          if (kDebugMode) {
             print('anything');
-          }
-          // Get.toNamed('/assignment');
         },
       ),
       Model(
         text: 'Transport',
         iconTitle: 'assets/gridview_logo/transport.jpg',
         onPress: () {
-          if (kDebugMode) {
+
             print('anything');
-          }
+
         },
       ),
       Model(
         text: 'Download',
         iconTitle: 'assets/gridview_logo/download.png',
         onPress: () {
-          if (kDebugMode) {
+
             print('anything');
-          }
+
         },
       ),
     ];
@@ -147,6 +138,7 @@ class Gridview extends StatelessWidget {
         mainAxisSpacing: 20.0,
         crossAxisSpacing: 5.0,
         children: List.generate(model.length, (index) {
+          var myModel = model[index];
           return Card(
             borderOnForeground: false,
             semanticContainer: true,
@@ -160,13 +152,13 @@ class Gridview extends StatelessWidget {
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 IconButton(
                   onPressed: () {
-                    model[index].onPress();
+                    myModel.onPress();
                   },
-                  icon: Image.asset(model[index].iconTitle),
+                  icon: Image.asset(myModel.iconTitle),
                   iconSize: 30.0,
                 ),
                 Text(
-                  model[index].text,
+                  myModel.text,
                   style: gridTextStyle,
                 ),
               ]),

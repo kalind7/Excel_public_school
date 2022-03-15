@@ -7,6 +7,8 @@ class ApiUrl {
   static const String login = "v2/auth/login";
   static const String studentUploadHomework = "v2/student-upload-homework";
   static const String refreshToken = "v2/refresh";
+  static const String getClasses = "v2/class";
+  static  String getSection(classs ) => 'v2/section/$classs';
   static String studentHomework(duration, id) =>
       "v2/homeworklist?days=$duration&page=$id";
   static String studentSubmittedHomeworkView(id) =>
@@ -20,7 +22,9 @@ class ApiUrl {
   static String studentattendencelist(year, month) =>
       'v2/student-my-attendance?year=$year&month=$month';
 
+
   static const String teacherAttendanceList = "student-search";
+  static const String teacherAttendanceSubmit = "student-attendance-store";
   // static String teacherAttendanceList(classes,section,date) => 'student-search?class=$classes&section=$section&attendance_date=$date';
   // static const String {} = "v2/notice-list?page=14";
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
 import 'package:new_project_work/ui_pages/student/homework/views/student_homework_container.dart';
+import 'package:new_project_work/widgets/simmer/homework_shimmer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class StudentMonthlyHomework extends StatelessWidget {
@@ -13,7 +14,7 @@ class StudentMonthlyHomework extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => studentHomeworkController.isloading.value
-          ? Center(child: CircularProgressIndicator())
+          ? HomeworkShimmer()
           : SmartRefresher(
               controller: studentHomeworkController.monthlyRefreshController,
               enablePullUp: true,

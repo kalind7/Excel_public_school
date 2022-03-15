@@ -35,81 +35,101 @@ class _StudentAttendanceViewState extends State<StudentAttendanceView> {
       body: Obx(
         () => Column(
           children: [
-            CalendarDatePicker(
-              onDisplayedMonthChanged: (date) {
-                studentAttendanceViewController.attendencelist.clear();
-                studentAttendanceViewController.getstudentattencelist(
-                    date.year, date.month);
-                setState(() {
-                  selectedAttendence = null;
-                });
-              },
-              initialDate: NepaliDateTime.now(),
-              firstDate: NepaliDateTime(
-                NepaliDateTime.now().year - 1,
-                NepaliDateTime.now().month,
-                NepaliDateTime.now().day,
-              ),
-              lastDate: NepaliDateTime.now(),
-              // onDateChanged: (date) {},
-              dayBuilder: (dayToBuild) {
-                // var attendences =
-                //     studentAttendanceViewController.attendencelist;
-                // log(attendences.toString());
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 3),
+              height: MediaQuery.of(context).size.height * 0.45,
+              decoration: BoxDecoration(
+                  color: Colors.grey[50],
+                  borderRadius: BorderRadius.circular(5.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: orangeOne,
+                      spreadRadius: 0.8,
+                      blurRadius: 4,
+                      blurStyle: BlurStyle.inner,
+                      offset: const Offset(0, 3),
+                    ),
+                  ]),
+              child: CalendarDatePicker(
+                onDisplayedMonthChanged: (date) {
+                  studentAttendanceViewController.attendencelist.clear();
+                  studentAttendanceViewController.getstudentattencelist(
+                      date.year, date.month);
+                },
+                initialDate: NepaliDateTime.now(),
+                firstDate: NepaliDateTime(
+                  NepaliDateTime.now().year - 1,
+                  NepaliDateTime.now().month,
+                  NepaliDateTime.now().day,
+                ),
+                lastDate: NepaliDateTime.now(),
+                onDateChanged: (date) {},
+                dayBuilder: (dayToBuild) {
+                  // var attendences =
+                  //     studentAttendanceViewController.attendencelist;
+                  // log(attendences.toString());
 
-                for (Attendance i
-                    in studentAttendanceViewController.attendencelist) {
-                  if (i.attendanceDate.isSameDate(dayToBuild)) {
-                    selectedAttendence = i;
+                  for (Attendance i
+                      in studentAttendanceViewController.attendencelist) {
+                    if (i.attendanceDate.isSameDate(dayToBuild)) {
+                      selectedAttendence = i;
+                    }
                   }
-                }
-                // final currentAttendance = studentAttendanceViewController
-                //     .attendencelist
-                //     .where((element) =>
-                //         element.attendanceDate.year == dayToBuild.year &&
-                //         element.attendanceDate.month ==
-                //             dayToBuild.month &&
-                //         element.attendanceDate.day == dayToBuild.day)
-                //     .toList();
+                  // final currentAttendance = studentAttendanceViewController
+                  //     .attendencelist
+                  //     .where((element) =>
+                  //         element.attendanceDate.year == dayToBuild.year &&
+                  //         element.attendanceDate.month ==
+                  //             dayToBuild.month &&
+                  //         element.attendanceDate.day == dayToBuild.day)
+                  //     .toList();
 
-                // element.attendanceDate.isSameDate(
-                //   DateTime(
-                //     dayToBuild.year,
-                //     dayToBuild.month,
-                //     dayToBuild.day,
-                //   ),
-                // );
+                  // element.attendanceDate.isSameDate(
+                  //   DateTime(
+                  //     dayToBuild.year,
+                  //     dayToBuild.month,
+                  //     dayToBuild.day,
+                  //   ),
+                  // );
 
-                return studentAttendanceViewController.isloading.value &&
-                        selectedAttendence == null
-                    ? CalenderDayShimmer()
-                    : Stack(
-                        children: <Widget>[
-                          Center(
-                            child: Text(
-                              NepaliUtils().language == Language.nepali
-                                  ? '${dayToBuild.day}'
-                                  : NepaliUnicode.convert('${dayToBuild.day}'),
-                              style: TextStyle(
-                                  color: selectedAttendence == null
-                                      ? Colors.amber
-                                      : Colors.green
-                                  // color: selectedAttendence == null
-                                  //     ? Colors.amber
-                                  //     : (selectedAttendence?.attendanceType ==
-                                  //             "P")
-                                  //         ? Colors.green
-                                  //         : (selectedAttendence?.attendanceType ==
-                                  //                 "A")
-                                  //             ? Colors.red
-                                  //             : Colors.black,
-                                  ),
+                  return studentAttendanceViewController.isloading.value
+                      ? CalenderDayShimmer()
+                      : Stack(
+                          children: <Widget>[
+                            Center(
+                              child: Text(
+                                NepaliUtils().language == Language.nepali
+                                    ? '${dayToBuild.day}'
+                                    : NepaliUnicode.convert(
+                                        '${dayToBuild.day}'),
+                                style: TextStyle(
+                                  color: (selectedAttendence != null &&
+                                          selectedAttendence!.attendanceType ==
+                                              "P")
+                                      ? Colors.green
+                                      : (selectedAttendence != null &&
+                                              selectedAttendence!
+                                                      .attendanceType ==
+                                                  "L")
+                                          ? Colors.orange
+                                          : (selectedAttendence != null &&
+                                                  selectedAttendence!
+                                                          .attendanceType ==
+                                                      "A")
+                                              ? Colors.blue
+                                              : (selectedAttendence == null &&
+                                                      dayToBuild.weekday == 7)
+                                                  ? Colors.red
+                                                  : Colors.black,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-              },
+                          ],
+                        );
+                },
+              ),
             ),
+
             studentAttendanceViewController.isloading.value
                 ? CircularProgressIndicator()
                 : Wrap(

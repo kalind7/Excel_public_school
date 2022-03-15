@@ -256,10 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ForgotPassword()));
+                            Get.to(() => ForgotPassword());
                           },
                           child: Text(
                             'Forgot Password?',

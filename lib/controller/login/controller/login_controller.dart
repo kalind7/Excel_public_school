@@ -8,6 +8,7 @@ import 'package:new_project_work/global/alert.dart';
 import 'package:new_project_work/models/student/student_model.dart';
 import 'package:new_project_work/route/router_constant.dart';
 import 'package:new_project_work/ui_pages/student/landing/student_landing_page.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/teacher_landing_page.dart';
 
 class LoginDataController extends GetxController {
   var loginDetails = <Welcome>[].obs;
@@ -26,18 +27,18 @@ class LoginDataController extends GetxController {
       box.put(Constants.roll, res.data?.user.roleId);
       box.put(Constants.userId, res.data?.user.id);
       box.put(Constants.email, res.data?.user.email);
-      box.put(Constants.className, res.data!.userDetails.className);
-      box.put(Constants.sectionName, res.data!.userDetails.sectionName);
-      box.put(Constants.admissionNumber, res.data!.userDetails.admissionNo);
 
       print(box.get(Constants.accesstoken.toString()));
       box.put(Constants.isLoggedIn, true);
       isloading.value = false;
       var roll = box.get(Constants.roll);
       if (roll == 2) {
+        box.put(Constants.className, res.data!.userDetails.className);
+        box.put(Constants.sectionName, res.data!.userDetails.sectionName);
+        box.put(Constants.admissionNumber, res.data!.userDetails.admissionNo);
         Get.offNamed(studentLandingPage);
       } else {
-        Get.off(StudentLandingPage());
+        Get.offNamed(teacherLandingPage);
       }
     } else {
       Alert.showSnackBar(

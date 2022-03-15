@@ -1,13 +1,26 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/api/api_url.dart';
 import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
 
 
-
 class TeacherAttendanceController extends GetxController {
 
   var teacherAttendanceList = <NewStudent>[].obs;
+  var studentClassList =  <dynamic>[].obs;
+  var studentSectionList = <dynamic>[].obs;
+  String  ?selectedSection  ;
+  String ? selectedClass ;
+  var selectedDate = ''.obs;
+
+  var data = Map<String , String>().obs;
+
+  var note = Map<String, dynamic>().obs;
+
+  RxList idList = [].obs;
+
   var isLoading = false.obs;
 
   var newData = {
@@ -21,29 +34,77 @@ class TeacherAttendanceController extends GetxController {
      isLoading.value = true;
      var response = await ApiServices().post(ApiUrl.teacherAttendanceList, data);
      print(response);
-
      var res = newStudentModelListFromJson(response);
-
      print(res);
 
      if(res.success){
        teacherAttendanceList.value = res.data.newStudents;
        print(teacherAttendanceList);
-
        isLoading.value = false;
      }else{
        print('no data');
      }
     }
 
-    @override
+
+  Future submitTeacherAttendance(data) async {
+
+    var response = await ApiServices().post(ApiUrl.teacherAttendanceSubmit, data);
+    print(response);
+
+    var res = jsonDecode(response);
+    if( res['success']){
+      print('submitted');
+    }else{
+      print('no data');
+    }
+  }
+
+
+  Future getClasses() async {
+
+    isLoading.value = true;
+    var response = await ApiServices().getWithToken(ApiUrl.getClasses);
+    print(response);
+    var res = json.decode(response);
+    print(res);
+
+    if(res["status"]){
+      studentClassList.value = res["data"]  ;
+      print(studentClassList);
+      isLoading.value = false;
+    }else{
+      print('no data');
+    }
+  }
+
+  Future getSection(classs) async {
+
+    studentSectionList.clear();
+    var response = await ApiServices().getWithToken(ApiUrl.getSection(classs));
+    print(response);
+    var res = json.decode(response);
+    print(res);
+
+    if(res["status"]){
+
+      studentSectionList.value = res["data"]  ;
+      print(studentSectionList);
+    }else{
+      print('no data');
+    }
+  }
+
+
+
+
+  @override
   void onInit() {
-    getTeacherAttendanceList(newData);
+    getClasses();
+    // getSection(9);
     super.onInit();
   }
   }
-
-
 
 
 //import 'package:get/get.dart';

@@ -58,7 +58,7 @@ Widget submittedWork(BuildContext context, List<HomeworkUploadDetail>? data) {
                 ),
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: Icon(
                     Icons.cancel_outlined,
@@ -86,11 +86,14 @@ Widget submittedWork(BuildContext context, List<HomeworkUploadDetail>? data) {
                       return Column(
                         children: [
                           SizedBox(
-                            height: height * 0.2,
+                            height: height * 0.15,
                             child: CachedNetworkImage(
+                              height: 100,
+                              width: 200,
+                              fit: BoxFit.cover,
                               imageUrl: myitem.file!,
                               placeholder: (context, url) => SizedBox(
-                                height: 140,
+                                height: 150,
                                 width: 150,
                                 child: Center(
                                   child: LiquidCircularProgressIndicator(
@@ -145,19 +148,6 @@ Widget submittedWork(BuildContext context, List<HomeworkUploadDetail>? data) {
                     // pagination: SwiperPagination(),
                     control: SwiperControl(),
                   ),
-
-            // ListView.builder(
-            //     shrinkWrap: true,
-            //     scrollDirection: Axis.horizontal,
-            //     itemCount: data.length,
-            //     itemBuilder: (context, index) {
-            //       var myitem = data[index];
-            //       return Image.network(
-            //         myitem.file!,
-            //         height: 200,
-            //       );
-            //     },
-            //   ),
           ),
         ],
       ),
