@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:new_project_work/controller/login/controller/login_controller.dart';
 import 'package:new_project_work/global/InternetConnection.dart';
 import 'package:new_project_work/ui_pages/auth_logins/email_verification.dart';
+import 'package:new_project_work/ui_pages/teachers/home_page/teacher_landing_page.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/ui_pages/auth_logins/auth_widgets/login_footer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -197,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontStyle: FontStyle.normal,
                             color: Colors.black26,
                           ),
-                          prefixIcon: Icon(Icons.password_sharp,
+                          prefixIcon: Icon(Icons.lock,
                               size: 25.0, color: Colors.black26),
                           suffixIcon: IconButton(
                               onPressed: () {
@@ -294,10 +295,11 @@ class _LoginPageState extends State<LoginPage> {
                           if (formkey.currentState!.validate() &&
                               isInternetConnected) {
                             var data = {
-                              "email": emailController.text,
-                              "password": pwdController.text
+                              "email": emailController.text.trim(),
+                              "password": pwdController.text.trim(),
                             };
                             studentController.login(data);
+                            // Get.to(() => TeacherLandingPage());
                           }
                         },
                         child: Text(

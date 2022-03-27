@@ -23,6 +23,7 @@ class ApiUrl {
       'v2/student-my-attendance?year=$year&month=$month';
 
 
+  static const String teacherReportList = "student-attendance-report";
   static const String teacherAttendanceList = "student-search";
   static const String teacherAttendanceSubmit = "student-attendance-store";
   // static String teacherAttendanceList(classes,section,date) => 'student-search?class=$classes&section=$section&attendance_date=$date';
@@ -42,4 +43,13 @@ class Constants {
   static const String roll = "roll";
   static const String profileImage = "profileImage";
   static const String accesstoken = "token";
+
+  // static const String teacherId = "teacherId";
+  static const String dateOfBirth = "dateOfBirth";
+  static const String dateOfJoining = "dateOfJoining";
+  static const String mobile = "mobile";
+  static const String experience = "experience";
+  static const String qualification = "qualification";
+  static const String currentAddress = "currentAddress";
 }
+

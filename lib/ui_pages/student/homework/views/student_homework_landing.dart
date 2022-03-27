@@ -25,9 +25,9 @@ class StudentHomeworkLanding extends StatelessWidget {
           child: WidgetAppbar(
             title: '',
             onPress: () {
-              studentHomeworkController.fetchDetails();
+              _scaffoldKey.currentState!.openDrawer();
             },
-            icon: Icons.refresh,
+            icon: Icons.menu,
           ),
           preferredSize: Size.fromHeight(55.0)),
       key: _scaffoldKey,

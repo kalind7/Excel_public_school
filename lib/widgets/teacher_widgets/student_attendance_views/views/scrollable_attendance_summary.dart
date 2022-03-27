@@ -3,14 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/utils/color.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
 
 // ignore: must_be_immutable
 class ScrollableAttendanceSummary extends StatelessWidget {
   ScrollableAttendanceSummary({Key? key, this.color}) : super(key: key);
-
-
-
 
   TeacherAttendanceController attendanceController = Get.find();
 

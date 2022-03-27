@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
-import 'package:new_project_work/ui_pages/student/homework/controller/student_homework_controller.dart';
+
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_image_picker_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_profile_controller.dart';
 import 'package:new_project_work/ui_pages/teachers/drawer/teacher_drawer.dart';
 import 'package:new_project_work/ui_pages/teachers/profile/teacher_profile.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -21,10 +23,11 @@ import 'package:new_project_work/widgets/teacher_widgets/homepage_gridviews/stud
 class TeacherHomePage extends StatelessWidget {
   TeacherHomePage({Key? key}) : super(key: key);
 
-
-  StudentHomeworkController homeworkController = Get.find();
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TeacherProfileController profileController = Get.find();
+  TeacherImageController imageController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class TeacherHomePage extends StatelessWidget {
       drawer: TeacherDrawer(),
       body: BodyWithWidgetContainer(
         top: 100,
-        upperWidget: Container(
+        upperWidget:Container(
           height: height * 0.23,
           width: width,
           decoration: BoxDecoration(
@@ -68,10 +71,8 @@ class TeacherHomePage extends StatelessWidget {
                 child: Obx(() => CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.grey.shade100,
-                  backgroundImage: homeworkController.isImagePathSet.value ==
-                      true
-                      ? FileImage(File(homeworkController
-                      .profilePicPath.value)) as ImageProvider
+                  backgroundImage:imageController.isImagePathSet.value == true
+                      ? FileImage(File(imageController.profilePicPath.value)) as ImageProvider
                       : AssetImage('images/profile.png'),
                 ),),
               ),
@@ -86,33 +87,31 @@ class TeacherHomePage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10),
-                child: Column(
+                child:  Obx(() => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Beli Lama', style: nameTitle),
+                    Text(profileController.name.toString(), style: nameTitle),
+
+                    profileController.qualification.toString() == "" ?  SizedBox(): RowData(
+                        text: 'Qualification',
+                        differentiator: ':',
+                        answer: profileController.qualification.toString() ,
+                        height: 10),
+                    profileController.experience.toString() == "" ? SizedBox() :RowData(
+                        text: 'Experience',
+                        differentiator: ':',
+                        answer: profileController.experience.toString(),
+                        height: 10)  ,
                     RowData(
-                      text: 'Role',
-                      differentiator: ':',
-                      answer: 'Teacher',
-                      height: 7,
-                    ),
-                    RowData(
-                      text: 'Designation',
-                      differentiator: ':',
-                      answer: 'Teacher',
-                      height: 7,
-                    ),
-                    RowData(
-                      text: 'Department',
-                      differentiator: ':',
-                      answer: 'Academic',
-                      height: 7,
-                    ),
+                        text: 'Address',
+                        differentiator: ':',
+                        answer: profileController.currentAddress.toString(),
+                        height: 10),
                     Center(
                       child: InkWell(
                           onTap: () {
-                            Get.to(TeacherProfile());
+                            Get.to(() => TeacherProfile());
                           },
                           child: Hero(
                             transitionOnUserGestures: true,
@@ -129,7 +128,7 @@ class TeacherHomePage extends StatelessWidget {
                           )),
                     )
                   ],
-                ),
+                ),),
               ),
             ],
           ),
@@ -139,25 +138,18 @@ class TeacherHomePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           physics: ClampingScrollPhysics(),
           children: [
-            SizedBox(height: 5,),
-
+            SizedBox(
+              height: 5,
+            ),
             StudentInfoGridView(context),
-
             ExamInfoGridView(context),
-
             HomeworkInfoGridView(context),
-
             LessonInfoGridView(context),
-
             TeacherInfoGridView(context),
-
             LeaveInfoGridView(context),
-
           ],
         ),
       ),
     );
   }
 }
-
-

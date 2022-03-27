@@ -14,7 +14,7 @@ class StudentMonthlyHomework extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => studentHomeworkController.isloading.value
-          ? HomeworkShimmer()
+          ? CircularProgressIndicator()
           : SmartRefresher(
               controller: studentHomeworkController.monthlyRefreshController,
               enablePullUp: true,

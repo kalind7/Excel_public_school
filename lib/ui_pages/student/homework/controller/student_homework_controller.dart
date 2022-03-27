@@ -58,9 +58,10 @@ class StudentHomeworkController extends GetxController
   var todayCurrentPage = 1.obs;
   var weeklyCurrentPage = 1.obs;
   var monthlyCurrentPage = 1.obs;
+  var submittedWorkList = <HomeworkUploadDetail>[].obs;
+
   final ImagePicker _picker = ImagePicker();
   var imageFileList = <XFile>[].obs;
-  var submittedWorkList = <HomeworkUploadDetail>[].obs;
   // XFile? imageFile = null.obs as XFile?;
   var isImagePathSet = false.obs;
   var profilePicPath = "".obs;

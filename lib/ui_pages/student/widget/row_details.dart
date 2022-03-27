@@ -1,28 +1,27 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:new_project_work/utils/constant.dart';
 
-Widget rowDetails({required String titleText, required String answerText}) {
+Widget rowDetails({
+  required String titleText,
+  required Widget widget,
+  required String answerText
+}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      textBaseline: TextBaseline.alphabetic,
+
+      // mainAxisAlignment: MainAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.baseline,
+      // textBaseline: TextBaseline.ideographic,
       children: [
-        const SizedBox(
-          width: 20.0,
-        ),
+
         Text(
-          titleText,
+          '${titleText}  :',
           style: titleStyle,
         ),
-        Text(
-          ':',
-          style: answerStyle,
-        ),
-        const SizedBox(
-          width: 20.0,
-        ),
+
+        widget,
         Text(
           answerText,
           style: answerStyle,

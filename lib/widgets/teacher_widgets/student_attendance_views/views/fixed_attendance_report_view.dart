@@ -5,18 +5,18 @@ import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
 
-class FixedColumnNameWidget extends StatefulWidget {
-   FixedColumnNameWidget({Key? key,this.textStyle ,this.color, this.textColor}) : super(key: key);
+class FixedAttendanceReportView extends StatefulWidget {
+  FixedAttendanceReportView({Key? key,this.textStyle ,this.color, this.textColor}) : super(key: key);
 
-   TextStyle ? textStyle;
+  TextStyle ? textStyle;
   Color ? color;
   Color ? textColor;
 
   @override
-  _FixedColumnNameWidgetState createState() => _FixedColumnNameWidgetState();
+  _FixedAttendanceReportViewState createState() => _FixedAttendanceReportViewState();
 }
 
-class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
+class _FixedAttendanceReportViewState extends State<FixedAttendanceReportView> {
 
   TeacherAttendanceController attendanceController = Get.find();
 
@@ -99,6 +99,6 @@ class _FixedColumnNameWidgetState extends State<FixedColumnNameWidget> {
     });
   }
   int compareString(bool ascending, String value1, String value2) =>
-     ascending ? value1.compareTo(value2) : value2.compareTo(value1);
+      ascending ? value1.compareTo(value2) : value2.compareTo(value1);
 
 }

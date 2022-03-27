@@ -14,7 +14,7 @@ class Routine extends StatelessWidget {
 
 
     return DefaultTabController(
-        length: 6,
+        length: 1,
         child: Scaffold(
           appBar: PreferredSize(
             child: WidgetAppbar(
@@ -31,11 +31,7 @@ class Routine extends StatelessWidget {
             child: TabBarView(
               children: [
                 RoutineGetList(),
-                RoutineGetList(),
-                RoutineGetList(),
-                RoutineGetList(),
-                RoutineGetList(),
-                RoutineGetList(),
+
               ],
             ),
           ),

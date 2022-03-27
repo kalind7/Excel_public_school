@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/after_search_done.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/grid_pages/exam_info_gridpages/practical_exam/transfer_page.dart';
 import 'package:new_project_work/utils/color.dart';
@@ -22,6 +23,8 @@ class ExamPractical extends StatelessWidget {
   Widget? widget;
    Widget? widget2;
    double? height;
+
+   TeacherAttendanceController attendanceController = Get.find();
 
   @override
   Widget build(BuildContext context) {

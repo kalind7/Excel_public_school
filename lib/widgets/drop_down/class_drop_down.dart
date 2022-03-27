@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/utils/fonts.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/models/student_attendance_list_model.dart';
 
 import '../../utils/color.dart';
 

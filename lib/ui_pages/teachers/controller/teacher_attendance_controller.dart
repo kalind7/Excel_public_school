@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:new_project_work/api/ApiServices.dart';
 import 'package:new_project_work/api/api_url.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/models/student_names_model.dart';
+import 'package:new_project_work/ui_pages/teachers/models/student_attendance_list_model.dart';
+import 'package:new_project_work/ui_pages/teachers/models/teacher_attendance_list_report.dart';
 
 
 class TeacherAttendanceController extends GetxController {
@@ -29,13 +30,37 @@ class TeacherAttendanceController extends GetxController {
     "attendance_date": "2078-11-20",
   };
 
+  var teacherReportList = <Attendance>[].obs;
+  var reportData  = {
+    "class":11,
+    "section":1,
+    "month":"01",
+    "year":"2078"
+  };
+
+  Future getTeacherReportList(data)async{
+
+    isLoading.value = true;
+    var response = await ApiServices().post(ApiUrl.teacherReportList, data);
+
+    print(response);
+    var res = teacherReportFromJson(response);
+    print(res);
+
+    if(res.success){
+      teacherReportList.value = res.data.attendances;
+      print(teacherReportList);
+      isLoading.value = false;
+    }
+  }
+
   Future getTeacherAttendanceList(data) async {
 
      isLoading.value = true;
      var response = await ApiServices().post(ApiUrl.teacherAttendanceList, data);
-     print(response);
+     // print(response);
      var res = newStudentModelListFromJson(response);
-     print(res);
+     // print(res);
 
      if(res.success){
        teacherAttendanceList.value = res.data.newStudents;
@@ -50,7 +75,7 @@ class TeacherAttendanceController extends GetxController {
   Future submitTeacherAttendance(data) async {
 
     var response = await ApiServices().post(ApiUrl.teacherAttendanceSubmit, data);
-    print(response);
+    // print(response);
 
     var res = jsonDecode(response);
     if( res['success']){
@@ -60,14 +85,13 @@ class TeacherAttendanceController extends GetxController {
     }
   }
 
-
   Future getClasses() async {
 
     isLoading.value = true;
     var response = await ApiServices().getWithToken(ApiUrl.getClasses);
-    print(response);
+    // print(response);
     var res = json.decode(response);
-    print(res);
+    // print(res);
 
     if(res["status"]){
       studentClassList.value = res["data"]  ;
@@ -82,9 +106,9 @@ class TeacherAttendanceController extends GetxController {
 
     studentSectionList.clear();
     var response = await ApiServices().getWithToken(ApiUrl.getSection(classs));
-    print(response);
+    // print(response);
     var res = json.decode(response);
-    print(res);
+    // print(res);
 
     if(res["status"]){
 
@@ -96,10 +120,9 @@ class TeacherAttendanceController extends GetxController {
   }
 
 
-
-
   @override
   void onInit() {
+    getTeacherReportList(reportData);
     getClasses();
     // getSection(9);
     super.onInit();

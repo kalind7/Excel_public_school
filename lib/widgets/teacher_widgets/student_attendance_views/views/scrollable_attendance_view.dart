@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_project_work/widgets/teacher_widgets/student_attendance_views/controller/teacher_attendance_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
 
 class ScrollableAttendanceView extends StatefulWidget {
   const ScrollableAttendanceView({Key? key}) : super(key: key);
@@ -48,12 +48,14 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                   ),
                   columns: [
                     DataColumn(
-                      label: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: GestureDetector(
-                          onTap: (){
-                            print('tapped');
-                          },
+                      label: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 15,right: 31),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            right: BorderSide(width: 0.5,color: Colors.black54),
+                          )
+                        ),
                           child: Text('P',
                               style: TextStyle(
                                   fontSize: 18,
@@ -62,25 +64,27 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                   fontFamily: 'Roboto')),
                         ),
                       ),
-                    ),
                     DataColumn(
-                        label: Padding(
-                            padding: EdgeInsets.only(left: 15.0),
-                            child: Text('A',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.red.shade300,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Roboto')))),
-                    DataColumn(
-                        label: Padding(
-                            padding: EdgeInsets.only(left: 15.0),
-                            child: Text('H',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.orange.shade300,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Roboto')))),
+                        label: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.only(left: 15),
+
+                          child: Text('A',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.red.shade300,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Roboto')),
+                        ),),
+                    // DataColumn(
+                    //     label: Padding(
+                    //         padding: EdgeInsets.only(left: 15.0),
+                    //         child: Text('H',
+                    //             style: TextStyle(
+                    //                 fontSize: 18,
+                    //                 color: Colors.orange.shade300,
+                    //                 fontWeight: FontWeight.w600,
+                    //                 fontFamily: 'Roboto')))),
                   ],
                   rows: [
                     ...attendanceController.teacherAttendanceList
@@ -89,9 +93,15 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                           cells: [
                             DataCell(
                               Container(
-                                alignment: AlignmentDirectional.center,
+                                padding: EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(width: 0.5,color: Colors.black54),
+                                    )
+                                ),
                                 child: Radio(
                                     value: 0,
+                                    activeColor: Colors.green.shade300,
                                     groupValue: attendance.id,
                                     onChanged: (newValue){
                                       setState(() {
@@ -118,10 +128,13 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                 ),
                               ),
                             ),
-                            DataCell(Container(
-                              alignment: AlignmentDirectional.center,
+                            DataCell(
+                                Container(
+
+                              alignment: AlignmentDirectional.topStart,
                               child: Radio(
                                   value: 1,
+                                  activeColor: Colors.red.shade300,
                                   groupValue: attendance.id,
                                   onChanged: (newValue){
                                     setState(() {
@@ -145,34 +158,34 @@ class _ScrollableAttendanceViewState extends State<ScrollableAttendanceView> {
                                   }
                               ),
                             )),
-                            DataCell(Container(
-                              alignment: AlignmentDirectional.center,
-                              child: Radio(
-                                  value: 2,
-                                  groupValue: attendance.id,
-                                  onChanged: (newValue){
-                                    setState(() {
-
-                                      if (attendanceController.note.containsKey(attendance.id.toString() )){
-                                        attendanceController.note.update(attendance.id.toString(), (value) => null );
-                                      }else{
-                                        attendanceController.note[attendance.id.toString()] = null;
-                                      }
-
-                                      attendanceController.idList.contains(attendance.id) ? null : attendanceController.idList.add(attendance.id);
-                                      print(attendanceController.idList);
-
-                                      if (attendanceController.data.containsKey(attendance.id.toString() )){
-                                        attendanceController.data[attendance.id.toString()] = 'H'  ;
-                                      }else{
-                                        attendanceController.data[attendance.id.toString()] = 'H';
-                                      }
-                                      print(attendanceController.data);
-                                      attendance.id = newValue as int;
-                                    });
-                                  }
-                              ),
-                            )),
+                            // DataCell(Container(
+                            //   alignment: AlignmentDirectional.center,
+                            //   child: Radio(
+                            //       value: 2,
+                            //       groupValue: attendance.id,
+                            //       onChanged: (newValue){
+                            //         setState(() {
+                            //
+                            //           if (attendanceController.note.containsKey(attendance.id.toString() )){
+                            //             attendanceController.note.update(attendance.id.toString(), (value) => null );
+                            //           }else{
+                            //             attendanceController.note[attendance.id.toString()] = null;
+                            //           }
+                            //
+                            //           attendanceController.idList.contains(attendance.id) ? null : attendanceController.idList.add(attendance.id);
+                            //           print(attendanceController.idList);
+                            //
+                            //           if (attendanceController.data.containsKey(attendance.id.toString() )){
+                            //             attendanceController.data[attendance.id.toString()] = 'H'  ;
+                            //           }else{
+                            //             attendanceController.data[attendance.id.toString()] = 'H';
+                            //           }
+                            //           print(attendanceController.data);
+                            //           attendance.id = newValue as int;
+                            //         });
+                            //       }
+                            //   ),
+                            // )),
                           ],
                         )).toList(),
                   ]),

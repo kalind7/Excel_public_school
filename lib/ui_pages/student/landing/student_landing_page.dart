@@ -19,7 +19,6 @@ class _StudentLandingPageState extends State<StudentLandingPage> {
   var _pageController;
   final screens = <Widget>[
     StudentDetails(),
-    // StudentAttendanceView(),
     Calendar(),
     StudentHomePage(),
     StudentHomeworkLanding(),

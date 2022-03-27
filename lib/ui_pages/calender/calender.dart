@@ -5,6 +5,7 @@ import 'package:new_project_work/controller/event/table_event_controller.dart';
 
 import 'package:new_project_work/ui_pages/calender/english_calender.dart';
 import 'package:new_project_work/ui_pages/calender/nepali_calender.dart';
+import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
@@ -28,11 +29,20 @@ class _CalendarState extends State<Calendar>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+      extendBodyBehindAppBar: true,
         key: _scaffoldKey,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(55),
-          child: WidgetAppbar(title: 'Calender', color: pink, onPress: () {}),
+          child: WidgetAppbar(
+              title: 'Calender',
+              color: pink,
+              icon: Icons.menu,
+              onPress: () {
+            _scaffoldKey.currentState!.openDrawer();
+          }),
         ),
+        drawerEnableOpenDragGesture: true,
+        drawer: StudentDrawer(),
         body: SafeArea(
           child: DefaultTabController(
             length: 2,

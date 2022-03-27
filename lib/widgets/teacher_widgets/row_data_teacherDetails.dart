@@ -8,7 +8,6 @@ Widget RowData({
   required String text,
   required String answer,
   required String differentiator,
-
   required double height,
 
 }){
@@ -31,11 +30,11 @@ Widget RowData({
           Text(differentiator,style: subTitle,),
 
           SizedBox(width: 5,),
-          Text(
+         Text(
             answer,
             style: subTitle,
+            overflow: TextOverflow.clip,
           ),
-
         ],
       ),
       SizedBox(height: height),

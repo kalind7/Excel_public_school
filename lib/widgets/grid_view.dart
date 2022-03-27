@@ -36,11 +36,7 @@ class Gridview extends StatelessWidget {
         text: 'Fees',
         iconTitle: 'assets/gridview_logo/fees.jpg',
         onPress: () {
-          if (kDebugMode) {
-            print('anything');
-            Get.to(() => Fees());
-          }
-          // Navigator.push(context, MaterialPageRoute(builder: (context)=> Fees()));
+          Get.to(() => Fees());
         },
       ),
       Model(
@@ -90,17 +86,17 @@ class Gridview extends StatelessWidget {
 
         },
       ),
-      Model(
-        text: 'Teachers',
-        iconTitle: 'assets/gridview_logo/teacher.jpg',
-        onPress: () {
-          if (kDebugMode) {
-            print('anything');
-          }
-          Get.to(() => TeacherLandingPage());
-
-        },
-      ),
+      // Model(
+      //   text: 'Teachers',
+      //   iconTitle: 'assets/gridview_logo/teacher.jpg',
+      //   onPress: () {
+      //     if (kDebugMode) {
+      //       print('anything');
+      //     }
+      //     Get.to(() => TeacherLandingPage());
+      //
+      //   },
+      // ),
       Model(
         text: 'Dormitory',
         iconTitle: 'assets/gridview_logo/dormitory.jpg',

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/student/widget/body_container_with_widget.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_attendance_controller.dart';
 import 'package:new_project_work/utils/color.dart';
 import 'package:new_project_work/utils/fonts.dart';
 import 'package:new_project_work/widgets/appbar.dart';
 import 'package:new_project_work/widgets/teacher_widgets/button.dart';
 
 class SecondExamPractical extends StatelessWidget {
-  const SecondExamPractical({Key? key}) : super(key: key);
+   SecondExamPractical({Key? key}) : super(key: key);
+
+  TeacherAttendanceController attendanceController = Get.find();
 
   @override
   Widget build(BuildContext context) {

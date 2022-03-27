@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_project_work/ui_pages/student/drawer/student_drawer.dart';
 import 'package:new_project_work/ui_pages/student/homepage/controller/student_home_controller.dart';
 import 'package:new_project_work/ui_pages/student/widget/profile_body_container.dart';
 import 'package:new_project_work/ui_pages/student/widget/row_details.dart';
 
 import 'package:new_project_work/utils/color.dart';
+import 'package:new_project_work/widgets/appbar.dart';
 
 class StudentDetails extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -15,6 +17,18 @@ class StudentDetails extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       key: _scaffoldKey,
+      drawerEnableOpenDragGesture: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(55.0),
+        child: WidgetAppbar(
+          title: '',
+          onPress: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+          icon: Icons.menu,
+        ),
+      ),
+      drawer: StudentDrawer(),
       body: Obx(
         () => ProfileBodyContainer(
             widget: Column(
@@ -41,6 +55,7 @@ class StudentDetails extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(
                     horizontal: 15,
                   ),
+                  padding: EdgeInsets.only(left: 20,top: 10,bottom: 5),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -62,16 +77,20 @@ class StudentDetails extends StatelessWidget {
                     children: [
                       rowDetails(
                           titleText: 'Class',
+                          widget: SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
                           answerText:
                               studentHomeController.className.toString()),
                       rowDetails(
                           titleText: 'Section',
+                          widget: SizedBox(width: MediaQuery.of(context).size.width * 0.2,),
                           answerText: studentHomeController.section.toString()),
                       rowDetails(
                           titleText: 'Email',
+                          widget: SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
                           answerText: studentHomeController.email.toString()),
                       rowDetails(
-                          titleText: 'Adminssion No',
+                          titleText: 'Admission No',
+                          widget: SizedBox(width: MediaQuery.of(context).size.width * 0.065,),
                           answerText:
                               studentHomeController.admissionNumber.toString()),
                     ],

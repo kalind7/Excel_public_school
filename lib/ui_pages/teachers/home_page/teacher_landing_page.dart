@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:new_project_work/ui_pages/calender/calender.dart';
 import 'package:new_project_work/ui_pages/student/homework/views/student_homework_landing.dart';
 import 'package:new_project_work/ui_pages/student/notice/notice.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_image_picker_controller.dart';
+import 'package:new_project_work/ui_pages/teachers/controller/teacher_profile_controller.dart';
 import 'package:new_project_work/ui_pages/teachers/home_page/teacher_home_page.dart';
 import 'package:new_project_work/utils/color.dart';
 
@@ -17,13 +19,19 @@ class TeacherLandingPage extends StatefulWidget {
 }
 
 class _TeacherLandingPageState extends State<TeacherLandingPage> {
+
+
+  TeacherImageController imageController = Get.put(TeacherImageController());
+  TeacherProfileController profileController = Get.put(TeacherProfileController());
+
   var _pageController;
   final screens = <Widget>[
     TeacherProfile(),
     // StudentAttendanceView(),
     Calendar(),
+    // Calendar(),
     TeacherHomePage(),
-    StudentHomeworkLanding(),
+    Calendar(),
     Notice(),
   ];
 
@@ -46,19 +54,19 @@ class _TeacherLandingPageState extends State<TeacherLandingPage> {
     return WillPopScope(
       onWillPop: () async {
         return await Get.defaultDialog(
-          title: '',
-          content: const Text('Do you want to exit the App?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Get.back(),
-              child: const Text('No'),
-            ),
-            TextButton(
-              onPressed: () => exit(0),
-              child: const Text('Yes'),
-            )
-          ],
-        ) ??
+              title: '',
+              content: const Text('Do you want to exit the App?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Get.back(),
+                  child: const Text('No'),
+                ),
+                TextButton(
+                  onPressed: () => exit(0),
+                  child: const Text('Yes'),
+                )
+              ],
+            ) ??
             false;
       },
       child: Scaffold(
@@ -102,21 +110,29 @@ class _TeacherLandingPageState extends State<TeacherLandingPage> {
                   },
                   items: [
                     BottomNavigationBarItem(
-                        icon: SvgPicture.asset('assets/nav_bar_icons/profile.svg'), label: 'Profile'),
+                        icon: SvgPicture.asset(
+                            'assets/nav_bar_icons/profile.svg'),
+                        label: 'Profile'),
                     BottomNavigationBarItem(
-                        icon: SvgPicture.asset('assets/nav_bar_icons/calendar.svg'), label: 'Calender'),
+                        icon: SvgPicture.asset(
+                            'assets/nav_bar_icons/calendar.svg'),
+                        label: 'Calender'),
                     BottomNavigationBarItem(
-                        icon:Icon(Icons.home), label: 'Home'),
+                        icon: Icon(Icons.home), label: 'Home'),
                     BottomNavigationBarItem(
-                        icon:SvgPicture.asset('assets/nav_bar_icons/homework.svg'), label: 'Homework'),
+                        icon: SvgPicture.asset(
+                            'assets/nav_bar_icons/homework.svg'),
+                        label: 'Homework'),
                     BottomNavigationBarItem(
-                        icon: SvgPicture.asset('assets/nav_bar_icons/notice2.svg'), label: 'Notice')
+                        icon: SvgPicture.asset(
+                            'assets/nav_bar_icons/notice2.svg'),
+                        label: 'Notice')
                   ]),
             ),
           ),
         ),
         floatingActionButtonLocation:
-        FloatingActionButtonLocation.miniCenterDocked,
+            FloatingActionButtonLocation.miniCenterDocked,
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
